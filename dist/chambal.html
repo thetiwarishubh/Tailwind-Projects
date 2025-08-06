@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranthambore Chambal Safari</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/output.css">
+    <link rel="shortcut icon" href="/Images/favicon.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="w-full sticky top-0 z-50 shadow-md">
+        <!-- Top Contact Bar -->
+        <div class="w-full bg-[#604019] text-white h-12 sm:h-8 flex items-center">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col justify-between items-center px-8 sm:flex-row">
+                    <!-- Changed to justify-around -->
+                    <div class="flex items-center cursor-pointer">
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <span>8076438491 | 7982193537</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center cursor-pointer">
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <span>ranthambore360@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navigation -->
+        <div class="w-full bg-white flex justify-between">
+            <div class="container mx-auto px-4 py-1 lg:px-16 flex md:flex-col lg:flex-row justify-between items-center">
+                <div>
+                    <img class="logo h-16 cursor-pointer" src="/Images/logo.svg" alt="Ranthambore 360 Logo">
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <ul class="flex space-x-8 text-lg font-medium items-center">
+                        <li><a href="/dist/index.html" id="home-btn"
+                                class="text-[#604019] hover:text-amber-600 transition-colors">Home</a></li>
+                        <li><a href="safari.html" class="text-[#604019] hover:text-amber-600 transition-colors">Safari</a></li>
+                        <li><a href="chambal.html" class="chambalBtn text-[#ff7518] hover:text-amber-600 transition-colors">Chambal Safari</a>
+                        </li>
+                        <li><a href="hotel.html" class="hotelBtn text-[#604019] hover:text-amber-600 transition-colors">Hotels</a></li>
+                        <li><a href="package-booking.html" class="tourBtn text-[#604019] hover:text-amber-600 transition-colors">Packages</a></li>
+                        <li><a href="contact.html" id="contact-btn"
+                                class="text-[#604019] hover:text-amber-600 transition-colors">Contact</a></li>
+                    </ul>
+                    <button
+                        class="safariBtn ml-6 bg-amber-700 hover:bg-amber-600 text-white font-medium py-1 px-6 rounded-lg transition-colors shadow-md cursor-pointer">
+                        Book Now
+                    </button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button class="text-amber-900 focus:outline-none cursor-pointer">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Main Body -->
+    <main class="w-full">
+        <!-- Banner Image -->
+        <div class="w-full">
+            <div class="w-full h-auto max-h-[700px] overflow-hidden">
+                <img class="w-full h-auto object-cover transition-transform duration-700 hover:scale-102"
+                    src="/Images/chambal-banner.jpg" alt="Ranthambore National Park - Tigers in their natural habitat"
+                    loading="eager" fetchpriority="high">
+            </div>
+        </div>
+        <!-- Services Heading -->
+        <div class="container mx-auto px-4 py-2 max-w-6xl">
+            <h2 class="text-center text-2xl md:text-3xl font-semibold text-amber-600 mb-1.5">
+                Chambal Safari Booking
+
+            </h2>
+            <h1 class="text-md md:text-lg font-semibold font-sans text-[#604019]">
+                We have made 4 kinds of Chambal Safari Booking options so that travelers can choose the one that suits
+                them the most. These options are made according to different preferences of people over the last few
+                years. Every traveler has different preferences some needs include lunch, and some need a pickup and
+                drop service. In some options, we have included some necessities, and in some, we have not so that it
+                can suit the budget. Check these options to make your safari a memorable one.
+            </h1>
+            <div class="px-3 md:px-8 py-4">
+                <ul class="space-y-1 text-base md:text-lg">
+                    <li><span class="font-bold">1.</span> In the first option, a Chambal boat safari along with a life
+                        jacket can be booked without a pickup & drop service.</li>
+                    <li><span class="font-bold">2.</span> In the second option, you can book a chambal boat safari along
+                        with a life jacket and pickup & drop service from your hotel to your safari destination.</li>
+                    <li><span class="font-bold">3.</span> In the third option, a chambal boat safari along with a life
+                        jacket can be booked with lunch included. But pickup & drop service will not be provided.</li>
+                    <li><span class="font-bold">4.</span> Last but not least, in the fourth option, you can book a
+                        chambal boat safari along with a life jacket, lunch, and pickup & drop service from your hotel
+                        to your safari destination. All services are included in this one and it is the best if you
+                        truly want to enjoy a memorable boat safari in the Chambal river.</li>
+                </ul>
+            </div>
+        </div>
+        <section class="py-12 bg-gradient-to-br from-stone-100 to-stone-200" id="chambal-safari">
+            <div class="container mx-auto px-4 max-w-7xl">
+                <!-- Section Header -->
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-extrabold text-stone-800 mb-4 tracking-tight">Chambal River Safari Experiences
+                    </h2>
+                    <p class="text-xl text-stone-600 max-w-3xl mx-auto">
+                        Experience the pristine beauty of the Chambal River with our carefully curated safari packages.
+                    </p>
+                </div>
+
+                <!-- Safari Options Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+                    <!-- Option 1: Standard Safari -->
+                    <div
+                        class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-all duration-300 group border-t-4 border-transparent hover:border-teal-500 flex flex-col min-h-[600px]">
+                        <div class="relative h-52 overflow-hidden flex-shrink-0">
+                            <img src="/Images/1_1_Chambal Safari Booking.jpg"
+                                alt="Standard Chambal Safari with boat on river"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                loading="lazy">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent">
+                            </div>
+                            <span
+                                class="absolute top-4 left-4 bg-teal-500 text-white text-sm font-bold px-4 py-1 rounded-full shadow-md">AFFORDABLE</span>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-2xl font-bold text-stone-800 mb-4">Standard Safari</h3>
+                            <ul class="space-y-3 mb-6 text-stone-600 flex-grow">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-teal-500 mr-3 mt-1"></i>
+                                    <span>2-hour boat safari with guide</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-teal-500 mr-3 mt-1"></i>
+                                    <span>Pickup & drop from nearby hotels</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-teal-500 mr-3 mt-1"></i>
+                                    <span>Life jacket and safety equipment</span>
+                                </li>
+                            </ul>
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-0 pt-4 border-t border-stone-200 mt-auto">
+                                <div class="text-center sm:text-left">
+                                    <p class="text-sm text-stone-500">Starting from</p>
+                                    <p class="text-xl sm:text-2xl font-bold text-amber-600">₹2,499</p>
+                                </div>
+                                <a href="chambal-booking-page.html?package=standard"
+                                    class="px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold text-sm sm:text-base rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all whitespace-nowrap">
+                                    Book Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Option 2: Deluxe Safari -->
+                    <div
+                        class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-all duration-300 group border-t-4 border-transparent hover:border-sky-500 flex flex-col min-h-[600px]">
+                        <div class="relative h-52 overflow-hidden flex-shrink-0">
+                            <img src="/Images/2_Chambal Package 2.jpg" alt="Deluxe Chambal Safari with group on boat"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                loading="lazy">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent">
+                            </div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-2xl font-bold text-stone-800 mb-4">Deluxe Safari</h3>
+                            <ul class="space-y-3 mb-6 text-stone-600 flex-grow">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-sky-500 mr-3 mt-1"></i>
+                                    <span>3-hour extended boat safari</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-sky-500 mr-3 mt-1"></i>
+                                    <span>Pickup & drop from nearby hotels</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-sky-500 mr-3 mt-1"></i>
+                                    <span>Complimentary bottled water</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-sky-500 mr-3 mt-1"></i>
+                                    <span>Premium life jacket provided</span>
+                                </li>
+                            </ul>
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-0 pt-4 border-t border-stone-200 mt-auto">
+                                <div class="text-center sm:text-left">
+                                    <p class="text-sm text-stone-500">Starting from</p>
+                                    <p class="text-xl sm:text-2xl font-bold text-amber-600">₹3,499</p>
+                                </div>
+                                <a href="chambal-booking-page.html?package=deluxe"
+                                    class="px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold text-sm sm:text-base rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all whitespace-nowrap">
+                                    Book Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Option 3: Premium Safari -->
+                    <div
+                        class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-all duration-300 group border-t-4 border-transparent hover:border-amber-500 ring-4 ring-amber-400/50 relative flex flex-col min-h-[600px]">
+                        <span
+                            class="absolute -top-4 left-1/2 -translate-x-1/2 bg-amber-500 text-white text-sm font-bold px-6 py-2 rounded-full shadow-lg z-10">POPULAR</span>
+                        <div class="relative h-52 overflow-hidden flex-shrink-0">
+                            <img src="/Images/3_Chambal Package 3.jpg"
+                                alt="Premium Chambal Safari with wildlife viewing"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                loading="lazy">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent">
+                            </div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow" style="padding-top: 2.5rem;">
+                            <h3 class="text-2xl font-bold text-stone-800 mb-4">Premium Safari</h3>
+                            <ul class="space-y-3 mb-6 text-stone-600 flex-grow">
+                                <li class="flex items-start">
+                                    <i class="fas fa-star text-amber-500 mr-3 mt-1"></i>
+                                    <span>4-hour private boat safari</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-star text-amber-500 mr-3 mt-1"></i>
+                                    <span>Pickup & drop from any hotel in city</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-star text-amber-500 mr-3 mt-1"></i>
+                                    <span>Lunch at riverside restaurant</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-star text-amber-500 mr-3 mt-1"></i>
+                                    <span>Expert wildlife naturalist guide</span>
+                                </li>
+                            </ul>
+                            <div class="flex justify-between items-center pt-4 border-t border-stone-200 mt-auto">
+                                <div>
+                                    <p class="text-sm text-stone-500">Starting from</p>
+                                    <p class="text-2xl font-bold text-amber-600">₹4,499</p>
+                                </div>
+                                <a href="chambal-booking-page.html?package=premium"
+                                    class="px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all">
+                                    Book Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Option 4: Luxury Safari -->
+                    <div
+                        class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-all duration-300 group border-t-4 border-transparent hover:border-red-500 flex flex-col h-full">
+                        <div class="relative h-52 overflow-hidden flex-shrink-0">
+                            <img src="/Images/4_Chambal Package 4.jpg" alt="Luxury Chambal Safari with sunset view"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                loading="lazy">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent">
+                            </div>
+                            <span
+                                class="absolute top-4 left-4 bg-red-500 text-white text-sm font-bold px-4 py-1 rounded-full shadow-md">BEST
+                                VALUE</span>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-2xl font-bold text-stone-800 mb-4">Luxury Safari</h3>
+                            <ul class="space-y-3 mb-6 text-stone-600 flex-grow">
+                                <li class="flex items-start">
+                                    <i class="fas fa-crown text-red-500 mr-3 mt-1"></i>
+                                    <span>Full day private boat safari</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-crown text-red-500 mr-3 mt-1"></i>
+                                    <span>Luxury vehicle pickup & drop</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-crown text-red-500 mr-3 mt-1"></i>
+                                    <span>Gourmet lunch with river view</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-crown text-red-500 mr-3 mt-1"></i>
+                                    <span>Senior naturalist guide</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-crown text-red-500 mr-3 mt-1"></i>
+                                    <span>Binoculars and field guide included</span>
+                                </li>
+                            </ul>
+                            <div class="flex justify-between items-center pt-4 border-t border-stone-200 mt-auto">
+                                <div>
+                                    <p class="text-sm text-stone-500">Starting from</p>
+                                    <p class="text-2xl font-bold text-amber-600">₹5,999</p>
+                                </div>
+                                <a href="chambal-booking-page.html?package=luxury"
+                                    class="px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all">
+                                    Book Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Info -->
+                <div class="mt-20 bg-white/90 backdrop-blur-sm border border-stone-200 rounded-2xl p-8 text-center">
+                    <div class="max-w-4xl mx-auto">
+                        <i class="fas fa-shield-alt text-teal-500 text-5xl mx-auto mb-4"></i>
+                        <h4 class="text-2xl font-bold text-stone-800 mb-2">Why Choose Our Chambal Safaris?</h4>
+                        <p class="text-stone-600 mb-6">All safaris include experienced naturalist guides, follow strict
+                            safety protocols, and contribute to Chambal conservation efforts.</p>
+                        <div class="flex flex-wrap justify-center gap-4">
+                            <span
+                                class="px-4 py-2 bg-teal-100 text-teal-800 text-sm font-semibold rounded-full">Eco-friendly</span>
+                            <span
+                                class="px-4 py-2 bg-sky-100 text-sky-800 text-sm font-semibold rounded-full">Wildlife
+                                Experts</span>
+                            <span
+                                class="px-4 py-2 bg-amber-100 text-amber-800 text-sm font-semibold rounded-full">Safety
+                                Certified</span>
+                            <span
+                                class="px-4 py-2 bg-red-100 text-red-800 text-sm font-semibold rounded-full">Local Community
+                                Support</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-12">
+            <div class="container mx-auto flex flex-col md:flex-row items-center px-4 max-w-6xl">
+                <!-- Text Section (Half width) -->
+                <div class="w-full md:w-1/2 ">
+                    <h2 class="text-3xl font-semibold text-amber-600 mb-4">
+                        The Beauty of Chambal River
+                    </h2>
+
+                    <div class="flex flex-col gap-3"> <!-- Changed to flex-col gap-5 for consistent spacing -->
+                        <p class="text-sm md:text-base">
+                            Chambal River is a widely visited tourist spot in Ranthambroe and it gives a chance of doing
+                            a safari inside it. Chambal boat Safari offers a unique way of exploring the marine life of
+                            Ranthambore National Park. This place is famous among people as the National Chambal Gharial
+                            Sanctuary and it is located in Palighat Village, Sawai Madhopur, India.
+                        </p>
+                        <p class="text-sm md:text-base">
+                            This village is located next to the Chambal River and offers an exciting boat safari inside
+                            the river. Chambal Gharial Safari is the best spot to explore the Crocodile, Gharial,
+                            Gangetic dolphin, marsh crocodiles, and smooth-coated otters with an amazing diversity of
+                            birdlife. Along with these sightings, people can see amazing views of striking landscapes
+                            because this river is surrounded by lush greenery.
+                        </p>
+                        <p class="mb-[12px] text-sm md:text-base">
+                            This river is located around 45 km away from Ranthambore National Park and it covers a
+                            tri-state protected area of 2,100sq mi. In Rajasthan, this sanctuary covers an area of
+                            around 285 sq. km. This river has lots of Gharials and back on December 7, 1979, this place
+                            was established as National Chambal Gharial Wildlife Sanctuary to save the Gharials as they
+                            are rare species of crocodiles. They were smaller in number than tigers.
+                        </p>
+                        <p>
+                            Gharial and the Crocodile are the main attractions of this place, and many tourists come
+                            here every year to see them. People can make Chambal safari online booking to spot them
+                            inside the river. This spot is the best in Rajasthan to spot amphibians and aquatic animals
+                            in their natural habitat. Not only Gharial, but this place also attracts tourists because
+                            the National Aquatic Animal Gangetic Dolphin can also be seen here. More than 316 species of
+                            birds call this place home and they can be spotted while experiencing a chambal boat safari
+                            at this spot.
+                        </p>
+                    </div>
+                </div>
+                <!-- Image Section (Half width) -->
+                <div class="w-full md:w-1/2 px-4 md:px-10 mt-2">
+                    <img class="w-full max-w-lg mx-auto object-cover border-2 border-dashed rounded-tr-[30px] rounded-bl-[30px]"
+                        src="/Images/chambal2.jpg" alt="Ranthambore Tiger">
+                </div>
+            </div>
+        </section>
+        <section class="py-10 bg-[#fac898]">
+            <div class="container mx-auto flex flex-col md:flex-row items-center px-4 max-w-6xl">
+                <!-- Image Section (Half width) -->
+                <div class="w-full md:w-1/2 md:px-4 mb-4 md:mb-0">
+                    <img class="w-full max-w-lg mx-auto object-cover rounded-lg transition-transform duration-300 hover:scale-105"
+                        src="/Images/card1.jpg" alt="Ranthambore Tiger">
+                </div>
+
+                <!-- Text Section (Half width) -->
+                <div class="w-full md:w-1/2 md:px-10">
+                    <h2 class="text-3xl font-semibold text-amber-600 mb-1">
+                        What It Offers
+                    </h2>
+
+                    <div class="flex flex-col gap-4"> <!-- Changed to flex-col gap-5 for consistent spacing -->
+                        <p class="text-sm md:text-base">
+                            Chambal boat safari takes place inside the Chambal River. Chambal gharial safari is way
+                            different that gypsy safari and canter safaris. On one hand, these safaris take place inside
+                            the Jungle and give you a chance to explore the park's wild animals, while on the other
+                            hand, the Chambal boat Safari lets you explore the aquatic and marine life of Ranthambore.
+                            If you choose to ride on the Chambal Boat Safari then you can see the crocodiles(gharials),
+                            turtles, Ganges dolphins, otters, and more than 320 species of birds including migratory
+                            ones. Some mentionable birds include the Sarus crane, Indian skimmer, Indian courser, and
+                            Pallas's fish eagle can also be seen here.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="w-full">
+                <!-- header -->
+                <div>
+                    <h1 class="text-3xl font-bold text-[#ff7518] mb-2 text-center pt-8">
+                        Chambal Safari Timings
+                    </h1>
+                </div>
+                <div class="mx-4 md:mx-20 mb-10">
+                    <p class="md:text-lg">
+                        Chambal gharial safari is a lot different than gypsy and canter safari. This safari does not
+                        happen just twice a day, it happens multiple times a day. To enjoy a Chambal gharial safari, you
+                        don’t have to wait for long hours or wait a lot, you can just simply book it online and enjoy a
+                        nice ride inside the river. Yes, you can make a chambal safari online booking and enjoy an
+                        adventurous boat safari near Ranthambore. The first boat goes inside at <span class="font-bold">
+                            08:00 </span>am and the last safari takes place at <span class="font-bold"> 05:00 pm.
+                        </span>After every hour, a safari goes inside the river so you can enjoy it without any
+                        problems. A 1-hour long safari takes place 10 times a day and you can make a chambal safari
+                        booking for the one that suits you the most.
+                    </p>
+                    <div
+                        class="w-full border-2 border-[#FFC107] px-2 py-1.5 md:text-xl text-[#604019] mt-4 rounded-[6px]">
+                        <span class="font-bold">Note: </span> The first safari starts at 8:00 am and the last one takes
+                        place at 5:00 pm. The safari is conducted multiple times a day for 1 hour.
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="w-full bg-[#f89880]">
+            <div class="w-full my-10">
+                <div>
+                    <h1 class="text-3xl font-bold text-[#000] text-center py-4">
+                        Chambal Safari Booking Details
+                    </h1>
+                </div>
+                <div class="mx-4 md:mx-20 my-2">
+                    <ul class="space-y-2 md:text-lg pb-4">
+                        <li class="flex items-start gap-4">
+                            <img class="w-[25px] sm:w-[35px]" src="/Images/arrr.png" alt="arr-image">
+                            <p>
+                                This safari cannot be booked offline, you have to make an Online Chambal Safari Booking
+                                if you want to enjoy a ride in Chambal River. To book this ride, you can fill in the
+                                details like your name, phone number, date of your arrival, type of car you require,
+                                number of adults and children, age, gender, identity proof details, and other
+                                information. Just make sure to fill in the correct details.
+                            </p>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <img class="w-[25px] sm:w-[35px]" src="/Images/arrr.png" alt="arr-image">
+                            <p>
+                                You can book the Chambal gharial safari from
+                                <span class="bg-[#ffc000] px-2 text-[#dc3545]">ranthamboretigerreserve.in</span>
+                            </p>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <img class="w-[25px] sm:w-[35px]" src="/Images/arrr.png" alt="arr-image">
+                            <p>
+                                There are 4 chambal safari booking options available on our site and you can book the
+                                one that suits you the most.
+                            </p>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <img class="w-[25px] sm:w-[35px]" src="/Images/arrr.png" alt="arr-image">
+                            <p>
+                                This safari is booked for 1 hour of ride inside the river and it happens from 8:00 am to
+                                5:00 pm. You can book it for any 1 hour between these times.
+                            </p>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <img class="w-[25px] sm:w-[35px]" src="/Images/arrr.png" alt="arr-image">
+                            <p>
+                                In total, 10 safaris take place in a day and it is advised to book in advance if you
+                                don’t want to face any future disappointments.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container mx-auto px-4 py-2 max-w-6xl">
+                <h2 class="text-center text-2xl md:text-3xl font-semibold text-amber-600 mb-1.5">
+                    Rules That One Need To Follow During Chambal Boat Safari
+
+                </h2>
+                <h1 class="text-md font-semibold font-sans text-[#000]">
+                    National Chambal Gharial Sanctuary is not just a simple place. This spot has a lot of wild animals
+                    and even Gharials can be dangerous. For safety reasons, there are some rules and regulations and
+                    everyone needs to follow them when visiting this spot to enjoy the sights of gharial resting under
+                    the sun.
+                </h1>
+                <div class="px-2 md:px-8 py-4">
+                    <ul class="space-y-1 text-base md:text-lg">
+                        <li><span class="font-bold">-</span> Before sitting inside the boat, it is important for
+                            everyone to wear their life jackets. You cannot go on a chambal boat safari without wearing
+                            them.</li>
+
+                        <li><span class="font-bold">-</span> Don’t even think of going inside the water for swimming.
+                            This is a wild river and it can be dangerous.</li>
+
+                        <li><span class="font-bold">-</span> Don’t try to drink water from the river because it has a
+                            lot of different aquatic and marine life.</li>
+
+                        <li><span class="font-bold">-</span> Please don’t throw any waste or garbage inside the river.
+                            They can harm the species living inside this river. Carry an extra bag and throw your waste
+                            in it.</li>
+                        <li><span class="font-bold">-</span> Do not dip your feet or hands in water during your chambal
+                            gharial safari.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer Section -->
+    <footer class="bg-[#604019] text-white pt-8 pb-6">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="flex flex-col lg:flex-row justify-between gap-8">
+                <!-- About Section -->
+                <div class="w-full lg:w-1/3 flex flex-col items-center lg:items-start">
+                    <img class="h-16 cursor-pointer mb-4" src="/Images/logo.svg" alt="Ranthambore 360 Logo">
+                    <p class="mb-4 text-sm text-gray-200 font-sans font-medium text-center lg:text-left">
+                        This is not an official website of "Ranthambhore National Park". This is a Registered under the
+                        Private Travel Agency name Daily Tour and Travel. We organize Hotel, Safari and Tour Package
+                        bookings in Ranthambhore National Park.
+                    </p>
+                    <div class="mb-2">
+                        <p class="flex items-center mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-amber-400" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            Phone: 8076438491, 7982193537
+                        </p>
+                        <p class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-amber-400" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            Email: ranthambore360@gmail.com
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Links Sections -->
+                <div class="w-full flex flex-col md:flex-row gap-8">
+                    <!-- Useful Links -->
+                    <div class="w-full md:w-1/3">
+                        <h4 class="text-lg font-semibold mb-4 text-amber-400">Useful Links</h4>
+                        <ul class="space-y-2">
+                            <li>
+                                <a href="/dist/index.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Home
+                                </a>
+                            </li>
+                            <li>
+                                <a href="safari.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Safari Booking
+                                </a>
+                            </li>
+                            <li>
+                                <a href="chambal.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Chambal Safari Booking
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/dist/package-booking.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Package Booking
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/dist/contact.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Contact Us
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/dist/blogs.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Blogs
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="w-full md:w-1/3">
+                        <h4 class="text-lg font-semibold mb-4 text-amber-400">Quick Links</h4>
+                        <ul class="space-y-2">
+                            <li>
+                                <a href="/dist/privacy-policy.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Privacy Policy
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/dist/Cancellatiion-Policy.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Cancellation Policy
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/dist/term-condition.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Terms & Condition
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/dist/how-to-reach.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    How To Reach
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/dist/about.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    About Us
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/dist/support.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Support
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Gallery Section -->
+                    <div class="w-full md:w-1/3">
+                        <h4 class="text-lg font-semibold mb-4 text-amber-400">Our Gallery</h4>
+                        <div class="grid grid-cols-3 gap-2">
+                            <img src="/Images/Sanbar Deer.jpg" alt="Gallery Image 1"
+                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
+                            <img src="/Images/Black Buck Sighting.jpg" alt="Gallery Image 2"
+                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
+                            <img src="/Images/Tiger and cub.jpg" alt="Gallery Image 3"
+                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
+                            <img src="/Images/Crocodile in River.jpg" alt="Gallery Image 4"
+                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
+                            <img src="/Images/Chambal Boating.jpg" alt="Gallery Image 5"
+                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
+                            <img src="/Images/Birds Paradise.jpg" alt="Gallery Image 6"
+                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Address and Copyright -->
+            <div class="mt-8 pt-6 border-t border-[#fff]">
+                <p class="text-center mb-2 text-[#fff]">
+                    <span class="font-bold bg-amber-400 px-2 py-1 text-gray-900 rounded">Daily Tour and Travel Delhi
+                        110092 Address</span> : A-2 Second Floor Ganesh Nagar, Pandav Nagar, Delhi 110092
+                </p>
+                <p class="text-center text-[#fff] text-sm">
+                    © Copyright Ranthambore. All Rights Reserved
+                </p>
+            </div>
+        </div>
+    </footer>
+    <script src="/JS/app.js"></script>
+</body>
+
+</html>

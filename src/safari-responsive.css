@@ -1,0 +1,472 @@
+/**
+ * Enhanced Safari Booking System CSS
+ * 
+ * This CSS file contains all the responsive styles and animations
+ * to make the safari booking page professional and mobile-friendly.
+ */
+
+/* Notification Container */
+.notification-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  max-width: 400px;
+  width: 100%;
+  pointer-events: none;
+}
+
+.notification {
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  pointer-events: auto;
+  margin-bottom: 10px;
+}
+
+.notification.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Loading Skeleton Animation */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Form Validation Styles */
+.form-field.valid {
+  border-color: #22c55e !important;
+  box-shadow: 0 0 0 1px #22c55e;
+}
+
+.form-field.invalid {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 1px #ef4444;
+}
+
+/* Button Styles */
+.btn-primary {
+  background-color: #ff7518;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #e86507;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 117, 24, 0.4);
+}
+
+.btn-primary:disabled {
+  background-color: #d1d5db;
+  color: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Modal Styles */
+.modal {
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+}
+
+.modal.show {
+  opacity: 1;
+}
+
+.modal-content {
+  transform: scale(0.95);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.modal.show .modal-content {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Responsive Table Styles */
+.passenger-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.passenger-table th,
+.passenger-table td {
+  padding: 8px;
+  border: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+/* Mobile Responsive Design for Passenger Table */
+@media (max-width: 1024px) {
+  .passenger-table,
+  .passenger-table tbody,
+  .passenger-table tr,
+  .passenger-table td {
+    display: block;
+  }
+  
+  .passenger-table thead {
+    display: none;
+  }
+  
+  .passenger-row {
+    background: #fff;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .passenger-row td {
+    border: none;
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 0;
+  }
+  
+  .passenger-row td:last-child {
+    margin-bottom: 0;
+  }
+  
+  .passenger-row td::before {
+    content: attr(data-label) ": ";
+    font-weight: 600;
+    min-width: 100px;
+    color: #374151;
+    margin-right: 12px;
+    flex-shrink: 0;
+  }
+  
+  .passenger-row td input,
+  .passenger-row td select,
+  .passenger-row td button {
+    flex: 1;
+  }
+  
+  /* Special styling for the number badge */
+  .passenger-row td[data-label="No."] {
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  
+  .passenger-row td[data-label="No."]::before {
+    display: none;
+  }
+  
+  .passenger-row td[data-label="No."] p {
+    margin: 0 auto;
+  }
+  
+  /* Special styling for action buttons */
+  .passenger-row td[data-label="Action"] {
+    justify-content: center;
+    margin-top: 8px;
+  }
+  
+  .passenger-row td[data-label="Action"]::before {
+    display: none;
+  }
+  
+  .passenger-row td[data-label="Action"] button {
+    max-width: 150px;
+  }
+}
+
+/* Animation Classes for Passenger Management */
+.animate__animated {
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+.animate__fadeIn {
+  animation-name: fadeIn;
+}
+
+.animate__fadeOut {
+  animation-name: fadeOut;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+.animate__fadeInUp {
+  animation-name: fadeInUp;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 40px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Responsive Booking Details Table */
+@media (max-width: 768px) {
+  .booking-details-table {
+    display: block;
+  }
+  
+  .booking-details-table tr {
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  .booking-details-table td {
+    display: block;
+    text-align: left !important;
+    border: none;
+    padding: 4px 8px;
+  }
+  
+  .booking-details-table td:first-child {
+    background-color: #f9fafb;
+    font-weight: 600;
+    border-radius: 4px 4px 0 0;
+  }
+  
+  .booking-details-table td:last-child {
+    border-radius: 0 0 4px 4px;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 8px;
+  }
+}
+
+/* Payment Method Button Styles */
+.payment-method-btn {
+  transition: all 0.3s ease;
+}
+
+.payment-method-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.payment-method-btn.selected {
+  border-color: #f59e0b;
+  background-color: #fef3c7;
+  box-shadow: 0 0 0 2px #f59e0b;
+}
+
+/* Form Field Focus Effects */
+.form-field:focus {
+  outline: none;
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+}
+
+/* Mobile Notification Adjustments */
+@media (max-width: 640px) {
+  .notification-container {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    max-width: none;
+  }
+  
+  .notification {
+    font-size: 14px;
+    padding: 12px 16px;
+  }
+}
+
+/* Add Members Button Enhancements */
+.add-members-btn {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.add-members-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.add-members-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* State Select and Address Textarea Enhancements */
+.state-select,
+.address-textarea {
+  transition: all 0.3s ease;
+}
+
+.state-select:focus,
+.address-textarea:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced Loading State for Booking Details */
+.booking-info-loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.booking-info-loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  animation: loading-shimmer 1.5s infinite;
+}
+
+@keyframes loading-shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Confirmation Modal Enhancements */
+.confirmation-success-icon {
+  animation: success-scale 0.6s ease-out;
+}
+
+@keyframes success-scale {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 640px) {
+  .modal-content {
+    margin: 20px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  
+  .passenger-row {
+    padding: 12px;
+  }
+  
+  .passenger-row td::before {
+    min-width: 80px;
+    font-size: 14px;
+  }
+  
+  .btn-primary {
+    padding: 12px 16px;
+    font-size: 16px;
+  }
+}
+
+/* Custom scrollbar for modal */
+.modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+/* Enhanced hover effects for delete buttons */
+.delete-btn {
+  transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+}
+
+/* Loading state for pay button */
+.pay-button-loading {
+  position: relative;
+  color: transparent;
+}
+
+.pay-button-loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin-left: -8px;
+  margin-top: -8px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: button-spin 1s linear infinite;
+}
+
+@keyframes button-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
