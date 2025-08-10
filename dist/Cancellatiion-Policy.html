@@ -1,479 +1,783 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ranthambore Cancellatiion-Policy</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/src/output.css">
-    <link rel="shortcut icon" href="/Images/favicon.jpg" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/output.css" />
+    <link rel="shortcut icon" href="/Images/favicon.jpg" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <style>
-        body {
-            font-family: 'Times New Roman', Times, serif
-        }
+      body {
+        font-family: "Times New Roman", Times, serif;
+      }
+      html,
+      body {
+        max-width: 100%;
+        overflow-x: hidden;
+      }
     </style>
-</head>
+  </head>
 
-<body class="bg-gray-50">
+  <body class="bg-gray-50">
     <!-- Navbar -->
     <nav class="w-full sticky top-0 z-50 shadow-md">
-        <!-- Top Contact Bar -->
-        <div class="w-full bg-[#604019] text-white h-12 sm:h-8 flex items-center">
-            <div class="container mx-auto px-4">
-                <div class="flex flex-col justify-between items-center px-8 sm:flex-row">
-                    <!-- Changed to justify-around -->
-                    <div class="flex items-center cursor-pointer">
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                            </svg>
-                            <span>8076438491 | 7982193537</span>
-                        </div>
-                    </div>
-                    <div class="flex items-center cursor-pointer">
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                            <span>ranthambore360@gmail.com</span>
-                        </div>
-                    </div>
-                </div>
+      <!-- Top Contact Bar -->
+      <div class="w-full bg-[#604019] text-white h-12 sm:h-8 flex items-center">
+        <div class="container mx-auto px-4">
+          <div
+            class="flex flex-col justify-between items-center px-8 sm:flex-row"
+          >
+            <!-- Changed to justify-around -->
+            <div class="flex items-center cursor-pointer">
+              <div class="flex items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 mr-2"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                  />
+                </svg>
+                <span>8076438491 | 7982193537</span>
+              </div>
             </div>
-        </div>
-
-        <!-- Main Navigation -->
-        <div class="w-full bg-white flex justify-between">
-            <div class="container mx-auto px-4 py-1 lg:px-16 flex md:flex-col lg:flex-row justify-between items-center">
-                <div>
-                    <img class="logo h-16 cursor-pointer" src="/Images/logo.svg" alt="Ranthambore 360 Logo">
-                </div>
-
-                <div class="hidden md:flex items-center space-x-8">
-                    <ul class="flex space-x-8 text-lg font-medium items-center">
-                        <li><a href="/dist/index.html" id="home-btn"
-                                class="text-[#604019] hover:text-amber-600 transition-colors">Home</a></li>
-                        <li><a href="safari.html" class="text-[#604019] hover:text-amber-600 transition-colors">Safari</a></li>
-                        <li><a href="chambal.html" class="chambalBtn text-[#604019] hover:text-amber-600 transition-colors">Chambal Safari</a>
-                        </li>
-                        <li><a href="hotel.html" class="hotelBtn text-[#604019] hover:text-amber-600 transition-colors">Hotels</a></li>
-                        <li><a href="package-booking.html" class="tourBtn text-[#604019] hover:text-amber-600 transition-colors">Packages</a></li>
-                        <li><a href="contact.html" id="contact-btn"
-                                class="text-[#604019] hover:text-amber-600 transition-colors">Contact</a></li>
-                    </ul>
-                    <button
-                        class="safariBtn ml-6 bg-amber-700 hover:bg-amber-600 text-white font-medium py-1 px-6 rounded-lg transition-colors shadow-md cursor-pointer">
-                        Book Now
-                    </button>
-                </div>
-
-                <!-- Mobile menu button -->
-                <div class="md:hidden">
-                    <button class="text-amber-900 focus:outline-none cursor-pointer">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
+            <div class="flex items-center cursor-pointer">
+              <div class="flex items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 mr-2"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+                <span>ranthambore360@gmail.com</span>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+
+      <!-- Main Navigation -->
+      <div class="w-full bg-white flex justify-between">
+        <div
+          class="container mx-auto px-4 py-1 lg:px-16 flex md:flex-col lg:flex-row justify-between items-center"
+        >
+          <div>
+            <img
+              class="logo h-16 cursor-pointer"
+              src="/Images/logo.svg"
+              alt="Ranthambore 360 Logo"
+            />
+          </div>
+
+          <div class="hidden md:flex items-center space-x-8">
+            <ul class="flex space-x-8 text-lg font-medium items-center">
+              <li>
+                <a
+                  href="/dist/index.html"
+                  id="home-btn"
+                  class="text-[#604019] hover:text-amber-600 transition-colors"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="safari.html"
+                  class="text-[#604019] hover:text-amber-600 transition-colors"
+                  >Safari</a
+                >
+              </li>
+              <li>
+                <a
+                  href="chambal.html"
+                  class="chambalBtn text-[#604019] hover:text-amber-600 transition-colors"
+                  >Chambal Safari</a
+                >
+              </li>
+              <li>
+                <a
+                  href="hotel.html"
+                  class="hotelBtn text-[#604019] hover:text-amber-600 transition-colors"
+                  >Hotels</a
+                >
+              </li>
+              <li>
+                <a
+                  href="package-booking.html"
+                  class="tourBtn text-[#604019] hover:text-amber-600 transition-colors"
+                  >Packages</a
+                >
+              </li>
+              <li>
+                <a
+                  href="contact.html"
+                  id="contact-btn"
+                  class="text-[#604019] hover:text-amber-600 transition-colors"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+            <button
+              class="safariBtn ml-6 bg-amber-700 hover:bg-amber-600 text-white font-medium py-1 px-6 rounded-lg transition-colors shadow-md cursor-pointer"
+            >
+              Book Now
+            </button>
+          </div>
+
+          <!-- Mobile menu button -->
+          <div class="md:hidden">
+            <button class="text-amber-900 focus:outline-none cursor-pointer">
+              <svg
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
     </nav>
-    <main>
-        <section class="py-8 bg-white">
-            <div>
-                <h1 class="text-3xl font-bold text-[#FF7518] mb-8 text-center">Booking Terms & Conditions</h1>
-            </div>
-            <div
-                class="w-full mx-4 sm:mx-6 lg:mx-16 shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-xl">
-                <!-- Main Heading -->
+    <main class="over">
+      <section class="py-8 bg-white">
+        <div>
+          <h1 class="text-3xl font-bold text-[#FF7518] mb-8 text-center">
+            Booking Terms & Conditions
+          </h1>
+        </div>
+        <div
+          class="w-full mx-4 sm:mx-6 lg:mx-16 shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-xl"
+        >
+          <!-- Main Heading -->
 
-                <!-- Monsoon Policy -->
-                <div class="my-2 p-6 bg-[#ffc0cb] rounded-lg border border-amber-200">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Monsoon Cancellation Policy</h2>
-                    <ul class="list-disc pl-5 space-y-3 text-gray-700">
-                        <li>In the event that the park is closed due to rain, a refund of 75% will be issued for gypsy
-                            bookings and 65% for canter bookings.</li>
-                        <li><strong>Note:</strong> If your permit has already been issued, we regret to inform you that
-                            refunds will not be available.</li>
-                    </ul>
-                </div>
+          <!-- Monsoon Policy -->
+          <div class="my-2 p-6 bg-[#ffc0cb] rounded-lg border border-amber-200">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">
+              Monsoon Cancellation Policy
+            </h2>
+            <ul class="list-disc pl-5 space-y-3 text-gray-700">
+              <li>
+                In the event that the park is closed due to rain, a refund of
+                75% will be issued for gypsy bookings and 65% for canter
+                bookings.
+              </li>
+              <li>
+                <strong>Note:</strong> If your permit has already been issued,
+                we regret to inform you that refunds will not be available.
+              </li>
+            </ul>
+          </div>
 
-                <p class="my-3">
-                    For a current booking request, you may receive a booking confirmation one day prior to the safari
-                    date if your booking slot is for the morning, or on the same day if it is for the evening.
-                </p>
+          <p class="my-3">
+            For a current booking request, you may receive a booking
+            confirmation one day prior to the safari date if your booking slot
+            is for the morning, or on the same day if it is for the evening.
+          </p>
 
-                <!-- Current Booking -->
-                <div class="mb-8">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Cancellation policy for Chambal Boat Safari
-                        Bookings:</h2>
-                    <ul class="list-disc pl-5 space-y-3 text-gray-700">
-                        <li>Tatkal Booking requests need to be submitted at least one day in advance.</li>
-                        <li>There is no guarantee of confirmation for current bookings.</li>
-                        <li>For current bookings, you may receive confirmation one day prior for morning safaris or same
-                            day for evening safaris.</li>
-                        <li>Any safari zone from 1 to 10 can get assigned (specific zone requests not guaranteed).</li>
-                        <li>If safari doesn't get confirmed: 100% refund</li>
-                        <li>If safari gets confirmed: no refund</li>
-                        <li>Cancellation before safari date:
-                            <ul class="list-disc pl-5 mt-2 space-y-2">
-                                <li>25% cancellation fee for Gypsy safaris</li>
-                                <li>35% cancellation fee for Canter safaris</li>
-                            </ul>
-                        </li>
-                        <li>Gypsy/Canter Safari charges are non-refundable once confirmed</li>
-                    </ul>
-                </div>
+          <!-- Current Booking -->
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">
+              Cancellation policy for Chambal Boat Safari Bookings:
+            </h2>
+            <ul class="list-disc pl-5 space-y-3 text-gray-700">
+              <li>
+                Tatkal Booking requests need to be submitted at least one day in
+                advance.
+              </li>
+              <li>
+                There is no guarantee of confirmation for current bookings.
+              </li>
+              <li>
+                For current bookings, you may receive confirmation one day prior
+                for morning safaris or same day for evening safaris.
+              </li>
+              <li>
+                Any safari zone from 1 to 10 can get assigned (specific zone
+                requests not guaranteed).
+              </li>
+              <li>If safari doesn't get confirmed: 100% refund</li>
+              <li>If safari gets confirmed: no refund</li>
+              <li>
+                Cancellation before safari date:
+                <ul class="list-disc pl-5 mt-2 space-y-2">
+                  <li>25% cancellation fee for Gypsy safaris</li>
+                  <li>35% cancellation fee for Canter safaris</li>
+                </ul>
+              </li>
+              <li>
+                Gypsy/Canter Safari charges are non-refundable once confirmed
+              </li>
+            </ul>
+          </div>
 
-                <!-- Chambal Safari -->
-                <div class="mb-8 p-6 bg-red-50 rounded-lg border border-red-200">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Chambal Boat Safari Policy</h2>
-                    <p class="text-gray-700 font-semibold">Chambal Boat Safari amount is <span
-                            class="text-red-600">NON-REFUNDABLE</span>.</p>
-                </div>
+          <!-- Chambal Safari -->
+          <div class="mb-8 p-6 bg-red-50 rounded-lg border border-red-200">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">
+              Chambal Boat Safari Policy
+            </h2>
+            <p class="text-gray-700 font-semibold">
+              Chambal Boat Safari amount is
+              <span class="text-red-600">NON-REFUNDABLE</span>.
+            </p>
+          </div>
 
-                <!-- Hotel Booking -->
-                <div class="mb-8">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Hotel Booking Policy</h2>
-                    <ul class="list-disc pl-5 space-y-3 text-gray-700">
-                        <li>Base category rooms will be provided in all hotels</li>
-                        <li>Room upgrades available at extra cost (payable directly to hotel)</li>
-                        <li>Standard check-in: 12:00 noon | check-out: 11:00 AM</li>
-                        <li>If specified hotel unavailable, similar standard room will be provided</li>
-                        <li>Extra mattress provided for 3-person bookings</li>
-                        <li>Not liable for accidents, loss/theft, or damage to luggage</li>
-                        <li>Changes in government taxes/hotel charges will be communicated before travel</li>
-                    </ul>
-                </div>
+          <!-- Hotel Booking -->
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">
+              Hotel Booking Policy
+            </h2>
+            <ul class="list-disc pl-5 space-y-3 text-gray-700">
+              <li>Base category rooms will be provided in all hotels</li>
+              <li>
+                Room upgrades available at extra cost (payable directly to
+                hotel)
+              </li>
+              <li>Standard check-in: 12:00 noon | check-out: 11:00 AM</li>
+              <li>
+                If specified hotel unavailable, similar standard room will be
+                provided
+              </li>
+              <li>Extra mattress provided for 3-person bookings</li>
+              <li>
+                Not liable for accidents, loss/theft, or damage to luggage
+              </li>
+              <li>
+                Changes in government taxes/hotel charges will be communicated
+                before travel
+              </li>
+            </ul>
+          </div>
 
-                <!-- Tour Packages -->
-                <div class="mb-8">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Tour Package Terms</h2>
-                    <ul class="list-disc pl-5 space-y-3 text-gray-700">
-                        <li>The package that is given above cannot be booked for long weekends, festivals holidays,
-                            Christmas, and New Year.</li>
-                        <li>Only base category rooms will be provided in all hotels from our side.</li>
-                        <li>If you want to upgrade the room then you have to pay extra. The extra amount will be paid
-                            directly at the hotel.</li>
-                        <li>The standard Check-in time is 12:00 Noon and check-out time is 11:00 AM. This may vary from
-                            hotel to hotel.Early check-in is subject to availability
-                        </li>
-                        <li>You have to fill in the correct age of people at the time of booking.</li>
-                        <li>If you mention the incorrect age of the people then penalties can occur while travelling.
-                        </li>
-                        <li>If the room is not available in the chosen hotel then we will be responsible for providing a
-                            room in a similar standard hotel.</li>
-                        <li>1 extra mattress will be given if you’re booking a room for 3 people.</li>
-                        <li>Any changes in Govt. taxes, hotel charges, safari charges, etc will be informed by mail or
-                            phone before your travel date.</li>
-                        <li>
-                            Jungle Safari India is not responsible for any kind of loss/theft or damage to luggage or
-                            any accidents.
-                        </li>
-                        <li>
-                            We reserve the right to make necessary changes to the itinerary and safari if there are
-                            requirements.
-                        </li>
-                    </ul>
-                </div>
+          <!-- Tour Packages -->
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">
+              Tour Package Terms
+            </h2>
+            <ul class="list-disc pl-5 space-y-3 text-gray-700">
+              <li>
+                The package that is given above cannot be booked for long
+                weekends, festivals holidays, Christmas, and New Year.
+              </li>
+              <li>
+                Only base category rooms will be provided in all hotels from our
+                side.
+              </li>
+              <li>
+                If you want to upgrade the room then you have to pay extra. The
+                extra amount will be paid directly at the hotel.
+              </li>
+              <li>
+                The standard Check-in time is 12:00 Noon and check-out time is
+                11:00 AM. This may vary from hotel to hotel.Early check-in is
+                subject to availability
+              </li>
+              <li>
+                You have to fill in the correct age of people at the time of
+                booking.
+              </li>
+              <li>
+                If you mention the incorrect age of the people then penalties
+                can occur while travelling.
+              </li>
+              <li>
+                If the room is not available in the chosen hotel then we will be
+                responsible for providing a room in a similar standard hotel.
+              </li>
+              <li>
+                1 extra mattress will be given if you’re booking a room for 3
+                people.
+              </li>
+              <li>
+                Any changes in Govt. taxes, hotel charges, safari charges, etc
+                will be informed by mail or phone before your travel date.
+              </li>
+              <li>
+                Jungle Safari India is not responsible for any kind of
+                loss/theft or damage to luggage or any accidents.
+              </li>
+              <li>
+                We reserve the right to make necessary changes to the itinerary
+                and safari if there are requirements.
+              </li>
+            </ul>
+          </div>
 
-                <!-- Cancellation Policy -->
-                <div class="mb-8 p-6 bg-gray-50 rounded-lg">
-                    <h2 class="text-2xl font-bold text-gray-800">Cancellation Policy</h2>
-                    <p class="my-2">
-                        If you’re planning to postpone or you wanna cancel your tour/travel because of any unavoidable
-                        reason then you have to inform us in writing. Please remember that the cancellation charges will
-                        be effective from the date we receive your mail in writing. Here is the cancellation policy that
-                        would be applied:
-                    </p>
-                    <ul class="list-disc pl-5 space-y-2 text-gray-700 mb-4">
-                        <li>30 days prior to arrival - 20% of the tour cost.</li>
-                        <li>15 days to 29 days prior to arrival - 30% of the tour cost.</li>
-                        <li>07 days to 14 days prior to arrival - 40 % of the tour cost</li>
-                        <li>02 days to 06 days prior to arrival - 50% of the tour cost.</li>
-                        <li>Less than 48 hours or no show - NO REFUND.</li>
-                        <li class="font-semibold text-[#000]">The amount for the Gypsy or Canter safari will not be
-                            refunded.</li>
-                        <li>
-                            1 extra mattress will be given if you’re booking a room for 3 people.
-                        </li>
-                        <li>
-                            Any changes in Govt. taxes, hotel charges, safari charges, etc will be informed by mail or
-                            phone before your travel date.
-                        </li>
-                        <li>
-                            In case your safari is not booked because of any reason like technical error or
-                            non-availability of seat then we assure you that the whole amount will be given back in your
-                            accounts. We will communicate the same accordingly.
-                        </li>
-                        <li>
-                            There is a separate cancellation policy in case of peak season - weekends or weekdays (Holi,
-                            Diwali, X'Mas & New Year). That policy would be applied which would be advised as and when
-                            required.
-                        </li>
-                        <li>
-                            <span class="font-bold text-[#000]"> Our Liabilities and Limitations:</span> Please note one
-                            important thing after you finalize the
-                            tour/service cost and in case there are any hikes in permit fees of safaris/museums, taxes,
-                            fuel costs, or guide charges decided by the Govt of India, the same would be charged as
-                            extra.
-                        </li>
-                        <li>
-                            Force Majeure events, festivals, weather conditions, strikes, fairs, traffic problems,
-                            overbooking of hotels, closure of / entry restrictions at a place of visit, etc. We will try
-                            to do our best to make suitable alternate arrangements for these mentioned things. But, we
-                            would not be held liable for any refunds/compensation claims arising out of these problems.
+          <!-- Cancellation Policy -->
+          <div class="mb-8 p-6 bg-gray-50 rounded-lg">
+            <h2 class="text-2xl font-bold text-gray-800">
+              Cancellation Policy
+            </h2>
+            <p class="my-2">
+              If you’re planning to postpone or you wanna cancel your
+              tour/travel because of any unavoidable reason then you have to
+              inform us in writing. Please remember that the cancellation
+              charges will be effective from the date we receive your mail in
+              writing. Here is the cancellation policy that would be applied:
+            </p>
+            <ul class="list-disc pl-5 space-y-2 text-gray-700 mb-4">
+              <li>30 days prior to arrival - 20% of the tour cost.</li>
+              <li>
+                15 days to 29 days prior to arrival - 30% of the tour cost.
+              </li>
+              <li>
+                07 days to 14 days prior to arrival - 40 % of the tour cost
+              </li>
+              <li>
+                02 days to 06 days prior to arrival - 50% of the tour cost.
+              </li>
+              <li>Less than 48 hours or no show - NO REFUND.</li>
+              <li class="font-semibold text-[#000]">
+                The amount for the Gypsy or Canter safari will not be refunded.
+              </li>
+              <li>
+                1 extra mattress will be given if you’re booking a room for 3
+                people.
+              </li>
+              <li>
+                Any changes in Govt. taxes, hotel charges, safari charges, etc
+                will be informed by mail or phone before your travel date.
+              </li>
+              <li>
+                In case your safari is not booked because of any reason like
+                technical error or non-availability of seat then we assure you
+                that the whole amount will be given back in your accounts. We
+                will communicate the same accordingly.
+              </li>
+              <li>
+                There is a separate cancellation policy in case of peak season -
+                weekends or weekdays (Holi, Diwali, X'Mas & New Year). That
+                policy would be applied which would be advised as and when
+                required.
+              </li>
+              <li>
+                <span class="font-bold text-[#000]">
+                  Our Liabilities and Limitations:</span
+                >
+                Please note one important thing after you finalize the
+                tour/service cost and in case there are any hikes in permit fees
+                of safaris/museums, taxes, fuel costs, or guide charges decided
+                by the Govt of India, the same would be charged as extra.
+              </li>
+              <li>
+                Force Majeure events, festivals, weather conditions, strikes,
+                fairs, traffic problems, overbooking of hotels, closure of /
+                entry restrictions at a place of visit, etc. We will try to do
+                our best to make suitable alternate arrangements for these
+                mentioned things. But, we would not be held liable for any
+                refunds/compensation claims arising out of these problems.
+              </li>
+              <li>
+                In case of dispute, if any, shall be subject to the exclusive
+                jurisdiction of the courts in New Delhi, India.
+              </li>
+              <li class="bg-[#ffff00]">
+                Declaration: We would like to clarify that we, as a private
+                travel agency, are not authorized by the Forest Department, nor
+                do we make any claims of affiliation with them. Our services
+                primarily cater to booking safaris, arranging hotel
+                accommodations, coordinating transportation such as pickups and
+                drops, and facilitating flight reservations on behalf of our
+                customers. We operate independently and charge a reasonable
+                amount for our services. It is important to note that the
+                charges we levy are subject to variations based on the demand
+                for safari bookings, and they may increase during peak periods
+                of high booking traffic.
+              </li>
+            </ul>
+            <h3 class="text-xl font-semibold text-gray-700 mb-3">
+              Important Notes:
+            </h3>
+            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+              <li class="font-bold text-[#000]">
+                Booking holding amount is non-refundable
+              </li>
+              <li class="font-bold text-[#000]">
+                In case of replacement of Canter from Gypsy or Gypsy to canter,
+                we will refund the difference amount.
+              </li>
+              <li class="font-bold text-[#000]">
+                We will refund 70% of the total tour cost (GST and PG charges
+                are non-refundable), in case the permit is not generated.
+              </li>
+              <li class="font-bold text-[#000]">
+                Please note that the tour date is not counted when processing
+                cancellations.
+              </li>
+            </ul>
+          </div>
 
-                        </li>
-                        <li>
-                            In case of dispute, if any, shall be subject to the exclusive jurisdiction of the courts in
-                            New Delhi, India.
-                        </li>
-                        <li class="bg-[#ffff00]">
-                            Declaration: We would like to clarify that we, as a private travel agency, are not
-                            authorized by the Forest Department, nor do we
-                            make any claims of affiliation with them. Our services primarily cater to booking safaris,
-                            arranging hotel accommodations,
-                            coordinating transportation such as pickups and drops, and facilitating flight reservations
-                            on behalf of our customers. We operate
-                            independently and charge a reasonable amount for our services. It is important to note that
-                            the charges we levy are subject to
-                            variations based on the demand for safari bookings, and they may increase during peak
-                            periods of high booking traffic.
-                        </li>
-                    </ul>
-                    <h3 class="text-xl font-semibold text-gray-700 mb-3">Important Notes:</h3>
-                    <ul class="list-disc pl-5 space-y-2 text-gray-700">
-                        <li class="font-bold text-[#000]">Booking holding amount is non-refundable</li>
-                        <li class="font-bold text-[#000]">In case of replacement of Canter from Gypsy or Gypsy to
-                            canter, we will refund the difference amount.</li>
-                        <li class="font-bold text-[#000]">We will refund 70% of the total tour cost (GST and PG charges
-                            are non-refundable), in case the permit is not generated.</li>
-                        <li class="font-bold text-[#000]">Please note that the tour date is not counted when processing
-                            cancellations.</li>
-                    </ul>
-                </div>
+          <!-- Payment Policy -->
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold text-[#471503] mb-4">
+              Payment Policy
+            </h2>
+            <ul class="list-disc pl-5 space-y-3 text-gray-700">
+              <li>
+                Payment methods: Credit Card, Quick Pay, PayPal, Direct Deposit
+              </li>
+              <li>
+                Our company Jungle Safari India accepts Credit Card, Debit Card,
+                Paypal and Direct Deposit as forms of payment.
+              </li>
+              <li>
+                Our customers can pay 50% advance to hold the booking on a
+                confirmed basis & and the remaining 50% amount will be settled
+                on arrival/starting the tour.
+              </li>
+              <li>
+                You can pay 100% to confirm your booking and also you can enjoy
+                more discount benefits because of this.
+              </li>
+              <li>
+                Tourists agree to pay all statutory taxes, surcharges, and fees,
+                as applicable.
+              </li>
+            </ul>
+          </div>
 
-                <!-- Payment Policy -->
-                <div class="mb-8">
-                    <h2 class="text-2xl font-bold text-[#471503] mb-4">Payment Policy</h2>
-                    <ul class="list-disc pl-5 space-y-3 text-gray-700">
-                        <li>Payment methods: Credit Card, Quick Pay, PayPal, Direct Deposit</li>
-                        <li>Our company Jungle Safari India accepts Credit Card, Debit Card, Paypal and Direct Deposit
-                            as forms of payment.
-                        </li>
-                        <li>Our customers can pay 50% advance to hold the booking on a confirmed basis & and the
-                            remaining 50% amount will be settled on arrival/starting the tour.
-                        </li>
-                        <li>You can pay 100% to confirm your booking and also you can enjoy more discount benefits
-                            because of this.</li>
-                        <li>Tourists agree to pay all statutory taxes, surcharges, and fees, as applicable.</li>
-                    </ul>
-                </div>
+          <!-- Liabilities -->
+          <div class="mb-8 p-6 bg-gray-100 rounded-lg">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">
+              Liabilities & Limitations
+            </h2>
+            <ul class="list-disc pl-5 space-y-3 text-gray-700">
+              <li>
+                Not liable for Force Majeure events (weather, strikes, closures,
+                etc.)
+              </li>
+              <li>
+                Will attempt suitable alternate arrangements when possible
+              </li>
+              <li>No refunds/compensation for such events</li>
+              <li>Jurisdiction for disputes: Courts in New Delhi, India</li>
+              <li>
+                We are a private agency not affiliated with Forest Department
+              </li>
+              <li>
+                Primary services: accommodations, transportation coordination
+              </li>
+              <li>Approximately 20% service charge applicable</li>
+              <li>Charges may increase during peak periods</li>
+            </ul>
+          </div>
+          <p
+            class="bg-[#471503] text-[#fff] inline px-2 py-1.5 rounded-[4px] font-mono mb-2"
+          >
+            *Please Note*
+          </p>
 
-                <!-- Liabilities -->
-                <div class="mb-8 p-6 bg-gray-100 rounded-lg">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Liabilities & Limitations</h2>
-                    <ul class="list-disc pl-5 space-y-3 text-gray-700">
-                        <li>Not liable for Force Majeure events (weather, strikes, closures, etc.)</li>
-                        <li>Will attempt suitable alternate arrangements when possible</li>
-                        <li>No refunds/compensation for such events</li>
-                        <li>Jurisdiction for disputes: Courts in New Delhi, India</li>
-                        <li>We are a private agency not affiliated with Forest Department</li>
-                        <li>Primary services: accommodations, transportation coordination</li>
-                        <li>Approximately 20% service charge applicable</li>
-                        <li>Charges may increase during peak periods</li>
-                    </ul>
-                </div>
-                <p class="bg-[#471503] text-[#fff] inline px-2 py-1.5 rounded-[4px] font-mono mb-2">
-                    *Please Note*
-                </p>
-
-                <!-- Final Note -->
-                <div class="bg-[#ffc107] text-brown-900 p-6 rounded-[40px_5px_40px_5px] shadow-md max-w-4xl mx-auto mt-8">
-                    <p class="text-justify leading-relaxed font-semibold">All reservations for use of any facility
-                        including entry and stay in Ranthambore Tiger Reserve are provisional in nature and are subject
-                        to modification/cancellation by the Field Director, Ranthambore Tiger Reserve without assigning
-                        any reasons. Making a reservation will imply your agreement to any and all of the terms and
-                        conditions laid down here. There shall be no cancellation/refund for any safari under any
-                        circumstances and no request shall be entertained for refund/rescheduling of safari.</p>
-                </div>
-            </div>
-        </section>
+          <!-- Final Note -->
+          <div
+            class="bg-[#ffc107] text-brown-900 p-6 rounded-[40px_5px_40px_5px] shadow-md max-w-4xl mx-auto mt-8"
+          >
+            <p class="text-justify leading-relaxed font-semibold">
+              All reservations for use of any facility including entry and stay
+              in Ranthambore Tiger Reserve are provisional in nature and are
+              subject to modification/cancellation by the Field Director,
+              Ranthambore Tiger Reserve without assigning any reasons. Making a
+              reservation will imply your agreement to any and all of the terms
+              and conditions laid down here. There shall be no
+              cancellation/refund for any safari under any circumstances and no
+              request shall be entertained for refund/rescheduling of safari.
+            </p>
+          </div>
+        </div>
+      </section>
     </main>
     <!-- Footer Section -->
     <footer class="bg-[#604019] text-white pt-8 pb-6">
-        <div class="container mx-auto px-4 max-w-6xl">
-            <div class="flex flex-col lg:flex-row justify-between gap-8">
-                <!-- About Section -->
-                <div class="w-full lg:w-1/3 flex flex-col items-center lg:items-start">
-                    <img class="h-16 cursor-pointer mb-4" src="/Images/logo.svg" alt="Ranthambore 360 Logo">
-                    <p class="mb-4 text-sm text-gray-200 font-sans font-medium text-center lg:text-left">
-                        This is not an official website of "Ranthambhore National Park". This is a Registered under the
-                        Private Travel Agency name Daily Tour and Travel. We organize Hotel, Safari and Tour Package
-                        bookings in Ranthambhore National Park.
-                    </p>
-                    <div class="mb-2">
-                        <p class="flex items-center mb-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-amber-400" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                            </svg>
-                            Phone: 8076438491, 7982193537
-                        </p>
-                        <p class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-amber-400" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                            Email: ranthambore360@gmail.com
-                        </p>
-                    </div>
-                </div>
+      <div class="container mx-auto px-4 max-w-6xl">
+        <div class="flex flex-col lg:flex-row justify-between gap-8">
+          <!-- About Section -->
+          <div
+            class="w-full lg:w-1/3 flex flex-col items-center lg:items-start"
+          >
+            <img
+              class="h-16 cursor-pointer mb-4"
+              src="/Images/logo.svg"
+              alt="Ranthambore 360 Logo"
+            />
+            <p
+              class="mb-4 text-sm text-gray-200 font-sans font-medium text-center lg:text-left"
+            >
+              This is not an official website of "Ranthambhore National Park".
+              This is a Registered under the Private Travel Agency name Daily
+              Tour and Travel. We organize Hotel, Safari and Tour Package
+              bookings in Ranthambhore National Park.
+            </p>
+            <div class="mb-2">
+              <p class="flex items-center mb-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 mr-2 text-amber-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                  />
+                </svg>
+                Phone: 8076438491, 7982193537
+              </p>
+              <p class="flex items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 mr-2 text-amber-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+                Email: ranthambore360@gmail.com
+              </p>
+            </div>
+          </div>
 
-                <!-- Links Sections -->
-                <div class="w-full flex flex-col md:flex-row gap-8">
-                    <!-- Useful Links -->
-                    <div class="w-full md:w-1/3">
-                        <h4 class="text-lg font-semibold mb-4 text-amber-400">Useful Links</h4>
-                        <ul class="space-y-2">
-                            <li>
-                                <a href="/dist/index.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Home
-                                </a>
-                            </li>
-                            <li>
-                                <a href="safari.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Safari Booking
-                                </a>
-                            </li>
-                            <li>
-                                <a href="chambal.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Chambal Safari Booking
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/dist/package-booking.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Package Booking
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/dist/contact.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Contact Us
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/dist/blogs.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Blogs
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Quick Links -->
-                    <div class="w-full md:w-1/3">
-                        <h4 class="text-lg font-semibold mb-4 text-amber-400">Quick Links</h4>
-                        <ul class="space-y-2">
-                            <li>
-                                <a href="/dist/privacy-policy.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Privacy Policy
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/dist/Cancellatiion-Policy.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Cancellation Policy
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/dist/term-condition.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Terms & Condition
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/dist/how-to-reach.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    How To Reach
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/dist/about.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    About Us
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/dist/support.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Support
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Gallery Section -->
-                    <div class="w-full md:w-1/3">
-                        <h4 class="text-lg font-semibold mb-4 text-amber-400">Our Gallery</h4>
-                        <div class="grid grid-cols-3 gap-2">
-                            <img src="/Images/Sanbar Deer.jpg" alt="Gallery Image 1"
-                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
-                            <img src="/Images/Black Buck Sighting.jpg" alt="Gallery Image 2"
-                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
-                            <img src="/Images/Tiger and cub.jpg" alt="Gallery Image 3"
-                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
-                            <img src="/Images/Crocodile in River.jpg" alt="Gallery Image 4"
-                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
-                            <img src="/Images/Chambal Boating.jpg" alt="Gallery Image 5"
-                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
-                            <img src="/Images/Birds Paradise.jpg" alt="Gallery Image 6"
-                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
-                        </div>
-                    </div>
-                </div>
+          <!-- Links Sections -->
+          <div class="w-full flex flex-col md:flex-row gap-8">
+            <!-- Useful Links -->
+            <div class="w-full md:w-1/3">
+              <h4 class="text-lg font-semibold mb-4 text-amber-400">
+                Useful Links
+              </h4>
+              <ul class="space-y-2">
+                <li>
+                  <a
+                    href="/dist/index.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="safari.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Safari Booking
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="chambal.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Chambal Safari Booking
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/dist/package-booking.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Package Booking
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/dist/contact.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Contact Us
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/dist/blogs.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Blogs
+                  </a>
+                </li>
+              </ul>
             </div>
 
-            <!-- Address and Copyright -->
-            <div class="mt-8 pt-6 border-t border-[#fff]">
-                <p class="text-center mb-2 text-[#fff]">
-                    <span class="font-bold bg-amber-400 px-2 py-1 text-gray-900 rounded">Daily Tour and Travel Delhi
-                        110092 Address</span> : A-2 Second Floor Ganesh Nagar, Pandav Nagar, Delhi 110092
-                </p>
-                <p class="text-center text-[#fff] text-sm">
-                    © Copyright Ranthambore. All Rights Reserved
-                </p>
+            <!-- Quick Links -->
+            <div class="w-full md:w-1/3">
+              <h4 class="text-lg font-semibold mb-4 text-amber-400">
+                Quick Links
+              </h4>
+              <ul class="space-y-2">
+                <li>
+                  <a
+                    href="/dist/privacy-policy.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Privacy Policy
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/dist/Cancellatiion-Policy.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Cancellation Policy
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/dist/term-condition.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Terms & Condition
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/dist/how-to-reach.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    How To Reach
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/dist/about.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    About Us
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/dist/support.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Support
+                  </a>
+                </li>
+              </ul>
             </div>
+
+            <!-- Gallery Section -->
+            <div class="w-full md:w-1/3">
+              <h4 class="text-lg font-semibold mb-4 text-amber-400">
+                Our Gallery
+              </h4>
+              <div class="grid grid-cols-3 gap-2">
+                <img
+                  src="/Images/Sanbar Deer.jpg"
+                  alt="Gallery Image 1"
+                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
+                />
+                <img
+                  src="/Images/Black Buck Sighting.jpg"
+                  alt="Gallery Image 2"
+                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
+                />
+                <img
+                  src="/Images/Tiger and cub.jpg"
+                  alt="Gallery Image 3"
+                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
+                />
+                <img
+                  src="/Images/Crocodile in River.jpg"
+                  alt="Gallery Image 4"
+                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
+                />
+                <img
+                  src="/Images/Chambal Boating.jpg"
+                  alt="Gallery Image 5"
+                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
+                />
+                <img
+                  src="/Images/Birds Paradise.jpg"
+                  alt="Gallery Image 6"
+                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
+                />
+              </div>
+            </div>
+          </div>
         </div>
+
+        <!-- Address and Copyright -->
+        <div class="mt-8 pt-6 border-t border-[#fff]">
+          <p class="text-center mb-2 text-[#fff]">
+            <span class="font-bold bg-amber-400 px-2 py-1 text-gray-900 rounded"
+              >Daily Tour and Travel Delhi 110092 Address</span
+            >
+            : A-2 Second Floor Ganesh Nagar, Pandav Nagar, Delhi 110092
+          </p>
+          <p class="text-center text-[#fff] text-sm">
+            © Copyright Ranthambore. All Rights Reserved
+          </p>
+        </div>
+      </div>
     </footer>
     <script src="/JS/app.js"></script>
-</body>
-
+  </body>
 </html>
