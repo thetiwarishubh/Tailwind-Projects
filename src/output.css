@@ -512,6 +512,9 @@
   .my-5 {
     margin-block: calc(var(--spacing) * 5);
   }
+  .my-6 {
+    margin-block: calc(var(--spacing) * 6);
+  }
   .my-10 {
     margin-block: calc(var(--spacing) * 10);
   }
@@ -571,6 +574,9 @@
   }
   .mt-32 {
     margin-top: calc(var(--spacing) * 32);
+  }
+  .mt-36 {
+    margin-top: calc(var(--spacing) * 36);
   }
   .mt-40 {
     margin-top: calc(var(--spacing) * 40);
@@ -3858,6 +3864,11 @@
       text-align: left;
     }
   }
+  .xl\:grid {
+    @media (width >= 80rem) {
+      display: grid;
+    }
+  }
   .xl\:grid-cols-4 {
     @media (width >= 80rem) {
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -3873,6 +3884,16 @@
     @media (width >= 80rem) {
       font-size: var(--text-base);
       line-height: var(--tw-leading, var(--text-base--line-height));
+    }
+  }
+  .\32 xl\:grid {
+    @media (width >= 96rem) {
+      display: grid;
+    }
+  }
+  .\32 xl\:grid-cols-6 {
+    @media (width >= 96rem) {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
     }
   }
 }
