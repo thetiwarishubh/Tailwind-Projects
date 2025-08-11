@@ -1,947 +1,1426 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ranthambore National Park Safari </title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/src/output.css">
-    <link rel="shortcut icon" href="/Images/favicon.jpg" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.18/index.global.min.js'></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ranthambore National Park Safari</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/output.css" />
+    <link rel="shortcut icon" href="/Images/favicon.jpg" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.18/index.global.min.js"></script>
     <style>
-        body {
-            font-family: 'Times New Roman', Times, serif
-        }
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+      html,
+      body {
+        max-width: 100%;
+        overflow-x: hidden;
+      }
 
-        #main-hero-section {
-            background-image: url(/Images/Background\ Safari.jpg);
-        }
+      #main-hero-section {
+        background-image: url(/Images/Background\ Safari.jpg);
+      }
 
-        .fc-daygrid-day {
-            background-color: #ffffff;
-            color: rgb(0, 0, 0);
-            border: 1px solid #ddd;
-            cursor: pointer;
-            /* height: 25px !important; */
-            /* width: 25px !important; */
-            padding: 0 !important;
-            margin: 0 !important;
-        }
+      .fc-daygrid-day {
+        background-color: #ffffff;
+        color: rgb(0, 0, 0);
+        border: 1px solid #ddd;
+        cursor: pointer;
+        /* height: 25px !important; */
+        /* width: 25px !important; */
+        padding: 0 !important;
+        margin: 0 !important;
+      }
 
-        .fc-day-past {
-            background-color: #ffffff;
-            color: #000;
-        }
+      .fc-day-past {
+        background-color: #ffffff;
+        color: #000;
+      }
 
-        .fc-day-future {
-            background-color: #00ff00;
-            color: #000;
-        }
+      .fc-day-future {
+        background-color: #00ff00;
+        color: #000;
+      }
 
-        .fc-day-other {
-            background-color: #f8f9fa;
-            color: #6c757d;
-        }
+      .fc-day-other {
+        background-color: #f8f9fa;
+        color: #6c757d;
+      }
 
-        .fc-day-today {
-            background-color: #006adc;
-            color: #000000;
-            font-weight: bold;
-        }
+      .fc-day-today {
+        background-color: #006adc;
+        color: #000000;
+        font-weight: bold;
+      }
 
-        .fc-daygrid-day-number {
-            padding: 0 !important;
-            margin: 0 !important;
-            height: 100% !important;
-            width: 100% !important;
-        }
+      .fc-daygrid-day-number {
+        padding: 0 !important;
+        margin: 0 !important;
+        height: 100% !important;
+        width: 100% !important;
+      }
 
-        .fc-daygrid-day-frame {
-            display: flex !important;
-            justify-content: center !important;
-            align-items: center !important;
-            height: 100% !important;
-            width: 100% !important;
-        }
+      .fc-daygrid-day-frame {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        height: 100% !important;
+        width: 100% !important;
+      }
 
+      .fc-daygrid-day:hover {
+        background-color: #e9ecef;
+        transition: 0.2s;
+      }
 
-        .fc-daygrid-day:hover {
-            background-color: #e9ecef;
-            transition: 0.2s;
-        }
+      .fc-toolbar-title {
+        font-weight: bold !important;
+        font-size: 16px !important;
+        font-family: sans-serif;
+      }
 
-        .fc-toolbar-title {
-            font-weight: bold !important;
-            font-size: 16px !important;
-            font-family: sans-serif;
-        }
+      .fc-toolbar {
+        padding: 8px;
+        background-color: #ff7518;
+      }
 
-        .fc-toolbar {
-            padding: 8px;
-            background-color: #ff7518;
-        }
+      .calender-container {
+        background: #fff5ee;
+        border: 1px solid #e5e7eb;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        max-width: 100%;
+        padding: 0.5rem;
+      }
 
-        .calender-container {
-            background: #fff5ee;
-            border: 1px solid #e5e7eb;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            max-width: 100%;
-            padding: 0.5rem;
-        }
+      .calender-container:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
 
-        .calender-container:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
+      #calendar {
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 1.5rem;
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+        max-width: 100% !important;
+      }
 
-        #calendar {
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 1.5rem;
-            width: 100%;
-            height: auto;
-            margin: 0 auto;
-            max-width: 100% !important;
-        }
+      .booking-form {
+        max-width: 100% !important;
+        width: 100%;
+      }
 
-        .booking-form {
-            max-width: 100% !important;
-            width: 100%;
-        }
+      /* Select and input improvements */
+      select,
+      input {
+        transition: all 0.2s ease;
+        background-color: #fff;
+      }
 
-        /* Select and input improvements */
-        select,
-        input {
-            transition: all 0.2s ease;
-            background-color: #fff;
-        }
-
-        select:focus,
-        input:focus {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
-        }
+      select:focus,
+      input:focus {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+      }
     </style>
-</head>
+  </head>
 
-<body class="bg-gray-50">
+  <body class="bg-gray-50">
     <!-- Navbar -->
-    <nav class="w-full sticky top-0 z-50 shadow-md">
-        <!-- Top Contact Bar -->
-        <div class="w-full bg-[#604019] text-white h-12 sm:h-8 flex items-center">
-            <div class="container mx-auto px-4">
-                <div class="flex flex-col justify-between items-center px-8 sm:flex-row">
-                    <!-- Changed to justify-around -->
-                    <div class="flex items-center cursor-pointer">
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                            </svg>
-                            <span>8076438491 | 7982193537</span>
-                        </div>
-                    </div>
-                    <div class="flex items-center cursor-pointer">
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                            <span>ranthambore360@gmail.com</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Main Navigation -->
-        <div class="w-full bg-white flex justify-between">
-            <div class="container mx-auto px-4 py-1 lg:px-16 flex md:flex-col lg:flex-row justify-between items-center">
-                <div>
-                    <img class="logo h-16 cursor-pointer" src="/Images/logo.svg" alt="Ranthambore 360 Logo">
-                </div>
-
-                <div class="hidden md:flex items-center space-x-8">
-                    <ul class="flex space-x-8 text-lg font-medium items-center">
-                        <li><a href="/dist/index.html" id="home-btn"
-                                class="text-[#604019] hover:text-amber-600 transition-colors">Home</a></li>
-                        <li><a href="safari.html" class="text-amber-600 transition-colors">Safari</a></li>
-                        <li><a href="chambal.html"
-                                class="chambalBtn text-[#604019] hover:text-amber-600 transition-colors">Chambal
-                                Safari</a>
-                        </li>
-                        <li><a href="hotel.html"
-                                class="hotelBtn text-[#604019] hover:text-amber-600 transition-colors">Hotels</a></li>
-                        <li><a href="package-booking.html"
-                                class="tourBtn text-[#604019] hover:text-amber-600 transition-colors">Packages</a></li>
-                        <li><a href="contact.html" id="contact-btn"
-                                class="text-[#604019] hover:text-amber-600 transition-colors">Contact</a></li>
-                    </ul>
-                    <button
-                        class="safariBtn ml-6 bg-amber-700 hover:bg-amber-600 text-white font-medium py-1 px-6 rounded-lg transition-colors shadow-md cursor-pointer">
-                        Book Now
-                    </button>
-                </div>
-
-                <!-- Mobile menu button -->
-                <div class="md:hidden">
-                    <button class="text-amber-900 focus:outline-none cursor-pointer">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </nav>
-    <main>
-        <section id="main-hero-section">
-            <h2 class="font-sans text-3xl font-bold text-[#ff7518] pt-4 text-center">
-                Ranthambore Safari Booking
-            </h2>
-            <div class="container mx-auto flex flex-col lg:flex-row items-center px-1 max-w-6xl py-2">
-
-                <div class="w-full lg:w-2/3 px-2 md:px-3">
-                    <table class="font-sans min-w-full bg-white border-1 border-[#604019] rounded-md shadow-md my-4">
-                        <thead>
-                            <tr>
-                                <th colspan="2"
-                                    class="bg-[#fad5a5] text-center text-[#604019] px-4 py-2 border-1 border-[#604019]">
-                                    Gypsy Safari
-                                    Price
-                                    & Safari Zones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="border-1 border-[#604019] px-4 py-2 text-[#000] font-bold">Price (Indian)
-                                </td>
-                                <td class="border-1 border-[#604019] px-4 py-2">INR 2050 / - Seat (Maximum 6 Persons & 2
-                                    children (b/w - 1 to 5 years) are allowed in ONE Gypsy)</td>
-                            </tr>
-                            <tr>
-                                <td class="border-1 border-[#604019] px-4 py-2 text-[#000] font-bold">Price (Foreigner)
-                                </td>
-                                <td class="border-1 border-[#604019] px-4 py-2">INR 5000 / - Seat (Maximum 6 Persons & 2
-                                    children (b/w - 1 to 5 years) are allowed in ONE Gypsy)</td>
-                            </tr>
-                            <tr>
-                                <td class="border-1 border-[#604019] px-4 py-2 text-[#000] font-bold">Zones</td>
-                                <td class="border-1 border-[#604019] px-4 py-2">
-                                    1/2/3/4/5/6/7/8/9/10<br>
-                                    (1/2/3/4/5 is Closed on Every Wednesday) & (6/7/8/9/10 is Closed on Every
-                                    Tuesday)<br>
-                                    <span class="bg-yellow-100 text-red-500 px-2 py-1">During Monsoon (July, August &
-                                        September)
-                                        season only 6 to 10 Zone are Open.</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="border-1 border-[#604019] px-4 py-2 text-[#000] font-bold">Timings</td>
-                                <td class="border-1 border-[#604019] px-4 py-2">Morning 7:00 AM - 10:30 AM | Evening
-                                    2:00
-                                    PM - 5:30 PM (Safari Timing Varies as Season Changes)</td>
-                            </tr>
-                            <tr>
-                                <td class="border-1 border-[#604019] px-4 py-2 text-[#000] font-bold">Inclusions</td>
-                                <td class="border-1 border-[#604019] px-4 py-2">Permission of Ranthambore, Gypsy,
-                                    Driver,
-                                    Permit and Guide Fee & Taxes. * Pick & drop is not included from hotels.</td>
-                            </tr>
-                        </tbody>
-                        <thead>
-                            <tr>
-                                <th colspan="2"
-                                    class="bg-[#fad5a5] text-center text-[#604019] px-4 py-2 border-1 border-[#604019]">
-                                    Canter Safari
-                                    Price
-                                    & Zone</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="border-1 border-[#604019] px-4 py-2 text-[#000] font-bold">Price (Indian)
-                                </td>
-                                <td class="border-1 border-[#604019] px-4 py-2">INR 1600 / Person (ONE Canter has 20
-                                    Seats)</td>
-                            </tr>
-                            <tr>
-                                <td class="border-1 border-[#604019] px-4 py-2 text-[#000] font-bold">Price (Foreigner)
-                                </td>
-                                <td class="border-1 border-[#604019] px-4 py-2">INR 4500 / Person (ONE Canter has 20
-                                    Seats)</td>
-                            </tr>
-                            <tr>
-                                <td class="border-1 border-[#604019] px-4 py-2 text-[#000] font-bold">Zones</td>
-                                <td class="border-1 border-[#604019] px-4 py-2">
-                                    1/2/3/4/5/6/9/10<br>
-                                    (1/2/3/4/5 is Closed on Every Wednesday) & (6/9/10 is Closed on Every Tuesday)
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="border-1 border-[#604019] px-4 py-2 text-[#000] font-bold">Timings</td>
-                                <td class="border-1 border-[#604019] px-4 py-2">Morning 7:00 AM - 10:30 AM | Evening
-                                    2:00
-                                    PM - 5:30 PM</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <!-- calender -->
-                <div class="calender-container w-full lg:w-1/3 px-2 lg:px-4 mt-8 md:mt-0"
-                    style="max-width: 90%; padding: 0.75rem; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 12px; height: auto;">
-                    <div id="calendar"></div>
-                    <div class="booking-form py-4 mt-2 rounded-xl w-full">
-                        <form class="space-y-5" id="form">
-                            <!-- First Row - Timeslot -->
-                            <div class="grid grid-cols-2 gap-4">
-                                <div>
-                                    <select id="safari" required
-                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none">
-                                        <option value="" disabled selected>Choose Safari Mode</option>
-                                        <option value="gypsy">Gypsy</option>
-                                        <option value="canter">Canter</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <select id="zone" required
-                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none">
-                                        <option value="" disabled selected>Choose Zone</option>
-                                        <option value="zone1-7">Zone 1/2/3/4/5/6/7</option>
-                                        <option value="zone8-10">Zone 8/9/10</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <!-- Second Row - Zone and Mobile -->
-                            <div class="grid grid-cols-2 gap-4">
-                                <div>
-                                    <select id="timing" required
-                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none">
-                                        <option value="" disabled selected>Select Timeslot</option>
-                                        <option value="morning">Morning</option>
-                                        <option value="evening">Evening</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <input type="text" id="name" required
-                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                        placeholder="Your name">
-                                </div>
-                            </div>
-
-                            <!-- Third Row - Email and Name -->
-                            <div class="grid grid-cols-2 gap-4">
-                                <div>
-                                    <input type="email" id="email" required
-                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                        placeholder="Email address">
-                                </div>
-                                <div>
-                                    <input type="tel" id="mobile" required pattern="[0-9]{10}"
-                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                        placeholder="Mobile number">
-                                </div>
-                            </div>
-
-                            <!-- Book Now Button -->
-                            <button id="safari-booking-btn" type="submit"
-                                class="cursor-pointer w-full bg-[#ff7518] text-white py-3 px-4 rounded-lg hover:bg-[#604019] transition duration-200 font-medium">
-                                Book Now
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="py-4">
-            <div class="container mx-auto flex flex-col md:flex-row items-center px-4 max-w-6xl">
-                <!-- Text Section (Half width) -->
-                <div class="w-full md:w-1/2 ">
-                    <h2 class="text-3xl font-semibold text-amber-600 mb-4">
-                        Thrilling Experience At Ranthambore
-                    </h2>
-
-                    <div class="flex flex-col gap-4"> <!-- Changed to flex-col gap-5 for consistent spacing -->
-                        <p class="text-sm md:text-base">
-                            People can enjoy the thrill of exploring the wild area of Ranthambore National Park by going
-                            on thrilling safari rides. This park offers the tourists to observe its wildlife through
-                            gypsy and canter safaris. Just think about going inside the wild area where animals will be
-                            roaming freely around your safari, it’s going to be a thrilling experience.
-                        </p>
-                        <p class="text-sm md:text-base">
-                            Ranthambore National Park is located in Rajasthan and the forest department of Rajasthan
-                            allows tourism in this park only through gypsy and canter safaris. This means if you are
-                            interested in spotting wild animals like tigers, sloth bears, deer, wild boars, leopards,
-                            etc in this park then only safaris are available for that. For safety reasons, a trained
-                            guide and a designated driver will be there with you during your thrilling safari rides. To
-                            go on safari you have to make Ranthambore Safari Booking.
-                        </p>
-                        <p class="mb-[12px] text-sm md:text-base">
-                            Ranthambore National Park covers an area of 1,334 square kilometers and it’s a bigger one.
-                            This area of the park is divided into 10 different zones and each zone of this park offers a
-                            unique wildlife sighting. You can do Ranthambore online safari booking and explore the area
-                            of Ranthambore National Park on wheels. Every zone of the park has different wildlife
-                            animals that are mostly found in that particular zone. If you want to see a specific animal
-                            in this park then visiting the zone in which that animal is mostly found is advised. Tigers
-                            are seen mostly in every zone.
-                        </p>
-                    </div>
-                </div>
-                <!-- Image Section (Half width) -->
-                <div class="w-full md:w-1/2 px-4 md:px-10 mt-2">
-                    <img class="w-full max-w-lg mx-auto object-cover border-2 border-dashed rounded-tr-[30px] rounded-bl-[30px]"
-                        src="/Images/kothi.jpg" alt="Ranthambore Tiger">
-                </div>
-            </div>
-        </section>
-        <section class="w-full bg-[#fac898]">
-            <div class="w-full my-4">
-                <div>
-                    <h1 class="text-3xl font-bold text-[#ff7518] text-center py-4">
-                        Important Guidelines For Safari Zone Selection
-                    </h1>
-                </div>
-                <div class="mx-4 md:mx-20 my-2">
-                    <ul class="space-y-4 md:text-base pb-4 font-sans">
-                        <li class="flex items-start gap-4">
-                            <img class="w-[20px] sm:w-[25px]" src="/Images/icon.png" alt="arr-image">
-                            <p class="font-semibold">
-                                There are in total 10 safari zones in Ranthambore National Park.
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <img class="w-[20px] sm:w-[25px]" src="/Images/icon.png" alt="arr-image">
-                            <p class="font-semibold">
-                                A zone will be allotted for a safari ride as per its availability.
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <img class="w-[20px] sm:w-[25px]" src="/Images/icon.png" alt="arr-image">
-                            <p class="font-semibold">
-                                While filling in the details for Ranthambore Safari Booking, you can either choose the
-                                zone from 1 to 7 or 8 to 10.
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <img class="w-[20px] sm:w-[25px]" src="/Images/icon.png" alt="arr-image">
-                            <p class="font-semibold">
-                                Visitors are not allowed to choose a specific zone to complete their Ranthambore online
-                                safari booking. In simple words, if you choose from zones 1 to 7 then safari will be
-                                allotted in any one of them and if you choose from zones 8 to 10 then safari will be
-                                allotted in any one of them.
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <img class="w-[20px] sm:w-[25px]" src="/Images/icon.png" alt="arr-image">
-                            <p class="font-semibold">
-                                If you’re making a current booking then any zone can be allowed, from 1 to 10.
-                            </p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-        <section class="max-w-6xl mx-auto p-4">
-            <h2 class="text-3xl font-bold text-orange-600 mb-6">Safari Timing inside Ranthambore</h2>
-
-            <div class="overflow-x-auto">
-                <div class="min-w-full bg-white border border-gray-300 rounded-lg shadow-lg">
-                    <!-- Header Row -->
-                    <div class="flex bg-orange-500 text-white">
-                        <div class="flex-1 px-3 py-2 text-center font-semibold text-lg border-r border-orange-400">
-                            Months</div>
-                        <div class="flex-1 px-3 py-2 text-center font-semibold text-lg border-r border-orange-400">
-                            Morning</div>
-                        <div class="flex-1 px-3 py-2 text-center font-semibold text-lg">Afternoon</div>
-                    </div>
-
-                    <!-- Row 1 -->
-                    <div class="flex border-b border-gray-300">
-                        <div class="flex-1 px-3 py-2 text-center border-r border-gray-300 font-semibold">October 1st –
-                            October 31st
-                        </div>
-                        <div class="flex-1 px-3 py-2 text-center border-r border-gray-300 font-semibold">6:30 AM – 10:00
-                            AM</div>
-                        <div class="flex-1 px-3 py-2 text-center font-semibold">2:30 PM – 6:00 PM</div>
-                    </div>
-
-                    <!-- Row 2 -->
-                    <div class="flex border-b border-gray-300">
-                        <div class="flex-1 px-3 py-2 text-center border-r border-gray-300 font-semibold">November 1st –
-                            January 31st
-                        </div>
-                        <div class="flex-1 px-3 py-2 text-center border-r border-gray-300 font-semibold">7:00 AM – 10:30
-                            AM</div>
-                        <div class="flex-1 px-3 py-2 text-center font-semibold">2:00 PM – 5:30 PM</div>
-                    </div>
-
-                    <!-- Row 3 -->
-                    <div class="flex border-b border-gray-300">
-                        <div class="flex-1 px-3 py-2 text-center border-r border-gray-300 font-semibold">February 1st –
-                            March 31st
-                        </div>
-                        <div class="flex-1 px-3 py-2 text-center border-r border-gray-300 font-semibold">6:30 AM – 10:00
-                            AM</div>
-                        <div class="flex-1 px-3 py-2 text-center font-semibold">2:30 PM – 6:00 PM</div>
-                    </div>
-
-                    <!-- Row 4 -->
-                    <div class="flex border-b border-gray-300">
-                        <div class="flex-1 px-3 py-2 text-center border-r border-gray-300 font-semibold">April 1st – May
-                            15th</div>
-                        <div class="flex-1 px-3 py-2 text-center border-r border-gray-300 font-semibold">6:00 AM – 9:30
-                            AM</div>
-                        <div class="flex-1 px-3 py-2 text-center font-semibold">3:00 PM – 6:30 PM</div>
-                    </div>
-
-                    <!-- Row 5 -->
-                    <div class="flex">
-                        <div class="flex-1 px-3 py-2 text-center border-r border-gray-300 font-semibold">May 16th – June
-                            30th</div>
-                        <div class="flex-1 px-3 py-2 text-center border-r border-gray-300 font-semibold">6:00 AM – 9:30
-                            AM</div>
-                        <div class="flex-1 px-3 py-2 text-center font-semibold">3:30 PM – 7:00 PM</div>
-                    </div>
-                </div>
-
-                <!-- Note Section -->
-                <div class="mt-0.5 p-4 bg-orange-50 border border-orange-200 rounded-lg">
-                    <p class="text-sm text-gray-700">
-                        <span class="font-semibold">Note:</span>
-                        <span class="italic text-orange-600">In Case Your Canter Or Gypsy Safari In Ranthambore Is Not
-                            Booked Due To Reasons Like Technical Error Or Non-Availability Of Seats, We Will Refund The
-                            Whole Amount In Your Given Bank Account. The Same Would Be Communicated Accordingly.</span>
-                    </p>
-                </div>
-            </div>
-        </section>
-        <section class="py-4">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white shadow-lg">
+      <!-- Top Contact Bar -->
+      <div class="w-full bg-amber-900 text-white h-10 flex items-center">
+        <div class="w-full px-4 lg:px-16">
+          <div class="flex justify-between items-center text-sm font-sans">
             <div
-                class="container mx-auto px-4 max-w-6xl shadow-md bg-gradient-to-b from-white to-[#F8D2B2] min-h-screen py-4">
-                <h2 class="text-3xl md:text-4xl font-bold text-[#ff7518] mb-1">
-                    Safaris For Exploration
-                </h2>
-                <div class="text-[#604019] font-semibold font-sans mb-3">
-                    Ranthambore National Park offers the tourist to go inside this wild area on gypsy and canter safari.
-                    Only 2 kinds of safaris are allowed by the forest departed of Rajasthan to explore the area of
-                    Ranthambore National Park. You can choose the one that suits you best after knowing the information.
+              class="flex items-center cursor-pointer hover:text-amber-200 transition-colors"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                />
+              </svg>
+              <span class="hidden sm:inline">8076438491 | 7982193537</span>
+              <span class="sm:hidden">Call Us</span>
+            </div>
+            <div
+              class="flex items-center cursor-pointer hover:text-amber-200 transition-colors"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                />
+              </svg>
+              <span class="hidden sm:inline">ranthambore360@gmail.com</span>
+              <span class="sm:hidden">Email</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Main Navigation -->
+      <div class="w-full bg-white border-b border-gray-200">
+        <div class="w-full px-4 py-2 lg:px-16">
+          <div class="flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center">
+              <img
+                class="logo h-16 cursor-pointer"
+                src="/Images/logo.svg"
+                alt="Ranthambore 360 Logo"
+              />
+            </div>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden lg:flex items-center space-x-6">
+              <ul
+                class="flex space-x-6 text-sm xl:text-base font-medium items-center font-sans"
+              >
+                <li>
+                  <a
+                    href="/dist/index.html"
+                    class="text-amber-900 hover:text-amber-600 transition-colors px-3 py-2 rounded-md hover:bg-amber-100"
+                    >Home</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="safari.html"
+                    class="text-amber-900 hover:text-amber-600 transition-colors px-3 py-2 rounded-md hover:bg-amber-100"
+                    >Safari</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="chambal.html"
+                    class="chambalBtn text-amber-900 hover:text-amber-600 transition-colors px-3 py-2 rounded-md hover:bg-amber-100"
+                    >Chambal Safari</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="hotel.html"
+                    class="hotelBtn text-amber-900 hover:text-amber-600 transition-colors px-3 py-2 rounded-md hover:bg-amber-100"
+                    >Hotels</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="package-booking.html"
+                    class="tourBtn text-amber-900 hover:text-amber-600 transition-colors px-3 py-2 rounded-md hover:bg-amber-100"
+                    >Packages</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="contact.html"
+                    class="text-amber-900 hover:text-amber-600 transition-colors px-3 py-2 rounded-md hover:bg-amber-100"
+                    >Contact</a
+                  >
+                </li>
+              </ul>
+              <button
+                class="safariBtn ml-4 bg-amber-700 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg transition-colors shadow-md cursor-pointer"
+              >
+                Book Now
+              </button>
+            </div>
+
+            <!-- Mobile menu button -->
+            <div class="lg:hidden">
+              <button
+                id="mobile-menu-btn"
+                class="text-amber-900 focus:outline-none cursor-pointer p-2 rounded-md hover:bg-gray-100"
+              >
+                <svg
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Menu -->
+      <div
+        id="mobile-menu"
+        class="hidden lg:hidden bg-white border-t border-gray-200 shadow-lg"
+      >
+        <div class="px-4 py-3 space-y-1">
+          <a
+            href="/dist/index.html"
+            class="block text-amber-900 hover:text-amber-600 transition-colors py-2 px-3 rounded-md hover:bg-amber-50"
+            >Home</a
+          >
+          <a
+            href="safari.html"
+            class="block text-amber-900 hover:text-amber-600 transition-colors py-2 px-3 rounded-md hover:bg-amber-50"
+            >Safari</a
+          >
+          <a
+            href="chambal.html"
+            class="block text-amber-900 hover:text-amber-600 transition-colors py-2 px-3 rounded-md hover:bg-amber-50"
+            >Chambal Safari</a
+          >
+          <a
+            href="hotel.html"
+            class="block text-amber-700 font-semibold py-2 px-3 rounded-md bg-amber-50 border border-amber-200"
+            >Hotels</a
+          >
+          <a
+            href="package-booking.html"
+            class="block text-amber-900 hover:text-amber-600 transition-colors py-2 px-3 rounded-md hover:bg-amber-50"
+            >Packages</a
+          >
+          <a
+            href="contact.html"
+            class="block text-amber-900 hover:text-amber-600 transition-colors py-2 px-3 rounded-md hover:bg-amber-50"
+            >Contact</a
+          >
+          <button
+            class="w-full mt-3 bg-amber-700 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg transition-colors shadow-md"
+          >
+            Book Now
+          </button>
+        </div>
+      </div>
+    </nav>
+    <main class="mt-28">
+      <section id="main-hero-section">
+        <h2
+          class="font-sans text-3xl font-bold text-[#ff7518] pt-4 text-center"
+        >
+          Ranthambore Safari Booking
+        </h2>
+        <div
+          class="w-full flex flex-col lg:flex-row items-center px-4 md:px-16 py-2"
+        >
+          <div class="w-full lg:w-2/3 px-2 md:px-3">
+            <table
+              class="font-sans min-w-full bg-white border-1 border-[#604019] rounded-md shadow-md my-4"
+            >
+              <thead>
+                <tr>
+                  <th
+                    colspan="2"
+                    class="bg-[#fad5a5] text-center text-[#604019] px-4 py-2 border-1 border-[#604019]"
+                  >
+                    Gypsy Safari Price & Safari Zones
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td
+                    class="border-1 border-[#604019] px-4 py-2 text-[#000] font-bold"
+                  >
+                    Price (Indian)
+                  </td>
+                  <td class="border-1 border-[#604019] px-4 py-2">
+                    INR 2050 / - Seat (Maximum 6 Persons & 2 children (b/w - 1
+                    to 5 years) are allowed in ONE Gypsy)
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    class="border-1 border-[#604019] px-4 py-2 text-[#000] font-bold"
+                  >
+                    Price (Foreigner)
+                  </td>
+                  <td class="border-1 border-[#604019] px-4 py-2">
+                    INR 5000 / - Seat (Maximum 6 Persons & 2 children (b/w - 1
+                    to 5 years) are allowed in ONE Gypsy)
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    class="border-1 border-[#604019] px-4 py-2 text-[#000] font-bold"
+                  >
+                    Zones
+                  </td>
+                  <td class="border-1 border-[#604019] px-4 py-2">
+                    1/2/3/4/5/6/7/8/9/10<br />
+                    (1/2/3/4/5 is Closed on Every Wednesday) & (6/7/8/9/10 is
+                    Closed on Every Tuesday)<br />
+                    <span class="bg-yellow-100 text-red-500 px-2 py-1"
+                      >During Monsoon (July, August & September) season only 6
+                      to 10 Zone are Open.</span
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    class="border-1 border-[#604019] px-4 py-2 text-[#000] font-bold"
+                  >
+                    Timings
+                  </td>
+                  <td class="border-1 border-[#604019] px-4 py-2">
+                    Morning 7:00 AM - 10:30 AM | Evening 2:00 PM - 5:30 PM
+                    (Safari Timing Varies as Season Changes)
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    class="border-1 border-[#604019] px-4 py-2 text-[#000] font-bold"
+                  >
+                    Inclusions
+                  </td>
+                  <td class="border-1 border-[#604019] px-4 py-2">
+                    Permission of Ranthambore, Gypsy, Driver, Permit and Guide
+                    Fee & Taxes. * Pick & drop is not included from hotels.
+                  </td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr>
+                  <th
+                    colspan="2"
+                    class="bg-[#fad5a5] text-center text-[#604019] px-4 py-2 border-1 border-[#604019]"
+                  >
+                    Canter Safari Price & Zone
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td
+                    class="border-1 border-[#604019] px-4 py-2 text-[#000] font-bold"
+                  >
+                    Price (Indian)
+                  </td>
+                  <td class="border-1 border-[#604019] px-4 py-2">
+                    INR 1600 / Person (ONE Canter has 20 Seats)
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    class="border-1 border-[#604019] px-4 py-2 text-[#000] font-bold"
+                  >
+                    Price (Foreigner)
+                  </td>
+                  <td class="border-1 border-[#604019] px-4 py-2">
+                    INR 4500 / Person (ONE Canter has 20 Seats)
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    class="border-1 border-[#604019] px-4 py-2 text-[#000] font-bold"
+                  >
+                    Zones
+                  </td>
+                  <td class="border-1 border-[#604019] px-4 py-2">
+                    1/2/3/4/5/6/9/10<br />
+                    (1/2/3/4/5 is Closed on Every Wednesday) & (6/9/10 is Closed
+                    on Every Tuesday)
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    class="border-1 border-[#604019] px-4 py-2 text-[#000] font-bold"
+                  >
+                    Timings
+                  </td>
+                  <td class="border-1 border-[#604019] px-4 py-2">
+                    Morning 7:00 AM - 10:30 AM | Evening 2:00 PM - 5:30 PM
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- calender -->
+          <div
+            class="calender-container w-full lg:w-1/3 px-2 lg:px-4 mt-8 md:mt-0"
+            style="
+              max-width: 90%;
+              padding: 0.75rem;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+              border-radius: 12px;
+              height: auto;
+            "
+          >
+            <div id="calendar"></div>
+            <div class="booking-form py-4 mt-2 rounded-xl w-full">
+              <form class="space-y-5" id="form">
+                <!-- First Row - Timeslot -->
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <select
+                      id="safari"
+                      required
+                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none"
+                    >
+                      <option value="" disabled selected>
+                        Choose Safari Mode
+                      </option>
+                      <option value="gypsy">Gypsy</option>
+                      <option value="canter">Canter</option>
+                    </select>
+                  </div>
+                  <div>
+                    <select
+                      id="zone"
+                      required
+                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none"
+                    >
+                      <option value="" disabled selected>Choose Zone</option>
+                      <option value="zone1-7">Zone 1/2/3/4/5/6/7</option>
+                      <option value="zone8-10">Zone 8/9/10</option>
+                    </select>
+                  </div>
                 </div>
 
-                <div class="max-w-full mx-auto">
-                    <table class="w-full border-collapse bg-white shadow-lg rounded-lg overflow-hidden">
-                        <thead>
-                            <tr>
-                                <th
-                                    class="bg-[#ff7518] text-white text-center py-2 px-6 font-semibold text-base border-r border-orange-400 font-sans">
-                                    GYPSY SAFARI</th>
-                                <th
-                                    class="bg-[#ff7518] text-white text-center py-2 px-6 font-semibold text-base font-sans">
-                                    CANTER
-                                    SAFARI</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="border-b border-gray-200">
-                                <td class="p-2 border-r border-gray-200 text-center font-semibold font-sans">1. These
-                                    safaris are gypsies that
-                                    are open from all sides and because of their compact size, they can go in the narrow
-                                    paths of the jungle. They are best for exploring the deeper areas of the park.</td>
-                                <td class="p-2 text-center font-semibold font-sans">1. These safaris are buses that are
-                                    higher than the gypsy
-                                    safaris and open from all sides. The canter safari in Ranthambore are higher than
-                                    gypsy and because of that, they give good views even from a distance.</td>
-                            </tr>
-                            <tr class="border-b border-gray-200">
-                                <td class="p-2 border-r border-gray-200 text-center font-semibold font-sans">2. These
-                                    safaris can accommodate 6
-                                    passengers along with a guide and driver, they are best for small groups.</td>
-                                <td class="p-2 text-center font-semibold font-sans">2. These safaris can accommodate 20
-                                    passengers along with a
-                                    guide and driver, they are best for big groups.</td>
-                            </tr>
-                            <tr class="border-b border-gray-200">
-                                <td class="p-2 border-r border-gray-200 text-center font-semibold font-sans">3. Gypsy
-                                    safaris can go inside all
-                                    zones of this scenic park. You can make Ranthambore gypsy safari booking for all 10
-                                    zones.</td>
-                                <td class="p-2 text-center font-semibold font-sans">3. Canter safaris can go inside most
-                                    of the zones but you
-                                    cannot make Ranthambore canter Safari booking for zones 7 and 8.</td>
-                            </tr>
-                            <tr class="border-b border-gray-200">
-                                <td class="p-2 border-r border-gray-200 text-center font-semibold font-sans">4. A total
-                                    of 88 gypsies can enter
-                                    the park at a time for each shift (morning and evening). Out of these, 58 gypsies
-                                    are available for advance booking, while the remaining are reserved for Tatkal and
-                                    special category bookings.</td>
-                                <td class="p-2 text-center font-semibold font-sans">4. 52 canters are allowed per shift
-                                    (morning and evening).
-                                    This safari is booked only on a first-come, first-served basis. If you want to make
-                                    a tatkal booking then it can only be booked if seats remain empty. It is booked on a
-                                    sharing basis.</td>
-                            </tr>
-                            <tr class="border-b border-gray-200">
-                                <td class="p-2 border-r border-gray-200 text-center font-semibold font-sans">5. Gypsies
-                                    are generally more
-                                    costly than a canter safari if you book the whole for just yourself. They can be
-                                    less costly if you book it on a sharing basis.</td>
-                                <td class="p-2 text-center font-semibold font-sans">5. Canter safaris are best for
-                                    people who want to enjoy the
-                                    exploration of the park without breaking the bank. Each seat on this safari is
-                                    booked on an individual basis.</td>
-                            </tr>
-                            <tr>
-                                <td class="p-2 border-r border-gray-200 text-center font-semibold font-sans">6. Gypsies
-                                    are shorter than canter
-                                    safari and because of that, they offer a close view of animals.</td>
-                                <td class="p-2 text-center font-semibold font-sans">6. Canter safaris allow people to
-                                    observe wildlife
-                                    comfortably from a distance without any issues.</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <!-- Second Row - Zone and Mobile -->
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <select
+                      id="timing"
+                      required
+                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none"
+                    >
+                      <option value="" disabled selected>
+                        Select Timeslot
+                      </option>
+                      <option value="morning">Morning</option>
+                      <option value="evening">Evening</option>
+                    </select>
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      id="name"
+                      required
+                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      placeholder="Your name"
+                    />
+                  </div>
                 </div>
+
+                <!-- Third Row - Email and Name -->
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <input
+                      type="email"
+                      id="email"
+                      required
+                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      placeholder="Email address"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="tel"
+                      id="mobile"
+                      required
+                      pattern="[0-9]{10}"
+                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      placeholder="Mobile number"
+                    />
+                  </div>
+                </div>
+
+                <!-- Book Now Button -->
+                <button
+                  id="safari-booking-btn"
+                  type="submit"
+                  class="cursor-pointer w-full bg-[#ff7518] text-white py-3 px-4 rounded-lg hover:bg-[#604019] transition duration-200 font-medium"
+                >
+                  Book Now
+                </button>
+              </form>
             </div>
-        </section>
-        <section class="w-full bg-[#fac898]">
-            <div class="w-full my-4">
-                <div>
-                    <h1 class="text-3xl font-bold text-[#ff7518] text-center py-4">
-                        Ranthambore Safari Booking Procedure
-                    </h1>
-                </div>
-                <div class="mx-4 md:mx-20 my-4 pb-4">
-                    <ul class="space-y-3 pb-4 font-sans">
-                        <li class="flex items-start gap-2">
-                            <span class="font-bold">1.</span>
-                            <p>
-                                Open the website ranthambhorebooking.in
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="font-bold">2.</span>
-                            <p>
-                                Select the date on which you need to enjoy a safari ride in Ranthambore. It is advised
-                                to the travelers to make Ranthambore safari booking 3 months before the arrival date.
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="font-bold">3.</span>
-                            <p>
-                                Select the safari type, you can either choose a gypsy safari or a canter safari.
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="font-bold">4.</span>
-                            <p>
-                                Select the zone in which you want to enjoy your ride. You can either choose from zones 1
-                                to 7 or from zones 8 to 10.
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="font-bold">5.</span>
-                            <p>
-                                Select the time slot, you can enjoy your ride in the morning or evening time.
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="font-bold">6.</span>
-                            <p>
-                                Then you have to fill in the name of the person who is filling in the information for
-                                Ranthambore online safari booking.
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="font-bold">7.</span>
-                            <p>
-                                Fill in your number and e-mail ID and then click on book now.
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="font-bold">8.</span>
-                            <p>
-                                Then a page will open, on that page you have to fill in some basic details like the
-                                state from which you’re coming along with the full address.
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="font-bold">9.</span>
-                            <p>
-                                You have to provide the details of the passengers who are going for the ride while
-                                making Ranthambore safari booking.
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="font-bold">10.</span>
-                            <p>
-                                Click on I agree to terms and conditions and then pay the amount that will be mentioned
-                                on your screen.
-                            </p>
-                        </li>
-                    </ul>
-                    <div class="bg-amber-50 p-4 rounded-lg border border-amber-200">
-                        <p class="text-[#604019] font-semibold font-sans">
-                            <span class="font-bold">Note:</span> Just make sure to fill in the correct details of
-                            passengers and also the correct details of your ID. The IDs will be checked when you reach
-                            there and every detail should match, failing which your booking can be cancelled.
-                        </p>
-                    </div>
-                </div>
+          </div>
+        </div>
+      </section>
+      <section class="py-4">
+        <div
+          class="w-full flex flex-col md:flex-row items-center px-4 md:px-16"
+        >
+          <!-- Text Section (Half width) -->
+          <div class="w-full md:w-1/2">
+            <h2 class="text-3xl font-semibold text-amber-600 mb-4">
+              Thrilling Experience At Ranthambore
+            </h2>
+
+            <div class="flex flex-col gap-4">
+              <!-- Changed to flex-col gap-5 for consistent spacing -->
+              <p class="text-sm md:text-base">
+                People can enjoy the thrill of exploring the wild area of
+                Ranthambore National Park by going on thrilling safari rides.
+                This park offers the tourists to observe its wildlife through
+                gypsy and canter safaris. Just think about going inside the wild
+                area where animals will be roaming freely around your safari,
+                it’s going to be a thrilling experience.
+              </p>
+              <p class="text-sm md:text-base">
+                Ranthambore National Park is located in Rajasthan and the forest
+                department of Rajasthan allows tourism in this park only through
+                gypsy and canter safaris. This means if you are interested in
+                spotting wild animals like tigers, sloth bears, deer, wild
+                boars, leopards, etc in this park then only safaris are
+                available for that. For safety reasons, a trained guide and a
+                designated driver will be there with you during your thrilling
+                safari rides. To go on safari you have to make Ranthambore
+                Safari Booking.
+              </p>
+              <p class="mb-[12px] text-sm md:text-base">
+                Ranthambore National Park covers an area of 1,334 square
+                kilometers and it’s a bigger one. This area of the park is
+                divided into 10 different zones and each zone of this park
+                offers a unique wildlife sighting. You can do Ranthambore online
+                safari booking and explore the area of Ranthambore National Park
+                on wheels. Every zone of the park has different wildlife animals
+                that are mostly found in that particular zone. If you want to
+                see a specific animal in this park then visiting the zone in
+                which that animal is mostly found is advised. Tigers are seen
+                mostly in every zone.
+              </p>
             </div>
-        </section>
-        <section class="w-full">
-            <div class="w-full my-4">
-                <div>
-                    <h1 class="text-3xl font-bold text-[#ff7518] text-center py-4">
-                        Ranthambore Safari Booking Terms and Conditions
-                    </h1>
-                </div>
-                <div class="mx-4 md:mx-20 my-2">
-                    <ul class="space-y-4 pb-4 font-sans">
-                        <li class="flex items-start gap-4">
-                            <img class="w-[20px] sm:w-[25px]" src="/Images/Mark-icon.png" alt="arr-image">
-                            <p class="font-semibold">
-                                If you want to make your safari memorable then the most important thing is to come with
-                                your original identity card.
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <img class="w-[20px] sm:w-[25px]" src="/Images/Mark-icon.png" alt="arr-image">
-                            <p class="font-semibold">
-                                Before going inside the park, the government officials check your IDs, without them, you
-                                cannot enter the park.
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <img class="w-[20px] sm:w-[25px]" src="/Images/Mark-icon.png" alt="arr-image">
-                            <p class="font-semibold">
-                                Always listen to your guide and driver during the safari. They are knowledgeable and
-                                will keep you safe inside the wild area.
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <img class="w-[20px] sm:w-[25px]" src="/Images/Mark-icon.png" alt="arr-image">
-                            <p class="font-semibold">
-                                Try to stay silent or talk slowly if you are interested in spotting more animals during
-                                your canter or gypsy safari in Ranthambore. Animals get scared by human voices and they
-                                remain away. If you talk loudly, it can decrease the chances of spotting animals.
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <img class="w-[20px] sm:w-[25px]" src="/Images/Mark-icon.png" alt="arr-image">
-                            <p class="font-semibold">
-                                Using any kind of tape recorder, transistor, or radio is strictly prohibited inside this
-                                wild area.
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <img class="w-[20px] sm:w-[25px]" src="/Images/Mark-icon.png" alt="arr-image">
-                            <p class="font-semibold">
-                                Be inside your safari, don’t try to get down from your vehicle, until and unless your
-                                guide tells you to do so.
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <img class="w-[20px] sm:w-[25px]" src="/Images/Mark-icon.png" alt="arr-image">
-                            <p class="font-semibold">
-                                Carrying pets is strictly prohibited. Carnivores can come near for hunting so do not
-                                come with your pets.
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <img class="w-[20px] sm:w-[25px]" src="/Images/Mark-icon.png" alt="arr-image">
-                            <p class="font-semibold">
-                                Make sure that your Ranthambore Safari Booking includes the guide because without them,
-                                you cannot enter the park.
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <img class="w-[20px] sm:w-[25px]" src="/Images/Mark-icon.png" alt="arr-image">
-                            <p class="font-semibold">
-                                It is important for the tourists to reach at gates 30 minutes before the ride.
-                            </p>
-                        </li>
-                    </ul>
-                </div>
+          </div>
+          <!-- Image Section (Half width) -->
+          <div class="w-full md:w-1/2 px-4 md:px-10 mt-2">
+            <img
+              class="w-full max-w-lg mx-auto object-cover border-2 border-dashed rounded-tr-[30px] rounded-bl-[30px]"
+              src="/Images/kothi.jpg"
+              alt="Ranthambore Tiger"
+            />
+          </div>
+        </div>
+      </section>
+      <section class="w-full bg-[#fac898]">
+        <div class="w-full my-4">
+          <div>
+            <h1 class="text-3xl font-bold text-[#ff7518] text-center py-4">
+              Important Guidelines For Safari Zone Selection
+            </h1>
+          </div>
+          <div class="mx-4 md:mx-20 my-2">
+            <ul class="space-y-4 md:text-base pb-4 font-sans">
+              <li class="flex items-start gap-4">
+                <img
+                  class="w-[20px] sm:w-[25px]"
+                  src="/Images/icon.png"
+                  alt="arr-image"
+                />
+                <p class="font-semibold">
+                  There are in total 10 safari zones in Ranthambore National
+                  Park.
+                </p>
+              </li>
+              <li class="flex items-start gap-4">
+                <img
+                  class="w-[20px] sm:w-[25px]"
+                  src="/Images/icon.png"
+                  alt="arr-image"
+                />
+                <p class="font-semibold">
+                  A zone will be allotted for a safari ride as per its
+                  availability.
+                </p>
+              </li>
+              <li class="flex items-start gap-4">
+                <img
+                  class="w-[20px] sm:w-[25px]"
+                  src="/Images/icon.png"
+                  alt="arr-image"
+                />
+                <p class="font-semibold">
+                  While filling in the details for Ranthambore Safari Booking,
+                  you can either choose the zone from 1 to 7 or 8 to 10.
+                </p>
+              </li>
+              <li class="flex items-start gap-4">
+                <img
+                  class="w-[20px] sm:w-[25px]"
+                  src="/Images/icon.png"
+                  alt="arr-image"
+                />
+                <p class="font-semibold">
+                  Visitors are not allowed to choose a specific zone to complete
+                  their Ranthambore online safari booking. In simple words, if
+                  you choose from zones 1 to 7 then safari will be allotted in
+                  any one of them and if you choose from zones 8 to 10 then
+                  safari will be allotted in any one of them.
+                </p>
+              </li>
+              <li class="flex items-start gap-4">
+                <img
+                  class="w-[20px] sm:w-[25px]"
+                  src="/Images/icon.png"
+                  alt="arr-image"
+                />
+                <p class="font-semibold">
+                  If you’re making a current booking then any zone can be
+                  allowed, from 1 to 10.
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section class="w-full p-4 md:px-16">
+        <h2 class="text-3xl font-bold text-orange-600 mb-6">
+          Safari Timing inside Ranthambore
+        </h2>
+
+        <div class="overflow-x-auto">
+          <div
+            class="min-w-full bg-white border border-gray-300 rounded-lg shadow-lg"
+          >
+            <!-- Header Row -->
+            <div class="flex bg-orange-500 text-white">
+              <div
+                class="flex-1 px-3 py-2 text-center font-semibold text-lg border-r border-orange-400"
+              >
+                Months
+              </div>
+              <div
+                class="flex-1 px-3 py-2 text-center font-semibold text-lg border-r border-orange-400"
+              >
+                Morning
+              </div>
+              <div class="flex-1 px-3 py-2 text-center font-semibold text-lg">
+                Afternoon
+              </div>
             </div>
-        </section>
+
+            <!-- Row 1 -->
+            <div class="flex border-b border-gray-300">
+              <div
+                class="flex-1 px-3 py-2 text-center border-r border-gray-300 font-semibold"
+              >
+                October 1st – October 31st
+              </div>
+              <div
+                class="flex-1 px-3 py-2 text-center border-r border-gray-300 font-semibold"
+              >
+                6:30 AM – 10:00 AM
+              </div>
+              <div class="flex-1 px-3 py-2 text-center font-semibold">
+                2:30 PM – 6:00 PM
+              </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="flex border-b border-gray-300">
+              <div
+                class="flex-1 px-3 py-2 text-center border-r border-gray-300 font-semibold"
+              >
+                November 1st – January 31st
+              </div>
+              <div
+                class="flex-1 px-3 py-2 text-center border-r border-gray-300 font-semibold"
+              >
+                7:00 AM – 10:30 AM
+              </div>
+              <div class="flex-1 px-3 py-2 text-center font-semibold">
+                2:00 PM – 5:30 PM
+              </div>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="flex border-b border-gray-300">
+              <div
+                class="flex-1 px-3 py-2 text-center border-r border-gray-300 font-semibold"
+              >
+                February 1st – March 31st
+              </div>
+              <div
+                class="flex-1 px-3 py-2 text-center border-r border-gray-300 font-semibold"
+              >
+                6:30 AM – 10:00 AM
+              </div>
+              <div class="flex-1 px-3 py-2 text-center font-semibold">
+                2:30 PM – 6:00 PM
+              </div>
+            </div>
+
+            <!-- Row 4 -->
+            <div class="flex border-b border-gray-300">
+              <div
+                class="flex-1 px-3 py-2 text-center border-r border-gray-300 font-semibold"
+              >
+                April 1st – May 15th
+              </div>
+              <div
+                class="flex-1 px-3 py-2 text-center border-r border-gray-300 font-semibold"
+              >
+                6:00 AM – 9:30 AM
+              </div>
+              <div class="flex-1 px-3 py-2 text-center font-semibold">
+                3:00 PM – 6:30 PM
+              </div>
+            </div>
+
+            <!-- Row 5 -->
+            <div class="flex">
+              <div
+                class="flex-1 px-3 py-2 text-center border-r border-gray-300 font-semibold"
+              >
+                May 16th – June 30th
+              </div>
+              <div
+                class="flex-1 px-3 py-2 text-center border-r border-gray-300 font-semibold"
+              >
+                6:00 AM – 9:30 AM
+              </div>
+              <div class="flex-1 px-3 py-2 text-center font-semibold">
+                3:30 PM – 7:00 PM
+              </div>
+            </div>
+          </div>
+
+          <!-- Note Section -->
+          <div
+            class="mt-0.5 p-4 bg-orange-50 border border-orange-200 rounded-lg"
+          >
+            <p class="text-sm text-gray-700">
+              <span class="font-semibold">Note:</span>
+              <span class="italic text-orange-600"
+                >In Case Your Canter Or Gypsy Safari In Ranthambore Is Not
+                Booked Due To Reasons Like Technical Error Or Non-Availability
+                Of Seats, We Will Refund The Whole Amount In Your Given Bank
+                Account. The Same Would Be Communicated Accordingly.</span
+              >
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="py-4">
+        <div
+          class="w-full px-4 md:px-16 shadow-md bg-gradient-to-b from-white to-[#F8D2B2] min-h-screen py-4"
+        >
+          <h2 class="text-2xl md:text-3xl font-bold text-[#ff7518] mb-1">
+            Safaris For Exploration
+          </h2>
+          <div class="text-[#604019] font-semibold font-sans mb-3">
+            Ranthambore National Park offers the tourist to go inside this wild
+            area on gypsy and canter safari. Only 2 kinds of safaris are allowed
+            by the forest departed of Rajasthan to explore the area of
+            Ranthambore National Park. You can choose the one that suits you
+            best after knowing the information.
+          </div>
+
+          <div class="max-w-full mx-auto">
+            <table
+              class="w-full border-collapse bg-white shadow-lg rounded-lg overflow-hidden"
+            >
+              <thead>
+                <tr>
+                  <th
+                    class="bg-[#ff7518] text-white text-center py-2 px-6 font-semibold text-base border-r border-orange-400 font-sans"
+                  >
+                    GYPSY SAFARI
+                  </th>
+                  <th
+                    class="bg-[#ff7518] text-white text-center py-2 px-6 font-semibold text-base font-sans"
+                  >
+                    CANTER SAFARI
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-gray-200">
+                  <td
+                    class="p-2 border-r border-gray-200 text-center font-semibold font-sans"
+                  >
+                    1. These safaris are gypsies that are open from all sides
+                    and because of their compact size, they can go in the narrow
+                    paths of the jungle. They are best for exploring the deeper
+                    areas of the park.
+                  </td>
+                  <td class="p-2 text-center font-semibold font-sans">
+                    1. These safaris are buses that are higher than the gypsy
+                    safaris and open from all sides. The canter safari in
+                    Ranthambore are higher than gypsy and because of that, they
+                    give good views even from a distance.
+                  </td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                  <td
+                    class="p-2 border-r border-gray-200 text-center font-semibold font-sans"
+                  >
+                    2. These safaris can accommodate 6 passengers along with a
+                    guide and driver, they are best for small groups.
+                  </td>
+                  <td class="p-2 text-center font-semibold font-sans">
+                    2. These safaris can accommodate 20 passengers along with a
+                    guide and driver, they are best for big groups.
+                  </td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                  <td
+                    class="p-2 border-r border-gray-200 text-center font-semibold font-sans"
+                  >
+                    3. Gypsy safaris can go inside all zones of this scenic
+                    park. You can make Ranthambore gypsy safari booking for all
+                    10 zones.
+                  </td>
+                  <td class="p-2 text-center font-semibold font-sans">
+                    3. Canter safaris can go inside most of the zones but you
+                    cannot make Ranthambore canter Safari booking for zones 7
+                    and 8.
+                  </td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                  <td
+                    class="p-2 border-r border-gray-200 text-center font-semibold font-sans"
+                  >
+                    4. A total of 88 gypsies can enter the park at a time for
+                    each shift (morning and evening). Out of these, 58 gypsies
+                    are available for advance booking, while the remaining are
+                    reserved for Tatkal and special category bookings.
+                  </td>
+                  <td class="p-2 text-center font-semibold font-sans">
+                    4. 52 canters are allowed per shift (morning and evening).
+                    This safari is booked only on a first-come, first-served
+                    basis. If you want to make a tatkal booking then it can only
+                    be booked if seats remain empty. It is booked on a sharing
+                    basis.
+                  </td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                  <td
+                    class="p-2 border-r border-gray-200 text-center font-semibold font-sans"
+                  >
+                    5. Gypsies are generally more costly than a canter safari if
+                    you book the whole for just yourself. They can be less
+                    costly if you book it on a sharing basis.
+                  </td>
+                  <td class="p-2 text-center font-semibold font-sans">
+                    5. Canter safaris are best for people who want to enjoy the
+                    exploration of the park without breaking the bank. Each seat
+                    on this safari is booked on an individual basis.
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    class="p-2 border-r border-gray-200 text-center font-semibold font-sans"
+                  >
+                    6. Gypsies are shorter than canter safari and because of
+                    that, they offer a close view of animals.
+                  </td>
+                  <td class="p-2 text-center font-semibold font-sans">
+                    6. Canter safaris allow people to observe wildlife
+                    comfortably from a distance without any issues.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section class="w-full bg-[#fac898]">
+        <div class="w-full my-4">
+          <div>
+            <h1 class="text-3xl font-bold text-[#ff7518] text-center py-4">
+              Ranthambore Safari Booking Procedure
+            </h1>
+          </div>
+          <div class="mx-4 md:mx-20 my-4 pb-4">
+            <ul class="space-y-3 pb-4 font-sans">
+              <li class="flex items-start gap-2">
+                <span class="font-bold">1.</span>
+                <p>Open the website ranthambhorebooking.in</p>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="font-bold">2.</span>
+                <p>
+                  Select the date on which you need to enjoy a safari ride in
+                  Ranthambore. It is advised to the travelers to make
+                  Ranthambore safari booking 3 months before the arrival date.
+                </p>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="font-bold">3.</span>
+                <p>
+                  Select the safari type, you can either choose a gypsy safari
+                  or a canter safari.
+                </p>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="font-bold">4.</span>
+                <p>
+                  Select the zone in which you want to enjoy your ride. You can
+                  either choose from zones 1 to 7 or from zones 8 to 10.
+                </p>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="font-bold">5.</span>
+                <p>
+                  Select the time slot, you can enjoy your ride in the morning
+                  or evening time.
+                </p>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="font-bold">6.</span>
+                <p>
+                  Then you have to fill in the name of the person who is filling
+                  in the information for Ranthambore online safari booking.
+                </p>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="font-bold">7.</span>
+                <p>
+                  Fill in your number and e-mail ID and then click on book now.
+                </p>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="font-bold">8.</span>
+                <p>
+                  Then a page will open, on that page you have to fill in some
+                  basic details like the state from which you’re coming along
+                  with the full address.
+                </p>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="font-bold">9.</span>
+                <p>
+                  You have to provide the details of the passengers who are
+                  going for the ride while making Ranthambore safari booking.
+                </p>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="font-bold">10.</span>
+                <p>
+                  Click on I agree to terms and conditions and then pay the
+                  amount that will be mentioned on your screen.
+                </p>
+              </li>
+            </ul>
+            <div class="bg-amber-50 p-4 rounded-lg border border-amber-200">
+              <p class="text-[#604019] font-semibold font-sans">
+                <span class="font-bold">Note:</span> Just make sure to fill in
+                the correct details of passengers and also the correct details
+                of your ID. The IDs will be checked when you reach there and
+                every detail should match, failing which your booking can be
+                cancelled.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="w-full">
+        <div class="w-full my-4">
+          <div>
+            <h1 class="text-3xl font-bold text-[#ff7518] text-center py-4">
+              Ranthambore Safari Booking Terms and Conditions
+            </h1>
+          </div>
+          <div class="mx-4 md:mx-20 my-2">
+            <ul class="space-y-4 pb-4 font-sans">
+              <li class="flex items-start gap-4">
+                <img
+                  class="w-[20px] sm:w-[25px]"
+                  src="/Images/Mark-icon.png"
+                  alt="arr-image"
+                />
+                <p class="font-semibold">
+                  If you want to make your safari memorable then the most
+                  important thing is to come with your original identity card.
+                </p>
+              </li>
+              <li class="flex items-start gap-4">
+                <img
+                  class="w-[20px] sm:w-[25px]"
+                  src="/Images/Mark-icon.png"
+                  alt="arr-image"
+                />
+                <p class="font-semibold">
+                  Before going inside the park, the government officials check
+                  your IDs, without them, you cannot enter the park.
+                </p>
+              </li>
+              <li class="flex items-start gap-4">
+                <img
+                  class="w-[20px] sm:w-[25px]"
+                  src="/Images/Mark-icon.png"
+                  alt="arr-image"
+                />
+                <p class="font-semibold">
+                  Always listen to your guide and driver during the safari. They
+                  are knowledgeable and will keep you safe inside the wild area.
+                </p>
+              </li>
+              <li class="flex items-start gap-4">
+                <img
+                  class="w-[20px] sm:w-[25px]"
+                  src="/Images/Mark-icon.png"
+                  alt="arr-image"
+                />
+                <p class="font-semibold">
+                  Try to stay silent or talk slowly if you are interested in
+                  spotting more animals during your canter or gypsy safari in
+                  Ranthambore. Animals get scared by human voices and they
+                  remain away. If you talk loudly, it can decrease the chances
+                  of spotting animals.
+                </p>
+              </li>
+              <li class="flex items-start gap-4">
+                <img
+                  class="w-[20px] sm:w-[25px]"
+                  src="/Images/Mark-icon.png"
+                  alt="arr-image"
+                />
+                <p class="font-semibold">
+                  Using any kind of tape recorder, transistor, or radio is
+                  strictly prohibited inside this wild area.
+                </p>
+              </li>
+              <li class="flex items-start gap-4">
+                <img
+                  class="w-[20px] sm:w-[25px]"
+                  src="/Images/Mark-icon.png"
+                  alt="arr-image"
+                />
+                <p class="font-semibold">
+                  Be inside your safari, don’t try to get down from your
+                  vehicle, until and unless your guide tells you to do so.
+                </p>
+              </li>
+              <li class="flex items-start gap-4">
+                <img
+                  class="w-[20px] sm:w-[25px]"
+                  src="/Images/Mark-icon.png"
+                  alt="arr-image"
+                />
+                <p class="font-semibold">
+                  Carrying pets is strictly prohibited. Carnivores can come near
+                  for hunting so do not come with your pets.
+                </p>
+              </li>
+              <li class="flex items-start gap-4">
+                <img
+                  class="w-[20px] sm:w-[25px]"
+                  src="/Images/Mark-icon.png"
+                  alt="arr-image"
+                />
+                <p class="font-semibold">
+                  Make sure that your Ranthambore Safari Booking includes the
+                  guide because without them, you cannot enter the park.
+                </p>
+              </li>
+              <li class="flex items-start gap-4">
+                <img
+                  class="w-[20px] sm:w-[25px]"
+                  src="/Images/Mark-icon.png"
+                  alt="arr-image"
+                />
+                <p class="font-semibold">
+                  It is important for the tourists to reach at gates 30 minutes
+                  before the ride.
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
     </main>
-
 
     <!-- Footer Section -->
     <footer class="bg-[#604019] text-white pt-8 pb-6">
-        <div class="container mx-auto px-4 max-w-6xl">
-            <div class="flex flex-col lg:flex-row justify-between gap-8">
-                <!-- About Section -->
-                <div class="w-full lg:w-1/3 flex flex-col items-center lg:items-start">
-                    <img class="h-16 cursor-pointer mb-4" src="/Images/logo.svg" alt="Ranthambore 360 Logo">
-                    <p class="mb-4 text-sm text-gray-200 font-sans font-medium text-center lg:text-left">
-                        This is not an official website of "Ranthambhore National Park". This is a Registered under the
-                        Private Travel Agency name Daily Tour and Travel. We organize Hotel, Safari and Tour Package
-                        bookings in Ranthambhore National Park.
-                    </p>
-                    <div class="mb-2">
-                        <p class="flex items-center mb-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-amber-400" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                            </svg>
-                            Phone: 8076438491, 7982193537
-                        </p>
-                        <p class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-amber-400" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                            Email: ranthambore360@gmail.com
-                        </p>
-                    </div>
-                </div>
+      <div class="w-full px-4 md:px-16">
+        <div class="flex flex-col lg:flex-row justify-between gap-8">
+          <!-- About Section -->
+          <div
+            class="w-full lg:w-1/3 flex flex-col items-center lg:items-start"
+          >
+            <img
+              class="h-16 cursor-pointer mb-4"
+              src="/Images/logo.svg"
+              alt="Ranthambore 360 Logo"
+            />
+            <p
+              class="mb-4 text-sm text-gray-200 font-sans font-medium text-center lg:text-left"
+            >
+              This is not an official website of "Ranthambhore National Park".
+              This is a Registered under the Private Travel Agency name Daily
+              Tour and Travel. We organize Hotel, Safari and Tour Package
+              bookings in Ranthambhore National Park.
+            </p>
+            <div class="mb-2">
+              <p class="flex items-center mb-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 mr-2 text-amber-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                  />
+                </svg>
+                Phone: 8076438491, 7982193537
+              </p>
+              <p class="flex items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 mr-2 text-amber-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+                Email: ranthambore360@gmail.com
+              </p>
+            </div>
+          </div>
 
-                <!-- Links Sections -->
-                <div class="w-full flex flex-col md:flex-row gap-8">
-                    <!-- Useful Links -->
-                    <div class="w-full md:w-1/3">
-                        <h4 class="text-lg font-semibold mb-4 text-amber-400">Useful Links</h4>
-                        <ul class="space-y-2">
-                            <li>
-                                <a href="/dist/index.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Home
-                                </a>
-                            </li>
-                            <li>
-                                <a href="safari.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Safari Booking
-                                </a>
-                            </li>
-                            <li>
-                                <a href="chambal.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Chambal Safari Booking
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/dist/package-booking.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Package Booking
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/dist/contact.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Contact Us
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/dist/blogs.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Blogs
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Quick Links -->
-                    <div class="w-full md:w-1/3">
-                        <h4 class="text-lg font-semibold mb-4 text-amber-400">Quick Links</h4>
-                        <ul class="space-y-2">
-                            <li>
-                                <a href="/dist/privacy-policy.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Privacy Policy
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/dist/Cancellatiion-Policy.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Cancellation Policy
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/dist/term-condition.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Terms & Condition
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/dist/how-to-reach.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    How To Reach
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/dist/about.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    About Us
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/dist/support.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Support
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Gallery Section -->
-                    <div class="w-full md:w-1/3">
-                        <h4 class="text-lg font-semibold mb-4 text-amber-400">Our Gallery</h4>
-                        <div class="grid grid-cols-3 gap-2">
-                            <img src="/Images/Sanbar Deer.jpg" alt="Gallery Image 1"
-                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
-                            <img src="/Images/Black Buck Sighting.jpg" alt="Gallery Image 2"
-                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
-                            <img src="/Images/Tiger and cub.jpg" alt="Gallery Image 3"
-                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
-                            <img src="/Images/Crocodile in River.jpg" alt="Gallery Image 4"
-                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
-                            <img src="/Images/Chambal Boating.jpg" alt="Gallery Image 5"
-                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
-                            <img src="/Images/Birds Paradise.jpg" alt="Gallery Image 6"
-                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
-                        </div>
-                    </div>
-                </div>
+          <!-- Links Sections -->
+          <div class="w-full flex flex-col md:flex-row gap-8">
+            <!-- Useful Links -->
+            <div class="w-full md:w-1/3">
+              <h4 class="text-lg font-semibold mb-4 text-amber-400">
+                Useful Links
+              </h4>
+              <ul class="space-y-2">
+                <li>
+                  <a
+                    href="/dist/index.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="safari.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Safari Booking
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="chambal.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Chambal Safari Booking
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/dist/package-booking.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Package Booking
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/dist/contact.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Contact Us
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/dist/blogs.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Blogs
+                  </a>
+                </li>
+              </ul>
             </div>
 
-            <!-- Address and Copyright -->
-            <div class="mt-8 pt-6 border-t border-[#fff]">
-                <p class="text-center mb-2 text-[#fff]">
-                    <span class="font-bold bg-amber-400 px-2 py-1 text-gray-900 rounded">Daily Tour and Travel Delhi
-                        110092 Address</span> : A-2 Second Floor Ganesh Nagar, Pandav Nagar, Delhi 110092
-                </p>
-                <p class="text-center text-[#fff] text-sm">
-                    © Copyright Ranthambore. All Rights Reserved
-                </p>
+            <!-- Quick Links -->
+            <div class="w-full md:w-1/3">
+              <h4 class="text-lg font-semibold mb-4 text-amber-400">
+                Quick Links
+              </h4>
+              <ul class="space-y-2">
+                <li>
+                  <a
+                    href="/dist/privacy-policy.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Privacy Policy
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/dist/Cancellatiion-Policy.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Cancellation Policy
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/dist/term-condition.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Terms & Condition
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/dist/how-to-reach.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    How To Reach
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/dist/about.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    About Us
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/dist/support.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Support
+                  </a>
+                </li>
+              </ul>
             </div>
+
+            <!-- Gallery Section -->
+            <div class="w-full md:w-1/3">
+              <h4 class="text-lg font-semibold mb-4 text-amber-400">
+                Our Gallery
+              </h4>
+              <div class="grid grid-cols-3 gap-2">
+                <img
+                  src="/Images/Sanbar Deer.jpg"
+                  alt="Gallery Image 1"
+                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
+                />
+                <img
+                  src="/Images/Black Buck Sighting.jpg"
+                  alt="Gallery Image 2"
+                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
+                />
+                <img
+                  src="/Images/Tiger and cub.jpg"
+                  alt="Gallery Image 3"
+                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
+                />
+                <img
+                  src="/Images/Crocodile in River.jpg"
+                  alt="Gallery Image 4"
+                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
+                />
+                <img
+                  src="/Images/Chambal Boating.jpg"
+                  alt="Gallery Image 5"
+                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
+                />
+                <img
+                  src="/Images/Birds Paradise.jpg"
+                  alt="Gallery Image 6"
+                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
+                />
+              </div>
+            </div>
+          </div>
         </div>
+
+        <!-- Address and Copyright -->
+        <div class="mt-8 pt-6 border-t border-[#fff]">
+          <p class="text-center mb-2 text-[#fff]">
+            <span class="font-bold bg-amber-400 px-2 py-1 text-gray-900 rounded"
+              >Daily Tour and Travel Delhi 110092 Address</span
+            >
+            : A-2 Second Floor Ganesh Nagar, Pandav Nagar, Delhi 110092
+          </p>
+          <p class="text-center text-[#fff] text-sm">
+            © Copyright Ranthambore. All Rights Reserved
+          </p>
+        </div>
+      </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
     <script src="/JS/app.js"></script>
     <script src="/JS/safari.js"></script>
-</body>
-
+  </body>
 </html>
