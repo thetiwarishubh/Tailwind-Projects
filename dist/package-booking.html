@@ -1,207 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ranthambore Package Booking</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/src/output.css" />
-    <link rel="shortcut icon" href="/Images/favicon.jpg" type="image/x-icon" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/output.css">
+    <link rel="shortcut icon" href="/Images/favicon.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-      body {
+        body {
         font-family: "Poppins", sans-serif;
       }
-      html,
-      body {
-        max-width: 100%;
-        overflow-x: hidden;
-      }
 
-      @keyframes fade-in {
-        0% {
-          opacity: 0;
-          transform: translateY(10px);
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        100% {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .animate-fade-in {
-        animation: fade-in 0.5s ease-out forwards;
-      }
-
-      @keyframes pulse {
-        0% {
-          opacity: 0.8;
+        .animate-fade-in {
+            animation: fade-in 0.5s ease-out forwards;
         }
 
-        50% {
-          opacity: 1;
+        @keyframes pulse {
+            0% {
+                opacity: 0.8;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.8;
+            }
         }
 
-        100% {
-          opacity: 0.8;
-        }
-      }
-
-      .animate-pulse {
-        animation: pulse 2s ease-in-out infinite;
-      }
-
-      @keyframes fade-in {
-        0% {
-          opacity: 0;
-          transform: translateY(10px);
+        .animate-pulse {
+            animation: pulse 2s ease-in-out infinite;
         }
 
-        100% {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
 
-      .animate-fade-in {
-        animation: fade-in 0.5s ease-out forwards;
-      }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fade-in 0.5s ease-out forwards;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes modalFadeOut {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            to {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+
+        @keyframes backdropFadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes backdropFadeOut {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+        .modal-fade-in {
+            animation: modalFadeIn 0.5s ease-out forwards;
+        }
+
+        .backdrop-fade-in {
+            animation: backdropFadeIn 0.5s ease-out forwards;
+        }
+
+        /* Like animation */
+        .like-box {
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        /* Click feedback */
+        .like-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Optional: Pre-defined liked state */
+        .like-btn.liked .like-box {
+            fill: #f43f5e;
+            stroke: #f43f5e;
+        }
+
+        #gallery-modal {
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        #gallery-modal img {
+            max-width: 100%;
+            height: auto;
+            transition: opacity 0.3s ease;
+        }
+
+        .close-gallery {
+            cursor: pointer;
+        }
     </style>
-  </head>
+</head>
 
-  <body class="bg-gray-50">
+<body class="bg-gray-50">
     <!-- Navbar -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white shadow-lg">
-      <!-- Top Contact Bar -->
-      <div class="w-full bg-amber-900 text-white h-10 flex items-center">
-        <div class="w-full px-4 lg:px-16">
-          <div class="flex justify-between items-center text-sm font-sans">
-            <div
-              class="flex items-center cursor-pointer hover:text-amber-200 transition-colors"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-4 w-4 mr-2"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                />
-              </svg>
-              <span class="hidden sm:inline">8076438491 | 7982193537</span>
-              <span class="sm:hidden">Call Us</span>
-            </div>
-            <div
-              class="flex items-center cursor-pointer hover:text-amber-200 transition-colors"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-4 w-4 mr-2"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                />
-              </svg>
-              <span class="hidden sm:inline">ranthambore360@gmail.com</span>
-              <span class="sm:hidden">Email</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Main Navigation -->
-      <div class="w-full bg-white border-b border-gray-200">
-        <div class="w-full px-4 py-2 lg:px-16">
-          <div class="flex justify-between items-center">
-            <!-- Logo -->
-            <div class="flex items-center">
-              <img
-                class="logo h-16 cursor-pointer"
-                src="/Images/logo.svg"
-                alt="Ranthambore 360 Logo"
-              />
-            </div>
-
-            <!-- Desktop Navigation -->
-            <div class="hidden lg:flex items-center space-x-6">
-              <ul
-                class="flex space-x-6 text-sm xl:text-base font-medium items-center font-sans"
-              >
-                <li>
-                  <a
-                    href="/dist/index.html"
-                    class="text-amber-900 hover:text-amber-600 transition-colors px-3 py-2 rounded-md hover:bg-amber-100"
-                    >Home</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="safari.html"
-                    class="text-amber-900 hover:text-amber-600 transition-colors px-3 py-2 rounded-md hover:bg-amber-100"
-                    >Safari</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="chambal.html"
-                    class="chambalBtn text-amber-900 hover:text-amber-600 transition-colors px-3 py-2 rounded-md hover:bg-amber-100"
-                    >Chambal Safari</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="hotel.html"
-                    class="hotelBtn text-amber-900 hover:text-amber-600 transition-colors px-3 py-2 rounded-md hover:bg-amber-100"
-                    >Hotels</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="package-booking.html"
-                    class="tourBtn text-amber-900 hover:text-amber-600 transition-colors px-3 py-2 rounded-md hover:bg-amber-100"
-                    >Packages</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="contact.html"
-                    class="text-amber-900 hover:text-amber-600 transition-colors px-3 py-2 rounded-md hover:bg-amber-100"
-                    >Contact</a
-                  >
-                </li>
-              </ul>
-              <button
-                class="safariBtn ml-4 bg-amber-700 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg transition-colors shadow-md cursor-pointer"
-              >
-                Book Now
-              </button>
-            </div>
-
-            <!-- Mobile menu button -->
-            <div class="lg:hidden">
-              <button
-                id="mobile-menu-btn"
-                class="text-amber-900 focus:outline-none cursor-pointer p-2 rounded-md hover:bg-gray-100"
+    <header>
+      <nav class="fixed top-0 left-0 right-0 z-50 bg-white shadow-lg">
+        <!-- Top Contact Bar -->
+        <div class="w-full bg-amber-900 text-white h-10 flex items-center">
+          <div class="w-full px-4 lg:px-16">
+            <div class="flex justify-between items-center text-sm font-sans">
+              <div
+                class="flex items-center cursor-pointer hover:text-amber-200 transition-colors"
               >
                 <svg
-                  class="h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4 mr-2"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -210,1030 +171,746 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M4 6h16M4 12h16M4 18h16"
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                   />
                 </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Mobile Navigation Menu -->
-      <div
-        id="mobile-menu"
-        class="hidden lg:hidden bg-white border-t border-gray-200 shadow-lg"
-      >
-        <div class="px-4 py-3 space-y-1">
-          <a
-            href="/dist/index.html"
-            class="block text-amber-900 hover:text-amber-600 transition-colors py-2 px-3 rounded-md hover:bg-amber-50"
-            >Home</a
-          >
-          <a
-            href="safari.html"
-            class="block text-amber-900 hover:text-amber-600 transition-colors py-2 px-3 rounded-md hover:bg-amber-50"
-            >Safari</a
-          >
-          <a
-            href="chambal.html"
-            class="block text-amber-900 hover:text-amber-600 transition-colors py-2 px-3 rounded-md hover:bg-amber-50"
-            >Chambal Safari</a
-          >
-          <a
-            href="hotel.html"
-            class="block text-amber-700 font-semibold py-2 px-3 rounded-md bg-amber-50 border border-amber-200"
-            >Hotels</a
-          >
-          <a
-            href="package-booking.html"
-            class="block text-amber-900 hover:text-amber-600 transition-colors py-2 px-3 rounded-md hover:bg-amber-50"
-            >Packages</a
-          >
-          <a
-            href="contact.html"
-            class="block text-amber-900 hover:text-amber-600 transition-colors py-2 px-3 rounded-md hover:bg-amber-50"
-            >Contact</a
-          >
-          <button
-            class="w-full mt-3 bg-amber-700 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg transition-colors shadow-md"
-          >
-            Book Now
-          </button>
-        </div>
-      </div>
-    </nav>
-    <!-- Main Body -->
-    <main class="mt-32">
-      <section
-        class="py-6 bg-gradient-to-br from-amber-50 via-white to-amber-100"
-        role="region"
-        aria-labelledby="safari-packages-heading"
-      >
-        <div class="w-full px-4 md:px-16">
-          <!-- Section Header -->
-          <div class="text-center mb-6 relative">
-            <h1
-              id="safari-packages-heading"
-              class="text-3xl font-extrabold text-[#ff7518] mb-2"
-            >
-              Ranthambore Safari Adventures
-            </h1>
-            <p
-              class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto font-medium"
-            >
-              Embark on an unforgettable journey with our exclusive tiger safari
-              packages
-            </p>
-
-            <!-- Seasonal Info Chip -->
-            <div
-              class="mt-4 inline-flex items-center bg-amber-100 border border-amber-300 text-amber-800 px-4 py-1.5 rounded-full text-sm font-medium"
-            >
-              <svg
-                class="h-4 w-4 mr-1"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                role="img"
-                aria-label="Info icon"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-              Best Season: October to April (Tiger Sighting Probability: 80%)
-            </div>
-          </div>
-
-          <!-- Enhanced Filter Chips with More Options -->
-          <div
-            class="flex flex-wrap justify-center gap-3 mb-8"
-            aria-live="polite"
-          >
-            <button
-              class="cursor-pointer px-3 py-1.5 bg-amber-50 border border-amber-300 rounded-full text-sm font-semibold text-gray-700 hover:bg-amber-100 hover:border-amber-500 hover:scale-105 transition-all focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 aria-pressed:bg-amber-200 aria-pressed:border-amber-600"
-              aria-label="Toggle filters"
-              aria-pressed="false"
-            >
-              <svg
-                class="h-4 w-4 mr-1 text-amber-500 inline"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                role="img"
-                aria-label="Filter icon"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
-                ></path>
-              </svg>
-              Filters
-            </button>
-            <button
-              class="cursor-pointer px-3 py-1.5 bg-amber-50 border border-amber-300 rounded-full text-sm font-semibold text-gray-700 hover:bg-amber-100 hover:border-amber-500 hover:scale-105 transition-all focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 aria-pressed:bg-amber-200 aria-pressed:border-amber-600"
-              aria-label="Sort by price low to high"
-              aria-pressed="false"
-            >
-              Price: Low to High
-            </button>
-            <button
-              class="cursor-pointer px-3 py-1.5 bg-amber-50 border border-amber-300 rounded-full text-sm font-semibold text-gray-700 hover:bg-amber-100 hover:border-amber-500 hover:scale-105 transition-all focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 aria-pressed:bg-amber-200 aria-pressed:border-amber-600"
-              aria-label="Sort by popularity"
-              aria-pressed="true"
-            >
-              Popularity
-            </button>
-            <button
-              class="cursor-pointer px-3 py-1.5 bg-amber-50 border border-amber-300 rounded-full text-sm font-semibold text-gray-700 hover:bg-amber-100 hover:border-amber-500 hover:scale-105 transition-all focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 aria-pressed:bg-amber-200 aria-pressed:border-amber-600"
-              aria-label="Filter by instant confirmation"
-              aria-pressed="false"
-            >
-              Instant Confirmation
-            </button>
-            <button
-              class="cursor-pointer px-3 py-1.5 bg-amber-50 border border-amber-300 rounded-full text-sm font-semibold text-gray-700 hover:bg-amber-100 hover:border-amber-500 hover:scale-105 transition-all focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 aria-pressed:bg-amber-200 aria-pressed:border-amber-600"
-              aria-label="Filter by free cancellation"
-              aria-pressed="true"
-            >
-              Free Cancellation
-            </button>
-            <button
-              class="cursor-pointer px-3 py-1.5 bg-amber-50 border border-amber-300 rounded-full text-sm font-semibold text-gray-700 hover:bg-amber-100 hover:border-amber-500 hover:scale-105 transition-all focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 aria-pressed:bg-amber-200 aria-pressed:border-amber-600"
-              aria-label="Filter by breakfast included"
-              aria-pressed="false"
-            >
-              Breakfast Included
-            </button>
-            <button
-              class="cursor-pointer px-3 py-1.5 bg-amber-50 border border-amber-300 rounded-full text-sm font-semibold text-gray-700 hover:bg-amber-100 hover:border-amber-500 hover:scale-105 transition-all focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 aria-pressed:bg-amber-200 aria-pressed:border-amber-600"
-              aria-label="Filter by luxury packages"
-              aria-pressed="false"
-            >
-              Luxury
-            </button>
-            <button
-              class="cursor-pointer px-3 py-1.5 bg-amber-50 border border-amber-300 rounded-full text-sm font-semibold text-gray-700 hover:bg-amber-100 hover:border-amber-500 hover:scale-105 transition-all focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 aria-pressed:bg-amber-200 aria-pressed:border-amber-600"
-              aria-label="Filter by family-friendly packages"
-              aria-pressed="false"
-            >
-              Family Friendly
-            </button>
-          </div>
-
-          <!-- Limited Offer Banner with Countdown -->
-          <div
-            class="bg-gradient-to-r from-amber-600 to-amber-800 text-white rounded-lg p-4 mb-8 text-center animate-pulse"
-          >
-            <div
-              class="flex flex-col sm:flex-row justify-center items-center gap-4"
-            >
-              <p class="text-lg font-semibold">
-                Limited-Time Offer: Book by Aug 15 for 10% Off!
-              </p>
+                <span class="hidden sm:inline">8076438491 | 7982193537</span>
+                <span class="sm:hidden">Call Us</span>
+              </div>
               <div
-                class="flex items-center gap-2 bg-amber-800/50 px-3 py-1 rounded-full"
+                class="flex items-center cursor-pointer hover:text-amber-200 transition-colors"
               >
                 <svg
-                  class="h-5 w-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4 mr-2"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  role="img"
-                  aria-label="Clock icon"
                 >
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                  ></path>
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
                 </svg>
-                <span class="font-mono">04d:12h:45m:22s</span>
+                <span class="hidden sm:inline">ranthambore360@gmail.com</span>
+                <span class="sm:hidden">Email</span>
               </div>
             </div>
           </div>
-
-          <!-- Packages Grid -->
-          <div
-            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
-          >
-            <!-- Premium Package Card -->
-            <div
-              class="relative bg-white rounded-2xl shadow-xl overflow-hidden border border-amber-200 hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 min-h-[24rem] group"
-            >
-              <!-- Badge -->
-              <div class="absolute top-4 left-0 z-10">
-                <div
-                  class="bg-gradient-to-r from-amber-500 to-amber-700 text-white text-sm font-semibold px-4 py-2 rounded-r-lg shadow-md"
-                  aria-label="Bestseller badge"
-                >
-                  BESTSELLER
-                </div>
+        </div>
+        <!-- Main Navigation -->
+        <div class="w-full bg-white border-b border-gray-200">
+          <div class="w-full px-4 py-2 lg:px-16">
+            <div class="flex justify-between items-center">
+              <!-- Logo -->
+              <div class="flex items-center">
+                <img
+                  class="logo h-16 cursor-pointer"
+                  src="/Images/logo.svg"
+                  alt="Ranthambore 360 Logo"
+                />
               </div>
 
-              <!-- Image with Quick View Button -->
-              <div class="relative h-48 md:h-56 w-full overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1599427303058-f04cbcf4756f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                  srcset="
-                    https://images.unsplash.com/photo-1599427303058-f04cbcf4756f?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80 400w,
-                    https://images.unsplash.com/photo-1599427303058-f04cbcf4756f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80 800w
-                  "
-                  sizes="(max-width: 640px) 400px, 800px"
-                  alt="Royal Tiger Experience Safari"
-                  class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                  width="800"
-                  height="600"
-                />
-                <div
-                  class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex flex-col justify-between p-4"
+              <!-- Desktop Navigation -->
+              <div class="hidden lg:flex items-center space-x-6">
+                <ul
+                  class="flex space-x-6 text-sm xl:text-base font-medium items-center font-sans"
                 >
-                  <div class="flex justify-end">
-                    <button
-                      class="cursor-pointer bg-white/90 text-amber-700 p-2 rounded-full hover:bg-white transition-all"
-                      aria-label="Add to favorites"
+                  <li>
+                    <a
+                      href="/dist/index.html"
+                      class="text-amber-900 hover:text-amber-600 transition-colors px-3 py-2 rounded-md hover:bg-amber-100"
+                      >Home</a
                     >
-                      <svg
-                        class="h-5 w-5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        role="img"
-                        aria-hidden="true"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                        ></path>
-                      </svg>
-                    </button>
-                  </div>
-                  <button
-                    class="cursor-pointer self-center bg-amber-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-amber-700 transition-all group-hover:opacity-100 opacity-0"
-                    aria-label="Quick view of Royal Tiger Experience"
-                  >
-                    Quick View
-                  </button>
-                </div>
+                  </li>
+                  <li>
+                    <a
+                      href="safari.html"
+                      class="text-amber-900 hover:text-amber-600 transition-colors px-3 py-2 rounded-md hover:bg-amber-100"
+                      >Safari</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="chambal.html"
+                      class="chambalBtn text-amber-900 hover:text-amber-600 transition-colors px-3 py-2 rounded-md hover:bg-amber-100"
+                      >Chambal Safari</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="hotel.html"
+                      class="hotelBtn text-amber-900 hover:text-amber-600 transition-colors px-3 py-2 rounded-md hover:bg-amber-100"
+                      >Hotels</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="package-booking.html"
+                      class="tourBtn text-amber-900 hover:text-amber-600 transition-colors px-3 py-2 rounded-md hover:bg-amber-100"
+                      >Packages</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="contact.html"
+                      class="text-amber-900 hover:text-amber-600 transition-colors px-3 py-2 rounded-md hover:bg-amber-100"
+                      >Contact</a
+                    >
+                  </li>
+                </ul>
                 <button
-                  class="cursor-pointer absolute bottom-4 right-4 bg-amber-900/80 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold flex items-center hover:bg-amber-900 hover:scale-105 transition-all focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
-                  aria-label="View Royal Tiger Experience gallery"
+                  class="safariBtn ml-4 bg-amber-700 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg transition-colors shadow-md cursor-pointer"
                 >
-                  <svg
-                    class="h-5 w-5 mr-1"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    role="img"
-                    aria-hidden="true"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
-                    ></path>
-                  </svg>
-                  Gallery
+                  Book Now
                 </button>
               </div>
 
-              <!-- Package Details -->
-              <div class="p-6">
-                <!-- Title and Rating -->
-                <div class="flex justify-between items-start mb-4">
-                  <h3 class="text-xl md:text-2xl font-bold text-gray-900">
-                    Royal Tiger Experience
-                  </h3>
-                  <div class="flex items-center space-x-1">
-                    <span class="text-sm font-semibold text-gray-700">4.9</span>
-                    <div class="flex" aria-hidden="true">
-                      <svg
-                        class="h-5 w-5 text-amber-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                      <svg
-                        class="h-5 w-5 text-amber-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                      <svg
-                        class="h-5 w-5 text-amber-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                      <svg
-                        class="h-5 w-5 text-amber-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                      <svg
-                        class="h-5 w-5 text-amber-500/50"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                    </div>
-                    <span class="sr-only">4.9 out of 5 stars</span>
-                  </div>
-                </div>
-
-                <!-- Location -->
-                <div class="flex items-center text-gray-600 text-sm mb-4">
-                  <svg
-                    class="h-5 w-5 mr-2 text-amber-500"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    role="img"
-                    aria-hidden="true"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                    ></path>
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                    ></path>
-                  </svg>
-                  Ranthambore National Park, Rajasthan
-                </div>
-
-                <!-- Duration and Highlights -->
-                <div class="mb-5">
-                  <div class="flex items-center text-sm text-gray-600 mb-3">
-                    <svg
-                      class="h-5 w-5 mr-2 text-amber-500"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      role="img"
-                      aria-hidden="true"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                      ></path>
-                    </svg>
-                    <span class="font-semibold"
-                      >2 Nights / 3 Days • 2 Private Gypsy Safaris</span
-                    >
-                  </div>
-                  <ul
-                    class="list-disc list-inside text-sm text-gray-600 space-y-1"
-                  >
-                    <li>Luxury Resort Stay with Pool</li>
-                    <li>All Meals Included (Premium Dining)</li>
-                    <li>Expert Wildlife Guide & Naturalist</li>
-                    <li>Zone 1-3 Entry Guaranteed</li>
-                    <li>Ranthambore Fort Visit</li>
-                  </ul>
-                </div>
-
-                <!-- Price and Deal -->
-                <div
-                  class="flex justify-between items-center border-t border-amber-200 pt-4"
-                >
-                  <div>
-                    <p class="text-xs text-gray-600">Starting from</p>
-                    <div class="flex items-end gap-2">
-                      <p
-                        class="text-2xl md:text-3xl font-extrabold text-amber-600"
-                      >
-                        ₹14,999
-                      </p>
-                      <span class="text-xs text-gray-600 mb-1">/person</span>
-                      <span class="text-xs text-green-600 font-medium"
-                        >10% OFF</span
-                      >
-                    </div>
-                    <p class="text-xs text-green-600 mt-2 flex items-center">
-                      <svg
-                        class="h-4 w-4 mr-1"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        role="img"
-                        aria-hidden="true"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clip-rule="evenodd"
-                        ></path>
-                      </svg>
-                      Free Cancellation • Pay at Hotel
-                    </p>
-                  </div>
-                  <div class="flex flex-col items-end">
-                    <button
-                      class="cursor-pointer px-5 py-2 bg-gradient-to-r from-amber-500 to-amber-700 hover:from-amber-600 hover:to-amber-800 text-white rounded-lg font-semibold transition-all transform hover:scale-105 shadow-md hover:shadow-lg focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
-                      aria-label="Book Royal Tiger Experience now"
-                    >
-                      Book Now
-                    </button>
-                    <a
-                      href="#"
-                      class="mt-2 text-sm text-amber-600 hover:underline flex items-center"
-                      aria-label="View Royal Tiger Experience details"
-                    >
-                      View Details
-                      <svg
-                        class="h-4 w-4 ml-1"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        role="img"
-                        aria-hidden="true"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M9 5l7 7-7 7"
-                        ></path>
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Standard Package Card -->
-            <div
-              class="relative bg-white rounded-2xl shadow-xl overflow-hidden border border-amber-200 hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 min-h-[24rem] group"
-            >
-              <!-- Badge -->
-              <div class="absolute top-4 left-0 z-10">
-                <div
-                  class="bg-gradient-to-r from-amber-500 to-amber-700 text-white text-sm font-semibold px-4 py-2 rounded-r-lg shadow-md"
-                  aria-label="Flat 15% off"
-                >
-                  FLAT 15% OFF
-                </div>
-              </div>
-
-              <!-- Image with Quick View Button -->
-              <div class="relative h-48 md:h-56 w-full overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1589656966895-2f33e7653819?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                  srcset="
-                    https://images.unsplash.com/photo-1589656966895-2f33e7653819?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80 400w,
-                    https://images.unsplash.com/photo-1589656966895-2f33e7653819?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80 800w
-                  "
-                  sizes="(max-width: 640px) 400px, 800px"
-                  alt="Wildlife Explorer Safari in Ranthambore National Park"
-                  class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                  width="800"
-                  height="600"
-                />
-                <div
-                  class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex flex-col justify-between p-4"
-                >
-                  <div class="flex justify-end">
-                    <button
-                      class="cursor-pointer bg-white/90 text-amber-700 p-2 rounded-full hover:bg-white transition-all"
-                      aria-label="Add Wildlife Explorer to favorites"
-                    >
-                      <svg
-                        class="h-5 w-5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        role="img"
-                        aria-hidden="true"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                        ></path>
-                      </svg>
-                    </button>
-                  </div>
-                  <button
-                    class="cursor-pointer self-center bg-amber-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-amber-700 transition-all group-hover:opacity-100 opacity-0"
-                    aria-label="Quick view of Wildlife Explorer package"
-                  >
-                    Quick View
-                  </button>
-                </div>
+              <!-- Mobile menu button -->
+              <div class="lg:hidden">
                 <button
-                  class="cursor-pointer absolute bottom-4 right-4 bg-amber-900/80 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold flex items-center hover:bg-amber-900 hover:scale-105 transition-all focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
-                  aria-label="View Wildlife Explorer gallery"
+                  id="mobile-menu-btn"
+                  class="text-amber-900 focus:outline-none cursor-pointer p-2 rounded-md hover:bg-gray-100"
                 >
                   <svg
-                    class="h-5 w-5 mr-1"
+                    class="h-6 w-6"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
-                    role="img"
-                    aria-hidden="true"
                   >
                     <path
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
-                    ></path>
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
                   </svg>
-                  Gallery
                 </button>
               </div>
-
-              <!-- Package Details -->
-              <div class="p-6">
-                <!-- Title and Rating -->
-                <div class="flex justify-between items-start mb-4">
-                  <h3 class="text-xl md:text-2xl font-bold text-gray-900">
-                    Wildlife Explorer
-                  </h3>
-                  <div class="flex items-center space-x-1">
-                    <span class="text-sm font-semibold text-gray-700">4.7</span>
-                    <div class="flex" aria-hidden="true">
-                      <svg
-                        class="h-5 w-5 text-amber-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                      <svg
-                        class="h-5 w-5 text-amber-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                      <svg
-                        class="h-5 w-5 text-amber-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                      <svg
-                        class="h-5 w-5 text-amber-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                      <svg
-                        class="h-5 w-5 text-amber-500/50"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                    </div>
-                    <span class="sr-only">4.7 out of 5 stars</span>
-                  </div>
-                </div>
-
-                <!-- Location -->
-                <div class="flex items-center text-gray-600 text-sm mb-4">
-                  <svg
-                    class="h-5 w-5 mr-2 text-amber-500"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    role="img"
-                    aria-hidden="true"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                    ></path>
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                    ></path>
-                  </svg>
-                  Ranthambore National Park, Rajasthan
-                </div>
-
-                <!-- Duration and Highlights -->
-                <div class="mb-5">
-                  <div class="flex items-center text-sm text-gray-600 mb-3">
-                    <svg
-                      class="h-5 w-5 mr-2 text-amber-500"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      role="img"
-                      aria-hidden="true"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                      ></path>
-                    </svg>
-                    <span class="font-semibold"
-                      >2 Nights / 3 Days • 2 Canter Safaris</span
-                    >
-                  </div>
-                  <ul
-                    class="list-disc list-inside text-sm text-gray-600 space-y-1"
-                  >
-                    <li>Comfortable 4-Star Hotel Stay</li>
-                    <li>Breakfast & Dinner Included</li>
-                    <li>Experienced Local Guide</li>
-                    <li>Zone 4-6 Entry</li>
-                    <li>Evening Nature Walk</li>
-                  </ul>
-                </div>
-
-                <!-- Price and Deal -->
-                <div
-                  class="flex justify-between items-center border-t border-amber-200 pt-4"
-                >
-                  <div>
-                    <p class="text-xs text-gray-600">Starting from</p>
-                    <div class="flex items-end gap-2">
-                      <p
-                        class="text-2xl md:text-3xl font-extrabold text-amber-600"
-                      >
-                        ₹9,999
-                      </p>
-                      <span class="text-xs text-gray-600 mb-1">/person</span>
-                      <span class="text-xs text-gray-400 line-through mb-1"
-                        >₹11,499</span
-                      >
-                      <span class="text-xs text-green-600 font-medium"
-                        >15% OFF</span
-                      >
-                    </div>
-                    <p class="text-xs text-green-600 mt-2 flex items-center">
-                      <svg
-                        class="h-4 w-4 mr-1"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        role="img"
-                        aria-hidden="true"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clip-rule="evenodd"
-                        ></path>
-                      </svg>
-                      Free Cancellation • Pay Later
-                    </p>
-                  </div>
-                  <div class="flex flex-col items-end">
-                    <button
-                      class="cursor-pointer px-5 py-2 bg-gradient-to-r from-amber-500 to-amber-700 hover:from-amber-600 hover:to-amber-800 text-white rounded-lg font-semibold transition-all transform hover:scale-105 shadow-md hover:shadow-lg focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
-                      aria-label="Book Wildlife Explorer now"
-                    >
-                      Book Now
-                    </button>
-                    <a
-                      href="#"
-                      class="mt-2 text-sm text-amber-600 hover:underline flex items-center"
-                      aria-label="View Wildlife Explorer details"
-                    >
-                      View Details
-                      <svg
-                        class="h-4 w-4 ml-1"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        role="img"
-                        aria-hidden="true"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M9 5l7 7-7 7"
-                        ></path>
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
             </div>
-            <!-- Budget Package Card -->
-            <div
-              class="relative bg-white rounded-2xl shadow-xl overflow-hidden border border-amber-200 hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 min-h-[24rem] group"
+          </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div
+          id="mobile-menu"
+          class="hidden lg:hidden bg-white border-t border-gray-200 shadow-lg"
+        >
+          <div class="px-4 py-3 space-y-1">
+            <a
+              href="/dist/index.html"
+              class="block text-amber-900 hover:text-amber-600 transition-colors py-2 px-3 rounded-md hover:bg-amber-50"
+              >Home</a
             >
-              <!-- Badge -->
-              <div class="absolute top-4 left-0 z-10">
-                <div
-                  class="bg-gradient-to-r from-amber-500 to-amber-700 text-white text-sm font-semibold px-4 py-2 rounded-r-lg shadow-md"
-                  aria-label="Popular choice"
-                >
-                  POPULAR CHOICE
-                </div>
-              </div>
+            <a
+              href="safari.html"
+              class="block text-amber-900 hover:text-amber-600 transition-colors py-2 px-3 rounded-md hover:bg-amber-50"
+              >Safari</a
+            >
+            <a
+              href="chambal.html"
+              class="block text-amber-900 hover:text-amber-600 transition-colors py-2 px-3 rounded-md hover:bg-amber-50"
+              >Chambal Safari</a
+            >
+            <a
+              href="hotel.html"
+              class="block text-amber-700 font-semibold py-2 px-3 rounded-md bg-amber-50 border border-amber-200"
+              >Hotels</a
+            >
+            <a
+              href="package-booking.html"
+              class="block text-amber-900 hover:text-amber-600 transition-colors py-2 px-3 rounded-md hover:bg-amber-50"
+              >Packages</a
+            >
+            <a
+              href="contact.html"
+              class="block text-amber-900 hover:text-amber-600 transition-colors py-2 px-3 rounded-md hover:bg-amber-50"
+              >Contact</a
+            >
+            <button
+              class="w-full mt-3 bg-amber-700 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg transition-colors shadow-md"
+            >
+              Book Now
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- Main Body -->
+    <main class="mt-32">
+        <section class="py-6 bg-gradient-to-br from-amber-50 via-white to-amber-100" role="region"
+            aria-labelledby="safari-packages-heading">
+            <div class="w-full px-4 md:px-16">
 
-              <!-- Image with Quick View Button -->
-              <div class="relative h-48 md:h-56 w-full overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                  srcset="
-                    https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80 400w,
-                    https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80 800w
-                  "
-                  sizes="(max-width: 640px) 400px, 800px"
-                  alt="Tiger Trail Express Safari in Ranthambore National Park"
-                  class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                  width="800"
-                  height="600"
-                />
-                <div
-                  class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex flex-col justify-between p-4"
-                >
-                  <div class="flex justify-end">
-                    <button
-                      class="cursor-pointer bg-white/90 text-amber-700 p-2 rounded-full hover:bg-white transition-all"
-                      aria-label="Add Tiger Trail Express to favorites"
-                    >
-                      <svg
-                        class="h-5 w-5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        role="img"
-                        aria-hidden="true"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                        ></path>
-                      </svg>
-                    </button>
-                  </div>
-                  <button
-                    class="cursor-pointer self-center bg-amber-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-amber-700 transition-all group-hover:opacity-100 opacity-0"
-                    aria-label="Quick view of Tiger Trail Express package"
-                  >
-                    Quick View
-                  </button>
-                </div>
-                <button
-                  class="cursor-pointer absolute bottom-4 right-4 bg-amber-900/80 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold flex items-center hover:bg-amber-900 hover:scale-105 transition-all focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
-                  aria-label="View Tiger Trail Express gallery"
-                >
-                  <svg
-                    class="h-5 w-5 mr-1"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    role="img"
-                    aria-hidden="true"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
-                    ></path>
-                  </svg>
-                  Gallery
-                </button>
-              </div>
-
-              <!-- Package Details -->
-              <div class="p-6">
-                <!-- Title and Rating -->
-                <div class="flex justify-between items-start mb-4">
-                  <h3 class="text-xl md:text-2xl font-bold text-gray-900">
-                    Tiger Trail Express
-                  </h3>
-                  <div class="flex items-center space-x-1">
-                    <span class="text-sm font-semibold text-gray-700">4.5</span>
-                    <div class="flex" aria-hidden="true">
-                      <svg
-                        class="h-5 w-5 text-amber-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                      <svg
-                        class="h-5 w-5 text-amber-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                      <svg
-                        class="h-5 w-5 text-amber-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                      <svg
-                        class="h-5 w-5 text-amber-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                      <svg
-                        class="h-5 w-5 text-amber-500/50"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                    </div>
-                    <span class="sr-only">4.5 out of 5 stars</span>
-                  </div>
-                </div>
-
-                <!-- Location -->
-                <div class="flex items-center text-gray-600 text-sm mb-4">
-                  <svg
-                    class="h-5 w-5 mr-2 text-amber-500"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    role="img"
-                    aria-hidden="true"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                    ></path>
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                    ></path>
-                  </svg>
-                  Ranthambore National Park, Rajasthan
-                </div>
-
-                <!-- Duration and Highlights -->
-                <div class="mb-5">
-                  <div class="flex items-center text-sm text-gray-600 mb-3">
-                    <svg
-                      class="h-5 w-5 mr-2 text-amber-500"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      role="img"
-                      aria-hidden="true"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                      ></path>
-                    </svg>
-                    <span class="font-semibold"
-                      >1 Night / 2 Days • 1 Canter Safari</span
-                    >
-                  </div>
-                  <ul
-                    class="list-disc list-inside text-sm text-gray-600 space-y-1"
-                  >
-                    <li>Budget-Friendly 3-Star Hotel</li>
-                    <li>Breakfast Included</li>
-                    <li>Shared Safari Experience</li>
-                    <li>Zone 7-10 Entry</li>
-                    <li>Basic Guide Service</li>
-                  </ul>
-                </div>
-
-                <!-- Price and Deal -->
-                <div
-                  class="flex justify-between items-center border-t border-amber-200 pt-4"
-                >
-                  <div>
-                    <p class="text-xs text-gray-600">Starting from</p>
-                    <div class="flex items-end gap-2">
-                      <p
-                        class="text-2xl md:text-3xl font-extrabold text-amber-600"
-                      >
-                        ₹6,499
-                      </p>
-                      <span class="text-xs text-gray-600 mb-1">/person</span>
-                    </div>
-                    <p class="text-xs text-green-600 mt-2 flex items-center">
-                      <svg
-                        class="h-4 w-4 mr-1"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        role="img"
-                        aria-hidden="true"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clip-rule="evenodd"
-                        ></path>
-                      </svg>
-                      Free Cancellation • Instant Confirmation
+                <!-- Section Header -->
+                <div class="text-center mb-6 relative">
+                    <h1 id="safari-packages-heading" class="text-3xl font-extrabold text-[#ff7518] mb-2">Ranthambore
+                        Safari
+                        Adventures</h1>
+                    <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto font-medium">
+                        Embark on an unforgettable journey with our exclusive tiger safari packages
                     </p>
-                  </div>
-                  <div class="flex flex-col items-end">
-                    <button
-                      class="cursor-pointer px-5 py-2 bg-gradient-to-r from-amber-500 to-amber-700 hover:from-amber-600 hover:to-amber-800 text-white rounded-lg font-semibold transition-all transform hover:scale-105 shadow-md hover:shadow-lg focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
-                      aria-label="Book Tiger Trail Express now"
-                    >
-                      Book Now
-                    </button>
-                    <a
-                      href="#"
-                      class="mt-2 text-sm text-amber-600 hover:underline flex items-center"
-                      aria-label="View Tiger Trail Express details"
-                    >
-                      View Details
-                      <svg
-                        class="h-4 w-4 ml-1"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        role="img"
-                        aria-hidden="true"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M9 5l7 7-7 7"
-                        ></path>
-                      </svg>
-                    </a>
-                  </div>
+
+                    <!-- Seasonal Info Chip -->
+                    <div
+                        class="mt-4 inline-flex items-center bg-amber-100 border border-amber-300 text-amber-800 px-4 py-1.5 rounded-full text-sm font-medium">
+                        <svg class="h-4 w-4 mr-1" fill="currentColor" viewBox="0 0 20 20" role="img"
+                            aria-label="Info icon">
+                            <path fill-rule="evenodd"
+                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        Best Season: October to April (Tiger Sighting Probability: 80%)
+                    </div>
                 </div>
-              </div>
-            </div>
-              <div
+
+                <!-- Enhanced Filter Chips with More Options -->
+                <div class="flex flex-wrap justify-center gap-3 mb-8" aria-live="polite">
+                    <button
+                        class="cursor-pointer px-3 py-1.5 bg-amber-50 border border-amber-300 rounded-full text-sm font-semibold text-gray-700 hover:bg-amber-100 hover:border-amber-500 hover:scale-105 transition-all focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 aria-pressed:bg-amber-200 aria-pressed:border-amber-600"
+                        aria-label="Toggle filters" aria-pressed="false">
+                        <svg class="h-4 w-4 mr-1 text-amber-500 inline" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" role="img" aria-label="Filter icon">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z">
+                            </path>
+                        </svg>
+                        Filters
+                    </button>
+                    <button
+                        class="cursor-pointer px-3 py-1.5 bg-amber-50 border border-amber-300 rounded-full text-sm font-semibold text-gray-700 hover:bg-amber-100 hover:border-amber-500 hover:scale-105 transition-all focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 aria-pressed:bg-amber-200 aria-pressed:border-amber-600"
+                        aria-label="Sort by price low to high" aria-pressed="false">Price: Low to High</button>
+                    <button
+                        class="cursor-pointer px-3 py-1.5 bg-amber-50 border border-amber-300 rounded-full text-sm font-semibold text-gray-700 hover:bg-amber-100 hover:border-amber-500 hover:scale-105 transition-all focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 aria-pressed:bg-amber-200 aria-pressed:border-amber-600"
+                        aria-label="Sort by popularity" aria-pressed="true">Popularity</button>
+                    <button
+                        class="cursor-pointer px-3 py-1.5 bg-amber-50 border border-amber-300 rounded-full text-sm font-semibold text-gray-700 hover:bg-amber-100 hover:border-amber-500 hover:scale-105 transition-all focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 aria-pressed:bg-amber-200 aria-pressed:border-amber-600"
+                        aria-label="Filter by instant confirmation" aria-pressed="false">Instant Confirmation</button>
+                    <button
+                        class="cursor-pointer px-3 py-1.5 bg-amber-50 border border-amber-300 rounded-full text-sm font-semibold text-gray-700 hover:bg-amber-100 hover:border-amber-500 hover:scale-105 transition-all focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 aria-pressed:bg-amber-200 aria-pressed:border-amber-600"
+                        aria-label="Filter by free cancellation" aria-pressed="true">Free Cancellation</button>
+                    <button
+                        class="cursor-pointer px-3 py-1.5 bg-amber-50 border border-amber-300 rounded-full text-sm font-semibold text-gray-700 hover:bg-amber-100 hover:border-amber-500 hover:scale-105 transition-all focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 aria-pressed:bg-amber-200 aria-pressed:border-amber-600"
+                        aria-label="Filter by breakfast included" aria-pressed="false">Breakfast Included</button>
+                    <button
+                        class="cursor-pointer px-3 py-1.5 bg-amber-50 border border-amber-300 rounded-full text-sm font-semibold text-gray-700 hover:bg-amber-100 hover:border-amber-500 hover:scale-105 transition-all focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 aria-pressed:bg-amber-200 aria-pressed:border-amber-600"
+                        aria-label="Filter by luxury packages" aria-pressed="false">Luxury</button>
+                    <button
+                        class="cursor-pointer px-3 py-1.5 bg-amber-50 border border-amber-300 rounded-full text-sm font-semibold text-gray-700 hover:bg-amber-100 hover:border-amber-500 hover:scale-105 transition-all focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 aria-pressed:bg-amber-200 aria-pressed:border-amber-600"
+                        aria-label="Filter by family-friendly packages" aria-pressed="false">Family Friendly</button>
+                </div>
+
+                <!-- Limited Offer Banner with Countdown -->
+                <div
+                    class="bg-gradient-to-r from-amber-600 to-amber-800 text-white rounded-lg p-4 mb-8 text-center animate-pulse">
+                    <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                        <p class="text-lg font-semibold">Limited-Time Offer: Book by Aug 15 for 10% Off!</p>
+                        <div class="flex items-center gap-2 bg-amber-800/50 px-3 py-1 rounded-full">
+                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" role="img"
+                                aria-label="Clock icon">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <div
+                                class="countdown flex items-center bg-[#b55415] px-4 rounded-full text-white font-bold">
+                                <span class="icon mr-2">⏰</span>
+                                <span id="timer">00d : 00h : 00m : 00s</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Packages Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-4">
+                    <!-- Premium Package Card -->
+                    <div
+                        class="relative bg-white rounded-2xl shadow-xl overflow-hidden border border-amber-200 hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 min-h-[24rem] group">
+                        <!-- Badge -->
+                        <div class="absolute top-4 left-0 z-10">
+                            <div class="bg-gradient-to-r from-amber-500 to-amber-700 text-white text-sm font-semibold px-4 py-2 rounded-r-lg shadow-md"
+                                aria-label="Bestseller badge">
+                                BESTSELLER
+                            </div>
+                        </div>
+
+                        <!-- Image with Quick View Button -->
+                        <div class="relative h-48 md:h-56 w-full overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1599427303058-f04cbcf4756f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                                srcset="https://images.unsplash.com/photo-1599427303058-f04cbcf4756f?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80 400w,
+                   https://images.unsplash.com/photo-1599427303058-f04cbcf4756f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80 800w"
+                                sizes="(max-width: 640px) 400px, 800px" alt="Royal Tiger Experience Safari"
+                                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                                loading="lazy" width="800" height="600">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex flex-col justify-between p-4">
+                                <div class="flex justify-end">
+                                    <button
+                                        class="like-btn cursor-pointer bg-white/90 text-amber-700 p-2 rounded-full hover:bg-white transition-all"
+                                        aria-label="Add to favorites">
+                                        <svg class="like-box h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor" role="img" aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <button
+                                    class="cursor-pointer self-center bg-amber-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-amber-700 transition-all group-hover:opacity-100 opacity-0"
+                                    aria-label="Quick view of Royal Tiger Experience">
+                                    Quick View
+                                </button>
+                            </div>
+                            <button
+                                class="cursor-pointer absolute bottom-4 right-4 bg-amber-900/80 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold flex items-center hover:bg-amber-900 hover:scale-105 transition-all focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
+                                aria-label="View Royal Tiger Experience gallery">
+                                <svg class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    role="img" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4">
+                                    </path>
+                                </svg>
+                                Gallery
+                            </button>
+                        </div>
+
+                        <!-- Package Details -->
+                        <div class="p-6">
+                            <!-- Title and Rating -->
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-xl md:text-2xl font-bold text-gray-900">Royal Tiger Experience</h3>
+                                <div class="flex items-center space-x-1">
+                                    <span class="text-sm font-semibold text-gray-700">4.9</span>
+                                    <div class="flex" aria-hidden="true">
+                                        <svg class="h-5 w-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                            </path>
+                                        </svg>
+                                        <svg class="h-5 w-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                            </path>
+                                        </svg>
+                                        <svg class="h-5 w-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                            </path>
+                                        </svg>
+                                        <svg class="h-5 w-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                            </path>
+                                        </svg>
+                                        <svg class="h-5 w-5 text-amber-500/50" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <span class="sr-only">4.9 out of 5 stars</span>
+                                </div>
+                            </div>
+
+                            <!-- Location -->
+                            <div class="flex items-center text-gray-600 text-sm mb-4">
+                                <svg class="h-5 w-5 mr-2 text-amber-500" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" role="img" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                    </path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                Ranthambore National Park, Rajasthan
+                            </div>
+
+                            <!-- Duration and Highlights -->
+                            <div class="mb-5">
+                                <div class="flex items-center text-sm text-gray-600 mb-3">
+                                    <svg class="h-5 w-5 mr-2 text-amber-500" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor" role="img" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    <span class="font-semibold">2 Nights / 3 Days • 2 Private Gypsy Safaris</span>
+                                </div>
+                                <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                                    <li>Luxury Resort Stay with Pool</li>
+                                    <li>All Meals Included (Premium Dining)</li>
+                                    <li>Expert Wildlife Guide & Naturalist</li>
+                                    <li>Zone 1-3 Entry Guaranteed</li>
+                                    <li>Ranthambore Fort Visit</li>
+                                </ul>
+                            </div>
+
+                            <!-- Price and Deal -->
+                            <div class="flex justify-between items-center border-t border-amber-200 pt-4">
+                                <div>
+                                    <p class="text-xs text-gray-600">Starting from</p>
+                                    <div class="flex items-end gap-2">
+                                        <p class="price-tag text-2xl md:text-3xl font-extrabold text-amber-600">₹14,999
+                                        </p>
+                                        <span class="text-xs text-gray-600 mb-1">/person</span>
+                                        <span class="text-xs text-green-600 font-medium">10% OFF</span>
+                                    </div>
+                                    <p class="text-xs text-green-600 mt-2 flex items-center">
+                                        <svg class="h-4 w-4 mr-1" fill="currentColor" viewBox="0 0 20 20" role="img"
+                                            aria-hidden="true">
+                                            <path fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        Free Cancellation • Pay at Hotel
+                                    </p>
+                                </div>
+                                <div class="flex flex-col items-end">
+                                    <button
+                                        class="bookNowBtn cursor-pointer px-5 py-2 bg-gradient-to-r from-amber-500 to-amber-700 hover:from-amber-600 hover:to-amber-800 text-white rounded-lg font-semibold transition-all transform hover:scale-105 shadow-md hover:shadow-lg focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
+                                        aria-label="Book Royal Tiger Experience now">
+                                        Book Now
+                                    </button>
+                                    <a href="#" class="mt-2 text-sm text-amber-600 hover:underline flex items-center"
+                                        aria-label="View Royal Tiger Experience details">
+                                        View Details
+                                        <svg class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                            role="img" aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Standard Package Card -->
+                    <div
+                        class="relative bg-white rounded-2xl shadow-xl overflow-hidden border border-amber-200 hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 min-h-[24rem] group">
+                        <!-- Badge -->
+                        <div class="absolute top-4 left-0 z-10">
+                            <div class="bg-gradient-to-r from-amber-500 to-amber-700 text-white text-sm font-semibold px-4 py-2 rounded-r-lg shadow-md"
+                                aria-label="Flat 15% off">
+                                FLAT 15% OFF
+                            </div>
+                        </div>
+
+                        <!-- Image with Quick View Button -->
+                        <div class="relative h-48 md:h-56 w-full overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1589656966895-2f33e7653819?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                                srcset="https://images.unsplash.com/photo-1589656966895-2f33e7653819?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80 400w,
+                   https://images.unsplash.com/photo-1589656966895-2f33e7653819?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80 800w"
+                                sizes="(max-width: 640px) 400px, 800px"
+                                alt="Wildlife Explorer Safari in Ranthambore National Park"
+                                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                                loading="lazy" width="800" height="600">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex flex-col justify-between p-4">
+                                <div class="flex justify-end">
+                                    <button
+                                        class="like-btn cursor-pointer bg-white/90 text-amber-700 p-2 rounded-full hover:bg-white transition-all"
+                                        aria-label="Add Wildlife Explorer to favorites">
+                                        <svg class="like-box h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor" role="img" aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <button
+                                    class="cursor-pointer self-center bg-amber-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-amber-700 transition-all group-hover:opacity-100 opacity-0"
+                                    aria-label="Quick view of Wildlife Explorer package">
+                                    Quick View
+                                </button>
+                            </div>
+                            <button
+                                class="cursor-pointer absolute bottom-4 right-4 bg-amber-900/80 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold flex items-center hover:bg-amber-900 hover:scale-105 transition-all focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
+                                aria-label="View Wildlife Explorer gallery">
+                                <svg class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    role="img" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4">
+                                    </path>
+                                </svg>
+                                Gallery
+                            </button>
+                        </div>
+
+                        <!-- Package Details -->
+                        <div class="p-6">
+                            <!-- Title and Rating -->
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-xl md:text-2xl font-bold text-gray-900">Wildlife Explorer</h3>
+                                <div class="flex items-center space-x-1">
+                                    <span class="text-sm font-semibold text-gray-700">4.7</span>
+                                    <div class="flex" aria-hidden="true">
+                                        <svg class="h-5 w-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                            </path>
+                                        </svg>
+                                        <svg class="h-5 w-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                            </path>
+                                        </svg>
+                                        <svg class="h-5 w-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                            </path>
+                                        </svg>
+                                        <svg class="h-5 w-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                            </path>
+                                        </svg>
+                                        <svg class="h-5 w-5 text-amber-500/50" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <span class="sr-only">4.7 out of 5 stars</span>
+                                </div>
+                            </div>
+
+                            <!-- Location -->
+                            <div class="flex items-center text-gray-600 text-sm mb-4">
+                                <svg class="h-5 w-5 mr-2 text-amber-500" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" role="img" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                    </path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                Ranthambore National Park, Rajasthan
+                            </div>
+
+                            <!-- Duration and Highlights -->
+                            <div class="mb-5">
+                                <div class="flex items-center text-sm text-gray-600 mb-3">
+                                    <svg class="h-5 w-5 mr-2 text-amber-500" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor" role="img" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    <span class="font-semibold">2 Nights / 3 Days • 2 Canter Safaris</span>
+                                </div>
+                                <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                                    <li>Comfortable 4-Star Hotel Stay</li>
+                                    <li>Breakfast & Dinner Included</li>
+                                    <li>Experienced Local Guide</li>
+                                    <li>Zone 4-6 Entry</li>
+                                    <li>Evening Nature Walk</li>
+                                </ul>
+                            </div>
+
+                            <!-- Price and Deal -->
+                            <div class="flex justify-between items-center border-t border-amber-200 pt-4">
+                                <div>
+                                    <p class="text-xs text-gray-600">Starting from</p>
+                                    <div class="flex items-end gap-2">
+                                        <p class="price-tag text-2xl md:text-3xl font-extrabold text-amber-600">₹9,999
+                                        </p>
+                                        <span class="text-xs text-gray-600 mb-1">/person</span>
+                                        <span class="text-xs text-gray-400 line-through mb-1">₹11,499</span>
+                                        <span class="text-xs text-green-600 font-medium">15% OFF</span>
+                                    </div>
+                                    <p class="text-xs text-green-600 mt-2 flex items-center">
+                                        <svg class="h-4 w-4 mr-1" fill="currentColor" viewBox="0 0 20 20" role="img"
+                                            aria-hidden="true">
+                                            <path fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        Free Cancellation • Pay Later
+                                    </p>
+                                </div>
+                                <div class="flex flex-col items-end">
+                                    <button
+                                        class="bookNowBtn cursor-pointer px-5 py-2 bg-gradient-to-r from-amber-500 to-amber-700 hover:from-amber-600 hover:to-amber-800 text-white rounded-lg font-semibold transition-all transform hover:scale-105 shadow-md hover:shadow-lg focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
+                                        aria-label="Book Wildlife Explorer now">
+                                        Book Now
+                                    </button>
+                                    <a href="#" class="mt-2 text-sm text-amber-600 hover:underline flex items-center"
+                                        aria-label="View Wildlife Explorer details">
+                                        View Details
+                                        <svg class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                            role="img" aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Budget Package Card -->
+                    <div
+                        class="relative bg-white rounded-2xl shadow-xl overflow-hidden border border-amber-200 hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 min-h-[24rem] group">
+                        <!-- Badge -->
+                        <div class="absolute top-4 left-0 z-10">
+                            <div class="bg-gradient-to-r from-amber-500 to-amber-700 text-white text-sm font-semibold px-4 py-2 rounded-r-lg shadow-md"
+                                aria-label="Popular choice">
+                                POPULAR CHOICE
+                            </div>
+                        </div>
+
+                        <!-- Image with Quick View Button -->
+                        <div class="relative h-48 md:h-56 w-full overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                                srcset="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80 400w,
+                   https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80 800w"
+                                sizes="(max-width: 640px) 400px, 800px"
+                                alt="Tiger Trail Express Safari in Ranthambore National Park"
+                                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                                loading="lazy" width="800" height="600">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex flex-col justify-between p-4">
+                                <div class="flex justify-end">
+                                    <button
+                                        class="like-btn cursor-pointer bg-white/90 text-amber-700 p-2 rounded-full hover:bg-white transition-all"
+                                        aria-label="Add Tiger Trail Express to favorites">
+                                        <svg class="like-box h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor" role="img" aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <button
+                                    class="cursor-pointer self-center bg-amber-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-amber-700 transition-all group-hover:opacity-100 opacity-0"
+                                    aria-label="Quick view of Tiger Trail Express package">
+                                    Quick View
+                                </button>
+                            </div>
+                            <button
+                                class="cursor-pointer absolute bottom-4 right-4 bg-amber-900/80 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold flex items-center hover:bg-amber-900 hover:scale-105 transition-all focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
+                                aria-label="View Tiger Trail Express gallery">
+                                <svg class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    role="img" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4">
+                                    </path>
+                                </svg>
+                                Gallery
+                            </button>
+                        </div>
+
+                        <!-- Package Details -->
+                        <div class="p-6">
+                            <!-- Title and Rating -->
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-xl md:text-2xl font-bold text-gray-900">Tiger Trail Express</h3>
+                                <div class="flex items-center space-x-1">
+                                    <span class="text-sm font-semibold text-gray-700">4.5</span>
+                                    <div class="flex" aria-hidden="true">
+                                        <svg class="h-5 w-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                            </path>
+                                        </svg>
+                                        <svg class="h-5 w-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                            </path>
+                                        </svg>
+                                        <svg class="h-5 w-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                            </path>
+                                        </svg>
+                                        <svg class="h-5 w-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                            </path>
+                                        </svg>
+                                        <svg class="h-5 w-5 text-amber-500/50" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <span class="sr-only">4.5 out of 5 stars</span>
+                                </div>
+                            </div>
+                            <!-- Location -->
+                            <div class="flex items-center text-gray-600 text-sm mb-4">
+                                <svg class="h-5 w-5 mr-2 text-amber-500" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" role="img" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                    </path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                Ranthambore National Park, Rajasthan
+                            </div>
+
+                            <!-- Duration and Highlights -->
+                            <div class="mb-5">
+                                <div class="flex items-center text-sm text-gray-600 mb-3">
+                                    <svg class="h-5 w-5 mr-2 text-amber-500" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor" role="img" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    <span class="font-semibold">1 Night / 2 Days • 1 Canter Safari</span>
+                                </div>
+                                <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                                    <li>Budget-Friendly 3-Star Hotel</li>
+                                    <li>Breakfast Included</li>
+                                    <li>Shared Safari Experience</li>
+                                    <li>Zone 7-10 Entry</li>
+                                    <li>Basic Guide Service</li>
+                                </ul>
+                            </div>
+
+                            <!-- Price and Deal -->
+                            <div class="flex justify-between items-center border-t border-amber-200 pt-4">
+                                <div>
+                                    <p class="text-xs text-gray-600">Starting from</p>
+                                    <div class="flex items-end gap-2">
+                                        <p class="price-tag text-2xl md:text-3xl font-extrabold text-amber-600">₹6,499
+                                        </p>
+                                        <span class="text-xs text-gray-600 mb-1">/person</span>
+                                    </div>
+                                    <p class="text-xs text-green-600 mt-2 flex items-center">
+                                        <svg class="h-4 w-4 mr-1" fill="currentColor" viewBox="0 0 20 20" role="img"
+                                            aria-hidden="true">
+                                            <path fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        Free Cancellation • Instant Confirmation
+                                    </p>
+                                </div>
+                                <div class="flex flex-col items-end">
+                                    <button
+                                        class="bookNowBtn cursor-pointer px-5 py-2 bg-gradient-to-r from-amber-500 to-amber-700 hover:from-amber-600 hover:to-amber-800 text-white rounded-lg font-semibold transition-all transform hover:scale-105 shadow-md hover:shadow-lg focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
+                                        aria-label="Book Tiger Trail Express now">
+                                        Book Now
+                                    </button>
+                                    <a href="#" class="mt-2 text-sm text-amber-600 hover:underline flex items-center"
+                                        aria-label="View Tiger Trail Express details">
+                                        View Details
+                                        <svg class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                            role="img" aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
                         class="relative bg-white rounded-2xl shadow-xl overflow-hidden border border-amber-200 hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 min-h-[24rem] group">
                         <!-- Badge -->
                         <div class="absolute top-4 left-0 z-10">
@@ -1509,836 +1186,512 @@
                     </div>
                 </div>
 
-          <!-- View All Button with Total Packages -->
-          <div class="text-center mt-12">
-            <button
-              class="cursor-pointer px-10 py-3 bg-gradient-to-r from-amber-500 to-amber-700 hover:from-amber-600 hover:to-amber-800 text-white rounded-lg font-semibold text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 flex items-center mx-auto"
-              aria-label="View all safari packages"
-            >
-              Explore All 12 Packages
-              <svg
-                class="h-5 w-5 ml-2"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                role="img"
-                aria-label="Arrow right icon"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M14 5l7 7m0 0l-7 7m7-7H3"
-                ></path>
-              </svg>
-            </button>
-          </div>
-
-          <!-- Enhanced Trust Badges with Testimonials -->
-          <div
-            class="mt-12 bg-white/80 backdrop-blur-md p-6 rounded-2xl shadow-lg border border-amber-200/50"
-          >
-            <div
-              class="flex flex-col sm:flex-row sm:flex-wrap justify-center items-center gap-6 sm:gap-8"
-            >
-              <div
-                class="flex items-center animate-fade-in"
-                style="animation-delay: 0.1s"
-              >
-                <svg
-                  class="h-6 w-6 text-amber-500 mr-3"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  role="img"
-                  aria-label="Conservation icon"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
                 <div>
-                  <h4 class="font-semibold text-gray-800">
-                    Tiger Conservation Support
-                  </h4>
-                  <p class="text-sm text-gray-600">
-                    Your booking supports Project Tiger
-                  </p>
-                </div>
-              </div>
-              <div
-                class="flex items-center animate-fade-in"
-                style="animation-delay: 0.2s"
-              >
-                <svg
-                  class="h-6 w-6 text-amber-500 mr-3"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  role="img"
-                  aria-label="Confirmation icon"
-                >
-                  <path
-                    d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"
-                  ></path>
-                </svg>
-                <div>
-                  <h4 class="font-semibold text-gray-800">
-                    Instant Confirmation
-                  </h4>
-                  <p class="text-sm text-gray-600">
-                    Book and confirm instantly
-                  </p>
-                </div>
-              </div>
-              <div
-                class="flex items-center animate-fade-in"
-                style="animation-delay: 0.3s"
-              >
-                <svg
-                  class="h-6 w-6 text-amber-500 mr-3"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  role="img"
-                  aria-label="Secure payment icon"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <div>
-                  <h4 class="font-semibold text-gray-800">Secure Payments</h4>
-                  <p class="text-sm text-gray-600">
-                    Safe and trusted transactions
-                  </p>
-                </div>
-              </div>
-            </div>
+                    <!-- View All Button with Total Packages -->
+                    <div class="text-center mt-12">
+                        <button
+                            class="bookNowBtn cursor-pointer px-10 py-3 bg-gradient-to-r from-amber-500 to-amber-700 hover:from-amber-600 hover:to-amber-800 text-white rounded-lg font-semibold text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 flex items-center mx-auto"
+                            aria-label="View all safari packages">
+                            Explore All 12 Packages
+                            <svg class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" role="img"
+                                aria-label="Arrow right icon">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </button>
+                    </div>
 
-            <!-- Testimonials Section -->
-            <div class="mt-8 pt-6 border-t border-amber-100">
-              <h3 class="text-center text-lg font-semibold text-gray-800 mb-6">
-                What Our Travelers Say
-              </h3>
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div
-                  class="bg-amber-50/50 p-4 rounded-lg border border-amber-200"
-                >
-                  <div class="flex items-center mb-3">
-                    <div class="flex mr-2">
-                      <svg
-                        class="h-5 w-5 text-amber-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        role="img"
-                        aria-label="Star rating"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                      <svg
-                        class="h-5 w-5 text-amber-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        role="img"
-                        aria-label="Star rating"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                      <svg
-                        class="h-5 w-5 text-amber-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        role="img"
-                        aria-label="Star rating"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                      <svg
-                        class="h-5 w-5 text-amber-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        role="img"
-                        aria-label="Star rating"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                      <svg
-                        class="h-5 w-5 text-amber-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        role="img"
-                        aria-label="Star rating"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                    </div>
-                    <span class="text-sm font-medium text-gray-700">5.0</span>
-                  </div>
-                  <p class="text-gray-700 italic mb-3">
-                    "Saw 3 tigers on our first safari! The Royal Tiger
-                    Experience was worth every penny. The resort was luxurious
-                    and the guide extremely knowledgeable."
-                  </p>
-                  <div class="flex items-center">
+                    <!-- Enhanced Trust Badges with Testimonials -->
                     <div
-                      class="h-8 w-8 rounded-full bg-amber-200 mr-2 flex items-center justify-center text-amber-800 font-medium"
-                    >
-                      AK
-                    </div>
-                    <div>
-                      <p class="text-sm font-medium">Amit K.</p>
-                      <p class="text-xs text-gray-500">March 2023</p>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="bg-amber-50/50 p-4 rounded-lg border border-amber-200"
-                >
-                  <div class="flex items-center mb-3">
-                    <div class="flex mr-2">
-                      <svg
-                        class="h-5 w-5 text-amber-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        role="img"
-                        aria-label="Star rating"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                      <svg
-                        class="h-5 w-5 text-amber-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        role="img"
-                        aria-label="Star rating"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                      <svg
-                        class="h-5 w-5 text-amber-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        role="img"
-                        aria-label="Star rating"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                      <svg
-                        class="h-5 w-5 text-amber-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        role="img"
-                        aria-label="Star rating"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                      <svg
-                        class="h-5 w-5 text-amber-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        role="img"
-                        aria-label="Star rating"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                    </div>
-                    <span class="text-sm font-medium text-gray-700">5.0</span>
-                  </div>
-                  <p class="text-gray-700 italic mb-3">
-                    "The Wildlife Explorer package was perfect for our family.
-                    Comfortable stay, great food, and we were lucky to spot a
-                    tiger with cubs!"
-                  </p>
-                  <div class="flex items-center">
-                    <div
-                      class="h-8 w-8 rounded-full bg-amber-200 mr-2 flex items-center justify-center text-amber-800 font-medium"
-                    >
-                      PS
-                    </div>
-                    <div>
-                      <p class="text-sm font-medium">Priya S.</p>
-                      <p class="text-xs text-gray-500">January 2023</p>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="bg-amber-50/50 p-4 rounded-lg border border-amber-200"
-                >
-                  <div class="flex items-center mb-3">
-                    <div class="flex mr-2">
-                      <svg
-                        class="h-5 w-5 text-amber-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        role="img"
-                        aria-label="Star rating"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                      <svg
-                        class="h-5 w-5 text-amber-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        role="img"
-                        aria-label="Star rating"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                      <svg
-                        class="h-5 w-5 text-amber-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        role="img"
-                        aria-label="Star rating"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                      <svg
-                        class="h-5 w-5 text-amber-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        role="img"
-                        aria-label="Star rating"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                      <svg
-                        class="h-5 w-5 text-amber-500/50"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        role="img"
-                        aria-label="Star rating"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        ></path>
-                      </svg>
-                    </div>
-                    <span class="text-sm font-medium text-gray-700">4.5</span>
-                  </div>
-                  <p class="text-gray-700 italic mb-3">
-                    "Great value for money with the Tiger Trail Express. Didn't
-                    see a tiger but the experience was still amazing. Would
-                    recommend for budget travelers."
-                  </p>
-                  <div class="flex items-center">
-                    <div
-                      class="h-8 w-8 rounded-full bg-amber-200 mr-2 flex items-center justify-center text-amber-800 font-medium"
-                    >
-                      RM
-                    </div>
-                    <div>
-                      <p class="text-sm font-medium">Rahul M.</p>
-                      <p class="text-xs text-gray-500">December 2022</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+                        class="mt-12 bg-white/80 backdrop-blur-md p-6 rounded-2xl shadow-lg border border-amber-200/50">
+                        <div class="flex flex-col sm:flex-row sm:flex-wrap justify-center items-center gap-6 sm:gap-8">
+                            <div class="flex items-center animate-fade-in" style="animation-delay: 0.1s;">
+                                <svg class="h-6 w-6 text-amber-500 mr-3" fill="currentColor" viewBox="0 0 20 20"
+                                    role="img" aria-label="Conservation icon">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Tiger Conservation Support</h4>
+                                    <p class="text-sm text-gray-600">Your booking supports Project Tiger</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center animate-fade-in" style="animation-delay: 0.2s;">
+                                <svg class="h-6 w-6 text-amber-500 mr-3" fill="currentColor" viewBox="0 0 20 20"
+                                    role="img" aria-label="Confirmation icon">
+                                    <path
+                                        d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z">
+                                    </path>
+                                </svg>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Instant Confirmation</h4>
+                                    <p class="text-sm text-gray-600">Book and confirm instantly</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center animate-fade-in" style="animation-delay: 0.3s;">
+                                <svg class="h-6 w-6 text-amber-500 mr-3" fill="currentColor" viewBox="0 0 20 20"
+                                    role="img" aria-label="Secure payment icon">
+                                    <path fill-rule="evenodd"
+                                        d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Secure Payments</h4>
+                                    <p class="text-sm text-gray-600">Safe and trusted transactions</p>
+                                </div>
+                            </div>
+                        </div>
 
-          <!-- FAQ Section -->
-          <div
-            class="mt-12 bg-white/80 backdrop-blur-md p-6 rounded-2xl shadow-lg border border-amber-200/50"
-          >
-            <h3 class="text-xl font-bold text-gray-900 mb-6 text-center">
-              Frequently Asked Questions
-            </h3>
-            <div class="space-y-4">
-              <div class="border-b border-amber-200 pb-4">
-                <button
-                  class="cursor-pointer flex justify-between items-center w-full text-left font-medium text-gray-800 hover:text-amber-700 focus:outline-none"
-                  aria-expanded="false"
-                  aria-controls="faq1"
-                >
-                  <span
-                    >What is the best time to visit Ranthambore for tiger
-                    sightings?</span
-                  >
-                  <svg
-                    class="h-5 w-5 text-amber-500 transform transition-transform"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    role="img"
-                    aria-label="Chevron down icon"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M19 9l-7 7-7-7"
-                    ></path>
-                  </svg>
-                </button>
-                <div id="faq1" class="hidden mt-2 text-gray-600 text-sm">
-                  <p>
-                    The best time for tiger sightings is from October to April
-                    when the weather is cooler and animals are more active near
-                    water sources. The park remains closed during the monsoon
-                    season (July to September).
-                  </p>
-                </div>
-              </div>
-              <div class="border-b border-amber-200 pb-4">
-                <button
-                  class="cursor-pointer flex justify-between items-center w-full text-left font-medium text-gray-800 hover:text-amber-700 focus:outline-none"
-                  aria-expanded="false"
-                  aria-controls="faq2"
-                >
-                  <span
-                    >What's the difference between a Gypsy and Canter
-                    safari?</span
-                  >
-                  <svg
-                    class="h-5 w-5 text-amber-500 transform transition-transform"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    role="img"
-                    aria-label="Chevron down icon"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M19 9l-7 7-7-7"
-                    ></path>
-                  </svg>
-                </button>
-                <div id="faq2" class="hidden mt-2 text-gray-600 text-sm">
-                  <p>
-                    A Gypsy is a 6-seater open-top jeep ideal for small groups
-                    offering more flexibility and better wildlife viewing. A
-                    Canter is a 20-seater open bus more economical for larger
-                    groups but with less mobility.
-                  </p>
-                </div>
-              </div>
-              <div class="border-b border-amber-200 pb-4">
-                <button
-                  class="cursor-pointer flex justify-between items-center w-full text-left font-medium text-gray-800 hover:text-amber-700 focus:outline-none"
-                  aria-expanded="false"
-                  aria-controls="faq3"
-                >
-                  <span>What should I wear and bring for the safari?</span>
-                  <svg
-                    class="h-5 w-5 text-amber-500 transform transition-transform"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    role="img"
-                    aria-label="Chevron down icon"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M19 9l-7 7-7-7"
-                    ></path>
-                  </svg>
-                </button>
-                <div id="faq3" class="hidden mt-2 text-gray-600 text-sm">
-                  <p>
-                    Wear earth-toned clothing (avoid bright colors), comfortable
-                    shoes, a hat, and sunscreen. Bring binoculars, a camera,
-                    water, and any personal medications. Winters can be chilly,
-                    so layer appropriately.
-                  </p>
-                </div>
-              </div>
-              <div class="border-b border-amber-200 pb-4">
-                <button
-                  class="cursor-pointer flex justify-between items-center w-full text-left font-medium text-gray-800 hover:text-amber-700 focus:outline-none"
-                  aria-expanded="false"
-                  aria-controls="faq4"
-                >
-                  <span>Are children allowed on safaris?</span>
-                  <svg
-                    class="h-5 w-5 text-amber-500 transform transition-transform"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    role="img"
-                    aria-label="Chevron down icon"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M19 9l-7 7-7-7"
-                    ></path>
-                  </svg>
-                </button>
-                <div id="faq4" class="hidden mt-2 text-gray-600 text-sm">
-                  <p>
-                    Yes, children are allowed but must be supervised at all
-                    times. Children under 5 years may find the bumpy rides
-                    uncomfortable. We recommend private Gypsy safaris for
-                    families with young children.
-                  </p>
-                </div>
-              </div>
-              <div class="border-b border-amber-200 pb-4">
-                <button
-                  class="cursor-pointer flex justify-between items-center w-full text-left font-medium text-gray-800 hover:text-amber-700 focus:outline-none"
-                  aria-expanded="false"
-                  aria-controls="faq5"
-                >
-                  <span>What is your cancellation policy?</span>
-                  <svg
-                    class="h-5 w-5 text-amber-500 transform transition-transform"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    role="img"
-                    aria-label="Chevron down icon"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M19 9l-7 7-7-7"
-                    ></path>
-                  </svg>
-                </button>
-                <div id="faq5" class="hidden mt-2 text-gray-600 text-sm">
-                  <p>
-                    Most packages offer free cancellation up to 15 days before
-                    travel. Within 15 days, cancellation charges may apply.
-                    Safari permits are non-refundable once booked. Please check
-                    individual package terms for details.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="text-center mt-6">
-              <a
-                href="#"
-                class="text-amber-600 hover:text-amber-800 font-medium inline-flex items-center"
-                aria-label="View all FAQs"
-              >
-                View All FAQs
-                <svg
-                  class="h-4 w-4 ml-1"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  role="img"
-                  aria-label="Chevron right icon"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 5l7 7-7 7"
-                  ></path>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
+                        <!-- Testimonials Section -->
+                        <div class="mt-8 pt-6 border-t border-amber-100">
+                            <h3 class="text-center text-lg font-semibold text-gray-800 mb-6">What Our Travelers Say</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div class="bg-amber-50/50 p-4 rounded-lg border border-amber-200">
+                                    <div class="flex items-center mb-3">
+                                        <div class="flex mr-2">
+                                            <svg class="h-5 w-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"
+                                                role="img" aria-label="Star rating">
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg class="h-5 w-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"
+                                                role="img" aria-label="Star rating">
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg class="h-5 w-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"
+                                                role="img" aria-label="Star rating">
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg class="h-5 w-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"
+                                                role="img" aria-label="Star rating">
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg class="h-5 w-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"
+                                                role="img" aria-label="Star rating">
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <span class="text-sm font-medium text-gray-700">5.0</span>
+                                    </div>
+                                    <p class="text-gray-700 italic mb-3">"Saw 3 tigers on our first safari! The Royal
+                                        Tiger
+                                        Experience was worth every penny. The resort was luxurious and the guide
+                                        extremely
+                                        knowledgeable."</p>
+                                    <div class="flex items-center">
+                                        <div
+                                            class="h-8 w-8 rounded-full bg-amber-200 mr-2 flex items-center justify-center text-amber-800 font-medium">
+                                            AK</div>
+                                        <div>
+                                            <p class="text-sm font-medium">Amit K.</p>
+                                            <p class="text-xs text-gray-500">March 2023</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-amber-50/50 p-4 rounded-lg border border-amber-200">
+                                    <div class="flex items-center mb-3">
+                                        <div class="flex mr-2">
+                                            <svg class="h-5 w-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"
+                                                role="img" aria-label="Star rating">
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg class="h-5 w-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"
+                                                role="img" aria-label="Star rating">
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg class="h-5 w-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"
+                                                role="img" aria-label="Star rating">
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg class="h-5 w-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"
+                                                role="img" aria-label="Star rating">
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg class="h-5 w-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"
+                                                role="img" aria-label="Star rating">
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <span class="text-sm font-medium text-gray-700">5.0</span>
+                                    </div>
+                                    <p class="text-gray-700 italic mb-3">"The Wildlife Explorer package was perfect for
+                                        our
+                                        family. Comfortable stay, great food, and we were lucky to spot a tiger with
+                                        cubs!"
+                                    </p>
+                                    <div class="flex items-center">
+                                        <div
+                                            class="h-8 w-8 rounded-full bg-amber-200 mr-2 flex items-center justify-center text-amber-800 font-medium">
+                                            PS</div>
+                                        <div>
+                                            <p class="text-sm font-medium">Priya S.</p>
+                                            <p class="text-xs text-gray-500">January 2023</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-amber-50/50 p-4 rounded-lg border border-amber-200">
+                                    <div class="flex items-center mb-3">
+                                        <div class="flex mr-2">
+                                            <svg class="h-5 w-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"
+                                                role="img" aria-label="Star rating">
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg class="h-5 w-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"
+                                                role="img" aria-label="Star rating">
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg class="h-5 w-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"
+                                                role="img" aria-label="Star rating">
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg class="h-5 w-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"
+                                                role="img" aria-label="Star rating">
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg class="h-5 w-5 text-amber-500/50" fill="currentColor"
+                                                viewBox="0 0 20 20" role="img" aria-label="Star rating">
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <span class="text-sm font-medium text-gray-700">4.5</span>
+                                    </div>
+                                    <p class="text-gray-700 italic mb-3">"Great value for money with the Tiger Trail
+                                        Express. Didn't see a tiger but the experience was still amazing. Would
+                                        recommend
+                                        for budget travelers."</p>
+                                    <div class="flex items-center">
+                                        <div
+                                            class="h-8 w-8 rounded-full bg-amber-200 mr-2 flex items-center justify-center text-amber-800 font-medium">
+                                            RM</div>
+                                        <div>
+                                            <p class="text-sm font-medium">Rahul M.</p>
+                                            <p class="text-xs text-gray-500">December 2022</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-        <!-- Custom CSS for Animations -->
-      </section>
+                    <!-- FAQ Section -->
+                    <div
+                        class="mt-12 bg-white/80 backdrop-blur-md p-6 rounded-2xl shadow-lg border border-amber-200/50">
+                        <h3 class="text-xl font-bold text-gray-900 mb-6 text-center">Frequently Asked Questions</h3>
+                        <div class="space-y-4">
+                            <div class="border-b border-amber-200 pb-4">
+                                <button
+                                    class="cursor-pointer flex justify-between items-center w-full text-left font-medium text-gray-800 hover:text-amber-700 focus:outline-none"
+                                    aria-expanded="false" aria-controls="faq1">
+                                    <span>What is the best time to visit Ranthambore for tiger sightings?</span>
+                                    <svg class="h-5 w-5 text-amber-500 transform transition-transform" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" role="img"
+                                        aria-label="Chevron down icon">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <div id="faq1" class="hidden mt-2 text-gray-600 text-sm">
+                                    <p>The best time for tiger sightings is from October to April when the weather is
+                                        cooler
+                                        and animals are more active near water sources. The park remains closed during
+                                        the
+                                        monsoon season (July to September).</p>
+                                </div>
+                            </div>
+                            <div class="border-b border-amber-200 pb-4">
+                                <button
+                                    class="cursor-pointer flex justify-between items-center w-full text-left font-medium text-gray-800 hover:text-amber-700 focus:outline-none"
+                                    aria-expanded="false" aria-controls="faq2">
+                                    <span>What's the difference between a Gypsy and Canter safari?</span>
+                                    <svg class="h-5 w-5 text-amber-500 transform transition-transform" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" role="img"
+                                        aria-label="Chevron down icon">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <div id="faq2" class="hidden mt-2 text-gray-600 text-sm">
+                                    <p>A Gypsy is a 6-seater open-top jeep ideal for small groups offering more
+                                        flexibility
+                                        and better wildlife viewing. A Canter is a 20-seater open bus more economical
+                                        for
+                                        larger groups but with less mobility.</p>
+                                </div>
+                            </div>
+                            <div class="border-b border-amber-200 pb-4">
+                                <button
+                                    class="cursor-pointer flex justify-between items-center w-full text-left font-medium text-gray-800 hover:text-amber-700 focus:outline-none"
+                                    aria-expanded="false" aria-controls="faq3">
+                                    <span>What should I wear and bring for the safari?</span>
+                                    <svg class="h-5 w-5 text-amber-500 transform transition-transform" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" role="img"
+                                        aria-label="Chevron down icon">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <div id="faq3" class="hidden mt-2 text-gray-600 text-sm">
+                                    <p>Wear earth-toned clothing (avoid bright colors), comfortable shoes, a hat, and
+                                        sunscreen. Bring binoculars, a camera, water, and any personal medications.
+                                        Winters
+                                        can be chilly, so layer appropriately.</p>
+                                </div>
+                            </div>
+                            <div class="border-b border-amber-200 pb-4">
+                                <button
+                                    class="cursor-pointer flex justify-between items-center w-full text-left font-medium text-gray-800 hover:text-amber-700 focus:outline-none"
+                                    aria-expanded="false" aria-controls="faq4">
+                                    <span>Are children allowed on safaris?</span>
+                                    <svg class="h-5 w-5 text-amber-500 transform transition-transform" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" role="img"
+                                        aria-label="Chevron down icon">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <div id="faq4" class="hidden mt-2 text-gray-600 text-sm">
+                                    <p>Yes, children are allowed but must be supervised at all times. Children under 5
+                                        years
+                                        may find the bumpy rides uncomfortable. We recommend private Gypsy safaris for
+                                        families with young children.</p>
+                                </div>
+                            </div>
+                            <div class="border-b border-amber-200 pb-4">
+                                <button
+                                    class="cursor-pointer flex justify-between items-center w-full text-left font-medium text-gray-800 hover:text-amber-700 focus:outline-none"
+                                    aria-expanded="false" aria-controls="faq5">
+                                    <span>What is your cancellation policy?</span>
+                                    <svg class="h-5 w-5 text-amber-500 transform transition-transform" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" role="img"
+                                        aria-label="Chevron down icon">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <div id="faq5" class="hidden mt-2 text-gray-600 text-sm">
+                                    <p>Most packages offer free cancellation up to 15 days before travel. Within 15
+                                        days,
+                                        cancellation charges may apply. Safari permits are non-refundable once booked.
+                                        Please check individual package terms for details.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-6">
+                            <a href="#" class="text-amber-600 hover:text-amber-800 font-medium inline-flex items-center"
+                                aria-label="View all FAQs">
+                                View All FAQs
+                                <svg class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    role="img" aria-label="Chevron right icon">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7">
+                                    </path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custom CSS for Animations -->
+        </section>
     </main>
 
     <!-- Footer Section -->
     <footer class="bg-[#604019] text-white pt-8 pb-6">
-      <div class="w-full px-4 md:px-16">
-        <div class="flex flex-col lg:flex-row justify-between gap-8">
-          <!-- About Section -->
-          <div
-            class="w-full lg:w-1/3 flex flex-col items-center lg:items-start"
-          >
-            <img
-              class="h-16 cursor-pointer mb-4"
-              src="/Images/logo.svg"
-              alt="Ranthambore 360 Logo"
-            />
-            <p
-              class="mb-4 text-sm text-gray-200 font-sans font-medium text-center lg:text-left"
-            >
-              This is not an official website of "Ranthambhore National Park".
-              This is a Registered under the Private Travel Agency name Daily
-              Tour and Travel. We organize Hotel, Safari and Tour Package
-              bookings in Ranthambhore National Park.
-            </p>
-            <div class="mb-2">
-              <p class="flex items-center mb-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5 mr-2 text-amber-400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                  />
-                </svg>
-                Phone: 8076438491, 7982193537
-              </p>
-              <p class="flex items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5 mr-2 text-amber-400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  />
-                </svg>
-                Email: ranthambore360@gmail.com
-              </p>
-            </div>
-          </div>
+        <div class="w-full px-4 md:px-16">
+            <div class="flex flex-col lg:flex-row justify-between gap-8">
+                <!-- About Section -->
+                <div class="w-full lg:w-1/3 flex flex-col items-center lg:items-start">
+                    <img class="h-16 cursor-pointer mb-4" src="/Images/logo.svg" alt="Ranthambore 360 Logo">
+                    <p class="mb-4 text-sm text-gray-200 font-sans font-medium text-center lg:text-left">
+                        This is not an official website of "Ranthambhore National Park". This is a Registered under the
+                        Private Travel Agency name Daily Tour and Travel. We organize Hotel, Safari and Tour Package
+                        bookings in Ranthambhore National Park.
+                    </p>
+                    <div class="mb-2">
+                        <p class="flex items-center mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-amber-400" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            Phone: 8076438491, 7982193537
+                        </p>
+                        <p class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-amber-400" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            Email: ranthambore360@gmail.com
+                        </p>
+                    </div>
+                </div>
 
-          <!-- Links Sections -->
-          <div class="w-full flex flex-col md:flex-row gap-8">
-            <!-- Useful Links -->
-            <div class="w-full md:w-1/3">
-              <h4 class="text-lg font-semibold mb-4 text-amber-400">
-                Useful Links
-              </h4>
-              <ul class="space-y-2">
-                <li>
-                  <a
-                    href="/dist/index.html"
-                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
-                  >
-                    <i
-                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
-                    ></i>
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="safari.html"
-                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
-                  >
-                    <i
-                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
-                    ></i>
-                    Safari Booking
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="chambal.html"
-                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
-                  >
-                    <i
-                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
-                    ></i>
-                    Chambal Safari Booking
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/dist/package-booking.html"
-                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
-                  >
-                    <i
-                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
-                    ></i>
-                    Package Booking
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/dist/contact.html"
-                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
-                  >
-                    <i
-                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
-                    ></i>
-                    Contact Us
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/dist/blogs.html"
-                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
-                  >
-                    <i
-                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
-                    ></i>
-                    Blogs
-                  </a>
-                </li>
-              </ul>
-            </div>
+                <!-- Links Sections -->
+                <div class="w-full flex flex-col md:flex-row gap-8">
+                    <!-- Useful Links -->
+                    <div class="w-full md:w-1/3">
+                        <h4 class="text-lg font-semibold mb-4 text-amber-400">Useful Links</h4>
+                        <ul class="space-y-2">
+                            <li>
+                                <a href="/dist/index.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Home
+                                </a>
+                            </li>
+                            <li>
+                                <a href="safari.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Safari Booking
+                                </a>
+                            </li>
+                            <li>
+                                <a href="chambal.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Chambal Safari Booking
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/dist/package-booking.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Package Booking
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/dist/contact.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Contact Us
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/dist/blogs.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Blogs
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
 
-            <!-- Quick Links -->
-            <div class="w-full md:w-1/3">
-              <h4 class="text-lg font-semibold mb-4 text-amber-400">
-                Quick Links
-              </h4>
-              <ul class="space-y-2">
-                <li>
-                  <a
-                    href="/dist/privacy-policy.html"
-                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
-                  >
-                    <i
-                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
-                    ></i>
-                    Privacy Policy
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/dist/Cancellatiion-Policy.html"
-                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
-                  >
-                    <i
-                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
-                    ></i>
-                    Cancellation Policy
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/dist/term-condition.html"
-                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
-                  >
-                    <i
-                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
-                    ></i>
-                    Terms & Condition
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/dist/how-to-reach.html"
-                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
-                  >
-                    <i
-                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
-                    ></i>
-                    How To Reach
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/dist/about.html"
-                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
-                  >
-                    <i
-                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
-                    ></i>
-                    About Us
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/dist/support.html"
-                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
-                  >
-                    <i
-                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
-                    ></i>
-                    Support
-                  </a>
-                </li>
-              </ul>
+                    <!-- Quick Links -->
+                    <div class="w-full md:w-1/3">
+                        <h4 class="text-lg font-semibold mb-4 text-amber-400">Quick Links</h4>
+                        <ul class="space-y-2">
+                            <li>
+                                <a href="/dist/privacy-policy.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Privacy Policy
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/dist/Cancellatiion-Policy.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Cancellation Policy
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/dist/term-condition.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Terms & Condition
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/dist/how-to-reach.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    How To Reach
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/dist/about.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    About Us
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/dist/support.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Support
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Gallery Section -->
+                    <div class="w-full md:w-1/3">
+                        <h4 class="text-lg font-semibold mb-4 text-amber-400">Our Gallery</h4>
+                        <div class="grid grid-cols-3 gap-2">
+                            <img src="/Images/Sanbar Deer.jpg" alt="Gallery Image 1"
+                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
+                            <img src="/Images/Black Buck Sighting.jpg" alt="Gallery Image 2"
+                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
+                            <img src="/Images/Tiger and cub.jpg" alt="Gallery Image 3"
+                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
+                            <img src="/Images/Crocodile in River.jpg" alt="Gallery Image 4"
+                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
+                            <img src="/Images/Chambal Boating.jpg" alt="Gallery Image 5"
+                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
+                            <img src="/Images/Birds Paradise.jpg" alt="Gallery Image 6"
+                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Gallery Section -->
-            <div class="w-full md:w-1/3">
-              <h4 class="text-lg font-semibold mb-4 text-amber-400">
-                Our Gallery
-              </h4>
-              <div class="grid grid-cols-3 gap-2">
-                <img
-                  src="/Images/Sanbar Deer.jpg"
-                  alt="Gallery Image 1"
-                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
-                />
-                <img
-                  src="/Images/Black Buck Sighting.jpg"
-                  alt="Gallery Image 2"
-                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
-                />
-                <img
-                  src="/Images/Tiger and cub.jpg"
-                  alt="Gallery Image 3"
-                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
-                />
-                <img
-                  src="/Images/Crocodile in River.jpg"
-                  alt="Gallery Image 4"
-                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
-                />
-                <img
-                  src="/Images/Chambal Boating.jpg"
-                  alt="Gallery Image 5"
-                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
-                />
-                <img
-                  src="/Images/Birds Paradise.jpg"
-                  alt="Gallery Image 6"
-                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
-                />
-              </div>
+            <!-- Address and Copyright -->
+            <div class="mt-8 pt-6 border-t border-[#fff]">
+                <p class="text-center mb-2 text-[#fff]">
+                    <span class="font-bold bg-amber-400 px-2 py-1 text-gray-900 rounded">Daily Tour and Travel Delhi
+                        110092 Address</span> : A-2 Second Floor Ganesh Nagar, Pandav Nagar, Delhi 110092
+                </p>
+                <p class="text-center text-[#fff] text-sm">
+                    © Copyright Ranthambore. All Rights Reserved
+                </p>
             </div>
-          </div>
         </div>
-
-        <!-- Address and Copyright -->
-        <div class="mt-8 pt-6 border-t border-[#fff]">
-          <p class="text-center mb-2 text-[#fff]">
-            <span class="font-bold bg-amber-400 px-2 py-1 text-gray-900 rounded"
-              >Daily Tour and Travel Delhi 110092 Address</span
-            >
-            : A-2 Second Floor Ganesh Nagar, Pandav Nagar, Delhi 110092
-          </p>
-          <p class="text-center text-[#fff] text-sm">
-            © Copyright Ranthambore. All Rights Reserved
-          </p>
-        </div>
-      </div>
     </footer>
     <script src="/JS/app.js"></script>
-  </body>
+    <script src="/JS/package.js"></script>
+</body>
+
 </html>
