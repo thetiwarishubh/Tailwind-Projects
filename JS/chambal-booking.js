@@ -456,7 +456,7 @@ function startPaymentProcess() {
   // Create payment modal
   const paymentModal = document.createElement("div");
   paymentModal.className =
-    "fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4";
+    "fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center p-4";
   paymentModal.innerHTML = `
                 <div class="bg-white rounded-2xl max-w-md w-full p-6">
                     <div class="text-center">
@@ -490,7 +490,7 @@ function startPaymentProcess() {
                             </div>
                             <h3 class="text-2xl font-bold text-green-600 mb-2">Payment Successful!</h3>
                             <p class="text-gray-600 mb-6">Your booking has been confirmed.</p>
-                            <button onclick="showBookingConfirmation()" class="w-full bg-green-500 text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-600 transition-colors">
+                            <button onclick="showBookingConfirmation()" class="cursor-pointer w-full bg-[#604018] text-white py-3 px-6 rounded-lg font-semibold hover:bg-[#ff7518] transition-colors">
                                 View Booking Details
                             </button>
                         </div>
@@ -504,7 +504,7 @@ function startPaymentProcess() {
   setTimeout(() => {
     document.getElementById("payment-step-1").classList.add("hidden");
     document.getElementById("payment-step-2").classList.remove("hidden");
-  }, 1500);
+  }, 800);
 }
 
 // Show booking confirmation
@@ -524,13 +524,13 @@ function showBookingConfirmation() {
   // Create confirmation modal
   const confirmationModal = document.createElement("div");
   confirmationModal.className =
-    "fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4";
+    "fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center p-4";
   confirmationModal.innerHTML = `
                 <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
                     <div class="p-6 border-b border-gray-200">
                         <div class="flex items-center justify-between">
                             <h2 class="text-2xl font-bold text-green-600">Booking Confirmed!</h2>
-                            <button onclick="this.parentElement.parentElement.parentElement.parentElement.remove(); resetForm()" class="text-gray-500 hover:text-gray-700">
+                            <button onclick="this.parentElement.parentElement.parentElement.parentElement.remove(); document.body.style.overflow=''; resetForm()" class="text-gray-500 hover:text-gray-700">
                                 <i class="fas fa-times text-2xl"></i>
                             </button>
                         </div>
@@ -651,13 +651,13 @@ function showBookingConfirmation() {
             `;
 
   document.body.appendChild(confirmationModal);
+  document.body.style.overflow = 'hidden'
 
   // Reset form after showing confirmation
   document.getElementById("btn-text").innerHTML =
     '<i class="fas fa-credit-card mr-2"></i>Proceed to Payment';
   document.getElementById("loading-spinner").classList.add("hidden");
 }
-
 // Reset form function
 function resetForm() {
   document.getElementById("booking-form").reset();
@@ -726,17 +726,17 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("comparison-modal").classList.add("hidden");
     });
 
-    // Close Modal from escape button
+  // Close Modal from escape button
 
-     document.addEventListener('keydown', (e)=> {
-        if(e.key === 'Escape'){
-            document.getElementById("comparison-modal").classList.add("hidden");
-            document.getElementById("gallery-modal").classList.add("hidden");
-            document.getElementById("calculator-modal").classList.add("hidden");
-            document.getElementById("availability-modal").classList.add("hidden");
-            document.getElementById("safari-map-modal").classList.add("hidden");
-        }
-    })
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      document.getElementById("comparison-modal").classList.add("hidden");
+      document.getElementById("gallery-modal").classList.add("hidden");
+      document.getElementById("calculator-modal").classList.add("hidden");
+      document.getElementById("availability-modal").classList.add("hidden");
+      document.getElementById("safari-map-modal").classList.add("hidden");
+    }
+  });
 
   document
     .getElementById("view-gallery-btn")
@@ -791,20 +791,22 @@ document.addEventListener("DOMContentLoaded", function () {
     ?.addEventListener("input", updateCalculator);
 
   // Enhanced floating buttons
-  const floatingWhatsAppBtn = document.getElementById('floating-whatsapp-btn');
+  const floatingWhatsAppBtn = document.getElementById("floating-whatsapp-btn");
   if (floatingWhatsAppBtn) {
-    floatingWhatsAppBtn.addEventListener('click', function() {
+    floatingWhatsAppBtn.addEventListener("click", function () {
       const message = `🌊 Hi! I'm interested in Chambal Safari booking. Can you help me?`;
-      const whatsappURL = `https://wa.me/918076438491?text=${encodeURIComponent(message)}`;
-      window.open(whatsappURL, '_blank');
+      const whatsappURL = `https://wa.me/918076438491?text=${encodeURIComponent(
+        message
+      )}`;
+      window.open(whatsappURL, "_blank");
     });
   }
-  
+
   // Floating Call button functionality
-  const floatingCallBtn = document.getElementById('floating-call-btn');
+  const floatingCallBtn = document.getElementById("floating-call-btn");
   if (floatingCallBtn) {
-    floatingCallBtn.addEventListener('click', function() {
-      window.location.href = 'tel:+918076438491';
+    floatingCallBtn.addEventListener("click", function () {
+      window.location.href = "tel:+918076438491";
     });
   }
 
