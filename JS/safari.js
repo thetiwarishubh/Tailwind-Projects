@@ -14,13 +14,48 @@ document.addEventListener("DOMContentLoaded", function () {
       isBookingPage,
     });
 
-    // Form submission logic for index.html
+    // =========================
+    // FORM PAGE LOGIC
+    // =========================
     if (isFormPage) {
+      // ✅ Calendar element select - Fixed selector
       const calendarEl = document.getElementById("calendar");
-      const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: "dayGridMonth",
-      });
-      calendar.render();
+
+      if (calendarEl) {
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: "dayGridMonth",
+          headerToolbar: {
+            left: "prev,next today",
+            center: "title",
+            right: "dayGridMonth",
+          },
+          dateClick: function (info) {
+            const selectedDate = info.dateStr; // YYYY-MM-DD
+            localStorage.setItem("bookingdate", selectedDate);
+
+            // Remove previous selection
+            document.querySelectorAll(".fc-day-selected").forEach((el) => {
+              el.classList.remove("fc-day-selected");
+            });
+
+            // Add selection to clicked date
+            info.dayEl.classList.add("fc-day-selected");
+
+            // Show notification if function exists
+            if (typeof showNotification === "function") {
+              showNotification(`Selected date: ${selectedDate}`, "success");
+            } else {
+              console.log(`Selected date: ${selectedDate}`);
+            }
+          },
+          validRange: {
+            start: new Date(), // Prevent past date selection
+          },
+        });
+        calendar.render();
+      } else {
+        console.error("Calendar container not found.");
+      }
 
       const form = document.getElementById("form");
       if (!form) {
@@ -39,6 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const userTiming = document.getElementById("timing")?.value;
         const safari = document.getElementById("safari")?.value;
         const zone = document.getElementById("zone")?.value;
+        const bookingDate = localStorage.getItem("bookingdate"); // ✅ Get saved date
 
         // Validate inputs
         if (
@@ -47,7 +83,8 @@ document.addEventListener("DOMContentLoaded", function () {
           !userNumber ||
           !userTiming ||
           !safari ||
-          !zone
+          !zone ||
+          !bookingDate
         ) {
           console.error("One or more input fields are missing or empty:", {
             userFullName,
@@ -56,20 +93,11 @@ document.addEventListener("DOMContentLoaded", function () {
             userTiming,
             safari,
             zone,
+            bookingDate,
           });
-          alert("Please fill out all form fields.");
+          alert("Please fill out all form fields and select a date.");
           return;
         }
-
-        // Log input values for debugging
-        console.log("Form values:", {
-          userFullName,
-          userEmail,
-          userNumber,
-          userTiming,
-          safari,
-          zone,
-        });
 
         // Store values in localStorage
         localStorage.setItem("username", userFullName);
@@ -78,18 +106,9 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("timing", userTiming);
         localStorage.setItem("safari", safari);
         localStorage.setItem("zone", zone);
+        localStorage.setItem("bookingdate", bookingDate);
 
-        // Verify stored values
-        console.log("Stored in localStorage:", {
-          username: localStorage.getItem("username"),
-          email: localStorage.getItem("email"),
-          number: localStorage.getItem("number"),
-          timing: localStorage.getItem("timing"),
-          safari: localStorage.getItem("safari"),
-          zone: localStorage.getItem("zone"),
-        });
-
-        // Redirect to the second page
+        // Redirect to booking page
         try {
           window.location.href = "create-safari-booking.html";
           console.log("Redirecting to create-safari-booking.html");
@@ -102,7 +121,9 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
-    // Data display logic for create-safari-booking.html
+    // =========================
+    // BOOKING PAGE LOGIC
+    // =========================
     if (isBookingPage) {
       // Retrieve data from localStorage
       const username = localStorage.getItem("username");
@@ -111,16 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const timing = localStorage.getItem("timing");
       const safari = localStorage.getItem("safari");
       const zone = localStorage.getItem("zone");
-
-      // Log retrieved values
-      console.log("Retrieved from localStorage:", {
-        username,
-        email,
-        number,
-        timing,
-        safari,
-        zone,
-      });
+      const bookingDate = localStorage.getItem("bookingdate");
 
       // Get DOM elements
       const displayName = document.querySelector(".display-name");
@@ -129,16 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const displaySafari = document.querySelector(".display-safari");
       const displayZone = document.querySelector(".display-zone");
       const displayTiming = document.querySelector(".display-timing");
-
-      // Log DOM elements
-      console.log("DOM elements:", {
-        displayName,
-        displayEmail,
-        displayMobile,
-        displaySafari,
-        displayZone,
-        displayTiming,
-      });
+      const displayDate = document.querySelector(".display-date");
 
       // Update DOM with data or fallback
       if (username && displayName) displayName.textContent = username;
@@ -158,13 +161,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (timing && displayTiming) displayTiming.textContent = timing;
       else if (displayTiming) displayTiming.textContent = "N/A";
+
+      if (bookingDate && displayDate) displayDate.textContent = bookingDate;
+      else if (displayDate) displayDate.textContent = "N/A";
     }
   } catch (error) {
     console.error("Error in script execution:", error);
     alert("An error occurred. Please check the console for details.");
   }
+
+  // =========================
+  // ADD PASSENGER ROWS
+  // =========================
   let rowCount = 0; // Initialize row counter
-  const addMemberBtn = document.getElementById('add-member-btn');
+  const addMemberBtn = document.getElementById("add-member-btn");
 
   function addRow() {
     rowCount++; // Increment row number
@@ -248,9 +258,12 @@ document.addEventListener("DOMContentLoaded", function () {
         <td class="p-1"><input type="text" class="w-full p-1 border border-gray-300 rounded" placeholder="ID Number"></td>
         <td class="p-1"><button class="w-full px-6 py-1 border border-gray-300 rounded cursor-pointer bg-[#FF0000]">X</button></td>
     `;
-    tableBody.appendChild(newRow); // Append the new row to the table body
+    tableBody.appendChild(newRow);
   }
-  addMemberBtn.addEventListener('click', ()=> {
-    addRow()
-  })
+
+  if (addMemberBtn) {
+    addMemberBtn.addEventListener("click", () => {
+      addRow();
+    });
+  }
 });
