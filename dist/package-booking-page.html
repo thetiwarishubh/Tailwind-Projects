@@ -61,27 +61,7 @@
 
       #hotelModal.hidden .bg-white {
         transform: translateY(20px);
-      }
-
-      .modalDiv {
-        border: 3px solid #0000;
-        border-radius: 12px;
-        background: linear-gradient(#f8f8f8, #ffffff) padding-box,
-          linear-gradient(var(--angle), #020202, #01d6fc) border-box;
-        animation: 2s rotate linear infinite;
-      }
-
-      @keyframes rotate {
-        to {
-          --angle: 360deg;
-        }
-      }
-
-      @property --angle {
-        syntax: "<angle>";
-        initial-value: 0deg;
-        inherits: false;
-      }
+      }    
     </style>
   </head>
 
@@ -1200,7 +1180,7 @@
 
         <!-- Book Now Button -->
         <button
-          class="cursor-pointer w-full bg-[#ff7518] hover:bg-[#e65c00] text-white py-3 px-4 rounded-lg transition-colors duration-300 font-medium"
+          class="modalBookButton cursor-pointer w-full bg-[#ff7518] hover:bg-[#e65c00] text-white py-3 px-4 rounded-lg transition-colors duration-300 font-medium"
         >
           Book Now
         </button>
