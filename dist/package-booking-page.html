@@ -62,6 +62,26 @@
       #hotelModal.hidden .bg-white {
         transform: translateY(20px);
       }
+
+      .modalDiv {
+        border: 3px solid #0000;
+        border-radius: 12px;
+        background: linear-gradient(#f8f8f8, #ffffff) padding-box,
+          linear-gradient(var(--angle), #020202, #01d6fc) border-box;
+        animation: 2s rotate linear infinite;
+      }
+
+      @keyframes rotate {
+        to {
+          --angle: 360deg;
+        }
+      }
+
+      @property --angle {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+      }
     </style>
   </head>
 
@@ -1028,10 +1048,10 @@
     <!-- Modal for Hotel Details -->
     <div
       id="hotelModal"
-      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
+      class="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50 hidden"
     >
       <div
-        class="bg-white rounded-lg p-8 max-w-lg w-full mx-4 relative shadow-xl"
+        class="modalDiv bg-white rounded-lg p-8 max-w-lg w-full mx-4 relative shadow-xl"
       >
         <!-- Close Button -->
         <button
