@@ -703,21 +703,21 @@
               <tbody>
                 <tr>
                   <td class="p-2 border text-center">Day 1</td>
-                  <td class="p-2 border">
+                  <td class="p-2 border text-center">
                     Arrival, Gypsy Safari in Ranthambore National Park, Dinner
                     at Resort
                   </td>
                 </tr>
                 <tr>
                   <td class="p-2 border text-center">Day 2</td>
-                  <td class="p-2 border">
+                  <td class="p-2 border text-center">
                     Chambal Gharial Safari, Recreational Activities, Evening
                     Bonfire
                   </td>
                 </tr>
                 <tr>
                   <td class="p-2 border text-center">Day 3</td>
-                  <td class="p-2 border">Breakfast, Departure</td>
+                  <td class="p-2 border text-center">Breakfast, Departure</td>
                 </tr>
               </tbody>
             </table>
@@ -1030,13 +1030,16 @@
       id="hotelModal"
       class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
     >
-      <div class="bg-white rounded-lg p-6 max-w-lg w-full mx-4 relative">
+      <div
+        class="bg-white rounded-lg p-8 max-w-lg w-full mx-4 relative shadow-xl"
+      >
+        <!-- Close Button -->
         <button
           id="closeModal"
-          class="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+          class="cursor-pointer absolute top-3 right-3 text-gray-600 hover:text-gray-800 transition-colors duration-200"
         >
           <svg
-            class="w-6 h-6"
+            class="w-7 h-7"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -1050,26 +1053,134 @@
             ></path>
           </svg>
         </button>
-        <h2
-          id="modalHotelName"
-          class="text-2xl font-semibold text-gray-800 mb-4"
-        ></h2>
+
+        <!-- Hotel Name -->
+        <h2 id="modalHotelName" class="text-3xl font-bold text-gray-800 mb-4">
+          Grand Horizon Hotel
+        </h2>
+
+        <!-- Star Rating -->
+        <div class="flex items-center mb-4">
+          <div class="flex text-yellow-400">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path
+                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+              />
+            </svg>
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path
+                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+              />
+            </svg>
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path
+                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+              />
+            </svg>
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path
+                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+              />
+            </svg>
+            <svg class="w-5 h-5 fill-current text-gray-300" viewBox="0 0 24 24">
+              <path
+                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+              />
+            </svg>
+          </div>
+          <span class="ml-2 text-sm text-gray-600">4.2 (128 reviews)</span>
+        </div>
+
+        <!-- Hotel Image -->
         <img
           id="modalHotelImage"
-          class="w-full h-48 object-cover rounded-md mb-4"
-          alt="Hotel Image"
+          src="https://via.placeholder.com/600x300"
+          class="w-full h-56 object-cover rounded-lg mb-6"
+          alt="Grand Horizon Hotel"
         />
-        <p
-          id="modalHotelPrice"
-          class="text-lg font-medium text-gray-600 mb-4"
-        ></p>
-        <p class="text-gray-600 mb-4">
-          Experience unparalleled comfort and luxury at this hotel. Enjoy
-          world-class amenities, exceptional service, and a serene environment
-          tailored to your needs.
+
+        <!-- Price and Discount -->
+        <div class="flex items-center justify-between mb-4">
+          <p id="modalHotelPrice" class="text-xl font-semibold text-gray-800">
+            $149 / night
+          </p>
+          <span class="text-sm text-green-600 font-medium">
+            15% OFF (Limited Offer)
+          </span>
+        </div>
+
+        <!-- Description -->
+        <p class="text-gray-600 mb-6 leading-relaxed">
+          Experience unparalleled comfort and luxury at the Grand Horizon Hotel.
+          Nestled in the heart of the city, enjoy world-class amenities,
+          exceptional service, and a serene environment tailored to your needs.
         </p>
+
+        <!-- Amenities -->
+        <div class="mb-6">
+          <h3 class="text-lg font-semibold text-gray-800 mb-2">Amenities</h3>
+          <ul class="grid grid-cols-2 gap-2 text-gray-600 text-sm">
+            <li class="flex items-center">
+              <svg
+                class="w-5 h-5 mr-2 text-[#ff7518]"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M5 13l4 4L19 7" />
+              </svg>
+              Free Wi-Fi
+            </li>
+            <li class="flex items-center">
+              <svg
+                class="w-5 h-5 mr-2 text-[#ff7518]"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M5 13l4 4L19 7" />
+              </svg>
+              Swimming Pool
+            </li>
+            <li class="flex items-center">
+              <svg
+                class="w-5 h-5 mr-2 text-[#ff7518]"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M5 13l4 4L19 7" />
+              </svg>
+              24/7 Room Service
+            </li>
+            <li class="flex items-center">
+              <svg
+                class="w-5 h-5 mr-2 text-[#ff7518]"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M5 13l4 4L19 7" />
+              </svg>
+              Fitness Center
+            </li>
+          </ul>
+        </div>
+
+        <!-- Check-in/Check-out Info -->
+        <div class="mb-6">
+          <h3 class="text-lg font-semibold text-gray-800 mb-2">Stay Details</h3>
+          <div class="flex justify-between text-gray-600 text-sm">
+            <div>
+              <p><strong>Check-in:</strong> 3:00 PM</p>
+              <p><strong>Check-out:</strong> 11:00 AM</p>
+            </div>
+            <div>
+              <p><strong>Guests:</strong> Up to 2 adults</p>
+              <p><strong>Room Type:</strong> Deluxe Suite</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Book Now Button -->
         <button
-          class="w-full bg-[#ff7518] hover:bg-[#e65c00] text-white py-2 px-4 rounded-md transition-colors duration-300"
+          class="cursor-pointer w-full bg-[#ff7518] hover:bg-[#e65c00] text-white py-3 px-4 rounded-lg transition-colors duration-300 font-medium"
         >
           Book Now
         </button>
@@ -1492,7 +1603,6 @@
               .getElementById(categoryButtons[btnId])
               .classList.remove("hidden");
 
-            // Update active button style
             document.querySelectorAll(".category-btn").forEach((btn) => {
               btn.classList.remove("active-category");
               btn.classList.remove("bg-[#ff7518]");
@@ -1505,16 +1615,13 @@
             this.classList.remove("text-[#6b5643]");
             this.classList.add("text-white");
 
-            // Reset slider position when switching categories
             sliders[category].currentIndex = hotelCategories[category].length;
             updateSliderPosition(category);
           });
         });
 
-        // Initialize all sliders on page load
         initSliders();
 
-        // Handle window resize
         window.addEventListener("resize", function () {
           updateSlidesPerView();
         });
