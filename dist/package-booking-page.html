@@ -1,84 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ranthambore Package Booking</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/src/output.css" />
-    <link rel="shortcut icon" href="/Images/favicon.jpg" type="image/x-icon" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/output.css">
+    <link rel="shortcut icon" href="/Images/favicon.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-      body {
+        body {
         font-family: "Poppins", sans-serif;
       }
-      html,
-      body {
-        max-width: 100%;
-        overflow-x: hidden;
-      }
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
 
-      @keyframes fade-in {
-        0% {
-          opacity: 0;
-          transform: translateY(10px);
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        100% {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .animate-fade-in {
-        animation: fade-in 0.5s ease-out forwards;
-      }
-
-      @keyframes pulse {
-        0% {
-          opacity: 0.8;
+        .animate-fade-in {
+            animation: fade-in 0.5s ease-out forwards;
         }
 
-        50% {
-          opacity: 1;
+        @keyframes pulse {
+            0% {
+                opacity: 0.8;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.8;
+            }
         }
 
-        100% {
-          opacity: 0.8;
-        }
-      }
-
-      .animate-pulse {
-        animation: pulse 2s ease-in-out infinite;
-      }
-
-      @keyframes fade-in {
-        0% {
-          opacity: 0;
-          transform: translateY(10px);
+        .animate-pulse {
+            animation: pulse 2s ease-in-out infinite;
         }
 
-        100% {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
 
-      .animate-fade-in {
-        animation: fade-in 0.5s ease-out forwards;
-      }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fade-in 0.5s ease-out forwards;
+        }
+
+        .category-btn {
+            @apply flex items-center font-sans px-4 py-2 sm:px-5 sm:text-lg rounded-full transition-all duration-300 shadow-sm;
+        }
+
+        .active-category {
+            @apply shadow-md transform -translate-y-1;
+        }
+
+        .slider-nav {
+            @apply opacity-0 invisible transition-all duration-300;
+        }
+
+        .hotel-category:hover .slider-nav {
+            @apply opacity-100 visible;
+        }
+
+        #luxury-slider,
+        #premium-slider,
+        #deluxe-slider,
+        #standard-slider {
+            @apply will-change-transform;
+        }
+
+        @media (max-width: 767px) {
+            .slider-nav {
+                @apply opacity-100 visible;
+            }
+        }
     </style>
-  </head>
+</head>
 
-  <body class="bg-gray-50">
+<body class="bg-gray-50">
     <!-- Navbar -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white shadow-lg">
+     <nav class="fixed top-0 left-0 right-0 z-50 bg-white shadow-lg">
       <!-- Top Contact Bar -->
       <div class="w-full bg-amber-900 text-white h-10 flex items-center">
         <div class="w-full px-4 lg:px-16">
@@ -264,547 +282,734 @@
       </div>
     </nav>
     <!-- Main Body -->
-    <main class="w-full mt-36">
-      <section>
-        <div class="w-full px-4 md:px-16">
-          <div class="mb-4">
-            <p class="text-[#604019] font-bold font-sans text-center my-4">
-              Select Your Hotel Room Category
-            </p>
-            <div class="flex gap-2 justify-center">
-              <button
-                class="hotel-type cursor-pointer font-sans px-2 py-1 sm:px-3 sm:text-lg bg-[#ff7518] text-[#fff] rounded-sm"
-              >
-                Luxury
-              </button>
-              <button
-                class="hotel-type cursor-pointer font-sans px-2 py-1 sm:px-3 sm:text-lg bg-[#ff7518] text-[#fff] rounded-sm"
-              >
-                Premium
-              </button>
-              <button
-                class="hotel-type cursor-pointer font-sans px-2 py-1 sm:px-3 sm:text-lg bg-[#ff7518] text-[#fff] rounded-sm"
-              >
-                Deluxe
-              </button>
-              <button
-                class="hotel-type cursor-pointer font-sans px-2 py-1 sm:px-3 sm:text-lg bg-[#ff7518] text-[#fff] rounded-sm"
-              >
-                Standard
-              </button>
+    <main class="w-full">
+        <section class="py-12 bg-white">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold text-[#3a2a1a] mb-2 font-serif">Select Your Hotel Room Category</h2>
+                    <p class="text-[#6b5643] max-w-2xl mx-auto">Discover our exquisite range of accommodations tailored
+                        to your preferences</p>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-3 mb-12">
+                    <button id="luxury-btn" class="category-btn active-category flex items-center justify-center border px-1 py-0.5 cursor-pointer rounded-md hover:bg-amber-100 hover:text-[#ff7518]">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
+                            </path>
+                        </svg>
+                        Luxury
+                    </button>
+                    <button id="premium-btn" class="category-btn flex items-center justify-center border px-1 py-0.5 cursor-pointer rounded-md hover:bg-amber-100 hover:text-[#ff7518]">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z">
+                            </path>
+                        </svg>
+                        Premium
+                    </button>
+                    <button id="deluxe-btn" class="category-btn flex items-center justify-center border px-1 py-0.5 cursor-pointer rounded-md hover:bg-amber-100 hover:text-[#ff7518]">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                        </svg>
+                        Deluxe
+                    </button>
+                    <button id="standard-btn" class="category-btn flex items-center justify-center border px-1 py-0.5 cursor-pointer rounded-md hover:bg-amber-100 hover:text-[#ff7518]">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                            </path>
+                        </svg>
+                        Standard
+                    </button>
+                </div>
+
+                <!-- Luxury Hotels Slider -->
+                <div id="luxury-hotels" class="hotel-category relative">
+                    <div class="relative overflow-hidden px-2">
+                        <div id="luxury-slider" class="flex transition-transform duration-500 ease-in-out">
+                            <!-- Slides will be added by JavaScript -->
+                        </div>
+                    </div>
+                    <button
+                        class="slider-nav prev absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white p-3 rounded-full shadow-md hover:bg-gray-100 transition-all transform -translate-x-4 luxury-prev">
+                        <svg class="w-6 h-6 text-[#ff7518]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <button
+                        class="slider-nav next absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white p-3 rounded-full shadow-md hover:bg-gray-100 transition-all transform translate-x-4 luxury-next">
+                        <svg class="w-6 h-6 text-[#ff7518]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </button>
+                    <div class="flex justify-center mt-8 space-x-2 luxury-dots">
+                        <!-- Dots will be added by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Premium Hotels Slider -->
+                <div id="premium-hotels" class="hotel-category hidden relative">
+                    <div class="relative overflow-hidden px-2">
+                        <div id="premium-slider" class="flex transition-transform duration-500 ease-in-out">
+                            <!-- Slides will be added by JavaScript -->
+                        </div>
+                    </div>
+                    <button
+                        class="slider-nav prev absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white p-3 rounded-full shadow-md hover:bg-gray-100 transition-all transform -translate-x-4 premium-prev">
+                        <svg class="w-6 h-6 text-[#ff7518]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <button
+                        class="slider-nav next absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white p-3 rounded-full shadow-md hover:bg-gray-100 transition-all transform translate-x-4 premium-next">
+                        <svg class="w-6 h-6 text-[#ff7518]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </button>
+                    <div class="flex justify-center mt-8 space-x-2 premium-dots">
+                        <!-- Dots will be added by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Deluxe Hotels Slider -->
+                <div id="deluxe-hotels" class="hotel-category hidden relative">
+                    <div class="relative overflow-hidden px-2">
+                        <div id="deluxe-slider" class="flex transition-transform duration-500 ease-in-out">
+                            <!-- Slides will be added by JavaScript -->
+                        </div>
+                    </div>
+                    <button
+                        class="slider-nav prev absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white p-3 rounded-full shadow-md hover:bg-gray-100 transition-all transform -translate-x-4 deluxe-prev">
+                        <svg class="w-6 h-6 text-[#ff7518]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <button
+                        class="slider-nav next absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white p-3 rounded-full shadow-md hover:bg-gray-100 transition-all transform translate-x-4 deluxe-next">
+                        <svg class="w-6 h-6 text-[#ff7518]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </button>
+                    <div class="flex justify-center mt-8 space-x-2 deluxe-dots">
+                        <!-- Dots will be added by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Standard Hotels Slider -->
+                <div id="standard-hotels" class="hotel-category hidden relative">
+                    <div class="relative overflow-hidden px-2">
+                        <div id="standard-slider" class="flex transition-transform duration-500 ease-in-out">
+                            <!-- Slides will be added by JavaScript -->
+                        </div>
+                    </div>
+                    <button
+                        class="slider-nav prev absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white p-3 rounded-full shadow-md hover:bg-gray-100 transition-all transform -translate-x-4 standard-prev">
+                        <svg class="w-6 h-6 text-[#ff7518]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <button
+                        class="slider-nav next absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white p-3 rounded-full shadow-md hover:bg-gray-100 transition-all transform translate-x-4 standard-next">
+                        <svg class="w-6 h-6 text-[#ff7518]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </button>
+                    <div class="flex justify-center mt-8 space-x-2 standard-dots">
+                        <!-- Dots will be added by JavaScript -->
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="flex flex-col items-center p-4 bg-gray-100">
-            <div class="flex justify-around items-center gap-3">
-              <div class="flex flex-col items-center">
-                <img
-                  src="/Images/2_Chambal Package 2.jpg"
-                  alt="Nahargarh Ranthambhore"
-                  class="w-80 h-48 object-cover"
-                />
-                <p class="mt-2 text-gray-700">Nahargarh Ranthambhore</p>
-              </div>
-              <div class="flex flex-col items-center">
-                <img
-                  src="/Images/Background Safari.jpg"
-                  alt="Bookmark Resorts"
-                  class="w-80 h-48 object-cover"
-                />
-                <p class="mt-2 text-gray-700">Bookmark Resorts</p>
-              </div>
-              <div class="flex flex-col items-center">
-                <img
-                  src="/Images/Chambal Boating.jpg"
-                  alt="Bookmark Resorts"
-                  class="w-80 h-48 object-cover"
-                />
-                <p class="mt-2 text-gray-700">Bookmark Resorts</p>
-              </div>
-            </div>
-            <div class="flex justify-center mt-4 space-x-2">
-              <span class="w-2 h-2 bg-gray-600 rounded-full"></span>
-              <!-- Current image -->
-              <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
-              <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
-              <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
-              <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
-              <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
-              <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
-              <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
-              <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
-              <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
-              <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
-              <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="w-full px-4 md:px-16 my-3">
-        <div>
-          <hr class="border border-gray-400 my-5" />
-          <div class="p-6 rounded-lg mx-auto">
-            <!-- Title -->
-            <h2
-              class="w-full text-xl md:text-2xl font-semibold md:font-bold text-amber-800 bg-rose-100 inline-block px-2 py-1 rounded"
-            >
-              Ranthambore Tour for 2 Night / 3 days with 1 Gypsy safari and 1
-              Chambal safari
-            </h2>
-
-            <!-- Rating -->
-            <div class="mt-2 text-amber-500 text-xl">★★★★☆</div>
-
-            <!-- Features -->
-            <div
-              class="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 2xl:grid-cols-6 gap-4"
-            >
-              <div class="bg-white border rounded-xl p-4 text-center">
-                <div class="text-3xl mb-2">🏨</div>
-                <p class="text-sm font-medium">
-                  2 Night / 3 Days Stay At Hotel
-                </p>
-              </div>
-
-              <div class="bg-white border rounded-xl p-4 text-center">
-                <div class="text-3xl mb-2">🍽</div>
-                <p class="text-sm font-medium">
-                  Expert Guide At The Time Of Safari
-                </p>
-              </div>
-
-              <div class="bg-white border rounded-xl p-4 text-center">
-                <div class="text-3xl mb-2">🥗</div>
-                <p class="text-sm font-medium">Meals According to Package</p>
-              </div>
-
-              <div class="bg-white border rounded-xl p-4 text-center">
-                <div class="text-3xl mb-2">🚙</div>
-                <p class="text-sm font-medium">1 time safari</p>
-              </div>
-
-              <div class="bg-white border rounded-xl p-4 text-center">
-                <div class="text-3xl mb-2">🥂</div>
-                <p class="text-sm font-medium">Welcome Drink</p>
-              </div>
-              <div class="bg-white border rounded-xl p-4 text-center">
-                <div class="text-3xl mb-2">🚙</div>
-                <p class="text-sm font-medium">1 Center Safari</p>
-              </div>
-            </div>
-          </div>
-          <hr class="border border-gray-400" />
-          <div class="py-5 px-2.5">
-            This one is the best Ranthambore Tour package as you will get a
-            chance to go on a Gypsy safari in Ranthambore National Park and also
-            you will go on a Chambal gharial safari. This package will give you
-            a chance to spot the wildlife of Ranthambore National Park and also
-            you will be able to spot the aquatic and marine species of the
-            Chambal River. Make your Ranthambore Package Booking for this
-            Ranthambore Holiday Package and spend a good time with family and
-            friends in the surroundings of this park. You can get a chance to
-            see lots of birds and crocodiles along with tigers, deer, leopards,
-            etc. During these 2-night and 3-day, you will stay in comfortable
-            accommodation and eat tasty food.
-          </div>
-          <hr class="border border-gray-400" />
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto p-6">
-            <!-- Price Includes -->
+        </section>
+        <section class="w-full px-4 md:px-16 my-3">
             <div>
-              <h3 class="text-lg font-semibold text-amber-800 mb-4">
-                Price Includes
-              </h3>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-2">
-                  <span class="text-green-600 text-xl">😊</span>
-                  <span>You can stay at your pre-booked resort</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-green-600 text-xl">😊</span>
-                  <span
-                    >You can have delicious breakfast and dinner at the
-                    pre-booked resort or hotel.</span
-                  >
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-green-600 text-xl">😊</span>
-                  <span>We will provide an expert guide for your safari.</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-green-600 text-xl">😊</span>
-                  <span
-                    >Guests can enjoy complimentary recreational activities
-                    inside the resort.</span
-                  >
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-green-600 text-xl">😊</span>
-                  <span
-                    >Experience a thrilling jungle safari in Ranthambore
-                    National Park.</span
-                  >
-                </li>
-              </ul>
+                <hr class="border border-gray-400 my-5" />
+                <div class="p-6 rounded-lg mx-auto">
+                    <!-- Title -->
+                    <h2
+                        class="w-full text-xl md:text-2xl font-semibold md:font-bold text-amber-800 bg-rose-100 inline-block px-2 py-1 rounded">
+                        Ranthambore Tour for 2 Night / 3 days with 1 Gypsy safari and 1 Chambal safari
+                    </h2>
+
+                    <!-- Rating -->
+                    <div class="mt-2 text-amber-500 text-xl">
+                        ★★★★☆
+                    </div>
+
+                    <!-- Features -->
+                    <div class="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+                        <div class="bg-white border rounded-xl p-4 text-center">
+                            <div class="text-3xl mb-2">🏨</div>
+                            <p class="text-sm font-medium">2 Night / 3 Days Stay At Hotel</p>
+                        </div>
+
+                        <div class="bg-white border rounded-xl p-4 text-center">
+                            <div class="text-3xl mb-2">🍽</div>
+                            <p class="text-sm font-medium">Expert Guide At The Time Of Safari</p>
+                        </div>
+
+                        <div class="bg-white border rounded-xl p-4 text-center">
+                            <div class="text-3xl mb-2">🥗</div>
+                            <p class="text-sm font-medium">Meals According to Package</p>
+                        </div>
+
+                        <div class="bg-white border rounded-xl p-4 text-center">
+                            <div class="text-3xl mb-2">🚙</div>
+                            <p class="text-sm font-medium">1 time safari</p>
+                        </div>
+
+                        <div class="bg-white border rounded-xl p-4 text-center">
+                            <div class="text-3xl mb-2">🥂</div>
+                            <p class="text-sm font-medium">Welcome Drink</p>
+                        </div>
+                        <div class="bg-white border rounded-xl p-4 text-center">
+                            <div class="text-3xl mb-2">🚙</div>
+                            <p class="text-sm font-medium">1 Center Safari</p>
+                        </div>
+                    </div>
+                </div>
+                <hr class="border border-gray-400" />
+                <div class=" py-5 px-2.5">
+                    This one is the best Ranthambore Tour package as you will get a chance to go on a Gypsy safari in
+                    Ranthambore National Park and also you will go on a Chambal gharial safari. This package will give
+                    you a chance to spot the wildlife of Ranthambore National Park and also you will be able to spot the
+                    aquatic and marine species of the Chambal River. Make your Ranthambore Package Booking for this
+                    Ranthambore Holiday Package and spend a good time with family and friends in the surroundings of
+                    this park. You can get a chance to see lots of birds and crocodiles along with tigers, deer,
+                    leopards, etc. During these 2-night and 3-day, you will stay in comfortable accommodation and eat
+                    tasty food.
+                </div>
+                <hr class="border border-gray-400" />
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto p-6">
+                    <!-- Price Includes -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-amber-800 mb-4">Price Includes</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-600 text-xl">😊</span>
+                                <span>You can stay at your pre-booked resort</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-600 text-xl">😊</span>
+                                <span>You can have delicious breakfast and dinner at the pre-booked resort or
+                                    hotel.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-600 text-xl">😊</span>
+                                <span>We will provide an expert guide for your safari.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-600 text-xl">😊</span>
+                                <span>Guests can enjoy complimentary recreational activities inside the resort.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-600 text-xl">😊</span>
+                                <span>Experience a thrilling jungle safari in Ranthambore National Park.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Price Excludes -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-amber-800 mb-4">Price Excludes</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-2">
+                                <span class="text-red-600 text-xl">☹️</span>
+                                <span>GST & PG charges</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-red-600 text-xl">☹️</span>
+                                <span>Any medical or emergency charge.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-red-600 text-xl">☹️</span>
+                                <span>Personal nature items like soft-drink, hard drink, laundry, camera fee, tips
+                                    etc.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-red-600 text-xl">☹️</span>
+                                <span>Any airfare, train fare, transport & sightseeing.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="my-4">
+                    <h2 class="text-[#ff7518] font-bold text-2xl text-center">
+                        Tour Plan
+                    </h2>
+                    <div class="text-center text-gray-400 cursor-not-allowed">
+                        Added in Futures....
+                    </div>
+                </div>
+
+
             </div>
 
-            <!-- Price Excludes -->
-            <div>
-              <h3 class="text-lg font-semibold text-amber-800 mb-4">
-                Price Excludes
-              </h3>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-2">
-                  <span class="text-red-600 text-xl">☹️</span>
-                  <span>GST & PG charges</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-red-600 text-xl">☹️</span>
-                  <span>Any medical or emergency charge.</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-red-600 text-xl">☹️</span>
-                  <span
-                    >Personal nature items like soft-drink, hard drink, laundry,
-                    camera fee, tips etc.</span
-                  >
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-red-600 text-xl">☹️</span>
-                  <span>Any airfare, train fare, transport & sightseeing.</span>
-                </li>
-              </ul>
+        </section>
+        <section class="w-full bg-[#f05108] py-2 fixed bottom-0 left-0 z-10">
+            <div class="px-4 sm:px-12 flex justify-between">
+                <div>
+                    <button
+                        class="text-[#fff] bg-[#0d6efd] px-2 py-1 sm:px-4 sm:py-2 border-2 border-[#fff] rounded-lg font-bold font-sans cursor-pointer">1</button>
+                    <button
+                        class="text-[#fff] firstNext px-2 py-1 sm:px-4 sm:py-2 border-2 border-[#fff] rounded-lg font-bold font-sans mx-1.5 cursor-pointer">2</button>
+                    <button
+                        class="text-[#fff] not-allowed-btn px-2 py-1 sm:px-4 sm:py-2 border-2 border-[#fff] rounded-lg font-bold font-sans cursor-pointer">3</button>
+                </div>
+                <div>
+                    <button
+                        class="firstPreBtn bg-[#FFA500] text-[#fff] px-2 py-1 sm:px-4 sm:py-2 border-2 border-[#fff] rounded-lg font-bold font-sans mx-1.5 cursor-not-allowed">Previous</button>
+                    <button
+                        class="bg-[#1AB01A] firstNext text-[#fff] px-2 py-1 sm:px-4 sm:py-2 border-2 border-[#fff] rounded-lg font-bold font-sans cursor-pointer active:scale-[0.98] transform transition duration-200">Next</button>
+                </div>
             </div>
-          </div>
-          <div class="my-4">
-            <h2 class="text-[#ff7518] font-bold text-2xl text-center">
-              Tour Plan
-            </h2>
-            <div class="text-center text-gray-400 cursor-not-allowed">
-              Added in Futures....
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="w-full bg-[#f05108] py-2 fixed bottom-0 left-0 z-10">
-        <div class="px-4 sm:px-12 flex justify-between">
-          <div>
-            <button
-              class="text-[#fff] bg-[#0d6efd] px-2 py-1 sm:px-4 sm:py-2 border-2 border-[#fff] rounded-lg font-bold font-sans cursor-pointer"
-            >
-              1
-            </button>
-            <button
-              class="text-[#fff] firstNext px-2 py-1 sm:px-4 sm:py-2 border-2 border-[#fff] rounded-lg font-bold font-sans mx-1.5 cursor-pointer"
-            >
-              2
-            </button>
-            <button
-              class="text-[#fff] not-allowed-btn px-2 py-1 sm:px-4 sm:py-2 border-2 border-[#fff] rounded-lg font-bold font-sans cursor-pointer"
-            >
-              3
-            </button>
-          </div>
-          <div>
-            <button
-              class="firstPreBtn bg-[#FFA500] text-[#fff] px-2 py-1 sm:px-4 sm:py-2 border-2 border-[#fff] rounded-lg font-bold font-sans mx-1.5 cursor-not-allowed"
-            >
-              Previous
-            </button>
-            <button
-              class="bg-[#1AB01A] firstNext text-[#fff] px-2 py-1 sm:px-4 sm:py-2 border-2 border-[#fff] rounded-lg font-bold font-sans cursor-pointer active:scale-[0.98] transform transition duration-200"
-            >
-              Next
-            </button>
-          </div>
-        </div>
-      </section>
+        </section>
     </main>
     <!-- Footer Section -->
     <footer class="bg-[#604019] text-white pt-8 pb-6">
-      <div class="container mx-auto px-4 max-w-6xl">
-        <div class="flex flex-col lg:flex-row justify-between gap-8">
-          <!-- About Section -->
-          <div
-            class="w-full lg:w-1/3 flex flex-col items-center lg:items-start"
-          >
-            <img
-              class="h-16 cursor-pointer mb-4"
-              src="/Images/logo.svg"
-              alt="Ranthambore 360 Logo"
-            />
-            <p
-              class="mb-4 text-sm text-gray-200 font-sans font-medium text-center lg:text-left"
-            >
-              This is not an official website of "Ranthambhore National Park".
-              This is a Registered under the Private Travel Agency name Daily
-              Tour and Travel. We organize Hotel, Safari and Tour Package
-              bookings in Ranthambhore National Park.
-            </p>
-            <div class="mb-2">
-              <p class="flex items-center mb-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5 mr-2 text-amber-400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                  />
-                </svg>
-                Phone: 8076438491, 7982193537
-              </p>
-              <p class="flex items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5 mr-2 text-amber-400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  />
-                </svg>
-                Email: ranthambore360@gmail.com
-              </p>
-            </div>
-          </div>
+        <div class="w-full px-4 md:px-16">
+            <div class="flex flex-col lg:flex-row justify-between gap-8">
+                <!-- About Section -->
+                <div class="w-full lg:w-1/3 flex flex-col items-center lg:items-start">
+                    <img class="h-16 cursor-pointer mb-4" src="/Images/logo.svg" alt="Ranthambore 360 Logo">
+                    <p class="mb-4 text-sm text-gray-200 font-sans font-medium text-center lg:text-left">
+                        This is not an official website of "Ranthambhore National Park". This is a Registered under the
+                        Private Travel Agency name Daily Tour and Travel. We organize Hotel, Safari and Tour Package
+                        bookings in Ranthambhore National Park.
+                    </p>
+                    <div class="mb-2">
+                        <p class="flex items-center mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-amber-400" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            Phone: 8076438491, 7982193537
+                        </p>
+                        <p class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-amber-400" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            Email: ranthambore360@gmail.com
+                        </p>
+                    </div>
+                </div>
 
-          <!-- Links Sections -->
-          <div class="w-full flex flex-col md:flex-row gap-8">
-            <!-- Useful Links -->
-            <div class="w-full md:w-1/3">
-              <h4 class="text-lg font-semibold mb-4 text-amber-400">
-                Useful Links
-              </h4>
-              <ul class="space-y-2">
-                <li>
-                  <a
-                    href="/dist/index.html"
-                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
-                  >
-                    <i
-                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
-                    ></i>
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="safari.html"
-                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
-                  >
-                    <i
-                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
-                    ></i>
-                    Safari Booking
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="chambal.html"
-                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
-                  >
-                    <i
-                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
-                    ></i>
-                    Chambal Safari Booking
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/dist/package-booking.html"
-                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
-                  >
-                    <i
-                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
-                    ></i>
-                    Package Booking
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/dist/contact.html"
-                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
-                  >
-                    <i
-                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
-                    ></i>
-                    Contact Us
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/dist/blogs.html"
-                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
-                  >
-                    <i
-                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
-                    ></i>
-                    Blogs
-                  </a>
-                </li>
-              </ul>
-            </div>
+                <!-- Links Sections -->
+                <div class="w-full flex flex-col md:flex-row gap-8">
+                    <!-- Useful Links -->
+                    <div class="w-full md:w-1/3">
+                        <h4 class="text-lg font-semibold mb-4 text-amber-400">Useful Links</h4>
+                        <ul class="space-y-2">
+                            <li>
+                                <a href="/dist/index.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Home
+                                </a>
+                            </li>
+                            <li>
+                                <a href="safari.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Safari Booking
+                                </a>
+                            </li>
+                            <li>
+                                <a href="chambal.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Chambal Safari Booking
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/dist/package-booking.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Package Booking
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/dist/contact.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Contact Us
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/dist/blogs.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Blogs
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
 
-            <!-- Quick Links -->
-            <div class="w-full md:w-1/3">
-              <h4 class="text-lg font-semibold mb-4 text-amber-400">
-                Quick Links
-              </h4>
-              <ul class="space-y-2">
-                <li>
-                  <a
-                    href="/dist/privacy-policy.html"
-                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
-                  >
-                    <i
-                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
-                    ></i>
-                    Privacy Policy
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/dist/Cancellatiion-Policy.html"
-                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
-                  >
-                    <i
-                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
-                    ></i>
-                    Cancellation Policy
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/dist/term-condition.html"
-                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
-                  >
-                    <i
-                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
-                    ></i>
-                    Terms & Condition
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/dist/how-to-reach.html"
-                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
-                  >
-                    <i
-                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
-                    ></i>
-                    How To Reach
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/dist/about.html"
-                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
-                  >
-                    <i
-                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
-                    ></i>
-                    About Us
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/dist/support.html"
-                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
-                  >
-                    <i
-                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
-                    ></i>
-                    Support
-                  </a>
-                </li>
-              </ul>
+                    <!-- Quick Links -->
+                    <div class="w-full md:w-1/3">
+                        <h4 class="text-lg font-semibold mb-4 text-amber-400">Quick Links</h4>
+                        <ul class="space-y-2">
+                            <li>
+                                <a href="/dist/privacy-policy.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Privacy Policy
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/dist/Cancellatiion-Policy.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Cancellation Policy
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/dist/term-condition.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Terms & Condition
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/dist/how-to-reach.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    How To Reach
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/dist/about.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    About Us
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/dist/support.html"
+                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
+                                    Support
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Gallery Section -->
+                    <div class="w-full md:w-1/3">
+                        <h4 class="text-lg font-semibold mb-4 text-amber-400">Our Gallery</h4>
+                        <div class="grid grid-cols-3 gap-2">
+                            <img src="/Images/Sanbar Deer.jpg" alt="Gallery Image 1"
+                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
+                            <img src="/Images/Black Buck Sighting.jpg" alt="Gallery Image 2"
+                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
+                            <img src="/Images/Tiger and cub.jpg" alt="Gallery Image 3"
+                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
+                            <img src="/Images/Crocodile in River.jpg" alt="Gallery Image 4"
+                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
+                            <img src="/Images/Chambal Boating.jpg" alt="Gallery Image 5"
+                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
+                            <img src="/Images/Birds Paradise.jpg" alt="Gallery Image 6"
+                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Gallery Section -->
-            <div class="w-full md:w-1/3">
-              <h4 class="text-lg font-semibold mb-4 text-amber-400">
-                Our Gallery
-              </h4>
-              <div class="grid grid-cols-3 gap-2">
-                <img
-                  src="/Images/Sanbar Deer.jpg"
-                  alt="Gallery Image 1"
-                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
-                />
-                <img
-                  src="/Images/Black Buck Sighting.jpg"
-                  alt="Gallery Image 2"
-                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
-                />
-                <img
-                  src="/Images/Tiger and cub.jpg"
-                  alt="Gallery Image 3"
-                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
-                />
-                <img
-                  src="/Images/Crocodile in River.jpg"
-                  alt="Gallery Image 4"
-                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
-                />
-                <img
-                  src="/Images/Chambal Boating.jpg"
-                  alt="Gallery Image 5"
-                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
-                />
-                <img
-                  src="/Images/Birds Paradise.jpg"
-                  alt="Gallery Image 6"
-                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
-                />
-              </div>
+            <!-- Address and Copyright -->
+            <div class="mt-8 pt-6 border-t border-[#fff]">
+                <p class="text-center mb-2 text-[#fff]">
+                    <span class="font-bold bg-amber-400 px-2 py-1 text-gray-900 rounded">Daily Tour and Travel Delhi
+                        110092 Address</span> : A-2 Second Floor Ganesh Nagar, Pandav Nagar, Delhi 110092
+                </p>
+                <p class="text-center text-[#fff] text-sm">
+                    © Copyright Ranthambore. All Rights Reserved
+                </p>
             </div>
-          </div>
         </div>
-
-        <!-- Address and Copyright -->
-        <div class="mt-8 pt-6 border-t border-[#fff]">
-          <p class="text-center mb-2 text-[#fff]">
-            <span class="font-bold bg-amber-400 px-2 py-1 text-gray-900 rounded"
-              >Daily Tour and Travel Delhi 110092 Address</span
-            >
-            : A-2 Second Floor Ganesh Nagar, Pandav Nagar, Delhi 110092
-          </p>
-          <p class="text-center text-[#fff] text-sm">
-            © Copyright Ranthambore. All Rights Reserved
-          </p>
-        </div>
-      </div>
     </footer>
     <script src="/JS/app.js"></script>
     <script>
-      const nextButton = document.querySelectorAll(".firstNext");
-      nextButton.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          window.location.href = "package-final-booking-page.html";
-        });
-      });
-      const notAllowedBtn = document.querySelector(".not-allowed-btn");
-      notAllowedBtn.addEventListener("click", () => {
-        alert("Coming soon! This feature will be updated in the future.");
-        window.location.href = "index.html";
-      });
+        const nextButton = document.querySelectorAll('.firstNext');
+        nextButton.forEach(btn => {
+            btn.addEventListener('click', () => {
+                window.location.href = 'package-final-booking-page.html'
+            })
+        })
+        document.addEventListener('DOMContentLoaded', function () {
+            // Hotel data for each category
+            const hotelCategories = {
+                luxury: [
+                    { img: "/Images/luxury-hotel-1.jpg", alt: "Luxury Hotel 1", name: "Grand Luxury Resort", price: "₹25,000/night" },
+                    { img: "/Images/luxury-hotel-1.jpg", alt: "Luxury Hotel 2", name: "Royal Palace Hotel", price: "₹22,500/night" },
+                    { img: "/Images/luxury-hotel-1.jpg", alt: "Luxury Hotel 3", name: "Diamond Suites", price: "₹28,000/night" },
+                    { img: "/Images/luxury-hotel-1.jpg", alt: "Luxury Hotel 4", name: "Oceanview Penthouse", price: "₹30,000/night" },
+                    { img: "/Images/luxury-hotel-1.jpg", alt: "Luxury Hotel 5", name: "Presidential Suite", price: "₹35,000/night" }
+                ],
+                premium: [
+                    { img: "/Images/premium-hotel.jpg", alt: "Premium Hotel 1", name: "Premium Heights", price: "₹15,000/night" },
+                    { img: "/Images/premium-hotel.jpg", alt: "Premium Hotel 2", name: "Executive Suites", price: "₹14,000/night" },
+                    { img: "/Images/premium-hotel.jpg", alt: "Premium Hotel 3", name: "Comfort Towers", price: "₹16,500/night" },
+                    { img: "/Images/premium-hotel.jpg", alt: "Premium Hotel 4", name: "Urban Retreat", price: "₹13,500/night" },
+                    { img: "/Images/premium-hotel.jpg", alt: "Premium Hotel 5", name: "Business Class", price: "₹17,000/night" }
+                ],
+                deluxe: [
+                    { img: "/Images/deluxe-hotel.jpg", alt: "Deluxe Hotel 1", name: "Deluxe Gardens", price: "₹10,000/night" },
+                    { img: "/Images/deluxe-hotel.jpg", alt: "Deluxe Hotel 2", name: "Sunset Deluxe", price: "₹9,500/night" },
+                    { img: "/Images/deluxe-hotel.jpg", alt: "Deluxe Hotel 3", name: "Mountain View", price: "₹11,000/night" },
+                    { img: "/Images/deluxe-hotel.jpg", alt: "Deluxe Hotel 4", name: "Cityscape Deluxe", price: "₹10,500/night" },
+                    { img: "/Images/deluxe-hotel.jpg", alt: "Deluxe Hotel 5", name: "Harbor Lights", price: "₹12,000/night" }
+                ],
+                standard: [
+                    { img: "/Images/standard-hotel.jpg", alt: "Standard Hotel 1", name: "Comfort Inn", price: "₹6,000/night" },
+                    { img: "/Images/standard-hotel.jpg", alt: "Standard Hotel 2", name: "Traveler's Rest", price: "₹5,500/night" },
+                    { img: "/Images/standard-hotel.jpg", alt: "Standard Hotel 3", name: "Urban Stay", price: "₹7,000/night" },
+                    { img: "/Images/standard-hotel.jpg", alt: "Standard Hotel 4", name: "Cozy Rooms", price: "₹6,500/night" },
+                    { img: "/Images/standard-hotel.jpg", alt: "Standard Hotel 5", name: "Budget Suites", price: "₹5,000/night" }
+                ]
+            };
 
-      const hoteltype = document.querySelectorAll(".hotel-type");
-      hoteltype.forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-          const text = e.target.textContent;
-          alert(`${text} ! This feature will be updated in the future.`);
+            // Slider state for each category
+            const sliders = {
+                luxury: { currentIndex: 0, interval: null, slidesPerView: 4 },
+                premium: { currentIndex: 0, interval: null, slidesPerView: 4 },
+                deluxe: { currentIndex: 0, interval: null, slidesPerView: 4 },
+                standard: { currentIndex: 0, interval: null, slidesPerView: 4 }
+            };
+
+            // Initialize all sliders
+            function initSliders() {
+                Object.keys(hotelCategories).forEach(category => {
+                    createSlider(category);
+                    startAutoSlide(category);
+                    setupNavigation(category);
+                });
+
+                // Set initial slides per view based on screen size
+                updateSlidesPerView();
+            }
+
+            // Create slider for a category
+            function createSlider(category) {
+                const slider = document.getElementById(`${category}-slider`);
+                const dotsContainer = document.querySelector(`.${category}-dots`);
+
+                // Clear existing content
+                slider.innerHTML = '';
+                dotsContainer.innerHTML = '';
+
+                // Create slides (duplicate for infinite loop)
+                const slides = [...hotelCategories[category], ...hotelCategories[category], ...hotelCategories[category]];
+
+                slides.forEach((hotel, index) => {
+                    const slide = document.createElement('div');
+                    slide.className = 'flex-shrink-0 px-3 transition-all duration-300 hover:scale-105';
+                    slide.style.width = `${100 / sliders[category].slidesPerView}%`;
+                    slide.innerHTML = `
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="${hotel.img}" alt="${hotel.alt}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                            <span class="text-white font-medium">${hotel.price}</span>
+                        </div>
+                    </div>
+                    <div class="p-4 flex-grow">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">${hotel.name}</h3>
+                        <div class="flex items-center text-yellow-400 mb-2">
+                            ${'<svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>'.repeat(5)}
+                        </div>
+                        <button class="w-full mt-2 bg-[#ff7518] hover:bg-[#e65c00] text-white py-2 px-4 rounded-md transition-colors duration-300">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            `;
+                    slider.appendChild(slide);
+                });
+
+                // Create dots
+                hotelCategories[category].forEach((_, index) => {
+                    const dot = document.createElement('span');
+                    dot.className = `w-3 h-3 rounded-full cursor-pointer transition-all ${index === 0 ? 'bg-[#ff7518] w-6' : 'bg-gray-300'}`;
+                    dot.addEventListener('click', () => goToSlide(category, index));
+                    dotsContainer.appendChild(dot);
+                });
+
+                // Set initial position (middle set of duplicates)
+                sliders[category].currentIndex = hotelCategories[category].length;
+                updateSliderPosition(category);
+            }
+
+            // Update slider position
+            function updateSliderPosition(category) {
+                const slider = document.getElementById(`${category}-slider`);
+                const slideWidth = slider.firstElementChild?.offsetWidth;
+                const gap = 24; // 24px gap between slides
+
+                if (slideWidth) {
+                    const offset = -(sliders[category].currentIndex * (slideWidth + gap));
+                    slider.style.transform = `translateX(${offset}px)`;
+
+                    // Update active dot
+                    const dots = document.querySelectorAll(`.${category}-dots span`);
+                    const realIndex = sliders[category].currentIndex % hotelCategories[category].length;
+                    dots.forEach((dot, i) => {
+                        if (i === realIndex) {
+                            dot.className = 'w-3 h-3 rounded-full cursor-pointer transition-all bg-[#ff7518] w-6';
+                        } else {
+                            dot.className = 'w-3 h-3 rounded-full cursor-pointer transition-all bg-gray-300';
+                        }
+                    });
+
+                    // Handle infinite loop
+                    if (sliders[category].currentIndex >= hotelCategories[category].length * 2) {
+                        sliders[category].currentIndex = hotelCategories[category].length;
+                        slider.style.transition = 'none';
+                        updateSliderPosition(category);
+                        setTimeout(() => {
+                            slider.style.transition = 'transform 0.5s ease-in-out';
+                        }, 0);
+                    } else if (sliders[category].currentIndex <= 0) {
+                        sliders[category].currentIndex = hotelCategories[category].length;
+                        slider.style.transition = 'none';
+                        updateSliderPosition(category);
+                        setTimeout(() => {
+                            slider.style.transition = 'transform 0.5s ease-in-out';
+                        }, 0);
+                    }
+                }
+            }
+
+            // Go to specific slide
+            function goToSlide(category, index) {
+                sliders[category].currentIndex = index + hotelCategories[category].length;
+                updateSliderPosition(category);
+
+                // Reset auto-slide timer
+                resetAutoSlide(category);
+            }
+
+            // Next slide
+            function nextSlide(category) {
+                sliders[category].currentIndex++;
+                updateSliderPosition(category);
+            }
+
+            // Previous slide
+            function prevSlide(category) {
+                sliders[category].currentIndex--;
+                updateSliderPosition(category);
+            }
+
+            // Start auto-sliding
+            function startAutoSlide(category) {
+                sliders[category].interval = setInterval(() => {
+                    nextSlide(category);
+                }, 2000);
+            }
+
+            // Reset auto-slide timer
+            function resetAutoSlide(category) {
+                clearInterval(sliders[category].interval);
+                startAutoSlide(category);
+            }
+
+            // Setup navigation arrows
+            function setupNavigation(category) {
+                document.querySelector(`.${category}-next`).addEventListener('click', () => {
+                    nextSlide(category);
+                    resetAutoSlide(category);
+                });
+
+                document.querySelector(`.${category}-prev`).addEventListener('click', () => {
+                    prevSlide(category);
+                    resetAutoSlide(category);
+                });
+            }
+
+            // Update slides per view based on screen size
+            function updateSlidesPerView() {
+                const newSlidesPerView = window.innerWidth >= 1536 ? 4 :
+                    window.innerWidth >= 1024 ? 3 :
+                        window.innerWidth >= 768 ? 2 : 1;
+
+                Object.keys(sliders).forEach(category => {
+                    sliders[category].slidesPerView = newSlidesPerView;
+                    createSlider(category);
+                });
+            }
+
+            // Category switching functionality
+            const categoryButtons = {
+                'luxury-btn': 'luxury-hotels',
+                'premium-btn': 'premium-hotels',
+                'deluxe-btn': 'deluxe-hotels',
+                'standard-btn': 'standard-hotels'
+            };
+
+            Object.keys(categoryButtons).forEach(btnId => {
+                document.getElementById(btnId).addEventListener('click', function () {
+                    // Hide all category sections
+                    document.querySelectorAll('.hotel-category').forEach(el => {
+                        el.classList.add('hidden');
+                    });
+
+                    // Show selected category
+                    const category = btnId.replace('-btn', '');
+                    document.getElementById(categoryButtons[btnId]).classList.remove('hidden');
+
+                    // Update active button style
+                    document.querySelectorAll('.category-btn').forEach(btn => {
+                        btn.classList.remove('active-category');
+                        btn.classList.remove('bg-[#ff7518]');
+                        btn.classList.add('bg-[#f0f0f0]');
+                        btn.classList.add('text-[#6b5643]');
+                    });
+                    this.classList.add('active-category');
+                    this.classList.add('bg-[#ff7518]');
+                    this.classList.remove('bg-[#f0f0f0]');
+                    this.classList.remove('text-[#6b5643]');
+                    this.classList.add('text-white');
+
+                    // Reset slider position when switching categories
+                    sliders[category].currentIndex = hotelCategories[category].length;
+                    updateSliderPosition(category);
+                });
+            });
+
+            // Initialize all sliders on page load
+            initSliders();
+
+            // Handle window resize
+            window.addEventListener('resize', function () {
+                updateSlidesPerView();
+            });
         });
-      });
+
     </script>
-  </body>
+</body>
+
 </html>
