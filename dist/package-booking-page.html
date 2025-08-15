@@ -18,63 +18,6 @@
       body {
         font-family: "Poppins", sans-serif;
       }
-      @keyframes fade-in {
-        0% {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-
-        100% {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .animate-fade-in {
-        animation: fade-in 0.5s ease-out forwards;
-      }
-
-      @keyframes pulse {
-        0% {
-          opacity: 0.8;
-        }
-
-        50% {
-          opacity: 1;
-        }
-
-        100% {
-          opacity: 0.8;
-        }
-      }
-
-      .animate-pulse {
-        animation: pulse 2s ease-in-out infinite;
-      }
-
-      @keyframes fade-in {
-        0% {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-
-        100% {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .animate-fade-in {
-        animation: fade-in 0.5s ease-out forwards;
-      }
-
-      .category-btn {
-        @apply flex items-center font-sans px-4 py-2 sm:px-5 sm:text-lg rounded-full transition-all duration-300 shadow-sm;
-      }
-
-      .active-category {
-        @apply shadow-md transform -translate-y-1;
-      }
 
       .slider-nav {
         @apply opacity-0 invisible transition-all duration-300;
@@ -97,29 +40,28 @@
         }
       }
       /* Modal Styles */
-#hotelModal {
-    transition: opacity 0.3s ease-in-out;
-}
+      #hotelModal {
+        transition: opacity 0.3s ease-in-out;
+      }
 
-#hotelModal.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
+      #hotelModal.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
 
-#hotelModal:not(.hidden) {
-    opacity: 1;
-    pointer-events: auto;
-}
+      #hotelModal:not(.hidden) {
+        opacity: 1;
+        pointer-events: auto;
+      }
 
-#hotelModal .bg-white {
-    transform: translateY(0);
-    transition: transform 0.3s ease-in-out;
-}
+      #hotelModal .bg-white {
+        transform: translateY(0);
+        transition: transform 0.3s ease-in-out;
+      }
 
-#hotelModal.hidden .bg-white {
-    transform: translateY(20px);
-}
-
+      #hotelModal.hidden .bg-white {
+        transform: translateY(20px);
+      }
     </style>
   </head>
 
@@ -751,9 +693,34 @@
             <h2 class="text-[#ff7518] font-bold text-2xl text-center">
               Tour Plan
             </h2>
-            <div class="text-center text-gray-400 cursor-not-allowed">
-              Added in Futures....
-            </div>
+            <table class="w-full text-gray-600 border-collapse">
+              <thead>
+                <tr class="bg-amber-100">
+                  <th class="p-2 border">Day</th>
+                  <th class="p-2 border">Activities</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="p-2 border text-center">Day 1</td>
+                  <td class="p-2 border">
+                    Arrival, Gypsy Safari in Ranthambore National Park, Dinner
+                    at Resort
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-2 border text-center">Day 2</td>
+                  <td class="p-2 border">
+                    Chambal Gharial Safari, Recreational Activities, Evening
+                    Bonfire
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-2 border text-center">Day 3</td>
+                  <td class="p-2 border">Breakfast, Departure</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
@@ -1111,299 +1078,447 @@
 
     <script src="/JS/app.js"></script>
     <script>
-    const nextButton = document.querySelectorAll('.firstNext');
-    nextButton.forEach(btn => {
-        btn.addEventListener('click', () => {
-            window.location.href = 'package-final-booking-page.html'
-        })
-    });
+      const nextButton = document.querySelectorAll(".firstNext");
+      nextButton.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          window.location.href = "package-final-booking-page.html";
+        });
+      });
 
-    document.addEventListener('DOMContentLoaded', function () {
+      document.addEventListener("DOMContentLoaded", function () {
         // Hotel data for each category with valid image URLs
         const hotelCategories = {
-            luxury: [
-                { img: "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?q=80&w=1170&auto=format&fit=crop", alt: "Luxury Hotel 1", name: "Grand Luxury Resort", price: "₹25,000/night" },
-                { img: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=1170&auto=format&fit=crop", alt: "Luxury Hotel 2", name: "Royal Palace Hotel", price: "₹22,500/night" },
-                { img: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1170&auto=format&fit=crop", alt: "Luxury Hotel 3", name: "Diamond Suites", price: "₹28,000/night" },
-                { img: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?q=80&w=1170&auto=format&fit=crop", alt: "Luxury Hotel 4", name: "Oceanview Penthouse", price: "₹30,000/night" },
-                { img: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1170&auto=format&fit=crop", alt: "Luxury Hotel 5", name: "Presidential Suite", price: "₹35,000/night" }
-            ],
-            premium: [
-                { img: "https://images.unsplash.com/photo-1576675762345-7d7cd80ca0eb?q=80&w=1170&auto=format&fit=crop", alt: "Premium Hotel 1", name: "Premium Heights", price: "₹15,000/night" },
-                { img: "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1170&auto=format&fit=crop", alt: "Premium Hotel 2", name: "Executive Suites", price: "₹14,000/night" },
-                { img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1170&auto=format&fit=crop", alt: "Premium Hotel 3", name: "Comfort Towers", price: "₹16,500/night" },
-                { img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1170&auto=format&fit=crop", alt: "Premium Hotel 4", name: "Urban Retreat", price: "₹13,500/night" },
-                { img: "https://images.unsplash.com/photo-1596436889106-be35e843f974?q=80&w=1170&auto=format&fit=crop", alt: "Premium Hotel 5", name: "Business Class", price: "₹17,000/night" }
-            ],
-            deluxe: [
-                { img: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1170&auto=format&fit=crop", alt: "Deluxe Hotel 1", name: "Deluxe Gardens", price: "₹10,000/night" },
-                { img: "https://images.unsplash.com/photo-1594560913035-77699d80a536?q=80&w=1170&auto=format&fit=crop", alt: "Deluxe Hotel 2", name: "Sunset Deluxe", price: "₹9,500/night" },
-                { img: "https://images.unsplash.com/photo-1578683012567-7d2193e8b297?q=80&w=1170&auto=format&fit=crop", alt: "Deluxe Hotel 3", name: "Mountain View", price: "₹11,000/night" },
-                { img: "https://images.unsplash.com/photo-1590490361670-44e1a0a8d5cb?q=80&w=1170&auto=format&fit=crop", alt: "Deluxe Hotel 4", name: "Cityscape Deluxe", price: "₹10,500/night" },
-                { img: "https://images.unsplash.com/photo-1586611292717-f828b167408c?q=80&w=1170&auto=format&fit=crop", alt: "Deluxe Hotel 5", name: "Harbor Lights", price: "₹12,000/night" }
-            ],
-            standard: [
-                { img: "https://images.unsplash.com/photo-1621293954908-9071593b6578?q=80&w=1170&auto=format&fit=crop", alt: "Standard Hotel 1", name: "Comfort Inn", price: "₹6,000/night" },
-                { img: "https://images.unsplash.com/photo-1561501878-aabd62634533?q=80&w=1170&auto=format&fit=crop", alt: "Standard Hotel 2", name: "Traveler's Rest", price: "₹5,500/night" },
-                { img: "https://images.unsplash.com/photo-1590381105924-7b6f8ed1e007?q=80&w=1170&auto=format&fit=crop", alt: "Standard Hotel 3", name: "Urban Stay", price: "₹7,000/night" },
-                { img: "https://images.unsplash.com/photo-1596394516818-2db7e3e4128d?q=80&w=1170&auto=format&fit=crop", alt: "Standard Hotel 4", name: "Cozy Rooms", price: "₹6,500/night" },
-                { img: "https://images.unsplash.com/photo-1598928636135-d146006ff4be?q=80&w=1170&auto=format&fit=crop", alt: "Standard Hotel 5", name: "Budget Suites", price: "₹5,000/night" }
-            ]
+          luxury: [
+            {
+              img: "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?q=80&w=1170&auto=format&fit=crop",
+              alt: "Luxury Hotel 1",
+              name: "Grand Luxury Resort",
+              price: "₹25,000/night",
+            },
+            {
+              img: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=1170&auto=format&fit=crop",
+              alt: "Luxury Hotel 2",
+              name: "Royal Palace Hotel",
+              price: "₹22,500/night",
+            },
+            {
+              img: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1170&auto=format&fit=crop",
+              alt: "Luxury Hotel 3",
+              name: "Diamond Suites",
+              price: "₹28,000/night",
+            },
+            {
+              img: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?q=80&w=1170&auto=format&fit=crop",
+              alt: "Luxury Hotel 4",
+              name: "Oceanview Penthouse",
+              price: "₹30,000/night",
+            },
+            {
+              img: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1170&auto=format&fit=crop",
+              alt: "Luxury Hotel 5",
+              name: "Presidential Suite",
+              price: "₹35,000/night",
+            },
+          ],
+          premium: [
+            {
+              img: "https://images.unsplash.com/photo-1576675762345-7d7cd80ca0eb?q=80&w=1170&auto=format&fit=crop",
+              alt: "Premium Hotel 1",
+              name: "Premium Heights",
+              price: "₹15,000/night",
+            },
+            {
+              img: "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1170&auto=format&fit=crop",
+              alt: "Premium Hotel 2",
+              name: "Executive Suites",
+              price: "₹14,000/night",
+            },
+            {
+              img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1170&auto=format&fit=crop",
+              alt: "Premium Hotel 3",
+              name: "Comfort Towers",
+              price: "₹16,500/night",
+            },
+            {
+              img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1170&auto=format&fit=crop",
+              alt: "Premium Hotel 4",
+              name: "Urban Retreat",
+              price: "₹13,500/night",
+            },
+            {
+              img: "https://images.unsplash.com/photo-1596436889106-be35e843f974?q=80&w=1170&auto=format&fit=crop",
+              alt: "Premium Hotel 5",
+              name: "Business Class",
+              price: "₹17,000/night",
+            },
+          ],
+          deluxe: [
+            {
+              img: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1170&auto=format&fit=crop",
+              alt: "Deluxe Hotel 1",
+              name: "Deluxe Gardens",
+              price: "₹10,000/night",
+            },
+            {
+              img: "https://images.unsplash.com/photo-1594560913035-77699d80a536?q=80&w=1170&auto=format&fit=crop",
+              alt: "Deluxe Hotel 2",
+              name: "Sunset Deluxe",
+              price: "₹9,500/night",
+            },
+            {
+              img: "https://images.unsplash.com/photo-1578683012567-7d2193e8b297?q=80&w=1170&auto=format&fit=crop",
+              alt: "Deluxe Hotel 3",
+              name: "Mountain View",
+              price: "₹11,000/night",
+            },
+            {
+              img: "https://images.unsplash.com/photo-1590490361670-44e1a0a8d5cb?q=80&w=1170&auto=format&fit=crop",
+              alt: "Deluxe Hotel 4",
+              name: "Cityscape Deluxe",
+              price: "₹10,500/night",
+            },
+            {
+              img: "https://images.unsplash.com/photo-1586611292717-f828b167408c?q=80&w=1170&auto=format&fit=crop",
+              alt: "Deluxe Hotel 5",
+              name: "Harbor Lights",
+              price: "₹12,000/night",
+            },
+          ],
+          standard: [
+            {
+              img: "https://images.unsplash.com/photo-1621293954908-9071593b6578?q=80&w=1170&auto=format&fit=crop",
+              alt: "Standard Hotel 1",
+              name: "Comfort Inn",
+              price: "₹6,000/night",
+            },
+            {
+              img: "https://images.unsplash.com/photo-1561501878-aabd62634533?q=80&w=1170&auto=format&fit=crop",
+              alt: "Standard Hotel 2",
+              name: "Traveler's Rest",
+              price: "₹5,500/night",
+            },
+            {
+              img: "https://images.unsplash.com/photo-1590381105924-7b6f8ed1e007?q=80&w=1170&auto=format&fit=crop",
+              alt: "Standard Hotel 3",
+              name: "Urban Stay",
+              price: "₹7,000/night",
+            },
+            {
+              img: "https://images.unsplash.com/photo-1596394516818-2db7e3e4128d?q=80&w=1170&auto=format&fit=crop",
+              alt: "Standard Hotel 4",
+              name: "Cozy Rooms",
+              price: "₹6,500/night",
+            },
+            {
+              img: "https://images.unsplash.com/photo-1598928636135-d146006ff4be?q=80&w=1170&auto=format&fit=crop",
+              alt: "Standard Hotel 5",
+              name: "Budget Suites",
+              price: "₹5,000/night",
+            },
+          ],
         };
 
         // Slider state for each category
         const sliders = {
-            luxury: { currentIndex: 0, interval: null, slidesPerView: 4 },
-            premium: { currentIndex: 0, interval: null, slidesPerView: 4 },
-            deluxe: { currentIndex: 0, interval: null, slidesPerView: 4 },
-            standard: { currentIndex: 0, interval: null, slidesPerView: 4 }
+          luxury: { currentIndex: 0, interval: null, slidesPerView: 4 },
+          premium: { currentIndex: 0, interval: null, slidesPerView: 4 },
+          deluxe: { currentIndex: 0, interval: null, slidesPerView: 4 },
+          standard: { currentIndex: 0, interval: null, slidesPerView: 4 },
         };
 
         // Initialize all sliders
         function initSliders() {
-            Object.keys(hotelCategories).forEach(category => {
-                createSlider(category);
-                startAutoSlide(category);
-                setupNavigation(category);
-            });
+          Object.keys(hotelCategories).forEach((category) => {
+            createSlider(category);
+            startAutoSlide(category);
+            setupNavigation(category);
+          });
 
-            // Set initial slides per view based on screen size
-            updateSlidesPerView();
+          // Set initial slides per view based on screen size
+          updateSlidesPerView();
         }
 
         // Create slider for a category
         function createSlider(category) {
-            const slider = document.getElementById(`${category}-slider`);
-            const dotsContainer = document.querySelector(`.${category}-dots`);
+          const slider = document.getElementById(`${category}-slider`);
+          const dotsContainer = document.querySelector(`.${category}-dots`);
 
-            // Clear existing content
-            slider.innerHTML = '';
-            dotsContainer.innerHTML = '';
+          // Clear existing content
+          slider.innerHTML = "";
+          dotsContainer.innerHTML = "";
 
-            // Create slides (duplicate for infinite loop)
-            const slides = [...hotelCategories[category], ...hotelCategories[category], ...hotelCategories[category]];
+          // Create slides (duplicate for infinite loop)
+          const slides = [
+            ...hotelCategories[category],
+            ...hotelCategories[category],
+            ...hotelCategories[category],
+          ];
 
-            slides.forEach((hotel, index) => {
-                const slide = document.createElement('div');
-                slide.className = 'flex-shrink-0 px-3 transition-all duration-300 hover:scale-105';
-                slide.style.width = `${100 / sliders[category].slidesPerView}%`;
-                slide.innerHTML = `
+          slides.forEach((hotel, index) => {
+            const slide = document.createElement("div");
+            slide.className =
+              "flex-shrink-0 px-3 transition-all duration-300 hover:scale-105";
+            slide.style.width = `${100 / sliders[category].slidesPerView}%`;
+            slide.innerHTML = `
                     <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
                         <div class="relative overflow-hidden h-48">
-                            <img src="${hotel.img}" alt="${hotel.alt}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                            <img src="${hotel.img}" alt="${
+              hotel.alt
+            }" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
                             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                                <span class="text-white font-medium">${hotel.price}</span>
+                                <span class="text-white font-medium">${
+                                  hotel.price
+                                }</span>
                             </div>
                         </div>
                         <div class="p-4 flex-grow">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-1">${hotel.name}</h3>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-1">${
+                              hotel.name
+                            }</h3>
                             <div class="flex items-center text-yellow-400 mb-2">
-                                ${'<svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>'.repeat(5)}
+                                ${'<svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>'.repeat(
+                                  5
+                                )}
                             </div>
-                            <button class="view-details-btn w-full mt-2 bg-[#ff7518] hover:bg-[#e65c00] text-white py-2 px-4 rounded-md transition-colors duration-300" data-hotel-name="${hotel.name}" data-hotel-img="${hotel.img}" data-hotel-price="${hotel.price}">
+                            <button class="view-details-btn w-full mt-2 bg-[#ff7518] hover:bg-[#e65c00] text-white py-2 px-4 rounded-md transition-colors duration-300" data-hotel-name="${
+                              hotel.name
+                            }" data-hotel-img="${
+              hotel.img
+            }" data-hotel-price="${hotel.price}">
                                 View Details
                             </button>
                         </div>
                     </div>
                 `;
-                slider.appendChild(slide);
+            slider.appendChild(slide);
+          });
+
+          // Add event listeners to View Details buttons
+          document
+            .querySelectorAll(`#${category}-slider .view-details-btn`)
+            .forEach((button) => {
+              button.addEventListener("click", () => {
+                openModal(
+                  button.dataset.hotelName,
+                  button.dataset.hotelImg,
+                  button.dataset.hotelPrice
+                );
+              });
             });
 
-            // Add event listeners to View Details buttons
-            document.querySelectorAll(`#${category}-slider .view-details-btn`).forEach(button => {
-                button.addEventListener('click', () => {
-                    openModal(button.dataset.hotelName, button.dataset.hotelImg, button.dataset.hotelPrice);
-                });
-            });
+          // Create dots
+          hotelCategories[category].forEach((_, index) => {
+            const dot = document.createElement("span");
+            dot.className = `w-3 h-3 rounded-full cursor-pointer transition-all ${
+              index === 0 ? "bg-[#ff7518] w-6" : "bg-gray-300"
+            }`;
+            dot.addEventListener("click", () => goToSlide(category, index));
+            dotsContainer.appendChild(dot);
+          });
 
-            // Create dots
-            hotelCategories[category].forEach((_, index) => {
-                const dot = document.createElement('span');
-                dot.className = `w-3 h-3 rounded-full cursor-pointer transition-all ${index === 0 ? 'bg-[#ff7518] w-6' : 'bg-gray-300'}`;
-                dot.addEventListener('click', () => goToSlide(category, index));
-                dotsContainer.appendChild(dot);
-            });
-
-            // Set initial position (middle set of duplicates)
-            sliders[category].currentIndex = hotelCategories[category].length;
-            updateSliderPosition(category);
+          // Set initial position (middle set of duplicates)
+          sliders[category].currentIndex = hotelCategories[category].length;
+          updateSliderPosition(category);
         }
 
         // Update slider position
         function updateSliderPosition(category) {
-            const slider = document.getElementById(`${category}-slider`);
-            const slideWidth = slider.firstElementChild?.offsetWidth;
-            const gap = 24; // 24px gap between slides
+          const slider = document.getElementById(`${category}-slider`);
+          const slideWidth = slider.firstElementChild?.offsetWidth;
+          const gap = 24; // 24px gap between slides
 
-            if (slideWidth) {
-                const offset = -(sliders[category].currentIndex * (slideWidth + gap));
-                slider.style.transform = `translateX(${offset}px)`;
+          if (slideWidth) {
+            const offset = -(
+              sliders[category].currentIndex *
+              (slideWidth + gap)
+            );
+            slider.style.transform = `translateX(${offset}px)`;
 
-                // Update active dot
-                const dots = document.querySelectorAll(`.${category}-dots span`);
-                const realIndex = sliders[category].currentIndex % hotelCategories[category].length;
-                dots.forEach((dot, i) => {
-                    if (i === realIndex) {
-                        dot.className = 'w-3 h-3 rounded-full cursor-pointer transition-all bg-[#ff7518] w-6';
-                    } else {
-                        dot.className = 'w-3 h-3 rounded-full cursor-pointer transition-all bg-gray-300';
-                    }
-                });
+            // Update active dot
+            const dots = document.querySelectorAll(`.${category}-dots span`);
+            const realIndex =
+              sliders[category].currentIndex % hotelCategories[category].length;
+            dots.forEach((dot, i) => {
+              if (i === realIndex) {
+                dot.className =
+                  "w-3 h-3 rounded-full cursor-pointer transition-all bg-[#ff7518] w-6";
+              } else {
+                dot.className =
+                  "w-3 h-3 rounded-full cursor-pointer transition-all bg-gray-300";
+              }
+            });
 
-                // Handle infinite loop
-                if (sliders[category].currentIndex >= hotelCategories[category].length * 2) {
-                    sliders[category].currentIndex = hotelCategories[category].length;
-                    slider.style.transition = 'none';
-                    updateSliderPosition(category);
-                    setTimeout(() => {
-                        slider.style.transition = 'transform 0.5s ease-in-out';
-                    }, 0);
-                } else if (sliders[category].currentIndex <= 0) {
-                    sliders[category].currentIndex = hotelCategories[category].length;
-                    slider.style.transition = 'none';
-                    updateSliderPosition(category);
-                    setTimeout(() => {
-                        slider.style.transition = 'transform 0.5s ease-in-out';
-                    }, 0);
-                }
+            // Handle infinite loop
+            if (
+              sliders[category].currentIndex >=
+              hotelCategories[category].length * 2
+            ) {
+              sliders[category].currentIndex = hotelCategories[category].length;
+              slider.style.transition = "none";
+              updateSliderPosition(category);
+              setTimeout(() => {
+                slider.style.transition = "transform 0.5s ease-in-out";
+              }, 0);
+            } else if (sliders[category].currentIndex <= 0) {
+              sliders[category].currentIndex = hotelCategories[category].length;
+              slider.style.transition = "none";
+              updateSliderPosition(category);
+              setTimeout(() => {
+                slider.style.transition = "transform 0.5s ease-in-out";
+              }, 0);
             }
+          }
         }
 
         // Go to specific slide
         function goToSlide(category, index) {
-            sliders[category].currentIndex = index + hotelCategories[category].length;
-            updateSliderPosition(category);
+          sliders[category].currentIndex =
+            index + hotelCategories[category].length;
+          updateSliderPosition(category);
 
-            // Reset auto-slide timer
-            resetAutoSlide(category);
+          // Reset auto-slide timer
+          resetAutoSlide(category);
         }
 
         // Next slide
         function nextSlide(category) {
-            sliders[category].currentIndex++;
-            updateSliderPosition(category);
+          sliders[category].currentIndex++;
+          updateSliderPosition(category);
         }
 
         // Previous slide
         function prevSlide(category) {
-            sliders[category].currentIndex--;
-            updateSliderPosition(category);
+          sliders[category].currentIndex--;
+          updateSliderPosition(category);
         }
 
         // Start auto-sliding
         function startAutoSlide(category) {
-            sliders[category].interval = setInterval(() => {
-                nextSlide(category);
-            }, 2000);
+          sliders[category].interval = setInterval(() => {
+            nextSlide(category);
+          }, 2000);
         }
 
         // Reset auto-slide timer
         function resetAutoSlide(category) {
-            clearInterval(sliders[category].interval);
-            startAutoSlide(category);
+          clearInterval(sliders[category].interval);
+          startAutoSlide(category);
         }
 
         // Setup navigation arrows
         function setupNavigation(category) {
-            document.querySelector(`.${category}-next`).addEventListener('click', () => {
-                nextSlide(category);
-                resetAutoSlide(category);
+          document
+            .querySelector(`.${category}-next`)
+            .addEventListener("click", () => {
+              nextSlide(category);
+              resetAutoSlide(category);
             });
 
-            document.querySelector(`.${category}-prev`).addEventListener('click', () => {
-                prevSlide(category);
-                resetAutoSlide(category);
+          document
+            .querySelector(`.${category}-prev`)
+            .addEventListener("click", () => {
+              prevSlide(category);
+              resetAutoSlide(category);
             });
         }
 
         // Update slides per view based on screen size
         function updateSlidesPerView() {
-            const newSlidesPerView = window.innerWidth >= 1536 ? 4 :
-                window.innerWidth >= 1024 ? 3 :
-                    window.innerWidth >= 768 ? 2 : 1;
+          const newSlidesPerView =
+            window.innerWidth >= 1536
+              ? 4
+              : window.innerWidth >= 1024
+              ? 3
+              : window.innerWidth >= 768
+              ? 2
+              : 1;
 
-            Object.keys(sliders).forEach(category => {
-                sliders[category].slidesPerView = newSlidesPerView;
-                createSlider(category);
-            });
+          Object.keys(sliders).forEach((category) => {
+            sliders[category].slidesPerView = newSlidesPerView;
+            createSlider(category);
+          });
         }
 
         // Modal functionality
         function openModal(name, img, price) {
-            const modal = document.getElementById('hotelModal');
-            const modalHotelName = document.getElementById('modalHotelName');
-            const modalHotelImage = document.getElementById('modalHotelImage');
-            const modalHotelPrice = document.getElementById('modalHotelPrice');
+          const modal = document.getElementById("hotelModal");
+          const modalHotelName = document.getElementById("modalHotelName");
+          const modalHotelImage = document.getElementById("modalHotelImage");
+          const modalHotelPrice = document.getElementById("modalHotelPrice");
 
-            modalHotelName.textContent = name;
-            modalHotelImage.src = img;
-            modalHotelImage.alt = name;
-            modalHotelPrice.textContent = price;
+          modalHotelName.textContent = name;
+          modalHotelImage.src = img;
+          modalHotelImage.alt = name;
+          modalHotelPrice.textContent = price;
 
-            modal.classList.remove('hidden');
+          modal.classList.remove("hidden");
         }
 
         function closeModal() {
-            const modal = document.getElementById('hotelModal');
-            modal.classList.add('hidden');
+          const modal = document.getElementById("hotelModal");
+          modal.classList.add("hidden");
         }
 
         // Close modal on button click
-        document.getElementById('closeModal').addEventListener('click', closeModal);
+        document
+          .getElementById("closeModal")
+          .addEventListener("click", closeModal);
 
         // Close modal on clicking outside
-        document.getElementById('hotelModal').addEventListener('click', (e) => {
-            if (e.target === document.getElementById('hotelModal')) {
-                closeModal();
-            }
+        document.getElementById("hotelModal").addEventListener("click", (e) => {
+          if (e.target === document.getElementById("hotelModal")) {
+            closeModal();
+          }
         });
 
         // Category switching functionality
         const categoryButtons = {
-            'luxury-btn': 'luxury-hotels',
-            'premium-btn': 'premium-hotels',
-            'deluxe-btn': 'deluxe-hotels',
-            'standard-btn': 'standard-hotels'
+          "luxury-btn": "luxury-hotels",
+          "premium-btn": "premium-hotels",
+          "deluxe-btn": "deluxe-hotels",
+          "standard-btn": "standard-hotels",
         };
 
-        Object.keys(categoryButtons).forEach(btnId => {
-            document.getElementById(btnId).addEventListener('click', function () {
-                // Hide all category sections
-                document.querySelectorAll('.hotel-category').forEach(el => {
-                    el.classList.add('hidden');
-                });
-
-                // Show selected category
-                const category = btnId.replace('-btn', '');
-                document.getElementById(categoryButtons[btnId]).classList.remove('hidden');
-
-                // Update active button style
-                document.querySelectorAll('.category-btn').forEach(btn => {
-                    btn.classList.remove('active-category');
-                    btn.classList.remove('bg-[#ff7518]');
-                    btn.classList.add('bg-[#f0f0f0]');
-                    btn.classList.add('text-[#6b5643]');
-                });
-                this.classList.add('active-category');
-                this.classList.add('bg-[#ff7518]');
-                this.classList.remove('bg-[#f0f0f0]');
-                this.classList.remove('text-[#6b5643]');
-                this.classList.add('text-white');
-
-                // Reset slider position when switching categories
-                sliders[category].currentIndex = hotelCategories[category].length;
-                updateSliderPosition(category);
+        Object.keys(categoryButtons).forEach((btnId) => {
+          document.getElementById(btnId).addEventListener("click", function () {
+            // Hide all category sections
+            document.querySelectorAll(".hotel-category").forEach((el) => {
+              el.classList.add("hidden");
             });
+
+            // Show selected category
+            const category = btnId.replace("-btn", "");
+            document
+              .getElementById(categoryButtons[btnId])
+              .classList.remove("hidden");
+
+            // Update active button style
+            document.querySelectorAll(".category-btn").forEach((btn) => {
+              btn.classList.remove("active-category");
+              btn.classList.remove("bg-[#ff7518]");
+              btn.classList.add("bg-[#f0f0f0]");
+              btn.classList.add("text-[#6b5643]");
+            });
+            this.classList.add("active-category");
+            this.classList.add("bg-[#ff7518]");
+            this.classList.remove("bg-[#f0f0f0]");
+            this.classList.remove("text-[#6b5643]");
+            this.classList.add("text-white");
+
+            // Reset slider position when switching categories
+            sliders[category].currentIndex = hotelCategories[category].length;
+            updateSliderPosition(category);
+          });
         });
 
         // Initialize all sliders on page load
         initSliders();
 
         // Handle window resize
-        window.addEventListener('resize', function () {
-            updateSlidesPerView();
+        window.addEventListener("resize", function () {
+          updateSlidesPerView();
         });
-    });
-</script>
+      });
+    </script>
   </body>
 </html>
