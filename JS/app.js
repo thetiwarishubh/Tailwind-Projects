@@ -35,7 +35,7 @@ if (counters.length > 0) {
   function animateCount(el) {
     const target = +el.getAttribute('data-target');
     let count = 0;
-    const speed = target / 50;
+    const speed = target / 500;
 
     const updateCount = () => {
       if (count < target) {

@@ -789,6 +789,9 @@
   .h-full {
     height: 100%;
   }
+  .h-screen {
+    height: 100vh;
+  }
   .max-h-\[80vh\] {
     max-height: 80vh;
   }
@@ -893,6 +896,9 @@
   }
   .max-w-6xl {
     max-width: var(--container-6xl);
+  }
+  .max-w-7 {
+    max-width: calc(var(--spacing) * 7);
   }
   .max-w-7xl {
     max-width: var(--container-7xl);
@@ -2134,8 +2140,14 @@
     --tw-gradient-to: transparent;
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
+  .bg-cover {
+    background-size: cover;
+  }
   .bg-clip-text {
     background-clip: text;
+  }
+  .bg-center {
+    background-position: center;
   }
   .fill-blue-600 {
     fill: var(--color-blue-600);
@@ -4092,6 +4104,12 @@
     @media (width >= 48rem) {
       font-size: var(--text-lg);
       line-height: var(--tw-leading, var(--text-lg--line-height));
+    }
+  }
+  .md\:text-sm {
+    @media (width >= 48rem) {
+      font-size: var(--text-sm);
+      line-height: var(--tw-leading, var(--text-sm--line-height));
     }
   }
   .md\:text-xl {
