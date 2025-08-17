@@ -138,7 +138,7 @@
                 </li>
               </ul>
               <button
-                class="safariBtn ml-4 bg-amber-700 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg transition-colors shadow-md cursor-pointer"
+                class="chambalBookingBtn ml-4 bg-amber-700 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg transition-colors shadow-md cursor-pointer"
               >
                 Book Now
               </button>
@@ -1095,5 +1095,11 @@
       </div>
     </footer>
     <script src="/JS/app.js"></script>
+    <script>
+      const chambalBookingButton = document.querySelector('.chambalBookingBtn');
+      chambalBookingButton.addEventListener('click', ()=> {
+        window.location.href = 'chambal-booking-page.html';
+      })
+    </script>
   </body>
 </html>
