@@ -98,6 +98,59 @@
           opacity: 1;
         }
       }
+      .checkmark {
+        border-radius: 50%;
+        display: block;
+        stroke-width: 5;
+        stroke: #1cca33;
+        stroke-miterlimit: 10;
+        box-shadow: inset 0px 0px 0px #1cca33;
+        animation: fill 0.4s ease-in-out 0.4s forwards,
+          scale 0.3s ease-in-out 0.9s both;
+        position: relative;
+        top: 5px;
+        right: 5px;
+        margin: 0 auto;
+      }
+      .checkmark__circle {
+        stroke-dasharray: 166;
+        stroke-dashoffset: 166;
+        stroke-width: 2;
+        stroke-miterlimit: 10;
+        stroke: #1cca33;
+        fill: #fff;
+        animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+      }
+
+      .checkmark__check {
+        transform-origin: 50% 50%;
+        stroke-dasharray: 48;
+        stroke-dashoffset: 48;
+        animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+      }
+
+      @keyframes stroke {
+        100% {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      @keyframes scale {
+        0%,
+        100% {
+          transform: none;
+        }
+
+        50% {
+          transform: scale3d(1.1, 1.1, 1);
+        }
+      }
+
+      @keyframes fill {
+        100% {
+          box-shadow: inset 0px 0px 0px 30px #4bb71b;
+        }
+      }
     </style>
   </head>
 
@@ -833,22 +886,26 @@
         class="bg-white rounded-lg shadow-xl overflow-hidden w-full max-w-md animate-scale-in"
       >
         <!-- Modal Header -->
-        <div class="bg-gray-900 p-6 text-center">
+        <div class="bg-[#ff7518] p-6 text-center">
           <div
             class="w-16 h-16 bg-emerald-500/10 rounded-full flex items-center justify-center mx-auto mb-4"
           >
             <svg
+              class="checkmark"
               xmlns="http://www.w3.org/2000/svg"
-              class="h-8 w-8 text-emerald-400"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
+              viewBox="0 0 52 52"
             >
+              <circle
+                class="checkmark__circle"
+                cx="26"
+                cy="26"
+                r="25"
+                fill="none"
+              />
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M5 13l4 4L19 7"
+                class="checkmark__check"
+                fill="none"
+                d="M14.1 27.2l7.1 7.2 16.7-16.8"
               />
             </svg>
           </div>
@@ -921,13 +978,13 @@
 
           <div class="flex justify-center space-x-3">
             <a
-              href="/"
+              href="/dist/index.html"
               class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
             >
               Return Home
             </a>
             <a
-              href="/contact"
+              href="/dist/contact.html"
               class="px-4 py-2 bg-gray-900 rounded-md text-sm font-medium text-white hover:bg-gray-800 transition-colors"
             >
               Contact Again
@@ -942,8 +999,108 @@
           <p class="text-xs text-gray-500">
             Reference #<span id="confirmationNumber">20230815-001</span>
           </p>
-          <button id="closeModalButton" class="text-sm text-gray-500 hover:text-gray-700 transition-colors cursor-pointer">
+          <button
+            id="closeModalButton"
+            class="text-sm text-gray-500 hover:text-gray-700 transition-colors cursor-pointer"
+          >
             Close
+          </button>
+        </div>
+      </div>
+    </div>
+    ********************<!-- Error Modal -->********************
+    <div
+      id="errorModal"
+      class="fixed inset-0 z-50 hidden flex items-center justify-center p-4"
+    >
+      <!-- Backdrop -->
+      <div class="fixed inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+      <!-- Modal Container -->
+      <div
+        class="relative w-full max-w-md rounded-xl bg-white shadow-2xl overflow-hidden z-10"
+      >
+        <!-- Modal Header -->
+        <div class="bg-red-600 p-5 flex items-start justify-between">
+          <div class="flex items-center space-x-3">
+            <div class="bg-white/20 p-2 rounded-full">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-white">Error Occurred</h3>
+          </div>
+          <button class="cursor-pointer text-white/80 hover:text-white transition-colors">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="p-6">
+          <div class="flex items-start space-x-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-red-500 mt-0.5 flex-shrink-0"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <div>
+              <p class="text-gray-800 font-medium">
+                There was a problem with your submission
+              </p>
+              <p class="text-gray-600 mt-1 text-sm">
+                Please check the following errors and try again:
+              </p>
+              <ul
+                class="mt-2 text-sm text-gray-600 list-disc list-inside space-y-1"
+              >
+                <li>Email address is required</li>
+                <li>Phone number must be 10 digits</li>
+                <li>Password must be at least 8 characters</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="bg-gray-50 px-6 py-4 flex justify-end space-x-3">
+          <button
+            class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors cursor-pointer"
+          >
+            Go Back
+          </button>
+          <button
+            class="px-4 py-2 bg-red-600 rounded-md text-sm font-medium text-white hover:bg-red-700 transition-colors cursor-pointer"
+          >
+            Try Again
           </button>
         </div>
       </div>
