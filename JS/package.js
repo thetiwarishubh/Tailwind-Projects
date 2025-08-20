@@ -162,7 +162,7 @@ document.querySelectorAll(".like-btn").forEach((button) => {
     }
   });
 });
-let targetDate = new Date("2025-08-20T12:00:00").getTime();
+let targetDate = new Date("2026-07-07T12:00:00").getTime();
 
 let countdownInterval = setInterval(() => {
   let now = new Date().getTime();

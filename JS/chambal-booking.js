@@ -674,7 +674,7 @@ chambalNavBookBtn.forEach(btn => {
 });
 
 startBookingButton.addEventListener('click', ()=> {
-  window.location.href = 'chambal-booking-page.html';
+  window.location.reload();
 });
 
 continueBookingButtnon.addEventListener('click', ()=> {

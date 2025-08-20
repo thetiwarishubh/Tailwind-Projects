@@ -266,7 +266,7 @@
                 </li>
               </ul>
               <button
-                class="safariBtn ml-4 bg-amber-700 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg transition-colors shadow-md cursor-pointer"
+                class="packageFinalBookingButton ml-4 bg-amber-700 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg transition-colors shadow-md cursor-pointer"
               >
                 Book Now
               </button>
@@ -334,7 +334,7 @@
             >Contact</a
           >
           <button
-            class="w-full mt-3 bg-amber-700 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg transition-colors shadow-md"
+            class="packageFinalBookingButton w-full mt-3 bg-amber-700 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg transition-colors shadow-md"
           >
             Book Now
           </button>
@@ -1041,7 +1041,9 @@
             </div>
             <h3 class="text-lg font-semibold text-white">Error Occurred</h3>
           </div>
-          <button class="cursor-pointer text-white/80 hover:text-white transition-colors">
+          <button
+            class="cursor-pointer text-white/80 hover:text-white transition-colors"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-5 w-5"
@@ -1105,6 +1107,106 @@
         </div>
       </div>
     </div>
+
+    <div
+      id="alertModal"
+      class="fixed hidden inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+    >
+      <div
+        class="relative w-full max-w-md bg-white rounded-xl shadow-2xl overflow-hidden"
+      >
+        <!-- Header -->
+        <div
+          class="px-6 py-5 bg-gradient-to-r from-amber-500 to-amber-600 flex items-center justify-between"
+        >
+          <div class="flex items-center space-x-3">
+            <div class="p-2 bg-white/20 rounded-full">
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-white">
+              Booking In Progress
+            </h3>
+          </div>
+          <button class="text-white/80 hover:text-white transition-colors">
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Body -->
+        <div class="px-6 py-5">
+          <div class="flex items-start space-x-3">
+            <svg
+              class="w-5 h-5 text-amber-500 mt-0.5 flex-shrink-0"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <div>
+              <p class="font-medium text-gray-800">
+                You're already on the booking page
+              </p>
+              <p class="mt-2 text-gray-600 text-sm">
+                Please complete your current booking before starting a new one.
+              </p>
+
+              <div
+                class="mt-4 p-3 bg-amber-50 rounded-md border border-amber-100"
+              >
+                <p class="text-sm text-amber-800">
+                  Current booking progress will be lost if you navigate away.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div
+          class="px-6 py-4 bg-gray-50 flex justify-end space-x-3 border-t border-gray-200"
+        >
+          <button
+            class="continueBookingBtn cursor-pointer px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500"
+          >
+            Continue Booking
+          </button>
+          <button
+            class="startingBookingBtn cursor-pointer px-4 py-2 text-sm font-medium text-white bg-amber-600 rounded-md hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500"
+          >
+            Start New Booking
+          </button>
+        </div>
+      </div>
+    </div>
+
     <script src="/JS/app.js"></script>
 
     <script>
@@ -1148,6 +1250,43 @@
             !externalBtn ? "external-submit button" : "",
             !thankYouModal ? "thankYouModal" : ""
           );
+        }
+      });
+
+      //Alert Modal
+
+      const packageFinalBookingBtn = document.querySelectorAll(
+        ".packageFinalBookingButton"
+      );
+      const alertModal = document.getElementById("alertModal");
+      const startBookingButton = document.querySelector(".startingBookingBtn");
+      const continueBookingButtnon = document.querySelector(
+        ".continueBookingBtn"
+      );
+
+      packageFinalBookingBtn.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          alertModal.classList.remove("hidden");
+        });
+      });
+
+      startBookingButton.addEventListener("click", () => {
+        window.location.reload();
+      });
+
+      continueBookingButtnon.addEventListener("click", () => {
+        alertModal.classList.add("hidden");
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          alertModal.classList.add("hidden");
+        }
+      });
+
+      alertModal.addEventListener("click", (e) => {
+        if (e.target === alertModal) {
+          alertModal.classList.add("hidden");
         }
       });
     </script>
