@@ -658,6 +658,42 @@ function showBookingConfirmation() {
     '<i class="fas fa-credit-card mr-2"></i>Proceed to Payment';
   document.getElementById("loading-spinner").classList.add("hidden");
 }
+
+//Alert Modal
+
+const chambalNavBookBtn = document.querySelectorAll('.chambalBookBtn');
+const alertModal = document.getElementById('alertModal');
+const startBookingButton = document.querySelector('.startingBookingBtn');
+const continueBookingButtnon = document.querySelector('.continueBookingBtn');
+
+
+chambalNavBookBtn.forEach(btn => {
+  btn.addEventListener('click', ()=> {
+    alertModal.classList.remove('hidden');
+  });
+});
+
+startBookingButton.addEventListener('click', ()=> {
+  window.location.href = 'chambal-booking-page.html';
+});
+
+continueBookingButtnon.addEventListener('click', ()=> {
+  alertModal.classList.add('hidden');
+});
+
+document.addEventListener('keydown', (e)=> {
+  if(e.key === 'Escape'){
+    alertModal.classList.add('hidden');
+  };
+});
+
+alertModal.addEventListener('click', (e)=>{
+  if(e.target === alertModal){
+    alertModal.classList.add('hidden')
+  }
+})
+
+
 // Reset form function
 function resetForm() {
   document.getElementById("booking-form").reset();
