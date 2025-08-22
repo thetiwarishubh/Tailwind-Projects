@@ -1328,3 +1328,36 @@ window.updateProgress = function () {
 console.log("🏨 Professional Hotel Booking System Initialized");
 console.log("📧 Support: ranthambore360@gmail.com");
 console.log("📱 Phone: 8076438491");
+
+//Alert Modal
+
+const hotelBookingButton = document.querySelectorAll(".hotelBookingButton");
+const alertModal = document.getElementById("alertModal");
+const startBookingButton = document.querySelector(".startingBookingBtn");
+const continueBookingButtnon = document.querySelector(".continueBookingBtn");
+
+hotelBookingButton.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    alertModal.classList.remove("hidden");
+  });
+});
+
+startBookingButton.addEventListener("click", () => {
+  window.location.reload();
+});
+
+continueBookingButtnon.addEventListener("click", () => {
+  alertModal.classList.add("hidden");
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    alertModal.classList.add("hidden");
+  }
+});
+
+alertModal.addEventListener("click", (e) => {
+  if (e.target === alertModal) {
+    alertModal.classList.add("hidden");
+  }
+});
