@@ -346,6 +346,7 @@
                   class="text-amber-900 focus:outline-none cursor-pointer p-2 rounded-md hover:bg-gray-100"
                 >
                   <svg
+                    id="menu-icon"
                     class="h-6 w-6"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -356,6 +357,20 @@
                       stroke-linejoin="round"
                       stroke-width="2"
                       d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  </svg>
+                  <svg
+                    id="close-icon"
+                    class="h-6 w-6 hidden"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M6 18L18 6M6 6l12 12"
                     />
                   </svg>
                 </button>
@@ -530,12 +545,22 @@
             <div class="relative mb-6">
               <div
                 id="carousel"
-                class="w-full h-48 sm:h-64 lg:h-80 overflow-hidden rounded-lg"
+                class="w-full h-48 sm:h-64 lg:h-80 overflow-hidden rounded-lg relative"
               >
                 <img
                   src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800"
-                  alt="Luxury Safari Lodge Room"
-                  class="carousel-image w-full h-full object-cover transition-opacity duration-500 rounded-xl"
+                  alt="Luxury Safari Lodge Room 1"
+                  class="carousel-image absolute inset-0 w-full h-full object-cover transition-all duration-500 rounded-xl"
+                />
+                <img
+                  src="https://images.unsplash.com/photo-1549366021-9f761d040a94?w=800"
+                  alt="Luxury Safari Lodge Room 2"
+                  class="carousel-image absolute inset-0 w-full h-full object-cover transition-all duration-500 rounded-xl hidden"
+                />
+                <img
+                  src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800"
+                  alt="Luxury Safari Lodge Room 3"
+                  class="carousel-image absolute inset-0 w-full h-full object-cover transition-all duration-500 rounded-xl hidden"
                 />
               </div>
               <button
@@ -552,6 +577,8 @@
               >
                 <i class="fas fa-chevron-right"></i>
               </button>
+              <!-- Carousel Dots -->
+              <div id="carousel-dots" class="flex justify-center mt-4 space-x-2"></div>
             </div>
 
             <!-- Information Cards -->
@@ -899,6 +926,33 @@
                 </div>
               </div>
 
+              <!-- Guest Details Container -->
+              <div id="guest-details" class="animate-form"></div>
+
+              <!-- Promo Code Input -->
+              <div class="animate-form">
+                <label
+                  for="promo-code"
+                  class="block text-sm font-semibold text-gray-800 mb-2"
+                >
+                  <i class="fas fa-tag text-indigo-600 mr-2"></i>
+                  Promo Code (Optional)
+                </label>
+                <input
+                  type="text"
+                  id="promo-code"
+                  name="promo-code"
+                  placeholder="Enter promo code"
+                  class="premium-input mt-1 p-3 w-full rounded-xl border-2 border-gray-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all duration-400 text-gray-700"
+                />
+                <div id="savings-indicator" class="mt-2 p-2 bg-green-50 rounded-lg border border-green-200 hidden">
+                  <div class="flex items-center text-green-700">
+                    <i class="fas fa-check-circle mr-2"></i>
+                    <span class="text-sm font-medium">You saved <span id="savings-amount">₹0</span>!</span>
+                  </div>
+                </div>
+              </div>
+
               <!-- Booking Summary -->
               <div class="mt-8 mb-6 animate-form">
                 <div class="bg-white rounded-xl p-6 border border-gray-200">
@@ -931,6 +985,17 @@
                       >
                     </div>
                     <div
+                      id="discount-row"
+                      class="flex justify-between items-center py-2 border-b border-gray-100 hidden"
+                    >
+                      <span class="text-sm sm:text-base text-gray-600"
+                        >Discount:</span
+                      >
+                      <span id="discount-amount" class="font-medium text-green-600"
+                        >₹0</span
+                      >
+                    </div>
+                    <div
                       class="flex justify-between items-center py-3 bg-indigo-50 rounded-lg px-4"
                     >
                       <span
@@ -954,7 +1019,7 @@
                   id="book-now-btn"
                   class="ultra-premium-submit-btn"
                 >
-                  <span id="button-text">Complete Booking</span>
+                  <span id="btn-text">Complete Booking</span>
                   <div
                     id="loading-spinner"
                     class="absolute inset-0 bg-blue-600 rounded-lg flex items-center justify-center hidden"
@@ -1463,6 +1528,26 @@
         </div>
       </div>
     </footer>
+
+    <!-- Image Lightbox Modal -->
+    <div
+      id="image-lightbox"
+      class="fixed inset-0 bg-black/80 backdrop-blur-sm z-60 hidden flex items-center justify-center p-4"
+    >
+      <div class="relative max-w-4xl w-full">
+        <button
+          id="close-lightbox"
+          class="absolute top-4 right-4 z-10 bg-white/20 text-white p-2 rounded-full hover:bg-white/30 transition-colors"
+        >
+          <i class="fas fa-times text-xl"></i>
+        </button>
+        <img
+          id="lightbox-image"
+          class="w-full h-auto max-h-[90vh] object-contain rounded-lg"
+          alt="Hotel Image"
+        />
+      </div>
+    </div>
 
     <div
       id="alertModal"

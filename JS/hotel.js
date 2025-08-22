@@ -356,7 +356,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const bookNowBtn = document.querySelectorAll('.book-now-btn');
 bookNowBtn.forEach(btn => {
-  btn.addEventListener('click', ()=> {
-    window.location.href = 'hotel-booking-page.html'
+  btn.addEventListener('click', (event)=> {
+    // Get hotel card data from the clicked button's parent card
+    const hotelCard = btn.closest('.bg-white');
+    if (hotelCard) {
+      // Extract hotel details from the card
+      const hotelName = hotelCard.querySelector('h3').textContent || 'Selected Hotel';
+      const hotelImage = hotelCard.querySelector('img').src || '';
+      const hotelLocation = hotelCard.querySelector('p').textContent || 'Premium Location';
+      const priceElement = hotelCard.querySelector('.text-2xl');
+      const basePrice = priceElement ? priceElement.textContent.replace(/[^0-9]/g, '') : '10000';
+      
+      // Create URL with hotel data parameters
+      const bookingUrl = new URL('hotel-booking-page.html', window.location);
+      bookingUrl.searchParams.set('hotelName', encodeURIComponent(hotelName));
+      bookingUrl.searchParams.set('hotelImage', encodeURIComponent(hotelImage));
+      bookingUrl.searchParams.set('hotelLocation', encodeURIComponent(hotelLocation));
+      bookingUrl.searchParams.set('deluxePrice', basePrice);
+      
+      // Navigate to booking page with hotel data
+      window.location.href = bookingUrl.toString();
+    } else {
+      // Fallback if card structure is not found
+      window.location.href = 'hotel-booking-page.html';
+    }
   })
 })

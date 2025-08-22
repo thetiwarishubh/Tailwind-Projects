@@ -117,8 +117,10 @@ document.addEventListener("click", function (e) {
 
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
-    document.getElementById("package-modal").remove();
-    document.body.style.overflow = "";
+    const packageModal = document.getElementById("package-modal");
+    if (packageModal) {
+      closeModal();
+    }
   }
 });
 
@@ -165,12 +167,18 @@ document.querySelectorAll(".like-btn").forEach((button) => {
 let targetDate = new Date("2026-07-07T12:00:00").getTime();
 
 let countdownInterval = setInterval(() => {
+  const timerElement = document.getElementById("timer");
+  if (!timerElement) {
+    clearInterval(countdownInterval);
+    return;
+  }
+
   let now = new Date().getTime();
   let distance = targetDate - now;
 
   if (distance <= 0) {
     clearInterval(countdownInterval);
-    document.getElementById("timer").innerHTML = "00d : 00h : 00m : 00s";
+    timerElement.innerHTML = "00d : 00h : 00m : 00s";
     return;
   }
 
@@ -179,7 +187,7 @@ let countdownInterval = setInterval(() => {
   let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  document.getElementById("timer").innerHTML = `${String(days).padStart(
+  timerElement.innerHTML = `${String(days).padStart(
     2,
     "0"
   )}d : ${String(hours).padStart(2, "0")}h : ${String(minutes).padStart(

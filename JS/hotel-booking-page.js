@@ -1,13 +1,11 @@
 // ================================
-// ENHANCED HOTEL BOOKING SYSTEM
-// Professional & Optimized Version
+// HOTEL BOOKING SYSTEM
+// Clean & Optimized Version
 // ================================
 
 class HotelBookingSystem {
   constructor() {
-    this.hotels = this.initializeHotels();
-    this.currentHotel = null;
-    this.unavailableDates = ["2025-08-10", "2025-08-15", "2025-08-20"];
+    this.currentHotel = this.initializeDefaultHotel();
     this.promoCodes = {
       SAVE10: 0.1,
       WELCOME5: 0.05,
@@ -15,6 +13,11 @@ class HotelBookingSystem {
     };
     this.autoplayInterval = null;
     this.currentImage = 0;
+    this.carouselImages = [
+      "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800",
+      "https://images.unsplash.com/photo-1549366021-9f761d040a94?w=800", 
+      "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800"
+    ];
 
     this.init();
   }
@@ -23,126 +26,34 @@ class HotelBookingSystem {
   // INITIALIZATION METHODS
   // ================================
 
-  initializeHotels() {
-    return [
-      {
-        id: "tiger-safari-resort",
-        name: "Tiger Safari Resort",
-        images: [
-          "/Images/hotel1-1.jpg",
-          "/Images/hotel1-2.jpg",
-          "/Images/hotel1-3.jpg",
-        ],
-        location: "Ranthambhore Road, Sawai Madhopur, Rajasthan 322001",
-        description:
-          "A luxury wildlife resort offering premium accommodations with stunning views of Ranthambhore National Park.",
-        amenities: [
-          "Free Wi-Fi",
-          "Swimming Pool",
-          "Wildlife Safari",
-          "Spa & Wellness",
-          "Multi-Cuisine Restaurant",
-          "Room Service",
-          "Parking",
-        ],
-        prices: { standard: 8500, deluxe: 12000, suite: 18000 },
-        roomImages: {
-          standard: "/Images/standard-room-1.jpg",
-          deluxe: "/Images/deluxe-room-1.jpg",
-          suite: "/Images/suite-room-1.jpg",
-        },
-      },
-      {
-        id: "ranthambhore-regency",
-        name: "Ranthambhore Regency",
-        images: [
-          "/Images/hotel2-1.jpg",
-          "/Images/hotel2-2.jpg",
-          "/Images/hotel2-3.jpg",
-        ],
-        location:
-          "Ranthambhore National Park, Sawai Madhopur, Rajasthan 322001",
-        description:
-          "An elegant heritage hotel blending traditional Rajasthani architecture with modern luxury.",
-        amenities: [
-          "Heritage Architecture",
-          "Cultural Programs",
-          "Wildlife Library",
-          "Ayurvedic Spa",
-          "Organic Garden",
-          "Butler Service",
-          "Conference Hall",
-        ],
-        prices: { standard: 9500, deluxe: 14000, suite: 22000 },
-        roomImages: {
-          standard: "/Images/standard-room-2.jpg",
-          deluxe: "/Images/deluxe-room-2.jpg",
-          suite: "/Images/suite-room-2.jpg",
-        },
-      },
-      {
-        id: "grand-plaza-hotel",
-        name: "Grand Plaza Hotel",
-        images: [
-          "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-          "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-          "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        ],
-        location: "New York, USA",
-        description:
-          "A luxury hotel in the heart of New York with stunning city views and world-class amenities",
-        amenities: [
-          "Free Wi-Fi",
-          "Business Center",
-          "Fitness Center",
-          "Spa & Wellness",
-          "Fine Dining",
-          "Room Service",
-          "Concierge",
-          "Valet Parking",
-        ],
-        prices: { standard: 14950, deluxe: 19900, suite: 29850 },
-        roomImages: {
-          standard:
-            "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-          deluxe:
-            "https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-          suite:
-            "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        },
-      },
-    ];
+  initializeDefaultHotel() {
+    const urlParams = this.getURLParams();
+    
+    return {
+      id: "luxury-safari-lodge",
+      name: urlParams.get("hotelName") || "Luxury Safari Lodge",
+      location: urlParams.get("hotelLocation") || "Ranthambhore National Park, Rajasthan",
+      description: urlParams.get("hotelDescription") || "A premium hotel offering comfortable accommodation with excellent amenities.",
+      selectedImage: urlParams.get("hotelImage") || "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800",
+      prices: {
+        standard: parseInt(urlParams.get("standardPrice")) || 8000,
+        deluxe: parseInt(urlParams.get("deluxePrice")) || 10000,
+        suite: parseInt(urlParams.get("suitePrice")) || 15000
+      }
+    };
   }
 
   init() {
-    this.showSkeletonLoader();
-    this.loadHotelFromURL();
+    this.loadHotelData();
     this.initializeEventListeners();
     this.initializeDateRestrictions();
     this.initializeCarousel();
-    this.hideSkeletonLoader();
+    this.initializeMobileMenu();
   }
 
   // ================================
   // UTILITY METHODS
   // ================================
-
-  showSkeletonLoader() {
-    const loader = document.getElementById("skeleton-loader");
-    if (loader) loader.classList.remove("hidden");
-  }
-
-  hideSkeletonLoader() {
-    setTimeout(() => {
-      const loader = document.getElementById("skeleton-loader");
-      const details = document.querySelector(".hotel-details");
-      const form = document.querySelector(".booking-form");
-
-      if (loader) loader.classList.add("hidden");
-      if (details) details.classList.remove("hidden");
-      if (form) form.classList.remove("hidden");
-    }, 1000);
-  }
 
   getURLParams() {
     return new URLSearchParams(window.location.search);
@@ -156,65 +67,8 @@ class HotelBookingSystem {
   // HOTEL DATA MANAGEMENT
   // ================================
 
-  loadHotelFromURL() {
-    const urlParams = this.getURLParams();
-    const hotelId = urlParams.get("hotelId");
-
-    // Check if URL has dynamic hotel data
-    if (urlParams.get("hotelName") || urlParams.get("hotelImage")) {
-      this.currentHotel = this.createDynamicHotel(urlParams);
-    } else if (hotelId) {
-      this.currentHotel = this.hotels.find((h) => h.id === hotelId);
-    }
-
-    // Fallback to first hotel
-    if (!this.currentHotel) {
-      this.currentHotel = this.hotels[0];
-    }
-
+  loadHotelData() {
     this.updateHotelDisplay();
-  }
-
-  createDynamicHotel(urlParams) {
-    const usdPrice = parseInt(urlParams.get("hotelPrice")) || 199;
-    const inrPrice = Math.round(usdPrice * 75);
-
-    return {
-      id: "dynamic-hotel",
-      name: urlParams.get("hotelName") || "Selected Hotel",
-      images: [
-        urlParams.get("hotelImage") || "/Images/default-hotel-1.jpg",
-        urlParams.get("hotelImage2") ||
-          urlParams.get("hotelImage") ||
-          "/Images/default-hotel-2.jpg",
-        urlParams.get("hotelImage3") ||
-          urlParams.get("hotelImage") ||
-          "/Images/default-hotel-3.jpg",
-      ],
-      location: urlParams.get("hotelLocation") || "Prime Location",
-      description:
-        urlParams.get("hotelDescription") ||
-        "A premium hotel offering comfortable accommodation with excellent amenities.",
-      amenities: urlParams.get("hotelAmenities")?.split(",") || [
-        "Free Wi-Fi",
-        "Business Center",
-        "Fitness Center",
-        "Spa & Wellness",
-      ],
-      prices: {
-        standard: inrPrice,
-        deluxe: Math.round(inrPrice * 1.3),
-        suite: Math.round(inrPrice * 2),
-      },
-      roomImages: {
-        standard:
-          "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        deluxe:
-          "https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        suite:
-          "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-      },
-    };
   }
 
   // ================================
@@ -225,119 +79,20 @@ class HotelBookingSystem {
     if (!this.currentHotel) return;
 
     this.updateBasicInfo();
-    this.updateAmenities();
-    this.updatePricing();
-    this.updateCarouselImages();
     this.updateRoomTypeOptions();
     this.updatePageTitle();
+    this.updateCarouselImages();
   }
 
   updateBasicInfo() {
     const elements = {
       "hotel-name": this.currentHotel.name,
-      "hotel-location": this.currentHotel.location,
-      "hotel-description": this.currentHotel.description,
     };
 
     Object.entries(elements).forEach(([id, value]) => {
       const element = document.getElementById(id);
       if (element) element.textContent = value;
     });
-  }
-
-  updateAmenities() {
-    const container = document.querySelector(
-      ".hotel-details .grid.grid-cols-2"
-    );
-    if (!container || !this.currentHotel.amenities) return;
-
-    container.innerHTML = "";
-    this.currentHotel.amenities.forEach((amenity) => {
-      const amenityDiv = document.createElement("div");
-      amenityDiv.className =
-        "flex items-center gap-2 bg-gray-50 rounded-lg p-2.5 hover:bg-gray-100 transition-colors duration-200";
-      amenityDiv.innerHTML = `
-                <div class="w-6 h-6 bg-gray-100 rounded-md flex items-center justify-center">
-                    <i class="${this.getAmenityIcon(amenity)} text-xs"></i>
-                </div>
-                <span class="text-xs font-medium text-gray-700">${amenity}</span>
-            `;
-      container.appendChild(amenityDiv);
-    });
-  }
-
-  getAmenityIcon(amenity) {
-    const iconMap = {
-      wifi: "fas fa-wifi text-blue-600",
-      pool: "fas fa-swimming-pool text-cyan-600",
-      fitness: "fas fa-dumbbell text-green-600",
-      gym: "fas fa-dumbbell text-green-600",
-      spa: "fas fa-spa text-pink-600",
-      restaurant: "fas fa-utensils text-purple-600",
-      dining: "fas fa-utensils text-purple-600",
-      concierge: "fas fa-concierge-bell text-amber-600",
-      parking: "fas fa-parking text-gray-600",
-      business: "fas fa-briefcase text-blue-600",
-      valet: "fas fa-car text-purple-600",
-    };
-
-    const lowerAmenity = amenity.toLowerCase();
-    for (const [key, icon] of Object.entries(iconMap)) {
-      if (lowerAmenity.includes(key)) return icon;
-    }
-    return "fas fa-check text-blue-600";
-  }
-
-  updatePricing() {
-    const pricingSections = document.querySelectorAll(
-      ".hotel-details .bg-white.border"
-    );
-    let priceSection = null;
-
-    pricingSections.forEach((section) => {
-      if (
-        section.textContent.includes("Room Rates") ||
-        section.querySelector("h3")?.textContent?.includes("Room Rates")
-      ) {
-        priceSection = section;
-      }
-    });
-
-    if (!priceSection || !this.currentHotel.prices) return;
-
-    const priceContent = priceSection.querySelector(".space-y-3");
-    if (priceContent) {
-      priceContent.innerHTML = this.generatePricingHTML();
-    }
-  }
-
-  generatePricingHTML() {
-    const roomTypes = [
-      { key: "standard", name: "Standard Room", desc: "Queen bed, city view" },
-      { key: "deluxe", name: "Deluxe Room", desc: "King bed, premium view" },
-      { key: "suite", name: "Suite", desc: "Premium suite, best view" },
-    ];
-
-    return roomTypes
-      .map(
-        (room) => `
-            <div class="flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0">
-                <div>
-                    <span class="text-sm font-medium text-gray-900">${
-                      room.name
-                    }</span>
-                    <p class="text-xs text-gray-500">${room.desc}</p>
-                </div>
-                <div class="text-right">
-                    <div class="text-sm font-semibold text-gray-900">${this.formatCurrency(
-                      this.currentHotel.prices[room.key]
-                    )}</div>
-                    <div class="text-xs text-gray-500">per night</div>
-                </div>
-            </div>
-        `
-      )
-      .join("");
   }
 
   updateRoomTypeOptions() {
@@ -373,16 +128,62 @@ class HotelBookingSystem {
 
   updateCarouselImages() {
     const images = document.querySelectorAll(".carousel-image");
+    
+    // If a specific hotel image was selected, use it as the first image
+    if (this.currentHotel.selectedImage) {
+      // Update carousel images array with selected image as first
+      this.carouselImages = [
+        this.currentHotel.selectedImage,
+        ...this.carouselImages.filter(img => img !== this.currentHotel.selectedImage)
+      ];
+    }
+    
+    // Update each carousel image
     images.forEach((img, index) => {
-      if (this.currentHotel.images[index]) {
-        img.src = this.currentHotel.images[index];
+      if (this.carouselImages[index]) {
+        img.src = this.carouselImages[index];
         img.alt = `${this.currentHotel.name} Image ${index + 1}`;
+        
+        // Add error handling for image loading
         img.onerror = () => {
-          img.src = `https://via.placeholder.com/600x300?text=${encodeURIComponent(
-            this.currentHotel.name
-          )}+Image+${index + 1}`;
+          img.src = `https://via.placeholder.com/600x300/e5e7eb/9ca3af?text=Hotel+Image+${index + 1}`;
         };
+        
+        // Add loading indicator
+        img.onload = () => {
+          img.style.opacity = '1';
+        };
+        
+        // Set visibility - show first image, hide others
+        if (index === 0) {
+          img.classList.remove('hidden');
+          img.style.opacity = '1';
+        } else {
+          img.classList.add('hidden');
+        }
       }
+    });
+    
+    // Add click event to carousel images for lightbox
+    // Clear any existing click listeners by removing the attribute
+    images.forEach((img, index) => {
+      // Remove onclick attribute if it exists
+      img.removeAttribute('onclick');
+      
+      // Create a new click handler
+      const clickHandler = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        this.showImageLightbox(img.src, img.alt);
+      };
+      
+      // Remove any existing listeners and add new one
+      img.removeEventListener('click', clickHandler);
+      img.addEventListener('click', clickHandler);
+      
+      // Set visual indicators
+      img.style.cursor = 'pointer';
+      img.title = 'Click to view larger image';
     });
   }
 
@@ -390,17 +191,21 @@ class HotelBookingSystem {
     const dotsContainer = document.getElementById("carousel-dots");
     if (!dotsContainer) return;
 
-    const images = document.querySelectorAll(".carousel-image");
     dotsContainer.innerHTML = "";
 
-    images.forEach((_, index) => {
+    // Get actual carousel images from DOM
+    const carouselImages = document.querySelectorAll(".carousel-image");
+    const imageCount = Math.max(carouselImages.length, this.carouselImages.length);
+
+    // Create dots for each image
+    for (let i = 0; i < imageCount; i++) {
       const dot = document.createElement("span");
-      dot.className = `h-2 w-2 bg-gray-400 rounded-full mx-1 cursor-pointer ${
-        index === 0 ? "bg-gray-800" : ""
+      dot.className = `h-2 w-2 bg-gray-400 rounded-full mx-1 cursor-pointer transition-colors hover:bg-gray-600 ${
+        i === 0 ? "bg-gray-800" : ""
       }`;
-      dot.addEventListener("click", () => this.showImage(index));
+      dot.addEventListener("click", () => this.showImage(i));
       dotsContainer.appendChild(dot);
-    });
+    }
   }
 
   addCarouselEventListeners() {
@@ -409,20 +214,24 @@ class HotelBookingSystem {
     const carousel = document.getElementById("carousel");
 
     if (prevBtn) {
-      prevBtn.addEventListener("click", () => {
+      prevBtn.addEventListener("click", (e) => {
+        e.preventDefault();
         const images = document.querySelectorAll(".carousel-image");
-        this.showImage(
-          this.currentImage - 1 < 0 ? images.length - 1 : this.currentImage - 1
-        );
+        if (images.length > 0) {
+          const newIndex = this.currentImage - 1 < 0 ? images.length - 1 : this.currentImage - 1;
+          this.showImage(newIndex);
+        }
       });
     }
 
     if (nextBtn) {
-      nextBtn.addEventListener("click", () => {
+      nextBtn.addEventListener("click", (e) => {
+        e.preventDefault();
         const images = document.querySelectorAll(".carousel-image");
-        this.showImage(
-          this.currentImage + 1 >= images.length ? 0 : this.currentImage + 1
-        );
+        if (images.length > 0) {
+          const newIndex = this.currentImage + 1 >= images.length ? 0 : this.currentImage + 1;
+          this.showImage(newIndex);
+        }
       });
     }
 
@@ -436,14 +245,29 @@ class HotelBookingSystem {
     const images = document.querySelectorAll(".carousel-image");
     const dots = document.getElementById("carousel-dots")?.children;
 
-    if (images[this.currentImage])
-      images[this.currentImage].classList.add("hidden");
-    if (images[index]) images[index].classList.remove("hidden");
+    // Validate index
+    if (index < 0 || index >= images.length) return;
 
-    if (dots) {
-      if (dots[this.currentImage])
+    // Hide current image
+    if (images[this.currentImage]) {
+      images[this.currentImage].classList.add("hidden");
+    }
+    
+    // Show new image
+    if (images[index]) {
+      images[index].classList.remove("hidden");
+    }
+
+    // Update dots
+    if (dots && dots.length > 0) {
+      if (dots[this.currentImage]) {
         dots[this.currentImage].classList.remove("bg-gray-800");
-      if (dots[index]) dots[index].classList.add("bg-gray-800");
+        dots[this.currentImage].classList.add("bg-gray-400");
+      }
+      if (dots[index]) {
+        dots[index].classList.remove("bg-gray-400");
+        dots[index].classList.add("bg-gray-800");
+      }
     }
 
     this.currentImage = index;
@@ -453,9 +277,10 @@ class HotelBookingSystem {
     this.stopAutoplay();
     this.autoplayInterval = setInterval(() => {
       const images = document.querySelectorAll(".carousel-image");
-      this.showImage(
-        this.currentImage + 1 >= images.length ? 0 : this.currentImage + 1
-      );
+      if (images.length > 0) {
+        const nextIndex = this.currentImage + 1 >= images.length ? 0 : this.currentImage + 1;
+        this.showImage(nextIndex);
+      }
     }, 5000);
   }
 
@@ -463,6 +288,43 @@ class HotelBookingSystem {
     if (this.autoplayInterval) {
       clearInterval(this.autoplayInterval);
       this.autoplayInterval = null;
+    }
+  }
+
+  // ================================
+  // MOBILE MENU FUNCTIONALITY  
+  // ================================
+
+  initializeMobileMenu() {
+    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const menuIcon = document.getElementById("menu-icon");
+    const closeIcon = document.getElementById("close-icon");
+
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isHidden = mobileMenu.classList.contains("hidden");
+        
+        if (isHidden) {
+          mobileMenu.classList.remove("hidden");
+          if (menuIcon) menuIcon.classList.add("hidden");
+          if (closeIcon) closeIcon.classList.remove("hidden");
+        } else {
+          mobileMenu.classList.add("hidden");
+          if (menuIcon) menuIcon.classList.remove("hidden");
+          if (closeIcon) closeIcon.classList.add("hidden");
+        }
+      });
+
+      // Close mobile menu when clicking outside
+      document.addEventListener("click", (e) => {
+        if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+          mobileMenu.classList.add("hidden");
+          if (menuIcon) menuIcon.classList.remove("hidden");
+          if (closeIcon) closeIcon.classList.add("hidden");
+        }
+      });
     }
   }
 
@@ -1097,6 +959,39 @@ Thank you for booking with Ranthambore 360!
   }
 
   // ================================
+  // IMAGE LIGHTBOX FUNCTIONALITY
+  // ================================
+
+  showImageLightbox(imageSrc, altText) {
+    const lightbox = document.getElementById("image-lightbox");
+    const lightboxImage = document.getElementById("lightbox-image");
+    
+    if (lightbox && lightboxImage) {
+      lightboxImage.src = imageSrc;
+      lightboxImage.alt = altText || 'Hotel Image';
+      lightbox.classList.remove("hidden");
+      
+      // Add keyboard support for closing
+      const handleKeyPress = (e) => {
+        if (e.key === 'Escape') {
+          lightbox.classList.add("hidden");
+          document.removeEventListener('keydown', handleKeyPress);
+        }
+      };
+      
+      document.addEventListener('keydown', handleKeyPress);
+      
+      // Close lightbox when clicking outside the image
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+          lightbox.classList.add("hidden");
+          document.removeEventListener('keydown', handleKeyPress);
+        }
+      });
+    }
+  }
+
+  // ================================
   // UTILITY METHODS FOR CLEANUP
   // ================================
 
@@ -1110,49 +1005,62 @@ Thank you for booking with Ranthambore 360!
 // INITIALIZATION
 // ================================
 
-// Initialize the booking system when DOM is ready
-document.addEventListener("DOMContentLoaded", function () {
-  // Create global instance
-  window.hotelBookingSystem = new HotelBookingSystem();
+// Ensure DOM is fully loaded before initialization
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeEverything);
+} else {
+  // DOM is already loaded
+  initializeEverything();
+}
 
-  // Smooth scroll to form on page load
+function initializeEverything() {
+  try {
+    // Create global instance
+    window.hotelBookingSystem = new HotelBookingSystem();
+    console.log('✅ Hotel Booking System initialized successfully');
+  } catch (error) {
+    console.error('❌ Failed to initialize Hotel Booking System:', error);
+  }
+
+  // Smooth scroll to form on page load (reduced delay)
   setTimeout(() => {
     const bookingForm = document.querySelector(".booking-form");
     if (bookingForm) {
-      bookingForm.scrollIntoView({ behavior: "smooth" });
+      bookingForm.scrollIntoView({ behavior: "smooth", block: "center" });
     }
-  }, 1500);
+  }, 800);
 
-  // Auto-focus first available input
+  // Auto-focus first available input (reduced delay)
   setTimeout(() => {
     const firstInput = document.querySelector(
-      '#booking-form input[type="date"]'
+      '#booking-form input[type="date"]:first-of-type'
     );
     if (firstInput) {
       firstInput.focus();
     }
-  }, 2000);
+  }, 1200);
 
-  // Initialize additional features if needed
-  initializeAdvancedFeatures();
-});
-
-// ================================
-// ADDITIONAL FEATURES
-// ================================
-
-function initializeAdvancedFeatures() {
-  // Payment Modal Handler
-  initializePaymentModal();
-
-  // Image Lightbox
-  initializeImageLightbox();
-
-  // Calendar functionality if custom calendar is used
-  initializeCustomCalendar();
-
-  // Auto-save form data in memory (not localStorage as per restrictions)
-  initializeAutoSave();
+  // Initialize additional features with error handling
+  try {
+    initializePaymentModal();
+    console.log('✅ Payment modal initialized');
+  } catch (error) {
+    console.warn('⚠️ Payment modal initialization failed:', error);
+  }
+  
+  try {
+    initializeImageLightbox();
+    console.log('✅ Image lightbox initialized');
+  } catch (error) {
+    console.warn('⚠️ Image lightbox initialization failed:', error);
+  }
+  
+  try {
+    initializeAlertModal();
+    console.log('✅ Alert modal initialized');
+  } catch (error) {
+    console.warn('⚠️ Alert modal initialization failed:', error);
+  }
 }
 
 function initializePaymentModal() {
@@ -1184,180 +1092,89 @@ function initializeImageLightbox() {
   const lightboxImage = document.getElementById("lightbox-image");
   const closeLightbox = document.getElementById("close-lightbox");
 
-  if (lightbox && lightboxImage && closeLightbox) {
-    const carouselImages = document.querySelectorAll(".carousel-image");
-
-    carouselImages.forEach((img) => {
-      img.addEventListener("click", () => {
-        lightboxImage.src = img.src;
-        lightboxImage.alt = img.alt;
-        lightbox.classList.remove("hidden");
-      });
-    });
-
+  if (closeLightbox && lightbox) {
     closeLightbox.addEventListener("click", () => {
       lightbox.classList.add("hidden");
     });
   }
-}
 
-function initializeCustomCalendar() {
-  // Calendar generation function for date inputs
-  function generateCalendar(inputId, calendarId, monthOffset = 0) {
-    const calendar = document.getElementById(calendarId);
-    if (!calendar) return;
+  // Handle escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox && !lightbox.classList.contains('hidden')) {
+      lightbox.classList.add('hidden');
+    }
+  });
 
-    const unavailableDates = ["2025-08-10", "2025-08-15", "2025-08-20"];
-    const today = new Date();
-    const date = new Date();
-    date.setMonth(date.getMonth() + monthOffset);
-    date.setDate(1);
-
-    const month = date.getMonth();
-    const year = date.getFullYear();
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-    const firstDay = new Date(year, month, 1).getDay();
-
-    calendar.innerHTML = `
-            <div class="flex justify-between mb-2">
-                <button type="button" class="text-indigo-600 hover:text-indigo-800" onclick="generateCalendar('${inputId}', '${calendarId}', ${
-      monthOffset - 1
-    })">◄</button>
-                <div class="font-semibold">${date.toLocaleString("default", {
-                  month: "long",
-                })} ${year}</div>
-                <button type="button" class="text-indigo-600 hover:text-indigo-800" onclick="generateCalendar('${inputId}', '${calendarId}', ${
-      monthOffset + 1
-    })">►</button>
-            </div>
-        `;
-
-    // Add day headers
-    ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].forEach((day) => {
-      calendar.innerHTML += `<div class="calendar-day font-medium">${day}</div>`;
+  // Handle clicking outside the image
+  if (lightbox) {
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox || e.target.closest('.relative') === null) {
+        lightbox.classList.add('hidden');
+      }
     });
-
-    // Add empty cells for first week
-    for (let i = 0; i < firstDay; i++) {
-      calendar.innerHTML += `<div class="calendar-day"></div>`;
-    }
-
-    // Add date cells
-    for (let i = 1; i <= daysInMonth; i++) {
-      const dateStr = `${year}-${String(month + 1).padStart(2, "0")}-${String(
-        i
-      ).padStart(2, "0")}`;
-      const isDisabled =
-        unavailableDates.includes(dateStr) || new Date(dateStr) < today;
-
-      calendar.innerHTML += `
-                <div class="calendar-day ${isDisabled ? "disabled" : ""}" 
-                     data-date="${dateStr}"
-                     ${
-                       !isDisabled
-                         ? `onclick="selectDate('${inputId}', '${dateStr}', '${calendarId}')"`
-                         : ""
-                     }>
-                    ${i}
-                </div>
-            `;
-    }
   }
 
-  // Date selection function
-  window.selectDate = function (inputId, dateStr, calendarId) {
-    const input = document.getElementById(inputId);
-    const calendar = document.getElementById(calendarId);
-
-    if (input) input.value = dateStr;
-    if (calendar) calendar.classList.add("hidden");
-
-    if (window.hotelBookingSystem) {
-      window.hotelBookingSystem.updatePrice();
-      window.hotelBookingSystem.updateProgress();
-    }
-  };
-
-  // Make generateCalendar globally available
-  window.generateCalendar = generateCalendar;
-}
-
-function initializeAutoSave() {
-  // Auto-save form data in memory (not localStorage due to restrictions)
-  const formData = {};
-
-  const formInputs = document.querySelectorAll(
-    "#booking-form input, #booking-form select"
-  );
-  formInputs.forEach((input) => {
-    input.addEventListener("input", () => {
-      formData[input.name] = input.value;
+  // Initialize carousel image click handlers for lightbox
+  const carouselImages = document.querySelectorAll('.carousel-image');
+  carouselImages.forEach(img => {
+    img.addEventListener('click', () => {
+      if (lightbox && lightboxImage) {
+        lightboxImage.src = img.src;
+        lightboxImage.alt = img.alt || 'Hotel Image';
+        lightbox.classList.remove('hidden');
+      }
     });
-
-    // Restore data on page refresh (from memory during session)
-    if (formData[input.name]) {
-      input.value = formData[input.name];
-    }
+    img.style.cursor = 'pointer';
   });
 }
 
-// ================================
-// LEGACY SUPPORT & GLOBAL FUNCTIONS
-// ================================
-
-// For backward compatibility, expose key functions globally
-window.updatePrice = function () {
-  if (window.hotelBookingSystem) {
-    window.hotelBookingSystem.updatePrice();
-  }
-};
-
-window.handleSubmit = function (event) {
-  if (window.hotelBookingSystem) {
-    window.hotelBookingSystem.handleSubmit(event);
-  }
-};
-
-window.updateProgress = function () {
-  if (window.hotelBookingSystem) {
-    window.hotelBookingSystem.updateProgress();
-  }
-};
 
 // Console welcome message
-console.log("🏨 Professional Hotel Booking System Initialized");
+console.log("🏨 Hotel Booking System Initialized Successfully");
 console.log("📧 Support: ranthambore360@gmail.com");
 console.log("📱 Phone: 8076438491");
 
 //Alert Modal
 
-const hotelBookingButton = document.querySelectorAll(".hotelBookingButton");
-const alertModal = document.getElementById("alertModal");
-const startBookingButton = document.querySelector(".startingBookingBtn");
-const continueBookingButtnon = document.querySelector(".continueBookingBtn");
+function initializeAlertModal() {
+  const hotelBookingButton = document.querySelectorAll(".hotelBookingButton");
+  const alertModal = document.getElementById("alertModal");
+  const startBookingButton = document.querySelector(".startingBookingBtn");
+  const continueBookingButton = document.querySelector(".continueBookingBtn");
 
-hotelBookingButton.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    alertModal.classList.remove("hidden");
+  if (!alertModal) return;
+
+  hotelBookingButton.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      alertModal.classList.remove("hidden");
+    });
   });
-});
 
-startBookingButton.addEventListener("click", () => {
-  window.location.reload();
-});
-
-continueBookingButtnon.addEventListener("click", () => {
-  alertModal.classList.add("hidden");
-});
-
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    alertModal.classList.add("hidden");
+  if (startBookingButton) {
+    startBookingButton.addEventListener("click", () => {
+      window.location.reload();
+    });
   }
-});
 
-alertModal.addEventListener("click", (e) => {
-  if (e.target === alertModal) {
-    alertModal.classList.add("hidden");
+  if (continueBookingButton) {
+    continueBookingButton.addEventListener("click", () => {
+      alertModal.classList.add("hidden");
+    });
   }
-});
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !alertModal.classList.contains("hidden")) {
+      alertModal.classList.add("hidden");
+    }
+  });
+
+  alertModal.addEventListener("click", (e) => {
+    if (e.target === alertModal) {
+      alertModal.classList.add("hidden");
+    }
+  });
+}
+
+// Call the function to initialize
+initializeAlertModal();
