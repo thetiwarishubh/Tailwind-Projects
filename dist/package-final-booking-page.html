@@ -1253,6 +1253,13 @@
         }
       });
 
+      const previousBtn = document.querySelectorAll(".preButton");
+      previousBtn.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          window.location.href = "package-booking-page.html";
+        });
+      });
+
       //Alert Modal
 
       const packageFinalBookingBtn = document.querySelectorAll(
