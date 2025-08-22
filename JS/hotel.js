@@ -185,68 +185,70 @@ document.addEventListener("DOMContentLoaded", function () {
   const errorMsg = document.getElementById("newsletter-error");
   const formContainer = document.getElementById("newsletter-form-container");
   const backBtn = document.getElementById("newsletter-reset");
-  
+
   if (newsletterForm && newsletterInput && newsletterBtn) {
     // Email validation function
     function isValidEmail(email) {
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
-    
+
     // Show success message
     function showSuccess() {
-      formContainer.classList.add('hidden');
-      successMsg.classList.remove('hidden');
-      
+      formContainer.classList.add("hidden");
+      successMsg.classList.remove("hidden");
+
       // Auto-hide success message after 3 seconds
       setTimeout(() => {
         showForm();
       }, 3000);
     }
-    
+
     // Show form again
     function showForm() {
-      formContainer.classList.remove('hidden');
-      successMsg.classList.add('hidden');
-      newsletterInput.value = '';
-      errorMsg.classList.add('hidden');
+      formContainer.classList.remove("hidden");
+      successMsg.classList.add("hidden");
+      newsletterInput.value = "";
+      errorMsg.classList.add("hidden");
     }
-    
+
     // Handle form submission
-    newsletterForm.addEventListener('submit', function(e) {
+    newsletterForm.addEventListener("submit", function (e) {
       e.preventDefault();
-      
+
       const email = newsletterInput.value.trim();
-      
+
       if (!email) {
-        document.getElementById('newsletter-error-text').textContent = 'Please enter your email address.';
-        errorMsg.classList.remove('hidden');
+        document.getElementById("newsletter-error-text").textContent =
+          "Please enter your email address.";
+        errorMsg.classList.remove("hidden");
         return;
       }
-      
+
       if (!isValidEmail(email)) {
-        document.getElementById('newsletter-error-text').textContent = 'Please enter a valid email address.';
-        errorMsg.classList.remove('hidden');
+        document.getElementById("newsletter-error-text").textContent =
+          "Please enter a valid email address.";
+        errorMsg.classList.remove("hidden");
         return;
       }
-      
+
       // Hide error message
-      errorMsg.classList.add('hidden');
-      
+      errorMsg.classList.add("hidden");
+
       // Show loading state
-      newsletterBtn.textContent = 'Subscribing...';
+      newsletterBtn.textContent = "Subscribing...";
       newsletterBtn.disabled = true;
-      
+
       // Simulate API call
       setTimeout(() => {
-        newsletterBtn.textContent = 'Subscribe';
+        newsletterBtn.textContent = "Subscribe";
         newsletterBtn.disabled = false;
         showSuccess();
       }, 500);
     });
-    
+
     // Back to form button
     if (backBtn) {
-      backBtn.addEventListener('click', showForm);
+      backBtn.addEventListener("click", showForm);
     }
   }
 
@@ -351,4 +353,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
-

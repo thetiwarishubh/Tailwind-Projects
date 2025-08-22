@@ -651,7 +651,7 @@ function showBookingConfirmation() {
             `;
 
   document.body.appendChild(confirmationModal);
-  document.body.style.overflow = 'hidden'
+  document.body.style.overflow = "hidden";
 
   // Reset form after showing confirmation
   document.getElementById("btn-text").innerHTML =
@@ -661,38 +661,36 @@ function showBookingConfirmation() {
 
 //Alert Modal
 
-const chambalNavBookBtn = document.querySelectorAll('.chambalBookBtn');
-const alertModal = document.getElementById('alertModal');
-const startBookingButton = document.querySelector('.startingBookingBtn');
-const continueBookingButtnon = document.querySelector('.continueBookingBtn');
+const chambalNavBookBtn = document.querySelectorAll(".chambalBookBtn");
+const alertModal = document.getElementById("alertModal");
+const startBookingButton = document.querySelector(".startingBookingBtn");
+const continueBookingButtnon = document.querySelector(".continueBookingBtn");
 
-
-chambalNavBookBtn.forEach(btn => {
-  btn.addEventListener('click', ()=> {
-    alertModal.classList.remove('hidden');
+chambalNavBookBtn.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    alertModal.classList.remove("hidden");
   });
 });
 
-startBookingButton.addEventListener('click', ()=> {
+startBookingButton.addEventListener("click", () => {
   window.location.reload();
 });
 
-continueBookingButtnon.addEventListener('click', ()=> {
-  alertModal.classList.add('hidden');
+continueBookingButtnon.addEventListener("click", () => {
+  alertModal.classList.add("hidden");
 });
 
-document.addEventListener('keydown', (e)=> {
-  if(e.key === 'Escape'){
-    alertModal.classList.add('hidden');
-  };
-});
-
-alertModal.addEventListener('click', (e)=>{
-  if(e.target === alertModal){
-    alertModal.classList.add('hidden')
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    alertModal.classList.add("hidden");
   }
-})
+});
 
+alertModal.addEventListener("click", (e) => {
+  if (e.target === alertModal) {
+    alertModal.classList.add("hidden");
+  }
+});
 
 // Reset form function
 function resetForm() {

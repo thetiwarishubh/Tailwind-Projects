@@ -1,7 +1,7 @@
 /**
  * Optimized Safari Booking System
  * Professional Safari Booking Application
- * 
+ *
  * Features:
  * - Clean passenger management with proper numbering
  * - Real-time form validation
@@ -9,7 +9,7 @@
  * - Professional payment system with modal
  * - Booking confirmation system
  * - Loading animations and notifications
- * 
+ *
  * @version 2.0.0
  * @author Ranthambore 360 Development Team
  */
@@ -22,7 +22,7 @@ const CONFIG = {
   REDIRECT_DELAY: 1500,
   LOADING_DELAY: 1000,
   NOTIFICATION_DURATION: 5000,
-  DEBUG: false
+  DEBUG: false,
 };
 
 // ============================================================
@@ -42,7 +42,7 @@ function isValidEmail(email) {
  */
 function isValidPhone(phone) {
   const phoneRegex = /^[6-9]\d{9}$/;
-  return phoneRegex.test(phone.replace(/\s+/g, ''));
+  return phoneRegex.test(phone.replace(/\s+/g, ""));
 }
 
 /**
@@ -50,7 +50,7 @@ function isValidPhone(phone) {
  */
 function debugLog(message, data = null) {
   if (CONFIG.DEBUG) {
-    console.log(`[Safari Booking] ${message}`, data || '');
+    console.log(`[Safari Booking] ${message}`, data || "");
   }
 }
 
@@ -58,7 +58,7 @@ function debugLog(message, data = null) {
  * Sanitize input to prevent XSS
  */
 function sanitizeInput(input) {
-  const div = document.createElement('div');
+  const div = document.createElement("div");
   div.textContent = input;
   return div.innerHTML;
 }
@@ -71,9 +71,9 @@ function sanitizeInput(input) {
  * Create notification container if it doesn't exist
  */
 function createNotificationContainer() {
-  if (!document.querySelector('.notification-container')) {
-    const container = document.createElement('div');
-    container.className = 'notification-container';
+  if (!document.querySelector(".notification-container")) {
+    const container = document.createElement("div");
+    container.className = "notification-container";
     document.body.appendChild(container);
   }
 }
@@ -81,42 +81,42 @@ function createNotificationContainer() {
 /**
  * Show notification function
  */
-function showNotification(message, type = 'success') {
+function showNotification(message, type = "success") {
   createNotificationContainer();
-  
-  const container = document.querySelector('.notification-container');
-  const notification = document.createElement('div');
-  
+
+  const container = document.querySelector(".notification-container");
+  const notification = document.createElement("div");
+
   notification.className = `notification p-4 rounded-lg shadow-lg flex items-center justify-between ${
-    type === 'success' ? 'bg-green-500' : 'bg-red-500'
+    type === "success" ? "bg-green-500" : "bg-red-500"
   } text-white`;
-  
+
   notification.innerHTML = `
     <div class="flex items-center">
-      <span class="mr-2">${type === 'success' ? '✓' : '✗'}</span>
+      <span class="mr-2">${type === "success" ? "✓" : "✗"}</span>
       <span>${message}</span>
     </div>
     <button class="ml-4 focus:outline-none hover:text-gray-200">×</button>
   `;
-  
+
   container.appendChild(notification);
-  
+
   // Show notification
   setTimeout(() => {
-    notification.classList.add('show');
+    notification.classList.add("show");
   }, 10);
-  
+
   // Dismiss notification
-  notification.querySelector('button').addEventListener('click', () => {
-    notification.classList.remove('show');
+  notification.querySelector("button").addEventListener("click", () => {
+    notification.classList.remove("show");
     setTimeout(() => {
       notification.remove();
     }, 300);
   });
-  
+
   // Auto dismiss
   setTimeout(() => {
-    notification.classList.remove('show');
+    notification.classList.remove("show");
     setTimeout(() => {
       notification.remove();
     }, 300);
@@ -151,27 +151,27 @@ document.addEventListener("DOMContentLoaded", function () {
         const calendar = new FullCalendar.Calendar(calendarEl, {
           initialView: "dayGridMonth",
           headerToolbar: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth'
+            left: "prev,next today",
+            center: "title",
+            right: "dayGridMonth",
           },
           dateClick: function (info) {
             const selectedDate = info.dateStr; // YYYY-MM-DD
             localStorage.setItem("bookingdate", selectedDate);
-            
+
             // Remove previous selection
-            document.querySelectorAll('.fc-day-selected').forEach(el => {
-              el.classList.remove('fc-day-selected');
+            document.querySelectorAll(".fc-day-selected").forEach((el) => {
+              el.classList.remove("fc-day-selected");
             });
-            
+
             // Add selection to clicked date
-            info.dayEl.classList.add('fc-day-selected');
-            
+            info.dayEl.classList.add("fc-day-selected");
+
             showNotification(`Selected date: ${selectedDate}`, "success");
           },
           validRange: {
-            start: new Date() // Prevent past date selection
-          }
+            start: new Date(), // Prevent past date selection
+          },
         });
         calendar.render();
       }
@@ -199,68 +199,70 @@ document.addEventListener("DOMContentLoaded", function () {
         const validationErrors = [];
 
         if (!bookingDate) {
-          validationErrors.push('Please select date');
+          validationErrors.push("Please select date");
         }
-        
+
         if (!userFullName?.trim()) {
           validationErrors.push("Please enter your full name");
         }
-        
+
         if (!userEmail?.trim()) {
           validationErrors.push("Please enter your email address");
         } else if (!isValidEmail(userEmail)) {
           validationErrors.push("Please enter a valid email address");
         }
-        
+
         if (!userNumber?.trim()) {
           validationErrors.push("Please enter your mobile number");
         } else if (!isValidPhone(userNumber)) {
           validationErrors.push("Please enter a valid 10-digit mobile number");
         }
-        
+
         if (!userTiming) {
           validationErrors.push("Please select safari timing");
         }
-        
+
         if (!safari) {
           validationErrors.push("Please select safari type");
         }
-        
+
         if (!zone) {
           validationErrors.push("Please select safari zone");
         }
-        
+
         // Show validation errors
         if (validationErrors.length > 0) {
           showNotification(validationErrors[0], "error");
           debugLog("Form validation failed", validationErrors);
           return;
         }
-        
+
         // Sanitize inputs before storing
         const sanitizedData = {
           bookingDate: sanitizeInput(bookingDate),
           userFullName: sanitizeInput(userFullName.trim()),
           userEmail: sanitizeInput(userEmail.trim().toLowerCase()),
-          userNumber: sanitizeInput(userNumber.replace(/\s+/g, '')),
+          userNumber: sanitizeInput(userNumber.replace(/\s+/g, "")),
           userTiming: sanitizeInput(userTiming),
           safari: sanitizeInput(safari),
-          zone: sanitizeInput(zone)
+          zone: sanitizeInput(zone),
         };
-        
+
         // Store sanitized values in localStorage
-        localStorage.setItem('bookingdate', sanitizedData.bookingDate);
+        localStorage.setItem("bookingdate", sanitizedData.bookingDate);
         localStorage.setItem("username", sanitizedData.userFullName);
         localStorage.setItem("email", sanitizedData.userEmail);
         localStorage.setItem("number", sanitizedData.userNumber);
         localStorage.setItem("timing", sanitizedData.userTiming);
         localStorage.setItem("safari", sanitizedData.safari);
         localStorage.setItem("zone", sanitizedData.zone);
-        
+
         debugLog("Form data stored successfully", sanitizedData);
 
         // Show success notification
-        showNotification("Form submitted successfully! Redirecting to booking page...");
+        showNotification(
+          "Form submitted successfully! Redirecting to booking page..."
+        );
 
         // Redirect to booking page
         setTimeout(() => {
@@ -269,7 +271,10 @@ document.addEventListener("DOMContentLoaded", function () {
             debugLog("Redirecting to create-safari-booking-optimized.html");
           } catch (redirectError) {
             console.error("Redirect failed:", redirectError);
-            showNotification("Failed to redirect to the booking page.", "error");
+            showNotification(
+              "Failed to redirect to the booking page.",
+              "error"
+            );
           }
         }, CONFIG.REDIRECT_DELAY);
       });
@@ -281,19 +286,22 @@ document.addEventListener("DOMContentLoaded", function () {
     if (isBookingPage) {
       // Initialize passenger management
       initializePassengerManagement();
-      
+
       // Initialize payment modal and system
       initializePaymentSystem();
-      
+
       // Load and display booking data
       loadBookingData();
-      
+
       // Initialize form validation
       initializeFormValidation();
     }
   } catch (error) {
     console.error("Error in script execution:", error);
-    showNotification("An error occurred. Please check the console for details.", "error");
+    showNotification(
+      "An error occurred. Please check the console for details.",
+      "error"
+    );
   }
 });
 
@@ -306,27 +314,31 @@ document.addEventListener("DOMContentLoaded", function () {
  */
 function initializePassengerManagement() {
   // Initialize passenger counter based on existing rows
-  const existingRows = document.querySelectorAll('#passengerTableBody tr').length;
-  const existingCards = document.querySelectorAll('#mobilePassengerContainer .passenger-card').length;
-  
+  const existingRows = document.querySelectorAll(
+    "#passengerTableBody tr"
+  ).length;
+  const existingCards = document.querySelectorAll(
+    "#mobilePassengerContainer .passenger-card"
+  ).length;
+
   // Use the higher count between desktop and mobile
   window.passengerCount = Math.max(existingRows, existingCards) || 1;
-  
-  debugLog("Passenger management initialized", { 
-    existingRows, 
-    existingCards, 
-    passengerCount: window.passengerCount 
+
+  debugLog("Passenger management initialized", {
+    existingRows,
+    existingCards,
+    passengerCount: window.passengerCount,
   });
-  
+
   // Setup add passenger button
-  const addMemberBtn = document.getElementById('add-member-btn');
+  const addMemberBtn = document.getElementById("add-member-btn");
   if (addMemberBtn) {
-    addMemberBtn.addEventListener('click', addPassenger);
+    addMemberBtn.addEventListener("click", addPassenger);
   }
-  
+
   // Setup existing delete buttons
   setupExistingDeleteButtons();
-  
+
   // Setup form field validation for existing passengers
   setupExistingFormValidation();
 }
@@ -336,30 +348,32 @@ function initializePassengerManagement() {
  */
 function addPassenger() {
   if (window.passengerCount >= CONFIG.MAX_PASSENGERS) {
-    showNotification('Maximum 6 passengers allowed per booking.', 'error');
+    showNotification("Maximum 6 passengers allowed per booking.", "error");
     return;
   }
-  
-  const currentRows = document.querySelectorAll('#passengerTableBody tr').length;
+
+  const currentRows = document.querySelectorAll(
+    "#passengerTableBody tr"
+  ).length;
   const nextPassengerNumber = currentRows + 1;
-  
+
   // Add to desktop table
   addDesktopPassenger(nextPassengerNumber);
-  
+
   // Add to mobile container
   addMobilePassenger(nextPassengerNumber);
-  
+
   window.passengerCount = nextPassengerNumber;
-  
+
   showNotification(`Passenger ${nextPassengerNumber} added successfully.`);
-  
+
   // Disable add button if max reached
-  const addBtn = document.getElementById('add-member-btn');
+  const addBtn = document.getElementById("add-member-btn");
   if (nextPassengerNumber >= CONFIG.MAX_PASSENGERS && addBtn) {
     addBtn.disabled = true;
-    addBtn.classList.add('opacity-50', 'cursor-not-allowed');
+    addBtn.classList.add("opacity-50", "cursor-not-allowed");
   }
-  
+
   validateForm();
 }
 
@@ -367,12 +381,12 @@ function addPassenger() {
  * Add desktop passenger row
  */
 function addDesktopPassenger(passengerNumber) {
-  const tableBody = document.getElementById('passengerTableBody');
+  const tableBody = document.getElementById("passengerTableBody");
   if (!tableBody) return;
-  
-  const newRow = document.createElement('tr');
-  newRow.className = 'animate__animated animate__fadeIn';
-  
+
+  const newRow = document.createElement("tr");
+  newRow.className = "animate__animated animate__fadeIn";
+
   newRow.innerHTML = `
     <td class="border border-gray-300 p-2 text-center">
       <span class="inline-block px-3 py-1 rounded-full bg-[#604019] text-white font-bold text-sm">${passengerNumber}</span>
@@ -426,7 +440,7 @@ function addDesktopPassenger(passengerNumber) {
       </button>
     </td>
   `;
-  
+
   tableBody.appendChild(newRow);
   setupRowEvents(newRow);
 }
@@ -435,12 +449,13 @@ function addDesktopPassenger(passengerNumber) {
  * Add mobile passenger card
  */
 function addMobilePassenger(passengerNumber) {
-  const mobileContainer = document.getElementById('mobilePassengerContainer');
+  const mobileContainer = document.getElementById("mobilePassengerContainer");
   if (!mobileContainer) return;
-  
-  const newCard = document.createElement('div');
-  newCard.className = 'passenger-card bg-white border-2 border-gray-200 rounded-lg p-4 mb-4 shadow-sm animate__animated animate__fadeIn';
-  
+
+  const newCard = document.createElement("div");
+  newCard.className =
+    "passenger-card bg-white border-2 border-gray-200 rounded-lg p-4 mb-4 shadow-sm animate__animated animate__fadeIn";
+
   newCard.innerHTML = `
     <div class="flex justify-between items-center mb-4">
       <span class="inline-block px-3 py-1 rounded-full bg-[#604019] text-white font-bold text-sm">Passenger ${passengerNumber}</span>
@@ -511,7 +526,7 @@ function addMobilePassenger(passengerNumber) {
       </div>
     </div>
   `;
-  
+
   mobileContainer.appendChild(newCard);
   setupCardEvents(newCard);
 }
@@ -520,11 +535,11 @@ function addMobilePassenger(passengerNumber) {
  * Remove passenger function
  */
 function removePassenger(element) {
-  const row = element.closest('tr') || element.closest('.passenger-card');
+  const row = element.closest("tr") || element.closest(".passenger-card");
   if (!row) return;
-  
-  row.classList.add('animate__fadeOut');
-  
+
+  row.classList.add("animate__fadeOut");
+
   setTimeout(() => {
     row.remove();
     reindexPassengers();
@@ -535,36 +550,38 @@ function removePassenger(element) {
  * Reindex passengers after removal
  */
 function reindexPassengers() {
-  const desktopRows = document.querySelectorAll('#passengerTableBody tr');
-  const mobileCards = document.querySelectorAll('#mobilePassengerContainer .passenger-card');
-  
+  const desktopRows = document.querySelectorAll("#passengerTableBody tr");
+  const mobileCards = document.querySelectorAll(
+    "#mobilePassengerContainer .passenger-card"
+  );
+
   // Update passenger count
   window.passengerCount = Math.max(desktopRows.length, mobileCards.length);
-  
+
   // Reindex desktop table
   desktopRows.forEach((row, index) => {
-    const numberSpan = row.querySelector('span');
+    const numberSpan = row.querySelector("span");
     if (numberSpan) {
       numberSpan.textContent = index + 1;
     }
   });
-  
+
   // Reindex mobile cards
   mobileCards.forEach((card, index) => {
-    const numberSpan = card.querySelector('span');
+    const numberSpan = card.querySelector("span");
     if (numberSpan) {
       numberSpan.textContent = `Passenger ${index + 1}`;
     }
   });
-  
+
   // Re-enable add button if needed
-  const addBtn = document.getElementById('add-member-btn');
+  const addBtn = document.getElementById("add-member-btn");
   if (window.passengerCount < CONFIG.MAX_PASSENGERS && addBtn) {
     addBtn.disabled = false;
-    addBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+    addBtn.classList.remove("opacity-50", "cursor-not-allowed");
   }
-  
-  showNotification('Passenger removed successfully.');
+
+  showNotification("Passenger removed successfully.");
   validateForm();
 }
 
@@ -573,15 +590,15 @@ function reindexPassengers() {
  */
 function setupExistingDeleteButtons() {
   // Desktop delete buttons
-  document.querySelectorAll('.delete-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
+  document.querySelectorAll(".delete-btn").forEach((btn) => {
+    btn.addEventListener("click", function () {
       removePassenger(this);
     });
   });
-  
+
   // Mobile delete buttons
-  document.querySelectorAll('.delete-btn-mobile').forEach(btn => {
-    btn.addEventListener('click', function() {
+  document.querySelectorAll(".delete-btn-mobile").forEach((btn) => {
+    btn.addEventListener("click", function () {
       removePassenger(this);
     });
   });
@@ -591,23 +608,23 @@ function setupExistingDeleteButtons() {
  * Setup row events
  */
 function setupRowEvents(row) {
-  const deleteBtn = row.querySelector('.delete-btn');
-  const formFields = row.querySelectorAll('.form-field');
-  
+  const deleteBtn = row.querySelector(".delete-btn");
+  const formFields = row.querySelectorAll(".form-field");
+
   if (deleteBtn) {
-    deleteBtn.addEventListener('click', function() {
+    deleteBtn.addEventListener("click", function () {
       removePassenger(this);
     });
   }
-  
-  formFields.forEach(field => {
-    if (field.tagName === 'SELECT') {
-      field.addEventListener('change', function() {
+
+  formFields.forEach((field) => {
+    if (field.tagName === "SELECT") {
+      field.addEventListener("change", function () {
         validateField(this);
         validateForm();
       });
     } else {
-      field.addEventListener('input', function() {
+      field.addEventListener("input", function () {
         validateField(this);
         validateForm();
       });
@@ -619,23 +636,23 @@ function setupRowEvents(row) {
  * Setup card events
  */
 function setupCardEvents(card) {
-  const deleteBtn = card.querySelector('.delete-btn-mobile');
-  const formFields = card.querySelectorAll('.form-field');
-  
+  const deleteBtn = card.querySelector(".delete-btn-mobile");
+  const formFields = card.querySelectorAll(".form-field");
+
   if (deleteBtn) {
-    deleteBtn.addEventListener('click', function() {
+    deleteBtn.addEventListener("click", function () {
       removePassenger(this);
     });
   }
-  
-  formFields.forEach(field => {
-    if (field.tagName === 'SELECT') {
-      field.addEventListener('change', function() {
+
+  formFields.forEach((field) => {
+    if (field.tagName === "SELECT") {
+      field.addEventListener("change", function () {
         validateField(this);
         validateForm();
       });
     } else {
-      field.addEventListener('input', function() {
+      field.addEventListener("input", function () {
         validateField(this);
         validateForm();
       });
@@ -647,15 +664,15 @@ function setupCardEvents(card) {
  * Setup existing form validation
  */
 function setupExistingFormValidation() {
-  const existingFields = document.querySelectorAll('.form-field');
-  existingFields.forEach(field => {
-    if (field.tagName === 'SELECT') {
-      field.addEventListener('change', function() {
+  const existingFields = document.querySelectorAll(".form-field");
+  existingFields.forEach((field) => {
+    if (field.tagName === "SELECT") {
+      field.addEventListener("change", function () {
         validateField(this);
         validateForm();
       });
     } else {
-      field.addEventListener('input', function() {
+      field.addEventListener("input", function () {
         validateField(this);
         validateForm();
       });
@@ -669,9 +686,9 @@ function setupExistingFormValidation() {
 function loadBookingData() {
   // Add loading state
   addLoadingState();
-  
+
   setTimeout(() => {
-    const booking = localStorage.getItem('bookingdate');
+    const booking = localStorage.getItem("bookingdate");
     const username = localStorage.getItem("username");
     const email = localStorage.getItem("email");
     const number = localStorage.getItem("number");
@@ -680,18 +697,24 @@ function loadBookingData() {
     const zone = localStorage.getItem("zone");
 
     debugLog("Retrieved from localStorage:", {
-      username, email, number, timing, safari, zone, booking
+      username,
+      email,
+      number,
+      timing,
+      safari,
+      zone,
+      booking,
     });
 
     // Update DOM elements with animated loading
-    animateDataLoad(document.querySelector('.display-date'), booking);
-    animateDataLoad(document.querySelector('.display-name'), username);
-    animateDataLoad(document.querySelector('.display-email'), email);
-    animateDataLoad(document.querySelector('.display-mobile'), number);
-    animateDataLoad(document.querySelector('.display-safari'), safari);
-    animateDataLoad(document.querySelector('.display-zone'), zone);
-    animateDataLoad(document.querySelector('.display-timing'), timing);
-    
+    animateDataLoad(document.querySelector(".display-date"), booking);
+    animateDataLoad(document.querySelector(".display-name"), username);
+    animateDataLoad(document.querySelector(".display-email"), email);
+    animateDataLoad(document.querySelector(".display-mobile"), number);
+    animateDataLoad(document.querySelector(".display-safari"), safari);
+    animateDataLoad(document.querySelector(".display-zone"), zone);
+    animateDataLoad(document.querySelector(".display-timing"), timing);
+
     // Remove loading state
     removeLoadingState();
   }, CONFIG.LOADING_DELAY);
@@ -701,13 +724,15 @@ function loadBookingData() {
  * Add loading state to elements
  */
 function addLoadingState() {
-  const displayElements = document.querySelectorAll('.display-name, .display-email, .display-mobile, .display-safari, .display-zone, .display-timing, .display-date');
-  displayElements.forEach(element => {
-    element.classList.add('skeleton');
-    element.style.height = '20px';
-    element.style.width = '100%';
-    element.style.borderRadius = '4px';
-    element.textContent = '';
+  const displayElements = document.querySelectorAll(
+    ".display-name, .display-email, .display-mobile, .display-safari, .display-zone, .display-timing, .display-date"
+  );
+  displayElements.forEach((element) => {
+    element.classList.add("skeleton");
+    element.style.height = "20px";
+    element.style.width = "100%";
+    element.style.borderRadius = "4px";
+    element.textContent = "";
   });
 }
 
@@ -715,9 +740,9 @@ function addLoadingState() {
  * Remove loading state
  */
 function removeLoadingState() {
-  const skeletons = document.querySelectorAll('.skeleton');
-  skeletons.forEach(skeleton => {
-    skeleton.classList.remove('skeleton');
+  const skeletons = document.querySelectorAll(".skeleton");
+  skeletons.forEach((skeleton) => {
+    skeleton.classList.remove("skeleton");
   });
 }
 
@@ -726,17 +751,17 @@ function removeLoadingState() {
  */
 function animateDataLoad(element, value) {
   if (!element) return;
-  
-  element.classList.remove('skeleton');
+
+  element.classList.remove("skeleton");
   element.textContent = value || "N/A";
-  element.classList.add('animate__animated', 'animate__fadeIn');
-  
+  element.classList.add("animate__animated", "animate__fadeIn");
+
   // Add highlight effect
   setTimeout(() => {
-    element.style.backgroundColor = '#fef3c7';
+    element.style.backgroundColor = "#fef3c7";
     setTimeout(() => {
-      element.style.transition = 'background-color 1s ease';
-      element.style.backgroundColor = 'transparent';
+      element.style.transition = "background-color 1s ease";
+      element.style.backgroundColor = "transparent";
     }, 500);
   }, 300);
 }
@@ -746,32 +771,34 @@ function animateDataLoad(element, value) {
  */
 function initializeFormValidation() {
   const stateSelect = document.querySelector('select[placeholder="State"]');
-  const addressInput = document.querySelector('textarea[placeholder="Full Address"]');
+  const addressInput = document.querySelector(
+    'textarea[placeholder="Full Address"]'
+  );
   const termsCheckbox = document.querySelector('input[type="checkbox"]');
-  
+
   if (stateSelect) {
-    stateSelect.classList.add('form-field');
-    stateSelect.addEventListener('change', function() {
+    stateSelect.classList.add("form-field");
+    stateSelect.addEventListener("change", function () {
       validateField(this);
       validateForm();
     });
   }
 
   if (addressInput) {
-    addressInput.classList.add('form-field');
-    addressInput.addEventListener('input', function() {
+    addressInput.classList.add("form-field");
+    addressInput.addEventListener("input", function () {
       validateField(this);
       validateForm();
     });
   }
-  
+
   if (termsCheckbox) {
-    termsCheckbox.addEventListener('change', function() {
+    termsCheckbox.addEventListener("change", function () {
       if (this.checked) {
-        this.classList.remove('border-red-500');
-        showNotification('Thank you for agreeing to our terms and conditions');
+        this.classList.remove("border-red-500");
+        showNotification("Thank you for agreeing to our terms and conditions");
       } else {
-        this.classList.add('border-red-500');
+        this.classList.add("border-red-500");
       }
       validateForm();
     });
@@ -783,26 +810,26 @@ function initializeFormValidation() {
  */
 function validateField(field) {
   let isValid = true;
-  
-  if (field.tagName === 'SELECT') {
-    isValid = field.value !== '';
-  } else if (field.tagName === 'TEXTAREA') {
+
+  if (field.tagName === "SELECT") {
+    isValid = field.value !== "";
+  } else if (field.tagName === "TEXTAREA") {
     isValid = field.value.trim().length >= 10;
-  } else if (field.type === 'number') {
+  } else if (field.type === "number") {
     const value = parseInt(field.value);
     isValid = value >= 1 && value <= 120;
   } else {
-    isValid = field.value.trim() !== '';
+    isValid = field.value.trim() !== "";
   }
-  
+
   if (isValid) {
-    field.classList.remove('invalid');
-    field.classList.add('valid');
+    field.classList.remove("invalid");
+    field.classList.add("valid");
   } else {
-    field.classList.remove('valid');
-    field.classList.add('invalid');
+    field.classList.remove("valid");
+    field.classList.add("invalid");
   }
-  
+
   return isValid;
 }
 
@@ -811,36 +838,38 @@ function validateField(field) {
  */
 function validateForm() {
   const stateSelect = document.querySelector('select[placeholder="State"]');
-  const addressInput = document.querySelector('textarea[placeholder="Full Address"]');
+  const addressInput = document.querySelector(
+    'textarea[placeholder="Full Address"]'
+  );
   const termsCheckbox = document.querySelector('input[type="checkbox"]');
-  const payButton = document.getElementById('pay-now-btn');
-  
+  const payButton = document.getElementById("pay-now-btn");
+
   let isValid = true;
-  
+
   // Validate state and address
   if (stateSelect && !validateField(stateSelect)) isValid = false;
   if (addressInput && !validateField(addressInput)) isValid = false;
-  
+
   // Validate passenger info
   const passengerValid = validatePassengers();
   if (!passengerValid.valid) isValid = false;
-  
+
   // Check terms
   if (termsCheckbox && !termsCheckbox.checked) isValid = false;
-  
+
   // Enable/disable pay button
   if (payButton) {
     if (isValid) {
       payButton.disabled = false;
-      payButton.classList.remove('opacity-50', 'cursor-not-allowed');
-      payButton.classList.add('btn-primary');
+      payButton.classList.remove("opacity-50", "cursor-not-allowed");
+      payButton.classList.add("btn-primary");
     } else {
       payButton.disabled = true;
-      payButton.classList.add('opacity-50', 'cursor-not-allowed');
-      payButton.classList.remove('btn-primary');
+      payButton.classList.add("opacity-50", "cursor-not-allowed");
+      payButton.classList.remove("btn-primary");
     }
   }
-  
+
   return isValid;
 }
 
@@ -848,40 +877,46 @@ function validateForm() {
  * Validate passenger details
  */
 function validatePassengers() {
-  const rows = document.querySelectorAll('#passengerTableBody tr');
-  
+  const rows = document.querySelectorAll("#passengerTableBody tr");
+
   if (rows.length === 0) {
-    return { valid: false, message: 'Please add at least one passenger' };
+    return { valid: false, message: "Please add at least one passenger" };
   }
-  
+
   for (let i = 0; i < rows.length; i++) {
     const row = rows[i];
     const name = row.querySelector('input[placeholder="Enter name"]');
     const age = row.querySelector('input[placeholder="Age"]');
-    const gender = row.querySelector('select:nth-of-type(1)');
-    
+    const gender = row.querySelector("select:nth-of-type(1)");
+
     if (name && !name.value.trim()) {
-      name.classList.add('invalid');
-      return { valid: false, message: `Passenger ${i+1}: Please enter name` };
+      name.classList.add("invalid");
+      return { valid: false, message: `Passenger ${i + 1}: Please enter name` };
     } else if (name) {
-      name.classList.remove('invalid');
+      name.classList.remove("invalid");
     }
-    
+
     if (age && (!age.value || age.value < 1 || age.value > 120)) {
-      age.classList.add('invalid');
-      return { valid: false, message: `Passenger ${i+1}: Please enter valid age` };
+      age.classList.add("invalid");
+      return {
+        valid: false,
+        message: `Passenger ${i + 1}: Please enter valid age`,
+      };
     } else if (age) {
-      age.classList.remove('invalid');
+      age.classList.remove("invalid");
     }
-    
+
     if (gender && !gender.value) {
-      gender.classList.add('invalid');
-      return { valid: false, message: `Passenger ${i+1}: Please select gender` };
+      gender.classList.add("invalid");
+      return {
+        valid: false,
+        message: `Passenger ${i + 1}: Please select gender`,
+      };
     } else if (gender) {
-      gender.classList.remove('invalid');
+      gender.classList.remove("invalid");
     }
   }
-  
+
   return { valid: true };
 }
 
@@ -894,23 +929,26 @@ function validatePassengers() {
  */
 function initializePaymentSystem() {
   createPaymentModal();
-  
-  const payButton = document.getElementById('pay-now-btn');
+
+  const payButton = document.getElementById("pay-now-btn");
   const termsCheckbox = document.querySelector('input[type="checkbox"]');
-  
+
   if (payButton && termsCheckbox) {
     // Disable pay button initially
     payButton.disabled = true;
-    payButton.classList.add('opacity-50', 'cursor-not-allowed');
-    
+    payButton.classList.add("opacity-50", "cursor-not-allowed");
+
     // Add click event to pay button
-    payButton.addEventListener('click', function(e) {
+    payButton.addEventListener("click", function (e) {
       e.preventDefault();
-      
+
       if (validateForm()) {
         showPaymentModal();
       } else {
-        showNotification('Please fill all required fields and agree to the terms and conditions.', 'error');
+        showNotification(
+          "Please fill all required fields and agree to the terms and conditions.",
+          "error"
+        );
       }
     });
   }
@@ -920,11 +958,11 @@ function initializePaymentSystem() {
  * Create payment modal
  */
 function createPaymentModal() {
-  if (document.getElementById('payment-modal')) return;
-  
-  const modal = document.createElement('div');
-  modal.id = 'payment-modal';
-  modal.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 hidden modal';
+  if (document.getElementById("payment-modal")) return;
+
+  const modal = document.createElement("div");
+  modal.id = "payment-modal";
+  modal.className = "fixed inset-0 bg-black bg-opacity-50 z-50 hidden modal";
   modal.innerHTML = `
     <div class="flex items-center justify-center min-h-screen p-4">
       <div class="bg-white rounded-lg shadow-xl max-w-md w-full p-6 modal-content">
@@ -967,21 +1005,29 @@ function createPaymentModal() {
       </div>
     </div>
   `;
-  
+
   document.body.appendChild(modal);
-  
+
   // Setup modal events
-  document.getElementById('close-modal').addEventListener('click', hidePaymentModal);
-  document.getElementById('cancel-payment').addEventListener('click', hidePaymentModal);
-  document.getElementById('complete-payment').addEventListener('click', processPayment);
-  
+  document
+    .getElementById("close-modal")
+    .addEventListener("click", hidePaymentModal);
+  document
+    .getElementById("cancel-payment")
+    .addEventListener("click", hidePaymentModal);
+  document
+    .getElementById("complete-payment")
+    .addEventListener("click", processPayment);
+
   // Payment method selection
-  modal.querySelectorAll('.payment-method-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      modal.querySelectorAll('.payment-method-btn').forEach(b => 
-        b.classList.remove('ring-2', 'ring-amber-500', 'bg-amber-50')
-      );
-      this.classList.add('ring-2', 'ring-amber-500', 'bg-amber-50');
+  modal.querySelectorAll(".payment-method-btn").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      modal
+        .querySelectorAll(".payment-method-btn")
+        .forEach((b) =>
+          b.classList.remove("ring-2", "ring-amber-500", "bg-amber-50")
+        );
+      this.classList.add("ring-2", "ring-amber-500", "bg-amber-50");
     });
   });
 }
@@ -990,11 +1036,11 @@ function createPaymentModal() {
  * Show payment modal
  */
 function showPaymentModal() {
-  const modal = document.getElementById('payment-modal');
+  const modal = document.getElementById("payment-modal");
   if (modal) {
-    modal.classList.remove('hidden');
+    modal.classList.remove("hidden");
     setTimeout(() => {
-      modal.classList.add('show');
+      modal.classList.add("show");
     }, 10);
   }
 }
@@ -1003,11 +1049,11 @@ function showPaymentModal() {
  * Hide payment modal
  */
 function hidePaymentModal() {
-  const modal = document.getElementById('payment-modal');
+  const modal = document.getElementById("payment-modal");
   if (modal) {
-    modal.classList.remove('show');
+    modal.classList.remove("show");
     setTimeout(() => {
-      modal.classList.add('hidden');
+      modal.classList.add("hidden");
     }, 300);
   }
 }
@@ -1016,22 +1062,24 @@ function hidePaymentModal() {
  * Process payment
  */
 function processPayment() {
-  const completeBtn = document.getElementById('complete-payment');
-  
+  const completeBtn = document.getElementById("complete-payment");
+
   if (completeBtn) {
     const originalText = completeBtn.textContent;
-    completeBtn.textContent = 'Processing...';
+    completeBtn.textContent = "Processing...";
     completeBtn.disabled = true;
-    
-    showNotification('Processing your payment...', 'success');
-    
+
+    showNotification("Processing your payment...", "success");
+
     setTimeout(() => {
       hidePaymentModal();
       completeBtn.textContent = originalText;
       completeBtn.disabled = false;
-      
-      showNotification('Payment successful! Redirecting to confirmation page...');
-      
+
+      showNotification(
+        "Payment successful! Redirecting to confirmation page..."
+      );
+
       setTimeout(showBookingConfirmation, CONFIG.REDIRECT_DELAY);
     }, 2000);
   }
@@ -1041,17 +1089,22 @@ function processPayment() {
  * Show booking confirmation
  */
 function showBookingConfirmation() {
-  const bookingId = 'RTB' + Date.now().toString().slice(-6) + Math.floor(Math.random() * 1000).toString().padStart(3, '0');
-  
-  const username = localStorage.getItem("username") || 'Guest';
-  const email = localStorage.getItem("email") || 'Not provided';
-  const mobile = localStorage.getItem("number") || 'Not provided';
-  const safari = localStorage.getItem("safari") || 'Not specified';
-  const zone = localStorage.getItem("zone") || 'Not specified';
-  const timing = localStorage.getItem("timing") || 'Not specified';
-  
-  const confirmation = document.createElement('div');
-  confirmation.className = 'fixed inset-0 bg-white z-50 overflow-y-auto';
+  const bookingId =
+    "RTB" +
+    Date.now().toString().slice(-6) +
+    Math.floor(Math.random() * 1000)
+      .toString()
+      .padStart(3, "0");
+
+  const username = localStorage.getItem("username") || "Guest";
+  const email = localStorage.getItem("email") || "Not provided";
+  const mobile = localStorage.getItem("number") || "Not provided";
+  const safari = localStorage.getItem("safari") || "Not specified";
+  const zone = localStorage.getItem("zone") || "Not specified";
+  const timing = localStorage.getItem("timing") || "Not specified";
+
+  const confirmation = document.createElement("div");
+  confirmation.className = "fixed inset-0 bg-white z-50 overflow-y-auto";
   confirmation.innerHTML = `
     <div class="min-h-screen bg-gradient-to-br from-green-50 to-amber-50 py-8 px-4">
       <div class="max-w-4xl mx-auto">
@@ -1156,15 +1209,17 @@ function showBookingConfirmation() {
       </div>
     </div>
   `;
-  
+
   document.body.appendChild(confirmation);
-  
+
   // Setup confirmation events
-  document.getElementById('print-confirmation').addEventListener('click', function() {
-    window.print();
-  });
-  
-  document.getElementById('return-home').addEventListener('click', function() {
-    window.location.href = 'safari.html';
+  document
+    .getElementById("print-confirmation")
+    .addEventListener("click", function () {
+      window.print();
+    });
+
+  document.getElementById("return-home").addEventListener("click", function () {
+    window.location.href = "safari.html";
   });
 }

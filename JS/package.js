@@ -519,10 +519,9 @@ document.addEventListener("keydown", function (e) {
   }
 });
 
-
-const packageBookingBtn = document.querySelectorAll('.package-booking-btn');
-packageBookingBtn.forEach(btn => {
-    btn.addEventListener('click', ()=> {
-        window.location.href = 'package-booking-page.html'
-    })
-})
+const packageBookingBtn = document.querySelectorAll(".package-booking-btn");
+packageBookingBtn.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    window.location.href = "package-booking-page.html";
+  });
+});
