@@ -353,3 +353,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+const bookNowBtn = document.querySelectorAll('.book-now-btn');
+bookNowBtn.forEach(btn => {
+  btn.addEventListener('click', ()=> {
+    window.location.href = 'hotel-booking-page.html'
+  })
+})
