@@ -1223,3 +1223,37 @@ function showBookingConfirmation() {
     window.location.href = "safari.html";
   });
 }
+
+//Alert Modal
+
+const createSafariBookingButton = document.querySelectorAll(".createSafariBookingButton");
+const alertModal = document.getElementById("alertModal");
+const startBookingButton = document.querySelector(".startingBookingBtn");
+const continueBookingButtnon = document.querySelector(".continueBookingBtn");
+
+createSafariBookingButton.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    alertModal.classList.remove("hidden");
+  });
+});
+
+startBookingButton.addEventListener("click", () => {
+  window.location.href = "safari.html"
+});
+
+continueBookingButtnon.addEventListener("click", () => {
+  alertModal.classList.add("hidden");
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    alertModal.classList.add("hidden");
+  }
+});
+
+alertModal.addEventListener("click", (e) => {
+  if (e.target === alertModal) {
+    alertModal.classList.add("hidden");
+  }
+});
+
