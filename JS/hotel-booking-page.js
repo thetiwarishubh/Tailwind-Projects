@@ -144,15 +144,18 @@ class HotelBookingSystem {
         img.src = this.carouselImages[index];
         img.alt = `${this.currentHotel.name} Image ${index + 1}`;
         
-        // Add error handling for image loading
-        img.onerror = () => {
-          img.src = `https://via.placeholder.com/600x300/e5e7eb/9ca3af?text=Hotel+Image+${index + 1}`;
-        };
-        
-        // Add loading indicator
-        img.onload = () => {
-          img.style.opacity = '1';
-        };
+        // Add error handling for image loading (prevent infinite loops)
+        if (!img.dataset.errorHandlerAdded) {
+          img.onerror = () => {
+            img.src = `https://via.placeholder.com/600x300/e5e7eb/9ca3af?text=Hotel+Image+${index + 1}`;
+            img.dataset.errorHandlerAdded = 'true';
+          };
+          
+          // Add loading indicator
+          img.onload = () => {
+            img.style.opacity = '1';
+          };
+        }
         
         // Set visibility - show first image, hide others
         if (index === 0) {
@@ -164,27 +167,25 @@ class HotelBookingSystem {
       }
     });
     
-    // Add click event to carousel images for lightbox
-    // Clear any existing click listeners by removing the attribute
-    images.forEach((img, index) => {
-      // Remove onclick attribute if it exists
-      img.removeAttribute('onclick');
-      
-      // Create a new click handler
-      const clickHandler = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        this.showImageLightbox(img.src, img.alt);
-      };
-      
-      // Remove any existing listeners and add new one
-      img.removeEventListener('click', clickHandler);
-      img.addEventListener('click', clickHandler);
-      
-      // Set visual indicators
-      img.style.cursor = 'pointer';
-      img.title = 'Click to view larger image';
-    });
+      // Add click event to carousel images for lightbox (only if not already added)
+      images.forEach((img, index) => {
+        // Only add listeners if not already added
+        if (!img.dataset.listenerAdded) {
+          // Create a new click handler
+          const clickHandler = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            this.showImageLightbox(img.src, img.alt);
+          };
+          
+          img.addEventListener('click', clickHandler);
+          img.dataset.listenerAdded = 'true';
+          
+          // Set visual indicators
+          img.style.cursor = 'pointer';
+          img.title = 'Click to view larger image';
+        }
+      });
   }
 
   createCarouselDots() {
@@ -1176,5 +1177,4 @@ function initializeAlertModal() {
   });
 }
 
-// Call the function to initialize
-initializeAlertModal();
+// Alert modal will be initialized in the main initializeEverything function

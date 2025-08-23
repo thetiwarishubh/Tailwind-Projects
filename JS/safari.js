@@ -120,10 +120,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
     }
-
-    // =========================
-    // BOOKING PAGE LOGIC
-    // =========================
     if (isBookingPage) {
       // Retrieve data from localStorage
       const username = localStorage.getItem("username");
@@ -169,10 +165,6 @@ document.addEventListener("DOMContentLoaded", function () {
     console.error("Error in script execution:", error);
     alert("An error occurred. Please check the console for details.");
   }
-
-  // =========================
-  // ADD PASSENGER ROWS
-  // =========================
   let rowCount = 0; // Initialize row counter
   const addMemberBtn = document.getElementById("add-member-btn");
 

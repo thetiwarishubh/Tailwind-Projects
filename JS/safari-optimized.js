@@ -1,22 +1,3 @@
-/**
- * Optimized Safari Booking System
- * Professional Safari Booking Application
- *
- * Features:
- * - Clean passenger management with proper numbering
- * - Real-time form validation
- * - Responsive design (desktop + mobile)
- * - Professional payment system with modal
- * - Booking confirmation system
- * - Loading animations and notifications
- *
- * @version 2.0.0
- * @author Ranthambore 360 Development Team
- */
-
-// ============================================================
-// CONFIGURATION & CONSTANTS
-// ============================================================
 const CONFIG = {
   MAX_PASSENGERS: 6,
   REDIRECT_DELAY: 1500,
@@ -24,10 +5,6 @@ const CONFIG = {
   NOTIFICATION_DURATION: 5000,
   DEBUG: false,
 };
-
-// ============================================================
-// UTILITY FUNCTIONS
-// ============================================================
 
 /**
  * Email validation utility
@@ -62,11 +39,6 @@ function sanitizeInput(input) {
   div.textContent = input;
   return div.innerHTML;
 }
-
-// ============================================================
-// NOTIFICATION SYSTEM
-// ============================================================
-
 /**
  * Create notification container if it doesn't exist
  */
@@ -123,9 +95,6 @@ function showNotification(message, type = "success") {
   }, CONFIG.NOTIFICATION_DURATION);
 }
 
-// ============================================================
-// MAIN APPLICATION
-// ============================================================
 
 document.addEventListener("DOMContentLoaded", function () {
   try {
@@ -140,9 +109,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     debugLog("Current page:", { isFormPage, isBookingPage });
 
-    // =========================
-    // FORM PAGE LOGIC
-    // =========================
     if (isFormPage) {
       // ✅ Calendar element setup
       const calendarEl = document.getElementById("calendar");
@@ -280,9 +246,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
-    // =========================
-    // BOOKING PAGE LOGIC
-    // =========================
     if (isBookingPage) {
       // Initialize passenger management
       initializePassengerManagement();
@@ -305,9 +268,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// ============================================================
-// BOOKING PAGE FUNCTIONS
-// ============================================================
 
 /**
  * Initialize passenger management system
