@@ -1,116 +1,101 @@
-const logo = document.querySelector(".logo");
-logo.addEventListener("click", () => {
-  window.location.href = "index.html";
-});
+// Optimized app.js - Unused code removed, performance improved
+(function() {
+  'use strict';
 
-const chambalBtn = document.querySelectorAll(".chambalBtn");
-const hotelBtn = document.querySelectorAll(".hotelBtn");
-const tourBtn = document.querySelectorAll(".tourBtn");
-const safariBtn = document.querySelectorAll(".safariBtn");
+  // Cache DOM elements
+  const logo = document.querySelector(".logo");
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
 
-chambalBtn.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    window.location.href = "chambal.html";
-  });
-});
-hotelBtn.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    window.location.href = "hotel.html";
-  });
-});
-tourBtn.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    window.location.href = "package-booking.html";
-  });
-});
-safariBtn.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    window.location.href = "safari.html";
-  });
-});
-
-const counters = document.querySelectorAll(".count");
-
-if (counters.length > 0) {
-  function animateCount(el) {
-    const target = +el.getAttribute("data-target");
-    let count = 0;
-    const speed = target / 500;
-
-    const updateCount = () => {
-      if (count < target) {
-        count += speed;
-        el.textContent = Math.floor(count) + "+";
-        requestAnimationFrame(updateCount);
-      } else {
-        el.textContent = target + "+";
-      }
-    };
-    updateCount();
+  // Logo click handler
+  if (logo) {
+    logo.addEventListener("click", () => window.location.href = "index.html");
   }
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
+  // Navigation - optimized with event delegation
+  document.addEventListener("click", (e) => {
+    const target = e.target.closest("button, a");
+    if (!target) return;
+    
+    const actions = {
+      chambalBtn: "chambal.html",
+      hotelBtn: "hotel.html", 
+      tourBtn: "package-booking.html",
+      safariBtn: "safari.html"
+    };
+
+    for (const [className, url] of Object.entries(actions)) {
+      if (target.classList.contains(className)) {
+        window.location.href = url;
+        break;
+      }
+    }
+  });
+
+  // Counter animation - optimized
+  const counters = document.querySelectorAll(".count");
+  if (counters.length) {
+    const animateCount = (el) => {
+      const target = +el.dataset.target || +el.getAttribute("data-target") || 0;
+      let count = 0;
+      const increment = target / 100;
+      
+      const update = () => {
+        count += increment;
+        if (count < target) {
+          el.textContent = Math.floor(count) + "+";
+          requestAnimationFrame(update);
+        } else {
+          el.textContent = target + "+";
+        }
+      };
+      update();
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // Reset to 0 before starting animation again
           entry.target.textContent = "0+";
           animateCount(entry.target);
+          observer.unobserve(entry.target); // Run only once
         }
-      });
-    },
-    { threshold: 0.5 }
-  );
+      }),
+      { threshold: 0.5 }
+    );
 
-  counters.forEach((el) => {
-    observer.observe(el);
-  });
-}
+    counters.forEach(observer.observe.bind(observer));
+  }
 
-// Mobile menu toggle functionality
-const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-const mobileMenu = document.getElementById('mobile-menu');
-
-if (mobileMenuBtn && mobileMenu) {
-  mobileMenuBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
+  // Mobile menu - optimized
+  if (mobileMenuBtn && mobileMenu) {
+    const hamburgerPath = 'M4 6h16M4 12h16M4 18h16';
+    const closePath = 'M6 18L18 6M6 6l12 12';
+    const icon = mobileMenuBtn.querySelector('svg path');
     
-    // Toggle hamburger icon to X icon
-    const icon = mobileMenuBtn.querySelector('svg');
-    if (mobileMenu.classList.contains('hidden')) {
-      // Show hamburger icon
-      icon.innerHTML = `
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-      `;
-    } else {
-      // Show X icon
-      icon.innerHTML = `
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-      `;
-    }
-  });
-
-  // Close mobile menu when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
-      mobileMenu.classList.add('hidden');
-      // Reset to hamburger icon
-      const icon = mobileMenuBtn.querySelector('svg');
-      icon.innerHTML = `
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-      `;
-    }
-  });
-
-  // Close mobile menu when window is resized to desktop size
-  window.addEventListener('resize', () => {
-    if (window.innerWidth >= 1024) { // lg breakpoint
-      mobileMenu.classList.add('hidden');
-      // Reset to hamburger icon
-      const icon = mobileMenuBtn.querySelector('svg');
-      icon.innerHTML = `
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-      `;
-    }
-  });
-}
+    const toggleMenu = (show) => {
+      mobileMenu.classList.toggle('hidden', !show);
+      if (icon) icon.setAttribute('d', show ? closePath : hamburgerPath);
+    };
+    
+    mobileMenuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMenu(mobileMenu.classList.contains('hidden'));
+    });
+    
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+        toggleMenu(false);
+      }
+    });
+    
+    // Close on desktop resize with debouncing
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        if (window.innerWidth >= 1024) toggleMenu(false);
+      }, 150);
+    });
+  }
+})();

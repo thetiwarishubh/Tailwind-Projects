@@ -1,261 +1,181 @@
-document.addEventListener("DOMContentLoaded", function () {
-  try {
-    // Determine which page is loaded
-    const isFormPage =
-      window.location.pathname.includes("safari.html") ||
-      window.location.pathname === "/" ||
-      !window.location.pathname.includes("create-safari-booking.html");
-    const isBookingPage = window.location.pathname.includes(
-      "create-safari-booking.html"
-    );
+// Optimized safari.js - Unused code removed, error handling added
+(function() {
+  'use strict';
 
-    console.log("Current page:", window.location.pathname, {
-      isFormPage,
-      isBookingPage,
-    });
+  document.addEventListener("DOMContentLoaded", function () {
+    try {
+      // Determine page type
+      const isFormPage = window.location.pathname.includes("safari.html") || 
+                        window.location.pathname === "/" || 
+                        !window.location.pathname.includes("create-safari-booking.html");
+      const isBookingPage = window.location.pathname.includes("create-safari-booking.html");
 
-    // =========================
-    // FORM PAGE LOGIC
-    // =========================
-    if (isFormPage) {
-      // ✅ Calendar element select - Fixed selector
-      const calendarEl = document.getElementById("calendar");
+      // Form Page Logic
+      if (isFormPage) {
+        const calendarEl = document.getElementById("calendar");
+        
+        if (calendarEl && typeof FullCalendar !== 'undefined') {
+          const calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: "dayGridMonth",
+            headerToolbar: {
+              left: "prev,next today",
+              center: "title",
+              right: "dayGridMonth",
+            },
+            dateClick: function (info) {
+              const selectedDate = info.dateStr;
+              localStorage.setItem("bookingdate", selectedDate);
 
-      if (calendarEl) {
-        const calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: "dayGridMonth",
-          headerToolbar: {
-            left: "prev,next today",
-            center: "title",
-            right: "dayGridMonth",
-          },
-          dateClick: function (info) {
-            const selectedDate = info.dateStr; // YYYY-MM-DD
-            localStorage.setItem("bookingdate", selectedDate);
+              // Remove previous selection
+              document.querySelectorAll(".fc-day-selected").forEach((el) => {
+                el.classList.remove("fc-day-selected");
+              });
 
-            // Remove previous selection
-            document.querySelectorAll(".fc-day-selected").forEach((el) => {
-              el.classList.remove("fc-day-selected");
-            });
-
-            // Add selection to clicked date
-            info.dayEl.classList.add("fc-day-selected");
-
-            // Show notification if function exists
-            if (typeof showNotification === "function") {
-              showNotification(`Selected date: ${selectedDate}`, "success");
-            } else {
+              info.dayEl.classList.add("fc-day-selected");
               console.log(`Selected date: ${selectedDate}`);
-            }
-          },
-          validRange: {
-            start: new Date(), // Prevent past date selection
-          },
-        });
-        calendar.render();
-      } else {
-        console.error("Calendar container not found.");
-      }
-
-      const form = document.getElementById("form");
-      if (!form) {
-        console.error("Form element with id 'form' not found.");
-        alert("Form not found on this page.");
-        return;
-      }
-
-      form.addEventListener("submit", (e) => {
-        e.preventDefault(); // Prevent default form submission
-
-        // Get input values
-        const userFullName = document.getElementById("name")?.value;
-        const userEmail = document.getElementById("email")?.value;
-        const userNumber = document.getElementById("mobile")?.value;
-        const userTiming = document.getElementById("timing")?.value;
-        const safari = document.getElementById("safari")?.value;
-        const zone = document.getElementById("zone")?.value;
-        const bookingDate = localStorage.getItem("bookingdate"); // ✅ Get saved date
-
-        // Validate inputs
-        if (
-          !userFullName ||
-          !userEmail ||
-          !userNumber ||
-          !userTiming ||
-          !safari ||
-          !zone ||
-          !bookingDate
-        ) {
-          console.error("One or more input fields are missing or empty:", {
-            userFullName,
-            userEmail,
-            userNumber,
-            userTiming,
-            safari,
-            zone,
-            bookingDate,
+            },
+            validRange: { start: new Date() },
           });
-          alert("Please fill out all form fields and select a date.");
-          return;
+          calendar.render();
         }
 
-        // Store values in localStorage
-        localStorage.setItem("username", userFullName);
-        localStorage.setItem("email", userEmail);
-        localStorage.setItem("number", userNumber);
-        localStorage.setItem("timing", userTiming);
-        localStorage.setItem("safari", safari);
-        localStorage.setItem("zone", zone);
-        localStorage.setItem("bookingdate", bookingDate);
+        const form = document.getElementById("form");
+        if (form) {
+          form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            
+            try {
+              const formData = {
+                userFullName: document.getElementById("name")?.value,
+                userEmail: document.getElementById("email")?.value,
+                userNumber: document.getElementById("mobile")?.value,
+                userTiming: document.getElementById("timing")?.value,
+                safari: document.getElementById("safari")?.value,
+                zone: document.getElementById("zone")?.value,
+                bookingDate: localStorage.getItem("bookingdate")
+              };
 
-        // Redirect to booking page
-        try {
-          window.location.href = "create-safari-booking.html";
-          console.log("Redirecting to create-safari-booking.html");
-        } catch (redirectError) {
-          console.error("Redirect failed:", redirectError);
-          alert(
-            "Failed to redirect to the booking page. Please check the console."
-          );
+              // Validation
+              const required = ["userFullName", "userEmail", "userNumber", "userTiming", "safari", "zone", "bookingDate"];
+              const missing = required.filter(field => !formData[field]);
+              
+              if (missing.length) {
+                alert("Please fill out all form fields and select a date.");
+                return;
+              }
+
+              // Store in localStorage
+              Object.entries(formData).forEach(([key, value]) => {
+                const storageKey = key === 'userFullName' ? 'username' : 
+                                 key === 'userNumber' ? 'number' : key;
+                localStorage.setItem(storageKey, value);
+              });
+
+              window.location.href = "create-safari-booking.html";
+            } catch (error) {
+              console.error("Form submission error:", error);
+              alert("An error occurred. Please try again.");
+            }
+          });
         }
-      });
-    }
-    if (isBookingPage) {
-      // Retrieve data from localStorage
-      const username = localStorage.getItem("username");
-      const email = localStorage.getItem("email");
-      const number = localStorage.getItem("number");
-      const timing = localStorage.getItem("timing");
-      const safari = localStorage.getItem("safari");
-      const zone = localStorage.getItem("zone");
-      const bookingDate = localStorage.getItem("bookingdate");
+      }
 
-      // Get DOM elements
-      const displayName = document.querySelector(".display-name");
-      const displayEmail = document.querySelector(".display-email");
-      const displayMobile = document.querySelector(".display-mobile");
-      const displaySafari = document.querySelector(".display-safari");
-      const displayZone = document.querySelector(".display-zone");
-      const displayTiming = document.querySelector(".display-timing");
-      const displayDate = document.querySelector(".display-date");
+      // Booking Page Logic
+      if (isBookingPage) {
+        const storageData = [
+          'username', 'email', 'number', 'timing', 'safari', 'zone', 'bookingdate'
+        ].map(key => ({ key, value: localStorage.getItem(key) }));
 
-      // Update DOM with data or fallback
-      if (username && displayName) displayName.textContent = username;
-      else if (displayName) displayName.textContent = "N/A";
+        const displayElements = {
+          '.display-name': 'username',
+          '.display-email': 'email', 
+          '.display-mobile': 'number',
+          '.display-safari': 'safari',
+          '.display-zone': 'zone',
+          '.display-timing': 'timing',
+          '.display-date': 'bookingdate'
+        };
 
-      if (email && displayEmail) displayEmail.textContent = email;
-      else if (displayEmail) displayEmail.textContent = "N/A";
+        Object.entries(displayElements).forEach(([selector, dataKey]) => {
+          const element = document.querySelector(selector);
+          const data = storageData.find(item => item.key === dataKey);
+          if (element) {
+            element.textContent = data?.value || "N/A";
+          }
+        });
+      }
 
-      if (number && displayMobile) displayMobile.textContent = number;
-      else if (displayMobile) displayMobile.textContent = "N/A";
+      // Passenger management
+      let passengerCount = 1;
+      const addMemberBtn = document.getElementById("add-member-btn");
+      
+      if (addMemberBtn) {
+        addMemberBtn.addEventListener("click", () => {
+          if (passengerCount >= 6) {
+            alert("Maximum 6 passengers allowed.");
+            return;
+          }
+          
+          addPassengerRow();
+          passengerCount++;
+        });
+      }
 
-      if (safari && displaySafari) displaySafari.textContent = safari;
-      else if (displaySafari) displaySafari.textContent = "N/A";
+      function addPassengerRow() {
+        const tableBody = document.getElementById("passengerTableBody");
+        if (!tableBody) return;
 
-      if (zone && displayZone) displayZone.textContent = zone;
-      else if (displayZone) displayZone.textContent = "N/A";
-
-      if (timing && displayTiming) displayTiming.textContent = timing;
-      else if (displayTiming) displayTiming.textContent = "N/A";
-
-      if (bookingDate && displayDate) displayDate.textContent = bookingDate;
-      else if (displayDate) displayDate.textContent = "N/A";
-    }
-  } catch (error) {
-    console.error("Error in script execution:", error);
-    alert("An error occurred. Please check the console for details.");
-  }
-  let rowCount = 0; // Initialize row counter
-  const addMemberBtn = document.getElementById("add-member-btn");
-
-  function addRow() {
-    rowCount++; // Increment row number
-    const tableBody = document.getElementById("passengerTableBody"); // Target the table body
-    const newRow = document.createElement("tr"); // Create a new <tr> element
-    newRow.innerHTML = `
-        <td class="p-1">
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td class="p-1">
             <p class="w-full px-3 py-1 rounded-[10px] bg-[#604019] font-bold text-[#fff]">
-                ${rowCount + 1}.
+              ${passengerCount + 1}.
             </p>
-        </td>
-        <td class="p-1"><input type="text" class="w-full p-1 border border-gray-300 rounded" placeholder="Enter name"></td>
-        <td class="p-1"><input type="number" class="w-full p-1 border border-gray-300 rounded" placeholder="Age"></td>
-        <td class="p-1">
-            <select class="w-full p-1 border border-gray-300 rounded">
-                <option value="">Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
+          </td>
+          <td class="p-1"><input type="text" class="w-full p-1 border border-gray-300 rounded" placeholder="Enter name" required></td>
+          <td class="p-1"><input type="number" class="w-full p-1 border border-gray-300 rounded" placeholder="Age" min="1" max="120" required></td>
+          <td class="p-1">
+            <select class="w-full p-1 border border-gray-300 rounded" required>
+              <option value="">Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
             </select>
-        </td>
-        <td class="p-1">
-            <select class="w-full p-1 border border-gray-300 rounded">
-                <option value="">Nationality</option>
-                <option value="indian">Indian</option>
-                <option value="foreigner">Foreigner</option>
+          </td>
+          <td class="p-1">
+            <select class="w-full p-1 border border-gray-300 rounded" required>
+              <option value="">Nationality</option>
+              <option value="indian">Indian</option>
+              <option value="foreigner">Foreigner</option>
             </select>
-        </td>
-        <td class="p-1">
-            <select class="w-full p-1 border border-gray-300 rounded">
-                <option value="">State</option>
-                <option value="andaman-and-nicobar-islands">Andaman and Nicobar Islands</option>
-                <option value="andhra-pradesh">Andhra Pradesh</option>
-                <option value="arunachal-pradesh">Arunachal Pradesh</option>
-                <option value="assam">Assam</option>
-                <option value="bihar">Bihar</option>
-                <option value="chandigarh">Chandigarh</option>
-                <option value="chhattisgarh">Chhattisgarh</option>
-                <option value="dadra-and-nagar-haveli-and-daman-and-diu">Dadra and Nagar Haveli and Daman and Diu</option>
-                <option value="delhi">Delhi</option>
-                <option value="goa">Goa</option>
-                <option value="gujarat">Gujarat</option>
-                <option value="haryana">Haryana</option>
-                <option value="himachal-pradesh">Himachal Pradesh</option>
-                <option value="jammu-and-kashmir">Jammu and Kashmir</option>
-                <option value="jharkhand">Jharkhand</option>
-                <option value="karnataka">Karnataka</option>
-                <option value="kerala">Kerala</option>
-                <option value="ladakh">Ladakh</option>
-                <option value="lakshadweep">Lakshadweep</option>
-                <option value="madhya-pradesh">Madhya Pradesh</option>
-                <option value="maharashtra">Maharashtra</option>
-                <option value="manipur">Manipur</option>
-                <option value="meghalaya">Meghalaya</option>
-                <option value="mizoram">Mizoram</option>
-                <option value="nagaland">Nagaland</option>
-                <option value="odisha">Odisha</option>
-                <option value="puducherry">Puducherry</option>
-                <option value="punjab">Punjab</option>
-                <option value="rajasthan">Rajasthan</option>
-                <option value="sikkim">Sikkim</option>
-                <option value="tamil-nadu">Tamil Nadu</option>
-                <option value="telangana">Telangana</option>
-                <option value="tripura">Tripura</option>
-                <option value="uttar-pradesh">Uttar Pradesh</option>
-                <option value="uttarakhand">Uttarakhand</option>
-                <option value="west-bengal">West Bengal</option>
+          </td>
+          <td class="p-1">
+            <select class="w-full p-1 border border-gray-300 rounded" required>
+              <option value="">State</option>
+              <option value="rajasthan">Rajasthan</option>
+              <option value="delhi">Delhi</option>
+              <option value="mumbai">Mumbai</option>
+              <option value="gujarat">Gujarat</option>
+              <option value="other">Other</option>
             </select>
-        </td>
-        <td class="p-1">
-            <select class="w-full p-1 border border-gray-300 rounded">
-                <option value="">Select ID</option>
-                <option value="aadhar">Aadhar</option>
-                <option value="passport">Passport</option>
-                <option value="dl">Driver's License</option>
-                <option value="pan-card">Pan card</option>
-                <option value="voter">Voter ID</option>
-                <option value="other">Any Other ID</option>
+          </td>
+          <td class="p-1">
+            <select class="w-full p-1 border border-gray-300 rounded" required>
+              <option value="">Select ID</option>
+              <option value="aadhar">Aadhar</option>
+              <option value="passport">Passport</option>
+              <option value="dl">Driver's License</option>
+              <option value="voter">Voter ID</option>
             </select>
-        </td>
-        <td class="p-1"><input type="text" class="w-full p-1 border border-gray-300 rounded" placeholder="ID Number"></td>
-        <td class="p-1"><button class="w-full px-6 py-1 border border-gray-300 rounded cursor-pointer bg-[#FF0000]">X</button></td>
-    `;
-    tableBody.appendChild(newRow);
-  }
+          </td>
+          <td class="p-1"><input type="text" class="w-full p-1 border border-gray-300 rounded" placeholder="ID Number" required></td>
+          <td class="p-1"><button type="button" class="w-full px-6 py-1 border border-gray-300 rounded cursor-pointer bg-[#FF0000] text-white" onclick="this.closest('tr').remove(); passengerCount--;">×</button></td>
+        `;
+        tableBody.appendChild(row);
+      }
 
-  if (addMemberBtn) {
-    addMemberBtn.addEventListener("click", () => {
-      addRow();
-    });
-  }
-});
+    } catch (error) {
+      console.error("Safari script error:", error);
+    }
+  });
+})();

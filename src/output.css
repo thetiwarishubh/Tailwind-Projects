@@ -797,6 +797,9 @@
   .max-h-\[1200px\] {
     max-height: 1200px;
   }
+  .max-h-full {
+    max-height: 100%;
+  }
   .min-h-\[24rem\] {
     min-height: 24rem;
   }
@@ -1542,6 +1545,9 @@
   }
   .bg-amber-700 {
     background-color: var(--color-amber-700);
+  }
+  .bg-amber-800 {
+    background-color: var(--color-amber-800);
   }
   .bg-amber-800\/50 {
     background-color: color-mix(in srgb, oklch(47.3% 0.137 46.201) 50%, transparent);
@@ -3498,6 +3504,13 @@
     &:hover {
       @media (hover: hover) {
         color: var(--color-gray-200);
+      }
+    }
+  }
+  .hover\:text-gray-300 {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-gray-300);
       }
     }
   }
