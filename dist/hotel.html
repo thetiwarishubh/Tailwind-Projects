@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ranthambhore Hotel Booking</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/src/output.css">
-    <link rel="shortcut icon" href="/Images/favicon.jpg" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/output.css" />
+    <link rel="shortcut icon" href="/Images/favicon.jpg" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <style>
-        body {
+      body {
         font-family: "Poppins", sans-serif;
       }
       html,
@@ -19,446 +24,450 @@
         overflow-x: hidden;
       }
 
-        /* Custom animations */
-        @keyframes animate-fade-in {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+      /* Custom animations */
+      @keyframes animate-fade-in {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
         }
 
-        @keyframes animate-bounce-slow {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
-            0%,
-            100% {
-                transform: translateY(-5%);
-                animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-            }
-
-            50% {
-                transform: translateY(0);
-                animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-            }
+      @keyframes animate-bounce-slow {
+        0%,
+        100% {
+          transform: translateY(-5%);
+          animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
         }
 
-        .animate-fade-in {
-            animation: animate-fade-in 1s ease-out;
+        50% {
+          transform: translateY(0);
+          animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+        }
+      }
+
+      .animate-fade-in {
+        animation: animate-fade-in 1s ease-out;
+      }
+
+      .animate-bounce-slow {
+        animation: animate-bounce-slow 3s infinite;
+      }
+
+      /* Scrollbar hide */
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Glassmorphism effect */
+      .glass {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      /* Animated placeholder */
+      @keyframes typing {
+        from {
+          width: 0;
         }
 
-        .animate-bounce-slow {
-            animation: animate-bounce-slow 3s infinite;
+        to {
+          width: 100%;
+        }
+      }
+
+      .typing-animation {
+        overflow: hidden;
+        white-space: nowrap;
+        animation: typing 3.5s steps(40, end),
+          blink-caret 0.75s step-end infinite;
+      }
+
+      /* Hover effects for cards */
+      .hover-lift {
+        transition: all 0.3s ease;
+      }
+
+      .hover-lift:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Gradient backgrounds */
+      .gradient-bg {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      /* Parallax effect */
+      .parallax {
+        transform: translateY(var(--parallax-y, 0));
+      }
+
+      /* Stagger animation */
+      @keyframes stagger-fade {
+        from {
+          opacity: 0;
+          transform: translateY(30px) scale(0.9);
         }
 
-        /* Scrollbar hide */
-        .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .stagger-animation {
+        opacity: 0;
+        animation: stagger-fade 0.8s ease-out forwards;
+      }
+
+      .stagger-animation:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+
+      .stagger-animation:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+
+      .stagger-animation:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+
+      .stagger-animation:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+
+      .stagger-animation:nth-child(5) {
+        animation-delay: 0.5s;
+      }
+
+      .stagger-animation:nth-child(6) {
+        animation-delay: 0.6s;
+      }
+
+      /* Card flip animation */
+      .flip-card {
+        perspective: 1000px;
+      }
+
+      .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+      }
+
+      .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+      }
+
+      .flip-card-front,
+      .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        border-radius: 0.75rem;
+      }
+
+      .flip-card-back {
+        transform: rotateY(180deg);
+      }
+
+      /* Floating animation */
+      @keyframes floating {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
         }
 
-        .scrollbar-hide::-webkit-scrollbar {
-            display: none;
+        25% {
+          transform: translateY(-10px) rotate(1deg);
         }
 
-        /* Glassmorphism effect */
-        .glass {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        50% {
+          transform: translateY(-5px) rotate(-1deg);
         }
 
-        /* Animated placeholder */
-        @keyframes typing {
-            from {
-                width: 0
-            }
+        75% {
+          transform: translateY(-15px) rotate(0.5deg);
+        }
+      }
 
-            to {
-                width: 100%
-            }
+      .floating {
+        animation: floating 4s ease-in-out infinite;
+      }
+
+      /* Shimmer effect */
+      @keyframes shimmer {
+        0% {
+          background-position: -200px 0;
         }
 
-        .typing-animation {
-            overflow: hidden;
-            white-space: nowrap;
-            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        100% {
+          background-position: calc(200px + 100%) 0;
+        }
+      }
+
+      .shimmer {
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+        background-size: 200px 100%;
+        background-repeat: no-repeat;
+        animation: shimmer 2s infinite;
+      }
+
+      /* Pulse glow effect */
+      @keyframes pulse-glow {
+        0%,
+        100% {
+          box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
         }
 
-        /* Hover effects for cards */
-        .hover-lift {
-            transition: all 0.3s ease;
+        50% {
+          box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
+        }
+      }
+
+      .pulse-glow {
+        animation: pulse-glow 2s ease-in-out infinite;
+      }
+
+      /* Text typewriter effect */
+      @keyframes typewriter {
+        from {
+          width: 0;
         }
 
-        .hover-lift:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        to {
+          width: 100%;
+        }
+      }
+
+      @keyframes blink {
+        50% {
+          border-color: transparent;
+        }
+      }
+
+      .typewriter {
+        overflow: hidden;
+        border-right: 2px solid;
+        white-space: nowrap;
+        animation: typewriter 3s steps(40, end), blink 0.75s step-end infinite;
+      }
+
+      /* Morphing background */
+      @keyframes morph {
+        0%,
+        100% {
+          border-radius: 40% 60% 70% 30% / 40% 40% 60% 50%;
         }
 
-        /* Gradient backgrounds */
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        34% {
+          border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
         }
 
-        /* Parallax effect */
-        .parallax {
-            transform: translateY(var(--parallax-y, 0));
+        67% {
+          border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
+        }
+      }
+
+      .morphing {
+        animation: morph 8s ease-in-out infinite;
+      }
+
+      /* Enhanced button animations */
+      @keyframes button-glow {
+        0%,
+        100% {
+          box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
         }
 
-        /* Stagger animation */
-        @keyframes stagger-fade {
-            from {
-                opacity: 0;
-                transform: translateY(30px) scale(0.9);
-            }
+        50% {
+          box-shadow: 0 0 40px rgba(59, 130, 246, 0.6),
+            0 0 60px rgba(59, 130, 246, 0.4);
+        }
+      }
 
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+      .btn-enhanced {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .btn-enhanced::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .btn-enhanced:hover::before {
+        left: 100%;
+      }
+
+      .btn-enhanced:hover {
+        transform: translateY(-3px) scale(1.05);
+        animation: button-glow 2s ease-in-out infinite;
+      }
+
+      @keyframes typewriter-infinite {
+        0% {
+          width: 0;
         }
 
-        .stagger-animation {
-            opacity: 0;
-            animation: stagger-fade 0.8s ease-out forwards;
+        50% {
+          width: 100%;
         }
 
-        .stagger-animation:nth-child(1) {
-            animation-delay: 0.1s;
+        100% {
+          width: 0;
+        }
+      }
+
+      @keyframes blink-infinite {
+        0%,
+        50% {
+          border-color: white;
         }
 
-        .stagger-animation:nth-child(2) {
-            animation-delay: 0.2s;
+        51%,
+        100% {
+          border-color: transparent;
+        }
+      }
+
+      .typewriter-infinite {
+        overflow: hidden;
+        border-right: 3px solid white;
+        white-space: nowrap;
+        animation: typewriter-infinite 4s infinite, blink-infinite 1s infinite;
+        width: 0;
+      }
+
+      /* Text reveal animations */
+      @keyframes slide-up {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
         }
 
-        .stagger-animation:nth-child(3) {
-            animation-delay: 0.3s;
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slide-left {
+        from {
+          opacity: 0;
+          transform: translateX(-50px);
         }
 
-        .stagger-animation:nth-child(4) {
-            animation-delay: 0.4s;
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .slide-up {
+        animation: slide-up 0.8s ease-out forwards;
+      }
+
+      .slide-left {
+        animation: slide-left 0.8s ease-out forwards;
+      }
+
+      /* Enhanced glassmorphism */
+      .glass-enhanced {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Gradient text animation */
+      @keyframes gradient-shift {
+        0%,
+        100% {
+          background-position: 0% 50%;
         }
 
-        .stagger-animation:nth-child(5) {
-            animation-delay: 0.5s;
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+
+      .gradient-animated {
+        background: linear-gradient(-45deg, #3b82f6, #8b5cf6, #06b6d4, #10b981);
+        background-size: 400% 400%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradient-shift 3s ease infinite;
+      }
+
+      /* Icon bounce */
+      @keyframes icon-bounce {
+        0%,
+        100% {
+          transform: translateY(0);
         }
 
-        .stagger-animation:nth-child(6) {
-            animation-delay: 0.6s;
+        50% {
+          transform: translateY(-10px);
         }
+      }
 
-        /* Card flip animation */
-        .flip-card {
-            perspective: 1000px;
+      .icon-bounce {
+        animation: icon-bounce 2s ease-in-out infinite;
+      }
+
+      /* Responsive text sizing */
+      @media (min-width: 1024px) {
+        .hero h1 {
+          font-size: 2rem;
+          line-height: 1.1;
         }
+      }
 
-        .flip-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.8s;
-            transform-style: preserve-3d;
+      @media (min-width: 1280px) {
+        .hero h1 {
+          font-size: 3rem;
+          line-height: 1.1;
         }
-
-        .flip-card:hover .flip-card-inner {
-            transform: rotateY(180deg);
-        }
-
-        .flip-card-front,
-        .flip-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            border-radius: 0.75rem;
-        }
-
-        .flip-card-back {
-            transform: rotateY(180deg);
-        }
-
-        /* Floating animation */
-        @keyframes floating {
-
-            0%,
-            100% {
-                transform: translateY(0px) rotate(0deg);
-            }
-
-            25% {
-                transform: translateY(-10px) rotate(1deg);
-            }
-
-            50% {
-                transform: translateY(-5px) rotate(-1deg);
-            }
-
-            75% {
-                transform: translateY(-15px) rotate(0.5deg);
-            }
-        }
-
-        .floating {
-            animation: floating 4s ease-in-out infinite;
-        }
-
-        /* Shimmer effect */
-        @keyframes shimmer {
-            0% {
-                background-position: -200px 0;
-            }
-
-            100% {
-                background-position: calc(200px + 100%) 0;
-            }
-        }
-
-        .shimmer {
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            background-size: 200px 100%;
-            background-repeat: no-repeat;
-            animation: shimmer 2s infinite;
-        }
-
-        /* Pulse glow effect */
-        @keyframes pulse-glow {
-
-            0%,
-            100% {
-                box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-            }
-
-            50% {
-                box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
-            }
-        }
-
-        .pulse-glow {
-            animation: pulse-glow 2s ease-in-out infinite;
-        }
-
-        /* Text typewriter effect */
-        @keyframes typewriter {
-            from {
-                width: 0;
-            }
-
-            to {
-                width: 100%;
-            }
-        }
-
-        @keyframes blink {
-            50% {
-                border-color: transparent;
-            }
-        }
-
-        .typewriter {
-            overflow: hidden;
-            border-right: 2px solid;
-            white-space: nowrap;
-            animation: typewriter 3s steps(40, end), blink 0.75s step-end infinite;
-        }
-
-        /* Morphing background */
-        @keyframes morph {
-
-            0%,
-            100% {
-                border-radius: 40% 60% 70% 30% / 40% 40% 60% 50%;
-            }
-
-            34% {
-                border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
-            }
-
-            67% {
-                border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
-            }
-        }
-
-        .morphing {
-            animation: morph 8s ease-in-out infinite;
-        }
-
-        /* Enhanced button animations */
-        @keyframes button-glow {
-
-            0%,
-            100% {
-                box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-            }
-
-            50% {
-                box-shadow: 0 0 40px rgba(59, 130, 246, 0.6), 0 0 60px rgba(59, 130, 246, 0.4);
-            }
-        }
-
-        .btn-enhanced {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .btn-enhanced::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn-enhanced:hover::before {
-            left: 100%;
-        }
-
-        .btn-enhanced:hover {
-            transform: translateY(-3px) scale(1.05);
-            animation: button-glow 2s ease-in-out infinite;
-        }
-
-        @keyframes typewriter-infinite {
-            0% {
-                width: 0;
-            }
-
-            50% {
-                width: 100%;
-            }
-
-            100% {
-                width: 0;
-            }
-        }
-
-        @keyframes blink-infinite {
-
-            0%,
-            50% {
-                border-color: white;
-            }
-
-            51%,
-            100% {
-                border-color: transparent;
-            }
-        }
-
-        .typewriter-infinite {
-            overflow: hidden;
-            border-right: 3px solid white;
-            white-space: nowrap;
-            animation: typewriter-infinite 4s infinite, blink-infinite 1s infinite;
-            width: 0;
-        }
-
-        /* Text reveal animations */
-        @keyframes slide-up {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slide-left {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .slide-up {
-            animation: slide-up 0.8s ease-out forwards;
-        }
-
-        .slide-left {
-            animation: slide-left 0.8s ease-out forwards;
-        }
-
-        /* Enhanced glassmorphism */
-        .glass-enhanced {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Gradient text animation */
-        @keyframes gradient-shift {
-
-            0%,
-            100% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-        .gradient-animated {
-            background: linear-gradient(-45deg, #3b82f6, #8b5cf6, #06b6d4, #10b981);
-            background-size: 400% 400%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradient-shift 3s ease infinite;
-        }
-
-        /* Icon bounce */
-        @keyframes icon-bounce {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .icon-bounce {
-            animation: icon-bounce 2s ease-in-out infinite;
-        }
-
-        /* Responsive text sizing */
-        @media (min-width: 1024px) {
-            .hero h1 {
-                font-size: 2rem;
-                line-height: 1.1;
-            }
-        }
-
-        @media (min-width: 1280px) {
-            .hero h1 {
-                font-size: 3rem;
-                line-height: 1.1;
-            }
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body class="bg-gray-50">
+  <body class="bg-gray-50">
     <!-- Navbar -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-white shadow-lg">
       <!-- Top Contact Bar -->
@@ -648,1132 +657,1906 @@
 
     <!-- Main Content Section -->
     <main class="w-full mt-32">
-        <!-- Hero Section with Video Background -->
-        <section class="hero relative rounded-lg overflow-hidden container mx-auto h-[500px] flex items-center shadow-2xl">
-            <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/60"></div>
-            <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover">
-                <source src="/Videos/video-banner.mp4" type="video/mp4">
-            </video>
-            <div class="relative z-10 px-8 text-white max-w-2xl animate-fade-in">
-                <div
-                    class="glass-enhanced rounded-3xl px-8 py-2 mb-8 shadow-2xl transform hover:scale-[1.02] transition-all duration-500">
-                    <h1 class="text-xl md:text-3xl font-bold leading-tight mb-4 typewriter-infinite">
-                        <span class="slide-left opacity-0">Find Your</span> <span
-                            class="gradient-animated font-extrabold">Perfect Stay</span>
-                    </h1>
-                    <div class="flex items-center gap-3 mb-2">
-                        <div class="w-12 h-1 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"></div>
-                        <i class="fas fa-star text-yellow-400 icon-bounce"></i>
-                        <span class="text-sm font-medium text-blue-200">Premium Hotel Booking</span>
-                    </div>
-                </div>
-                <p class="text-lg md:text-xl mb-10 text-gray-200 leading-relaxed slide-up opacity-0 max-w-3xl"
-                    style="animation-delay: 0.3s">Discover and book hotels, resorts, and apartments at the best prices
-                    worldwide with our exclusive deals and unmatched service.</p>
-                <div class="flex flex-col sm:flex-row gap-6 items-center">
-                    <a href="#search"
-                        class="btn-enhanced group bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white font-bold py-4 px-8 rounded-2xl text-center text-base shadow-2xl">
-                        <span class="flex items-center justify-center gap-3">
-                            <svg class="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                            </svg>
-                            Book Now
-                            <i class="fas fa-arrow-right text-sm opacity-70"></i>
-                        </span>
-                    </a>
-                    <a href="#deals"
-                        class="btn-enhanced group glass-enhanced text-white font-bold py-4 px-8 rounded-2xl text-center text-base border-2 border-white/30 hover:border-white/60">
-                        <span class="flex items-center justify-center gap-3">
-                            <svg class="w-6 h-6 group-hover:rotate-12 transition-transform" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1">
-                                </path>
-                            </svg>
-                            Special Deals
-                            <i class="fas fa-fire text-orange-400 text-sm"></i>
-                        </span>
-                    </a>
-                </div>
+      <!-- Hero Section with Video Background -->
+      <section
+        class="hero relative rounded-lg overflow-hidden container mx-auto h-[500px] flex items-center shadow-2xl"
+      >
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/60"
+        ></div>
+        <video
+          autoplay
+          muted
+          loop
+          class="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/Videos/video-banner.mp4" type="video/mp4" />
+        </video>
+        <div class="relative z-10 px-8 text-white max-w-2xl animate-fade-in">
+          <div
+            class="glass-enhanced rounded-3xl px-8 py-2 mb-8 shadow-2xl transform hover:scale-[1.02] transition-all duration-500"
+          >
+            <h1
+              class="text-xl md:text-3xl font-bold leading-tight mb-4 typewriter-infinite"
+            >
+              <span class="slide-left opacity-0">Find Your</span>
+              <span class="gradient-animated font-extrabold">Perfect Stay</span>
+            </h1>
+            <div class="flex items-center gap-3 mb-2">
+              <div
+                class="w-12 h-1 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"
+              ></div>
+              <i class="fas fa-star text-yellow-400 icon-bounce"></i>
+              <span class="text-sm font-medium text-blue-200"
+                >Premium Hotel Booking</span
+              >
             </div>
-            <!-- Floating Quick Navigation Button -->
-            <button id="scroll-to-top"
-                class="fixed bottom-8 right-8 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-800 transition duration-300 z-40">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M5 10l7-7m0 0l7 7m-7-7v18" />
+          </div>
+          <p
+            class="text-lg md:text-xl mb-10 text-gray-200 leading-relaxed slide-up opacity-0 max-w-3xl"
+            style="animation-delay: 0.3s"
+          >
+            Discover and book hotels, resorts, and apartments at the best prices
+            worldwide with our exclusive deals and unmatched service.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-6 items-center">
+            <a
+              href="#search"
+              class="btn-enhanced group bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white font-bold py-4 px-8 rounded-2xl text-center text-base shadow-2xl"
+            >
+              <span class="flex items-center justify-center gap-3">
+                <svg
+                  class="w-6 h-6 group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  ></path>
                 </svg>
-            </button>
+                Book Now
+                <i class="fas fa-arrow-right text-sm opacity-70"></i>
+              </span>
+            </a>
+            <a
+              href="#deals"
+              class="btn-enhanced group glass-enhanced text-white font-bold py-4 px-8 rounded-2xl text-center text-base border-2 border-white/30 hover:border-white/60"
+            >
+              <span class="flex items-center justify-center gap-3">
+                <svg
+                  class="w-6 h-6 group-hover:rotate-12 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
+                  ></path>
+                </svg>
+                Special Deals
+                <i class="fas fa-fire text-orange-400 text-sm"></i>
+              </span>
+            </a>
+          </div>
+        </div>
+        <!-- Floating Quick Navigation Button -->
+        <button
+          id="scroll-to-top"
+          class="fixed bottom-8 right-8 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-800 transition duration-300 z-40"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 10l7-7m0 0l7 7m-7-7v18"
+            />
+          </svg>
+        </button>
 
-            <!-- Floating elements -->
-            <div
-                class="absolute top-10 right-10 w-20 h-20 bg-white/10 backdrop-blur-sm rounded-full animate-bounce-slow hidden lg:block">
-            </div>
-            <div
-                class="absolute bottom-10 left-10 w-16 h-16 bg-blue-500/20 backdrop-blur-sm rounded-full animate-pulse hidden lg:block">
-            </div>
-        </section>
+        <!-- Floating elements -->
+        <div
+          class="absolute top-10 right-10 w-20 h-20 bg-white/10 backdrop-blur-sm rounded-full animate-bounce-slow hidden lg:block"
+        ></div>
+        <div
+          class="absolute bottom-10 left-10 w-16 h-16 bg-blue-500/20 backdrop-blur-sm rounded-full animate-pulse hidden lg:block"
+        ></div>
+      </section>
 
-        <!-- Search Section with Advanced Options -->
-        <section id="search"
-            class="search-section bg-white/90 backdrop-blur-xl container mx-auto mx-4 md:xx-8 p-8 rounded-2xl shadow-2xl mb-16 relative  z-20 border border-white/20">
-            <div class="text-center mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-2">Find Your Perfect Hotel</h2>
-                <p class="text-gray-600">Search from thousands of hotels worldwide with the best prices</p>
-            </div>
-            <form class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div>
-                    <label for="destination" class="block text-gray-700 mb-2">Destination</label>
-                    <div class="relative">
-                        <input type="text" id="destination" placeholder="City or Hotel"
-                            class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <label for="check-in" class="block text-gray-700 mb-2">Check-in</label>
-                    <div class="relative">
-                        <input type="date" id="check-in"
-                            class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <label for="check-out" class="block text-gray-700 mb-2">Check-out</label>
-                    <div class="relative">
-                        <input type="date" id="check-out"
-                            class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <label for="guests" class="block text-gray-700 mb-2">Guests & Rooms</label>
-                    <div class="relative">
-                        <select id="guests"
-                            class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none">
-                            <option value="1">1 Guest, 1 Room</option>
-                            <option value="2">2 Guests, 1 Room</option>
-                            <option value="3">3 Guests, 1 Room</option>
-                            <option value="4">4 Guests, 1 Room</option>
-                            <option value="2r">2 Guests, 2 Rooms</option>
-                            <option value="3r">3 Guests, 2 Rooms</option>
-                            <option value="4r">4 Guests, 2 Rooms</option>
-                        </select>
-                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="md:col-span-4">
-                    <button type="submit"
-                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center gap-2 cursor-pointer hover:text-[#000] shadow-[0_3px_10px_rgb(0,0,0,0.2)] active:scale-97">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                        Search Hotels
-                    </button>
-                </div>
-                <div class="md:col-span-4">
-                    <button type="button"
-                        class="text-blue-600 hover:text-blue-800 font-medium flex items-center gap-1 text-sm"
-                        id="advanced-toggle">
-                        <span>Advanced Search Options</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <div id="advanced-options"
-                        class="hidden mt-4 grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-gray-200">
-                        <div>
-                            <label for="price-range" class="block text-gray-700 mb-2">Price Range</label>
-                            <select id="price-range"
-                                class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                <option value="">Any Price</option>
-                                <option value="0-100">Under $100</option>
-                                <option value="100-200">$100 - $200</option>
-                                <option value="200-300">$200 - $300</option>
-                                <option value="300+">Over $300</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="hotel-type" class="block text-gray-700 mb-2">Hotel Type</label>
-                            <select id="hotel-type"
-                                class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                <option value="">Any Type</option>
-                                <option value="hotel">Hotel</option>
-                                <option value="resort">Resort</option>
-                                <option value="villa">Villa</option>
-                                <option value="apartment">Apartment</option>
-                                <option value="hostel">Hostel</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="amenities" class="block text-gray-700 mb-2">Amenities</label>
-                            <select id="amenities"
-                                class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                <option value="">Any Amenities</option>
-                                <option value="pool">Pool</option>
-                                <option value="spa">Spa</option>
-                                <option value="gym">Gym</option>
-                                <option value="wifi">Free WiFi</option>
-                                <option value="breakfast">Breakfast</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </section>
-
-        <!-- Special Deals Section -->
-        <section id="deals" class="special-deals mb-16 container mx-auto px-4 md:px-8">
-            <div class="text-center mb-8">
-                <h2 class="text-3xl font-bold text-gray-800 mb-2">🔥 Special Deals & Discounts</h2>
-                <p class="text-gray-600 mb-4">Don't miss out on these exclusive limited-time offers</p>
-                <a href="#"
-                    class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors">
-                    View All Deals
-                    <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none"
-                        stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
-                </a>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Deal Card 1 -->
-                <div
-                    class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 relative transform hover:-translate-y-2">
-                    <div
-                        class="absolute top-4 left-4 bg-gradient-to-r from-red-500 to-red-600 text-white text-xs font-bold px-3 py-2 rounded-full z-10 animate-pulse">
-                        🏷️ 30% OFF
-                    </div>
-                    <div
-                        class="cursor-pointer absolute top-4 right-4 bg-white/20 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity z-10">
-                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z">
-                            </path>
-                        </svg>
-                    </div>
-                    <div class="overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                            alt="Summer Deal"
-                            class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="text-2xl">🏖️</span>
-                            <h3 class="text-xl font-bold text-gray-800">Summer Getaway Special</h3>
-                        </div>
-                        <p class="text-gray-600 mb-4 leading-relaxed">Book now and save 30% on select hotels for summer
-                            vacations. Limited time offer with free breakfast included!</p>
-                        <div class="flex justify-between items-center mb-4">
-                            <div class="flex items-center gap-1 text-sm text-orange-600">
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                    <path
-                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
-                                    </path>
-                                </svg>
-                                Valid until: Aug 31, 2025
-                            </div>
-                        </div>
-                        <button
-                            class="cursor-pointer w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2">
-                            <span>Grab Deal Now</span>
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Deal Card 2 -->
-                <div
-                    class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 relative transform hover:-translate-y-2">
-                    <div
-                        class="absolute top-4 left-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-xs font-bold px-3 py-2 rounded-full z-10 animate-bounce">
-                        ⚡ LAST MINUTE
-                    </div>
-                    <div
-                        class="cursor-pointer absolute top-4 right-4 bg-white/20 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity z-10">
-                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z">
-                            </path>
-                        </svg>
-                    </div>
-                    <div class="overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                            alt="Last Minute Deal"
-                            class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="text-2xl">🎯</span>
-                            <h3 class="text-xl font-bold text-gray-800">Last Minute Deals</h3>
-                        </div>
-                        <p class="text-gray-600 mb-4 leading-relaxed">Up to 40% off on last minute bookings. Perfect for
-                            spontaneous travelers with instant confirmation!</p>
-                        <div class="flex justify-between items-center mb-4">
-                            <div class="flex items-center gap-1 text-sm text-red-600">
-                                <svg class="w-4 h-4 animate-pulse" fill="currentColor" viewBox="0 0 24 24">
-                                    <path
-                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
-                                    </path>
-                                </svg>
-                                Limited availability
-                            </div>
-                        </div>
-                        <button
-                            class="cursor-pointer w-full bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2">
-                            <span>View Offers</span>
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
-                                </path>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Deal Card 3 -->
-                <div
-                    class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 relative transform hover:-translate-y-2">
-                    <div
-                        class="absolute top-4 left-4 bg-gradient-to-r from-green-500 to-green-600 text-white text-xs font-bold px-3 py-2 rounded-full z-10">
-                        🐦 EARLY BIRD
-                    </div>
-                    <div
-                        class="cursor-pointer absolute top-4 right-4 bg-white/20 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity z-10">
-                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z">
-                            </path>
-                        </svg>
-                    </div>
-                    <div class="overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                            alt="Early Bird Deal"
-                            class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="text-2xl">⏰</span>
-                            <h3 class="text-xl font-bold text-gray-800">Early Bird Discount</h3>
-                        </div>
-                        <p class="text-gray-600 mb-4 leading-relaxed">Book 60 days in advance and save 25% on your stay.
-                            Plan ahead and save with flexible cancellation!</p>
-                        <div class="flex justify-between items-center mb-4">
-                            <div class="flex items-center gap-1 text-sm text-green-600">
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                    <path
-                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
-                                    </path>
-                                </svg>
-                                Available through 2025
-                            </div>
-                        </div>
-                        <button
-                            class="cursor-pointer w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2">
-                            <span>Book Early</span>
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Featured Hotels with Enhanced Filter Options -->
-        <section class="featured-hotels mb-16 container mx-auto px-4 md:px-8">
-            <!-- Enhanced Header with Icons and Better Typography -->
-            <div class="text-center mb-12">
-                <div class="flex items-center justify-center gap-3 mb-4">
-                    <div class="w-12 h-1 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"></div>
-                    <i class="fas fa-hotel text-2xl text-blue-600 icon-bounce"></i>
-                    <div class="w-12 h-1 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full"></div>
-                </div>
-                <h2 class="text-4xl font-bold text-gray-800 mb-3">
-                    <span class="gradient-animated">Featured</span> Hotels
-                </h2>
-                <p class="text-gray-600 text-lg max-w-2xl mx-auto mb-8">Discover handpicked accommodations that offer
-                    exceptional service, stunning locations, and unforgettable experiences</p>
-
-                <!-- Enhanced Filter Controls -->
-                <div class="glass-enhanced rounded-2xl p-6 max-w-4xl mx-auto">
-                    <div class="flex flex-col lg:flex-row justify-between items-center gap-4">
-                        <div class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
-                            <div class="relative">
-                                <select
-                                    class="btn-enhanced bg-white border-2 border-gray-200 hover:border-blue-400 rounded-xl p-3 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm font-medium min-w-[180px] appearance-none">
-                                    <option>🔥 Sort: Recommended</option>
-                                    <option>💰 Price: Low to High</option>
-                                    <option>💎 Price: High to Low</option>
-                                    <option>⭐ Rating: High to Low</option>
-                                    <option>📍 Distance</option>
-                                </select>
-                                <i
-                                    class="fas fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
-                            </div>
-                            <div class="relative">
-                                <select
-                                    class="btn-enhanced bg-white border-2 border-gray-200 hover:border-blue-400 rounded-xl p-3 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm font-medium min-w-[160px] appearance-none">
-                                    <option>🏨 Filter: All</option>
-                                    <option>⭐⭐⭐⭐⭐ 5 Star</option>
-                                    <option>⭐⭐⭐⭐ 4 Star</option>
-                                    <option>⭐⭐⭐ 3 Star</option>
-                                    <option>✅ Free Cancellation</option>
-                                    <option>🍳 Breakfast Included</option>
-                                </select>
-                                <i
-                                    class="fas fa-filter absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
-                            </div>
-                        </div>
-
-                        <!-- View All Button -->
-                        <a href="#"
-                            class="btn-enhanced group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-3 px-6 rounded-xl text-sm whitespace-nowrap flex items-center gap-2">
-                            <i class="fas fa-th-large group-hover:scale-110 transition-transform"></i>
-                            View All Hotels
-                            <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Hotel Card 1 with Ribbon -->
-                <div
-                    class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300 relative">
-                    <div class="absolute top-4 right-4 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded z-10">
-                        BESTSELLER</div>
-                    <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                        alt="Grand Plaza Hotel" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-bold text-gray-800">Grand Plaza Hotel</h3>
-                            <span
-                                class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded flex items-center gap-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="currentColor"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                                </svg>
-                                4.8
-                            </span>
-                        </div>
-                        <p class="text-gray-600 mb-4 flex items-center gap-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                            New York, USA
-                        </p>
-                        <div class="flex items-center mb-4 gap-2">
-                            <div class="flex">
-                                <span class="text-yellow-400">★★★★★</span>
-                            </div>
-                            <span class="text-gray-500 text-sm">(128 reviews)</span>
-                            <span class="text-green-600 text-sm font-medium ml-auto">Free Cancellation</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <span class="text-gray-500 text-sm line-through">$249</span>
-                                <span class="text-2xl font-bold text-gray-800 ml-2">$199</span>
-                            </div>
-                            <span class="text-gray-500 text-sm">per night</span>
-                        </div>
-                        <button
-                            class="book-now-btn cursor-pointer mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 flex items-center justify-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            Book Now
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Hotel Card 2 with Tag -->
-                <div
-                    class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300 relative">
-                    <div
-                        class="absolute top-4 right-4 bg-green-600 text-white text-xs font-bold px-2 py-1 rounded z-10">
-                        ECO FRIENDLY</div>
-                    <img src="https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=800&q=80"
-                        alt="Paradise Beach Resort" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-bold text-gray-800">Paradise Beach Resort</h3>
-                            <span
-                                class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded flex items-center gap-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="currentColor"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                                </svg>
-                                4.7
-                            </span>
-                        </div>
-                        <p class="text-gray-600 mb-4 flex items-center gap-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                            Maldives
-                        </p>
-                        <div class="flex items-center mb-4 gap-2">
-                            <div class="flex">
-                                <span class="text-yellow-400">★★★★★</span>
-                            </div>
-                            <span class="text-gray-500 text-sm">(94 reviews)</span>
-                            <span class="text-green-600 text-sm font-medium ml-auto">Breakfast Included</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <span class="text-2xl font-bold text-gray-800">$349</span>
-                            </div>
-                            <span class="text-gray-500 text-sm">per night</span>
-                        </div>
-                        <button
-                            class="book-now-btn cursor-pointer mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 flex items-center justify-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            Book Now
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Hotel Card 3 with Discount -->
-                <div
-                    class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300 relative">
-                    <div
-                        class="absolute top-4 right-4 bg-purple-600 text-white text-xs font-bold px-2 py-1 rounded z-10">
-                        LUXURY</div>
-                    <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                        alt="Alpine Retreat" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-bold text-gray-800">Alpine Retreat</h3>
-                            <span
-                                class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded flex items-center gap-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="currentColor"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                                </svg>
-                                4.9
-                            </span>
-                        </div>
-                        <p class="text-gray-600 mb-4 flex items-center gap-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                            Swiss Alps, Switzerland
-                        </p>
-                        <div class="flex items-center mb-4 gap-2">
-                            <div class="flex">
-                                <span class="text-yellow-400">★★★★★</span>
-                            </div>
-                            <span class="text-gray-500 text-sm">(156 reviews)</span>
-                            <span class="text-green-600 text-sm font-medium ml-auto">Spa Package</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <span class="text-gray-500 text-sm line-through">$329</span>
-                                <span class="text-2xl font-bold text-gray-800 ml-2">$279</span>
-                            </div>
-                            <span class="text-gray-500 text-sm">per night</span>
-                        </div>
-                        <button
-                            class="book-now-btn cursor-pointer mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 flex items-center justify-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            Book Now
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Destination Guides -->
-        <section class="destination-guides mb-12 container mx-auto px-4 md:px-8">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Popular Destinations</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Destination 1 -->
-                <div class="relative rounded-xl overflow-hidden h-64 group">
-                    <video class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        src="/Videos/peris-france.mp4" autoplay loop muted playsinline></video>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
-                        <div>
-                            <h3 class="text-xl font-bold text-white mb-1">Paris, France</h3>
-                            <p class="text-gray-200">120+ Hotels</p>
-                        </div>
-                    </div>
-                    <a href="#" class="absolute inset-0 z-10" aria-label="Explore Paris hotels"></a>
-                </div>
-
-                <!-- Destination 2 -->
-                <div class="relative rounded-xl overflow-hidden h-64 group">
-                    <video class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        src="/Videos/Tokyo.mp4" autoplay loop muted playsinline></video>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
-                        <div>
-                            <h3 class="text-xl font-bold text-white mb-1">Tokyo, Japan</h3>
-                            <p class="text-gray-200">90+ Hotels</p>
-                        </div>
-                    </div>
-                    <a href="#" class="absolute inset-0 z-10" aria-label="Explore Tokyo hotels"></a>
-                </div>
-
-                <!-- Destination 3 -->
-                <div class="relative rounded-xl overflow-hidden h-64 group">
-                    <video class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        src="/Videos/New-York_USA.mp4" autoplay loop muted playsinline></video>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
-                        <div>
-                            <h3 class="text-xl font-bold text-white mb-1">New York, USA</h3>
-                            <p class="text-gray-200">200+ Hotels</p>
-                        </div>
-                    </div>
-                    <a href="#" class="absolute inset-0 z-10" aria-label="Explore New York hotels"></a>
-                </div>
-
-                <!-- Destination 4 -->
-                <div class="relative rounded-xl overflow-hidden h-64 group">
-                    <video class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        src="/Videos/Rome.mp4" autoplay loop muted playsinline></video>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
-                        <div>
-                            <h3 class="text-xl font-bold text-white mb-1">Rome, Italy</h3>
-                            <p class="text-gray-200">85+ Hotels</p>
-                        </div>
-                    </div>
-                    <a href="#" class="absolute inset-0 z-10" aria-label="Explore Rome hotels"></a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Why Choose Us with Tabs -->
-        <section class="why-choose-us bg-blue-50 rounded-xl container mx-auto px-4 md:px-8 mb-12">
-            <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">Why Choose Our Booking Service?</h2>
-
-            <div class="flex flex-col md:flex-row gap-8">
-                <div class="md:w-1/2">
-                    <div class="border-b border-gray-200">
-                        <nav class="-mb-px flex space-x-8" aria-label="Tabs">
-                            <button
-                                class="tab-button border-b-2 border-blue-500 text-blue-600 px-1 py-4 text-sm font-medium"
-                                data-tab="tab1">Best Prices</button>
-                            <button
-                                class="tab-button border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 px-1 py-4 text-sm font-medium"
-                                data-tab="tab2">Support</button>
-                            <button
-                                class="tab-button border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 px-1 py-4 text-sm font-medium"
-                                data-tab="tab3">Flexibility</button>
-                        </nav>
-                    </div>
-
-                    <div class="tab-content mt-4" id="tab1">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Guaranteed Best Prices</h3>
-                        <p class="text-gray-600 mb-4">We're committed to offering you the best prices for your hotel
-                            stays. Our price match guarantee ensures you won't find a better deal elsewhere.</p>
-                        <ul class="space-y-3">
-                            <li class="flex items-start">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span class="text-gray-700">Price match guarantee - we'll match any lower price you
-                                    find</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span class="text-gray-700">Exclusive member-only deals and discounts</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span class="text-gray-700">No hidden fees - the price you see is what you pay</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="tab-content mt-4 hidden" id="tab2">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-4">24/7 Customer Support</h3>
-                        <p class="text-gray-600 mb-4">Our dedicated support team is available around the clock to assist
-                            you with any questions or issues you may have before, during, or after your stay.</p>
-                        <ul class="space-y-3">
-                            <li class="flex items-start">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span class="text-gray-700">Multilingual support in 10+ languages</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span class="text-gray-700">Instant chat, email, and phone support</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span class="text-gray-700">On-the-ground assistance in major destinations</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="tab-content mt-4 hidden" id="tab3">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Maximum Flexibility</h3>
-                        <p class="text-gray-600 mb-4">We understand plans change, which is why we offer flexible booking
-                            options to give you peace of mind when planning your travels.</p>
-                        <ul class="space-y-3">
-                            <li class="flex items-start">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span class="text-gray-700">Free cancellation on most hotels</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span class="text-gray-700">Last-minute changes without hefty fees</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span class="text-gray-700">Pay later options available</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="md:w-1/2">
-                    <video
-                        class="rounded-lg shadow-lg w-full h-full object-cover hover:scale-105 transition-transform duration-500 group-hover:scale-110"
-                        src="/Videos/video-banner.mp4" autoplay loop muted playsinline></video>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- Testimonials with Carousel -->
-        <section class="testimonials mb-12 container mx-auto px-4 md:px-8">
-            <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">What Our Customers Say</h2>
-
+      <!-- Search Section with Advanced Options -->
+      <section
+        id="search"
+        class="search-section bg-white/90 backdrop-blur-xl container mx-auto mx-4 md:xx-8 p-8 rounded-2xl shadow-2xl mb-16 relative z-20 border border-white/20"
+      >
+        <div class="text-center mb-8">
+          <h2 class="text-2xl font-bold text-gray-800 mb-2">
+            Find Your Perfect Hotel
+          </h2>
+          <p class="text-gray-600">
+            Search from thousands of hotels worldwide with the best prices
+          </p>
+        </div>
+        <form class="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div>
+            <label for="destination" class="block text-gray-700 mb-2"
+              >Destination</label
+            >
             <div class="relative">
-                <div class="testimonial-carousel flex overflow-x-auto snap-x snap-mandatory gap-2 pb-6 scrollbar-hide">
-                    <!-- Testimonial 1 -->
-                    <div class="testimonial-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 snap-start">
-                        <div class="bg-white p-6 rounded-xl shadow-md h-full">
-                            <div class="flex items-center mb-4">
-                                <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Johnson"
-                                    class="w-12 h-12 rounded-full mr-4">
-                                <div>
-                                    <h4 class="font-semibold text-gray-800">Sarah Johnson</h4>
-                                    <div class="flex items-center">
-                                        <span class="text-yellow-400">★★★★★</span>
-                                        <span class="text-gray-500 text-sm ml-2">2 days ago</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="text-gray-600 italic mb-4">"The booking process was so easy and the hotel was
-                                exactly as described. The room was clean, spacious, and had an amazing view. Will
-                                definitely use this service again for my next trip!"</p>
-                            <div class="flex items-center text-sm text-gray-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
-                                Stayed at Grand Plaza Hotel, New York
-                            </div>
-                        </div>
-                    </div>
+              <input
+                type="text"
+                id="destination"
+                placeholder="City or Hotel"
+                class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <div
+                class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 text-gray-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div>
+            <label for="check-in" class="block text-gray-700 mb-2"
+              >Check-in</label
+            >
+            <div class="relative">
+              <input
+                type="date"
+                id="check-in"
+                class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <div
+                class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 text-gray-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div>
+            <label for="check-out" class="block text-gray-700 mb-2"
+              >Check-out</label
+            >
+            <div class="relative">
+              <input
+                type="date"
+                id="check-out"
+                class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <div
+                class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 text-gray-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div>
+            <label for="guests" class="block text-gray-700 mb-2"
+              >Guests & Rooms</label
+            >
+            <div class="relative">
+              <select
+                id="guests"
+                class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none"
+              >
+                <option value="1">1 Guest, 1 Room</option>
+                <option value="2">2 Guests, 1 Room</option>
+                <option value="3">3 Guests, 1 Room</option>
+                <option value="4">4 Guests, 1 Room</option>
+                <option value="2r">2 Guests, 2 Rooms</option>
+                <option value="3r">3 Guests, 2 Rooms</option>
+                <option value="4r">4 Guests, 2 Rooms</option>
+              </select>
+              <div
+                class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 text-gray-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="md:col-span-4">
+            <button
+              type="submit"
+              class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center gap-2 cursor-pointer hover:text-[#000] shadow-[0_3px_10px_rgb(0,0,0,0.2)] active:scale-97"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+              Search Hotels
+            </button>
+          </div>
+          <div class="md:col-span-4">
+            <button
+              type="button"
+              class="text-blue-600 hover:text-blue-800 font-medium flex items-center gap-1 text-sm"
+              id="advanced-toggle"
+            >
+              <span>Advanced Search Options</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 transition-transform"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+            <div
+              id="advanced-options"
+              class="hidden mt-4 grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-gray-200"
+            >
+              <div>
+                <label for="price-range" class="block text-gray-700 mb-2"
+                  >Price Range</label
+                >
+                <select
+                  id="price-range"
+                  class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="">Any Price</option>
+                  <option value="0-100">Under $100</option>
+                  <option value="100-200">$100 - $200</option>
+                  <option value="200-300">$200 - $300</option>
+                  <option value="300+">Over $300</option>
+                </select>
+              </div>
+              <div>
+                <label for="hotel-type" class="block text-gray-700 mb-2"
+                  >Hotel Type</label
+                >
+                <select
+                  id="hotel-type"
+                  class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="">Any Type</option>
+                  <option value="hotel">Hotel</option>
+                  <option value="resort">Resort</option>
+                  <option value="villa">Villa</option>
+                  <option value="apartment">Apartment</option>
+                  <option value="hostel">Hostel</option>
+                </select>
+              </div>
+              <div>
+                <label for="amenities" class="block text-gray-700 mb-2"
+                  >Amenities</label
+                >
+                <select
+                  id="amenities"
+                  class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="">Any Amenities</option>
+                  <option value="pool">Pool</option>
+                  <option value="spa">Spa</option>
+                  <option value="gym">Gym</option>
+                  <option value="wifi">Free WiFi</option>
+                  <option value="breakfast">Breakfast</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </form>
+      </section>
 
-                    <!-- Testimonial 2 -->
-                    <div class="testimonial-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 snap-start">
-                        <div class="bg-white p-6 rounded-xl shadow-md h-full">
-                            <div class="flex items-center mb-4">
-                                <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Michael Chen"
-                                    class="w-12 h-12 rounded-full mr-4">
-                                <div>
-                                    <h4 class="font-semibold text-gray-800">Michael Chen</h4>
-                                    <div class="flex items-center">
-                                        <span class="text-yellow-400">★★★★★</span>
-                                        <span class="text-gray-500 text-sm ml-2">1 week ago</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="text-gray-600 italic mb-4">"Great prices and excellent customer service. They
-                                helped me change my reservation last minute with no hassle when my flight was canceled.
-                                The support team was patient and helpful throughout."</p>
-                            <div class="flex items-center text-sm text-gray-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
-                                Stayed at Paradise Beach Resort, Maldives
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial 3 -->
-                    <div class="testimonial-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 snap-start">
-                        <div class="bg-white p-6 rounded-xl shadow-md h-full">
-                            <div class="flex items-center mb-4">
-                                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emma Wilson"
-                                    class="w-12 h-12 rounded-full mr-4">
-                                <div>
-                                    <h4 class="font-semibold text-gray-800">Emma Wilson</h4>
-                                    <div class="flex items-center">
-                                        <span class="text-yellow-400">★★★★☆</span>
-                                        <span class="text-gray-500 text-sm ml-2">3 weeks ago</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="text-gray-600 italic mb-4">"Found an amazing deal through this site that saved me
-                                over $200 compared to booking directly. The hotel was luxurious and the check-in process
-                                was seamless. Will recommend to all my friends!"</p>
-                            <div class="flex items-center text-sm text-gray-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
-                                Stayed at Alpine Retreat, Swiss Alps
-                            </div>
-                        </div>
-                    </div>
+      <!-- Special Deals Section -->
+      <section
+        id="deals"
+        class="special-deals mb-16 container mx-auto px-4 md:px-8"
+      >
+        <div class="text-center mb-8">
+          <h2 class="text-3xl font-bold text-gray-800 mb-2">
+            🔥 Special Deals & Discounts
+          </h2>
+          <p class="text-gray-600 mb-4">
+            Don't miss out on these exclusive limited-time offers
+          </p>
+          <a
+            href="#"
+            class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors"
+          >
+            View All Deals
+            <svg
+              class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"
+              ></path>
+            </svg>
+          </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Deal Card 1 -->
+          <div
+            class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 relative transform hover:-translate-y-2"
+          >
+            <div
+              class="absolute top-4 left-4 bg-gradient-to-r from-red-500 to-red-600 text-white text-xs font-bold px-3 py-2 rounded-full z-10 animate-pulse"
+            >
+              🏷️ 30% OFF
+            </div>
+            <div
+              class="cursor-pointer absolute top-4 right-4 bg-white/20 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity z-10"
+            >
+              <svg
+                class="w-5 h-5 text-white"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                ></path>
+              </svg>
+            </div>
+            <div class="overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                alt="Summer Deal"
+                class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-2xl">🏖️</span>
+                <h3 class="text-xl font-bold text-gray-800">
+                  Summer Getaway Special
+                </h3>
+              </div>
+              <p class="text-gray-600 mb-4 leading-relaxed">
+                Book now and save 30% on select hotels for summer vacations.
+                Limited time offer with free breakfast included!
+              </p>
+              <div class="flex justify-between items-center mb-4">
+                <div class="flex items-center gap-1 text-sm text-orange-600">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                    ></path>
+                  </svg>
+                  Valid until: Aug 31, 2025
                 </div>
+              </div>
+              <button
+                class="cursor-pointer w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
+              >
+                <span>Grab Deal Now</span>
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
 
+          <!-- Deal Card 2 -->
+          <div
+            class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 relative transform hover:-translate-y-2"
+          >
+            <div
+              class="absolute top-4 left-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-xs font-bold px-3 py-2 rounded-full z-10 animate-bounce"
+            >
+              ⚡ LAST MINUTE
+            </div>
+            <div
+              class="cursor-pointer absolute top-4 right-4 bg-white/20 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity z-10"
+            >
+              <svg
+                class="w-5 h-5 text-white"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                ></path>
+              </svg>
+            </div>
+            <div class="overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                alt="Last Minute Deal"
+                class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-2xl">🎯</span>
+                <h3 class="text-xl font-bold text-gray-800">
+                  Last Minute Deals
+                </h3>
+              </div>
+              <p class="text-gray-600 mb-4 leading-relaxed">
+                Up to 40% off on last minute bookings. Perfect for spontaneous
+                travelers with instant confirmation!
+              </p>
+              <div class="flex justify-between items-center mb-4">
+                <div class="flex items-center gap-1 text-sm text-red-600">
+                  <svg
+                    class="w-4 h-4 animate-pulse"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                    ></path>
+                  </svg>
+                  Limited availability
+                </div>
+              </div>
+              <button
+                class="cursor-pointer w-full bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
+              >
+                <span>View Offers</span>
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  ></path>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Deal Card 3 -->
+          <div
+            class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 relative transform hover:-translate-y-2"
+          >
+            <div
+              class="absolute top-4 left-4 bg-gradient-to-r from-green-500 to-green-600 text-white text-xs font-bold px-3 py-2 rounded-full z-10"
+            >
+              🐦 EARLY BIRD
+            </div>
+            <div
+              class="cursor-pointer absolute top-4 right-4 bg-white/20 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity z-10"
+            >
+              <svg
+                class="w-5 h-5 text-white"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                ></path>
+              </svg>
+            </div>
+            <div class="overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                alt="Early Bird Deal"
+                class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-2xl">⏰</span>
+                <h3 class="text-xl font-bold text-gray-800">
+                  Early Bird Discount
+                </h3>
+              </div>
+              <p class="text-gray-600 mb-4 leading-relaxed">
+                Book 60 days in advance and save 25% on your stay. Plan ahead
+                and save with flexible cancellation!
+              </p>
+              <div class="flex justify-between items-center mb-4">
+                <div class="flex items-center gap-1 text-sm text-green-600">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                    ></path>
+                  </svg>
+                  Available through 2025
+                </div>
+              </div>
+              <button
+                class="cursor-pointer w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
+              >
+                <span>Book Early</span>
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Hotels with Enhanced Filter Options -->
+      <section class="featured-hotels mb-16 container mx-auto px-4 md:px-8">
+        <!-- Enhanced Header with Icons and Better Typography -->
+        <div class="text-center mb-12">
+          <div class="flex items-center justify-center gap-3 mb-4">
+            <div
+              class="w-12 h-1 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"
+            ></div>
+            <i class="fas fa-hotel text-2xl text-blue-600 icon-bounce"></i>
+            <div
+              class="w-12 h-1 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full"
+            ></div>
+          </div>
+          <h2 class="text-4xl font-bold text-gray-800 mb-3">
+            <span class="gradient-animated">Featured</span> Hotels
+          </h2>
+          <p class="text-gray-600 text-lg max-w-2xl mx-auto mb-8">
+            Discover handpicked accommodations that offer exceptional service,
+            stunning locations, and unforgettable experiences
+          </p>
+
+          <!-- Enhanced Filter Controls -->
+          <div class="glass-enhanced rounded-2xl p-6 max-w-4xl mx-auto">
+            <div
+              class="flex flex-col lg:flex-row justify-between items-center gap-4"
+            >
+              <div class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+                <div class="relative">
+                  <select
+                    class="btn-enhanced bg-white border-2 border-gray-200 hover:border-blue-400 rounded-xl p-3 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm font-medium min-w-[180px] appearance-none"
+                  >
+                    <option>🔥 Sort: Recommended</option>
+                    <option>💰 Price: Low to High</option>
+                    <option>💎 Price: High to Low</option>
+                    <option>⭐ Rating: High to Low</option>
+                    <option>📍 Distance</option>
+                  </select>
+                  <i
+                    class="fas fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"
+                  ></i>
+                </div>
+                <div class="relative">
+                  <select
+                    class="btn-enhanced bg-white border-2 border-gray-200 hover:border-blue-400 rounded-xl p-3 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm font-medium min-w-[160px] appearance-none"
+                  >
+                    <option>🏨 Filter: All</option>
+                    <option>⭐⭐⭐⭐⭐ 5 Star</option>
+                    <option>⭐⭐⭐⭐ 4 Star</option>
+                    <option>⭐⭐⭐ 3 Star</option>
+                    <option>✅ Free Cancellation</option>
+                    <option>🍳 Breakfast Included</option>
+                  </select>
+                  <i
+                    class="fas fa-filter absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"
+                  ></i>
+                </div>
+              </div>
+
+              <!-- View All Button -->
+              <a
+                href="#"
+                class="btn-enhanced group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-3 px-6 rounded-xl text-sm whitespace-nowrap flex items-center gap-2"
+              >
+                <i
+                  class="fas fa-th-large group-hover:scale-110 transition-transform"
+                ></i>
+                View All Hotels
+                <i
+                  class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"
+                ></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Hotel Card 1 with Ribbon -->
+          <div
+            class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300 relative"
+          >
+            <div
+              class="absolute top-4 right-4 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded z-10"
+            >
+              BESTSELLER
+            </div>
+            <img
+              src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+              alt="Grand Plaza Hotel"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">
+                  Grand Plaza Hotel
+                </h3>
+                <span
+                  class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded flex items-center gap-1"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-3 w-3"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                    />
+                  </svg>
+                  4.8
+                </span>
+              </div>
+              <p class="text-gray-600 mb-4 flex items-center gap-1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+                New York, USA
+              </p>
+              <div class="flex items-center mb-4 gap-2">
+                <div class="flex">
+                  <span class="text-yellow-400">★★★★★</span>
+                </div>
+                <span class="text-gray-500 text-sm">(128 reviews)</span>
+                <span class="text-green-600 text-sm font-medium ml-auto"
+                  >Free Cancellation</span
+                >
+              </div>
+              <div class="flex justify-between items-center">
+                <div>
+                  <span class="text-gray-500 text-sm line-through">$249</span>
+                  <span class="text-2xl font-bold text-gray-800 ml-2"
+                    >$199</span
+                  >
+                </div>
+                <span class="text-gray-500 text-sm">per night</span>
+              </div>
+              <button
+                class="book-now-btn cursor-pointer mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 flex items-center justify-center gap-2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                Book Now
+              </button>
+            </div>
+          </div>
+
+          <!-- Hotel Card 2 with Tag -->
+          <div
+            class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300 relative"
+          >
+            <div
+              class="absolute top-4 right-4 bg-green-600 text-white text-xs font-bold px-2 py-1 rounded z-10"
+            >
+              ECO FRIENDLY
+            </div>
+            <img
+              src="https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=800&q=80"
+              alt="Paradise Beach Resort"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">
+                  Paradise Beach Resort
+                </h3>
+                <span
+                  class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded flex items-center gap-1"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-3 w-3"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                    />
+                  </svg>
+                  4.7
+                </span>
+              </div>
+              <p class="text-gray-600 mb-4 flex items-center gap-1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+                Maldives
+              </p>
+              <div class="flex items-center mb-4 gap-2">
+                <div class="flex">
+                  <span class="text-yellow-400">★★★★★</span>
+                </div>
+                <span class="text-gray-500 text-sm">(94 reviews)</span>
+                <span class="text-green-600 text-sm font-medium ml-auto"
+                  >Breakfast Included</span
+                >
+              </div>
+              <div class="flex justify-between items-center">
+                <div>
+                  <span class="text-2xl font-bold text-gray-800">$349</span>
+                </div>
+                <span class="text-gray-500 text-sm">per night</span>
+              </div>
+              <button
+                class="book-now-btn cursor-pointer mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 flex items-center justify-center gap-2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                Book Now
+              </button>
+            </div>
+          </div>
+
+          <!-- Hotel Card 3 with Discount -->
+          <div
+            class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300 relative"
+          >
+            <div
+              class="absolute top-4 right-4 bg-purple-600 text-white text-xs font-bold px-2 py-1 rounded z-10"
+            >
+              LUXURY
+            </div>
+            <img
+              src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+              alt="Alpine Retreat"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Alpine Retreat</h3>
+                <span
+                  class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded flex items-center gap-1"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-3 w-3"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                    />
+                  </svg>
+                  4.9
+                </span>
+              </div>
+              <p class="text-gray-600 mb-4 flex items-center gap-1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+                Swiss Alps, Switzerland
+              </p>
+              <div class="flex items-center mb-4 gap-2">
+                <div class="flex">
+                  <span class="text-yellow-400">★★★★★</span>
+                </div>
+                <span class="text-gray-500 text-sm">(156 reviews)</span>
+                <span class="text-green-600 text-sm font-medium ml-auto"
+                  >Spa Package</span
+                >
+              </div>
+              <div class="flex justify-between items-center">
+                <div>
+                  <span class="text-gray-500 text-sm line-through">$329</span>
+                  <span class="text-2xl font-bold text-gray-800 ml-2"
+                    >$279</span
+                  >
+                </div>
+                <span class="text-gray-500 text-sm">per night</span>
+              </div>
+              <button
+                class="book-now-btn cursor-pointer mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 flex items-center justify-center gap-2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                Book Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Destination Guides -->
+      <section class="destination-guides mb-12 container mx-auto px-4 md:px-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">
+          Popular Destinations
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Destination 1 -->
+          <div class="relative rounded-xl overflow-hidden h-64 group">
+            <video
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              src="/Videos/peris-france.mp4"
+              autoplay
+              loop
+              muted
+              playsinline
+            ></video>
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6"
+            >
+              <div>
+                <h3 class="text-xl font-bold text-white mb-1">Paris, France</h3>
+                <p class="text-gray-200">120+ Hotels</p>
+              </div>
+            </div>
+            <a
+              href="#"
+              class="absolute inset-0 z-10"
+              aria-label="Explore Paris hotels"
+            ></a>
+          </div>
+
+          <!-- Destination 2 -->
+          <div class="relative rounded-xl overflow-hidden h-64 group">
+            <video
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              src="/Videos/Tokyo.mp4"
+              autoplay
+              loop
+              muted
+              playsinline
+            ></video>
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6"
+            >
+              <div>
+                <h3 class="text-xl font-bold text-white mb-1">Tokyo, Japan</h3>
+                <p class="text-gray-200">90+ Hotels</p>
+              </div>
+            </div>
+            <a
+              href="#"
+              class="absolute inset-0 z-10"
+              aria-label="Explore Tokyo hotels"
+            ></a>
+          </div>
+
+          <!-- Destination 3 -->
+          <div class="relative rounded-xl overflow-hidden h-64 group">
+            <video
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              src="/Videos/New-York_USA.mp4"
+              autoplay
+              loop
+              muted
+              playsinline
+            ></video>
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6"
+            >
+              <div>
+                <h3 class="text-xl font-bold text-white mb-1">New York, USA</h3>
+                <p class="text-gray-200">200+ Hotels</p>
+              </div>
+            </div>
+            <a
+              href="#"
+              class="absolute inset-0 z-10"
+              aria-label="Explore New York hotels"
+            ></a>
+          </div>
+
+          <!-- Destination 4 -->
+          <div class="relative rounded-xl overflow-hidden h-64 group">
+            <video
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              src="/Videos/Rome.mp4"
+              autoplay
+              loop
+              muted
+              playsinline
+            ></video>
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6"
+            >
+              <div>
+                <h3 class="text-xl font-bold text-white mb-1">Rome, Italy</h3>
+                <p class="text-gray-200">85+ Hotels</p>
+              </div>
+            </div>
+            <a
+              href="#"
+              class="absolute inset-0 z-10"
+              aria-label="Explore Rome hotels"
+            ></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Choose Us with Tabs -->
+      <section
+        class="why-choose-us bg-blue-50 rounded-xl container mx-auto px-4 md:px-8 mb-12"
+      >
+        <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">
+          Why Choose Our Booking Service?
+        </h2>
+
+        <div class="flex flex-col md:flex-row gap-8">
+          <div class="md:w-1/2">
+            <div class="border-b border-gray-200">
+              <nav class="-mb-px flex space-x-8" aria-label="Tabs">
                 <button
-                    class="carousel-prev absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white p-2 rounded-full shadow-md text-blue-600 hover:bg-blue-50 z-10 hidden md:block">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                    </svg>
+                  class="tab-button border-b-2 border-blue-500 text-blue-600 px-1 py-4 text-sm font-medium"
+                  data-tab="tab1"
+                >
+                  Best Prices
                 </button>
                 <button
-                    class="carousel-next absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white p-2 rounded-full shadow-md text-blue-600 hover:bg-blue-50 z-10 hidden md:block">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg>
+                  class="tab-button border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 px-1 py-4 text-sm font-medium"
+                  data-tab="tab2"
+                >
+                  Support
                 </button>
+                <button
+                  class="tab-button border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 px-1 py-4 text-sm font-medium"
+                  data-tab="tab3"
+                >
+                  Flexibility
+                </button>
+              </nav>
             </div>
 
-            <div class="flex justify-center mt-6 gap-2">
-                <button class="carousel-dot w-2 h-2 rounded-full bg-gray-300" aria-label="Go to slide 1"></button>
-                <button class="carousel-dot w-2 h-2 rounded-full bg-gray-300" aria-label="Go to slide 2"></button>
-                <button class="carousel-dot w-2 h-2 rounded-full bg-gray-300" aria-label="Go to slide 3"></button>
+            <div class="tab-content mt-4" id="tab1">
+              <h3 class="text-xl font-semibold text-gray-800 mb-4">
+                Guaranteed Best Prices
+              </h3>
+              <p class="text-gray-600 mb-4">
+                We're committed to offering you the best prices for your hotel
+                stays. Our price match guarantee ensures you won't find a better
+                deal elsewhere.
+              </p>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 text-green-500 mr-2 mt-0.5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  <span class="text-gray-700"
+                    >Price match guarantee - we'll match any lower price you
+                    find</span
+                  >
+                </li>
+                <li class="flex items-start">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 text-green-500 mr-2 mt-0.5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  <span class="text-gray-700"
+                    >Exclusive member-only deals and discounts</span
+                  >
+                </li>
+                <li class="flex items-start">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 text-green-500 mr-2 mt-0.5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  <span class="text-gray-700"
+                    >No hidden fees - the price you see is what you pay</span
+                  >
+                </li>
+              </ul>
             </div>
-        </section>
 
-        <!-- Newsletter with Incentive -->
-        <section class="container mx-auto px-4 md:px-8 newsletter bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl py-8 mb-8">
-            <div class="max-w-2xl mx-auto text-center">
-                <h2 class="text-2xl font-bold mb-4">Subscribe to Our Newsletter</h2>
-                <p class="mb-6">Get exclusive deals, travel tips, and 10% off your first booking when you sign up!</p>
-                
-                <!-- Newsletter Form -->
-                <div id="newsletter-form-container">
-                    <form id="newsletter-form" class="flex flex-col sm:flex-row gap-4">
-                        <input 
-                            id="newsletter-email" 
-                            type="email" 
-                            placeholder="Your email address" 
-                            required
-                            class="flex-grow border-[1px] p-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-300">
-                        <button 
-                            type="submit" 
-                            id="newsletter-submit"
-                            class="cursor-pointer bg-white text-blue-600 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg transition duration-300">
-                            Subscribe
-                        </button>
-                    </form>
-                    <p class="text-blue-100 text-sm mt-3">We respect your privacy. Unsubscribe at any time.</p>
-                </div>
-                
-                <!-- Success Message -->
-                <div id="newsletter-success" class="hidden">
-                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
-                        ✅ Thank you! You've been successfully subscribed to our newsletter.
-                    </div>
-                    <button 
-                        id="newsletter-reset" 
-                        class="bg-white text-blue-600 hover:bg-gray-100 font-semibold py-2 px-4 rounded transition duration-300">
-                        Subscribe Another Email
-                    </button>
-                </div>
-                
-                <!-- Error Message -->
-                <div id="newsletter-error" class="hidden mt-4">
-                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
-                        <span id="newsletter-error-text">Please enter a valid email address.</span>
-                    </div>
-                </div>
+            <div class="tab-content mt-4 hidden" id="tab2">
+              <h3 class="text-xl font-semibold text-gray-800 mb-4">
+                24/7 Customer Support
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Our dedicated support team is available around the clock to
+                assist you with any questions or issues you may have before,
+                during, or after your stay.
+              </p>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 text-green-500 mr-2 mt-0.5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  <span class="text-gray-700"
+                    >Multilingual support in 10+ languages</span
+                  >
+                </li>
+                <li class="flex items-start">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 text-green-500 mr-2 mt-0.5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  <span class="text-gray-700"
+                    >Instant chat, email, and phone support</span
+                  >
+                </li>
+                <li class="flex items-start">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 text-green-500 mr-2 mt-0.5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  <span class="text-gray-700"
+                    >On-the-ground assistance in major destinations</span
+                  >
+                </li>
+              </ul>
             </div>
-        </section>
+
+            <div class="tab-content mt-4 hidden" id="tab3">
+              <h3 class="text-xl font-semibold text-gray-800 mb-4">
+                Maximum Flexibility
+              </h3>
+              <p class="text-gray-600 mb-4">
+                We understand plans change, which is why we offer flexible
+                booking options to give you peace of mind when planning your
+                travels.
+              </p>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 text-green-500 mr-2 mt-0.5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  <span class="text-gray-700"
+                    >Free cancellation on most hotels</span
+                  >
+                </li>
+                <li class="flex items-start">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 text-green-500 mr-2 mt-0.5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  <span class="text-gray-700"
+                    >Last-minute changes without hefty fees</span
+                  >
+                </li>
+                <li class="flex items-start">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 text-green-500 mr-2 mt-0.5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  <span class="text-gray-700">Pay later options available</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="md:w-1/2">
+            <video
+              class="rounded-lg shadow-lg w-full h-full object-cover hover:scale-105 transition-transform duration-500 group-hover:scale-110"
+              src="/Videos/video-banner.mp4"
+              autoplay
+              loop
+              muted
+              playsinline
+            ></video>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials with Carousel -->
+      <section class="testimonials mb-12 container mx-auto px-4 md:px-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">
+          What Our Customers Say
+        </h2>
+
+        <div class="relative">
+          <div
+            class="testimonial-carousel flex overflow-x-auto snap-x snap-mandatory gap-2 pb-6 scrollbar-hide"
+          >
+            <!-- Testimonial 1 -->
+            <div
+              class="testimonial-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 snap-start"
+            >
+              <div class="bg-white p-6 rounded-xl shadow-md h-full">
+                <div class="flex items-center mb-4">
+                  <img
+                    src="https://randomuser.me/api/portraits/women/32.jpg"
+                    alt="Sarah Johnson"
+                    class="w-12 h-12 rounded-full mr-4"
+                  />
+                  <div>
+                    <h4 class="font-semibold text-gray-800">Sarah Johnson</h4>
+                    <div class="flex items-center">
+                      <span class="text-yellow-400">★★★★★</span>
+                      <span class="text-gray-500 text-sm ml-2">2 days ago</span>
+                    </div>
+                  </div>
+                </div>
+                <p class="text-gray-600 italic mb-4">
+                  "The booking process was so easy and the hotel was exactly as
+                  described. The room was clean, spacious, and had an amazing
+                  view. Will definitely use this service again for my next
+                  trip!"
+                </p>
+                <div class="flex items-center text-sm text-gray-500">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4 mr-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                    />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                  </svg>
+                  Stayed at Grand Plaza Hotel, New York
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div
+              class="testimonial-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 snap-start"
+            >
+              <div class="bg-white p-6 rounded-xl shadow-md h-full">
+                <div class="flex items-center mb-4">
+                  <img
+                    src="https://randomuser.me/api/portraits/men/54.jpg"
+                    alt="Michael Chen"
+                    class="w-12 h-12 rounded-full mr-4"
+                  />
+                  <div>
+                    <h4 class="font-semibold text-gray-800">Michael Chen</h4>
+                    <div class="flex items-center">
+                      <span class="text-yellow-400">★★★★★</span>
+                      <span class="text-gray-500 text-sm ml-2">1 week ago</span>
+                    </div>
+                  </div>
+                </div>
+                <p class="text-gray-600 italic mb-4">
+                  "Great prices and excellent customer service. They helped me
+                  change my reservation last minute with no hassle when my
+                  flight was canceled. The support team was patient and helpful
+                  throughout."
+                </p>
+                <div class="flex items-center text-sm text-gray-500">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4 mr-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                    />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                  </svg>
+                  Stayed at Paradise Beach Resort, Maldives
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div
+              class="testimonial-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 snap-start"
+            >
+              <div class="bg-white p-6 rounded-xl shadow-md h-full">
+                <div class="flex items-center mb-4">
+                  <img
+                    src="https://randomuser.me/api/portraits/women/68.jpg"
+                    alt="Emma Wilson"
+                    class="w-12 h-12 rounded-full mr-4"
+                  />
+                  <div>
+                    <h4 class="font-semibold text-gray-800">Emma Wilson</h4>
+                    <div class="flex items-center">
+                      <span class="text-yellow-400">★★★★☆</span>
+                      <span class="text-gray-500 text-sm ml-2"
+                        >3 weeks ago</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <p class="text-gray-600 italic mb-4">
+                  "Found an amazing deal through this site that saved me over
+                  $200 compared to booking directly. The hotel was luxurious and
+                  the check-in process was seamless. Will recommend to all my
+                  friends!"
+                </p>
+                <div class="flex items-center text-sm text-gray-500">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4 mr-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                    />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                  </svg>
+                  Stayed at Alpine Retreat, Swiss Alps
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button
+            class="carousel-prev absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white p-2 rounded-full shadow-md text-blue-600 hover:bg-blue-50 z-10 hidden md:block"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
+          <button
+            class="carousel-next absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white p-2 rounded-full shadow-md text-blue-600 hover:bg-blue-50 z-10 hidden md:block"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <div class="flex justify-center mt-6 gap-2">
+          <button
+            class="carousel-dot w-2 h-2 rounded-full bg-gray-300"
+            aria-label="Go to slide 1"
+          ></button>
+          <button
+            class="carousel-dot w-2 h-2 rounded-full bg-gray-300"
+            aria-label="Go to slide 2"
+          ></button>
+          <button
+            class="carousel-dot w-2 h-2 rounded-full bg-gray-300"
+            aria-label="Go to slide 3"
+          ></button>
+        </div>
+      </section>
+
+      <!-- Newsletter with Incentive -->
+      <section
+        class="container mx-auto px-4 md:px-8 newsletter bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl py-8 mb-8"
+      >
+        <div class="max-w-2xl mx-auto text-center">
+          <h2 class="text-2xl font-bold mb-4">Subscribe to Our Newsletter</h2>
+          <p class="mb-6">
+            Get exclusive deals, travel tips, and 10% off your first booking
+            when you sign up!
+          </p>
+
+          <!-- Newsletter Form -->
+          <div id="newsletter-form-container">
+            <form id="newsletter-form" class="flex flex-col sm:flex-row gap-4">
+              <input
+                id="newsletter-email"
+                type="email"
+                placeholder="Your email address"
+                required
+                class="flex-grow border-[1px] p-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-300"
+              />
+              <button
+                type="submit"
+                id="newsletter-submit"
+                class="cursor-pointer bg-white text-blue-600 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg transition duration-300"
+              >
+                Subscribe
+              </button>
+            </form>
+            <p class="text-blue-100 text-sm mt-3">
+              We respect your privacy. Unsubscribe at any time.
+            </p>
+          </div>
+
+          <!-- Success Message -->
+          <div id="newsletter-success" class="hidden">
+            <div
+              class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4"
+            >
+              ✅ Thank you! You've been successfully subscribed to our
+              newsletter.
+            </div>
+            <button
+              id="newsletter-reset"
+              class="bg-white text-blue-600 hover:bg-gray-100 font-semibold py-2 px-4 rounded transition duration-300"
+            >
+              Subscribe Another Email
+            </button>
+          </div>
+
+          <!-- Error Message -->
+          <div id="newsletter-error" class="hidden mt-4">
+            <div
+              class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded"
+            >
+              <span id="newsletter-error-text"
+                >Please enter a valid email address.</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
     <!-- Footer Section -->
     <footer class="bg-[#604019] text-white pt-8 pb-6">
-        <div class="container mx-auto px-4 md:px-8">
-            <div class="flex flex-col lg:flex-row justify-between gap-8">
-                <!-- About Section -->
-                <div class="w-full lg:w-1/3 flex flex-col items-center lg:items-start">
-                    <img class="h-16 cursor-pointer mb-4" src="/Images/logo.svg" alt="Ranthambore 360 Logo">
-                    <p class="mb-4 text-sm text-gray-200 font-sans font-medium text-center lg:text-left">
-                        This is not an official website of "Ranthambhore National Park". This is a Registered under the
-                        Private Travel Agency name Daily Tour and Travel. We organize Hotel, Safari and Tour Package
-                        bookings in Ranthambhore National Park.
-                    </p>
-                    <div class="mb-2">
-                        <p class="flex items-center mb-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-amber-400" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                            </svg>
-                            Phone: 8076438491, 7982193537
-                        </p>
-                        <p class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-amber-400" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                            Email: ranthambore360@gmail.com
-                        </p>
-                    </div>
-                </div>
+      <div class="container mx-auto px-4 md:px-8">
+        <div class="flex flex-col lg:flex-row justify-between gap-8">
+          <!-- About Section -->
+          <div
+            class="w-full lg:w-1/3 flex flex-col items-center lg:items-start"
+          >
+            <img
+              class="h-16 cursor-pointer mb-4"
+              src="/Images/logo.svg"
+              alt="Ranthambore 360 Logo"
+            />
+            <p
+              class="mb-4 text-sm text-gray-200 font-sans font-medium text-center lg:text-left"
+            >
+              This is not an official website of "Ranthambhore National Park".
+              This is a Registered under the Private Travel Agency name Daily
+              Tour and Travel. We organize Hotel, Safari and Tour Package
+              bookings in Ranthambhore National Park.
+            </p>
+            <div class="mb-2">
+              <p class="flex items-center mb-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 mr-2 text-amber-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                  />
+                </svg>
+                Phone: 8076438491, 7982193537
+              </p>
+              <p class="flex items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 mr-2 text-amber-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+                Email: ranthambore360@gmail.com
+              </p>
+            </div>
+          </div>
 
-                <!-- Links Sections -->
-                <div class="w-full flex flex-col md:flex-row gap-8">
-                    <!-- Useful Links -->
-                    <div class="w-full md:w-1/3">
-                        <h4 class="text-lg font-semibold mb-4 text-amber-400">Useful Links</h4>
-                        <ul class="space-y-2">
-                            <li>
-                                <a href="/dist/index.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Home
-                                </a>
-                            </li>
-                            <li>
-                                <a href="safari.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Safari Booking
-                                </a>
-                            </li>
-                            <li>
-                                <a href="chambal.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Chambal Safari Booking
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/dist/package-booking.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Package Booking
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/dist/contact.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Contact Us
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/dist/blogs.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Blogs
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Quick Links -->
-                    <div class="w-full md:w-1/3">
-                        <h4 class="text-lg font-semibold mb-4 text-amber-400">Quick Links</h4>
-                        <ul class="space-y-2">
-                            <li>
-                                <a href="/dist/privacy-policy.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Privacy Policy
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/dist/Cancellatiion-Policy.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Cancellation Policy
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/dist/term-condition.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Terms & Condition
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/dist/how-to-reach.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    How To Reach
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/dist/about.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    About Us
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/dist/support.html"
-                                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors">
-                                    <i class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"></i>
-                                    Support
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Gallery Section -->
-                    <div class="w-full md:w-1/3">
-                        <h4 class="text-lg font-semibold mb-4 text-amber-400">Our Gallery</h4>
-                        <div class="grid grid-cols-3 gap-2">
-                            <img src="/Images/Sanbar Deer.jpg" alt="Gallery Image 1"
-                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
-                            <img src="/Images/Black Buck Sighting.jpg" alt="Gallery Image 2"
-                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
-                            <img src="/Images/Tiger and cub.jpg" alt="Gallery Image 3"
-                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
-                            <img src="/Images/Crocodile in River.jpg" alt="Gallery Image 4"
-                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
-                            <img src="/Images/Chambal Boating.jpg" alt="Gallery Image 5"
-                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
-                            <img src="/Images/Birds Paradise.jpg" alt="Gallery Image 6"
-                                class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer">
-                        </div>
-                    </div>
-                </div>
+          <!-- Links Sections -->
+          <div class="w-full flex flex-col md:flex-row gap-8">
+            <!-- Useful Links -->
+            <div class="w-full md:w-1/3">
+              <h4 class="text-lg font-semibold mb-4 text-amber-400">
+                Useful Links
+              </h4>
+              <ul class="space-y-2">
+                <li>
+                  <a
+                    href="/dist/index.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="safari.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Safari Booking
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="chambal.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Chambal Safari Booking
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/dist/package-booking.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Package Booking
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/dist/contact.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Contact Us
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/dist/blogs.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Blogs
+                  </a>
+                </li>
+              </ul>
             </div>
 
-            <!-- Address and Copyright -->
-            <div class="mt-8 pt-6 border-t border-[#fff]">
-                <p class="text-center mb-2 text-[#fff]">
-                    <span class="font-bold bg-amber-400 px-2 py-1 text-gray-900 rounded">Daily Tour and Travel Delhi
-                        110092 Address</span> : A-2 Second Floor Ganesh Nagar, Pandav Nagar, Delhi 110092
-                </p>
-                <p class="text-center text-[#fff] text-sm">
-                    © Copyright Ranthambore. All Rights Reserved
-                </p>
+            <!-- Quick Links -->
+            <div class="w-full md:w-1/3">
+              <h4 class="text-lg font-semibold mb-4 text-amber-400">
+                Quick Links
+              </h4>
+              <ul class="space-y-2">
+                <li>
+                  <a
+                    href="/dist/privacy-policy.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Privacy Policy
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/dist/Cancellatiion-Policy.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Cancellation Policy
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/dist/term-condition.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Terms & Condition
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/dist/how-to-reach.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    How To Reach
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/dist/about.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    About Us
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/dist/support.html"
+                    class="inline-flex items-center text-gray-200 hover:text-amber-400 transition-colors"
+                  >
+                    <i
+                      class="fa-solid fa-angles-right text-amber-500 text-xs mr-2"
+                    ></i>
+                    Support
+                  </a>
+                </li>
+              </ul>
             </div>
+
+            <!-- Gallery Section -->
+            <div class="w-full md:w-1/3">
+              <h4 class="text-lg font-semibold mb-4 text-amber-400">
+                Our Gallery
+              </h4>
+              <div class="grid grid-cols-3 gap-2">
+                <img
+                  src="/Images/Sanbar Deer.jpg"
+                  alt="Gallery Image 1"
+                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
+                />
+                <img
+                  src="/Images/Black Buck Sighting.jpg"
+                  alt="Gallery Image 2"
+                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
+                />
+                <img
+                  src="/Images/Tiger and cub.jpg"
+                  alt="Gallery Image 3"
+                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
+                />
+                <img
+                  src="/Images/Crocodile in River.jpg"
+                  alt="Gallery Image 4"
+                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
+                />
+                <img
+                  src="/Images/Chambal Boating.jpg"
+                  alt="Gallery Image 5"
+                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
+                />
+                <img
+                  src="/Images/Birds Paradise.jpg"
+                  alt="Gallery Image 6"
+                  class="rounded-lg h-20 w-full object-cover border-2 border-amber-400 hover:border-amber-500 transition-all cursor-pointer"
+                />
+              </div>
+            </div>
+          </div>
         </div>
+
+        <!-- Address and Copyright -->
+        <div class="mt-8 pt-6 border-t border-[#fff]">
+          <p class="text-center mb-2 text-[#fff]">
+            <span class="font-bold bg-amber-400 px-2 py-1 text-gray-900 rounded"
+              >Daily Tour and Travel Delhi 110092 Address</span
+            >
+            : A-2 Second Floor Ganesh Nagar, Pandav Nagar, Delhi 110092
+          </p>
+          <p class="text-center text-[#fff] text-sm">
+            © Copyright Ranthambore. All Rights Reserved
+          </p>
+        </div>
+      </div>
     </footer>
     <script src="../JS/app.js"></script>
     <script src="../JS/hotel.js"></script>
-</body>
-
+  </body>
 </html>
