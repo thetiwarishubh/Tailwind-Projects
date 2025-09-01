@@ -1,20 +1,20 @@
 // Hotel Booking - Simplified version without complex classes
-(function() {
-  'use strict';
+(function () {
+  "use strict";
 
   let currentImage = 0;
   let autoplayInterval = null;
-  
+
   const carouselImages = [
     "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800",
-    "https://images.unsplash.com/photo-1549366021-9f761d040a94?w=800", 
-    "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800"
+    "https://images.unsplash.com/photo-1549366021-9f761d040a94?w=800",
+    "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800",
   ];
 
   const promoCodes = {
     SAVE10: 0.1,
     WELCOME5: 0.05,
-    FIRST15: 0.15
+    FIRST15: 0.15,
   };
 
   // Get URL parameters
@@ -25,18 +25,22 @@
   // Initialize hotel data
   function initializeHotelData() {
     const urlParams = getURLParams();
-    
+
     return {
       id: "luxury-safari-lodge",
       name: urlParams.get("hotelName") || "Luxury Safari Lodge",
-      location: urlParams.get("hotelLocation") || "Ranthambhore National Park, Rajasthan",
-      description: urlParams.get("hotelDescription") || "A premium hotel offering comfortable accommodation with excellent amenities.",
+      location:
+        urlParams.get("hotelLocation") ||
+        "Ranthambhore National Park, Rajasthan",
+      description:
+        urlParams.get("hotelDescription") ||
+        "A premium hotel offering comfortable accommodation with excellent amenities.",
       selectedImage: urlParams.get("hotelImage") || carouselImages[0],
       prices: {
         standard: parseInt(urlParams.get("standardPrice")) || 8000,
         deluxe: parseInt(urlParams.get("deluxePrice")) || 10000,
-        suite: parseInt(urlParams.get("suitePrice")) || 15000
-      }
+        suite: parseInt(urlParams.get("suitePrice")) || 15000,
+      },
     };
   }
 
@@ -48,10 +52,10 @@
   // Update hotel display
   function updateHotelDisplay() {
     const hotel = initializeHotelData();
-    
+
     const hotelNameElement = document.getElementById("hotel-name");
     if (hotelNameElement) hotelNameElement.textContent = hotel.name;
-    
+
     updateRoomTypeOptions(hotel.prices);
     updatePageTitle(hotel.name);
     updateCarouselImages(hotel.selectedImage);
@@ -63,9 +67,15 @@
     if (!roomTypeSelect || !prices) return;
 
     roomTypeSelect.innerHTML = `
-      <option value="standard">Standard Room (${formatCurrency(prices.standard)}/night)</option>
-      <option value="deluxe">Deluxe Room (${formatCurrency(prices.deluxe)}/night)</option>
-      <option value="suite">Suite (${formatCurrency(prices.suite)}/night)</option>
+      <option value="standard">Standard Room (${formatCurrency(
+        prices.standard
+      )}/night)</option>
+      <option value="deluxe">Deluxe Room (${formatCurrency(
+        prices.deluxe
+      )}/night)</option>
+      <option value="suite">Suite (${formatCurrency(
+        prices.suite
+      )}/night)</option>
     `;
   }
 
@@ -77,27 +87,29 @@
   // Update carousel images
   function updateCarouselImages(selectedImage) {
     const images = document.querySelectorAll(".carousel-image");
-    
+
     // Update carousel images array
     if (selectedImage) {
       carouselImages[0] = selectedImage;
     }
-    
+
     images.forEach((img, index) => {
       if (carouselImages[index]) {
         img.src = carouselImages[index];
         img.alt = `Hotel Image ${index + 1}`;
-        
+
         // Error handling
         img.onerror = () => {
-          img.src = `https://via.placeholder.com/600x300/e5e7eb/9ca3af?text=Hotel+Image+${index + 1}`;
+          img.src = `https://via.placeholder.com/600x300/e5e7eb/9ca3af?text=Hotel+Image+${
+            index + 1
+          }`;
         };
-        
+
         // Set visibility
         if (index === 0) {
-          img.classList.remove('hidden');
+          img.classList.remove("hidden");
         } else {
-          img.classList.add('hidden');
+          img.classList.add("hidden");
         }
       }
     });
@@ -105,47 +117,48 @@
     // Add click handlers for lightbox
     images.forEach((img) => {
       if (!img.dataset.listenerAdded) {
-        img.addEventListener('click', (e) => {
+        img.addEventListener("click", (e) => {
           e.preventDefault();
           showImageLightbox(img.src, img.alt);
         });
-        img.dataset.listenerAdded = 'true';
-        img.style.cursor = 'pointer';
+        img.dataset.listenerAdded = "true";
+        img.style.cursor = "pointer";
       }
     });
   }
 
   // Show image lightbox
   function showImageLightbox(src, alt) {
-    const lightbox = document.createElement('div');
-    lightbox.className = 'fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4';
+    const lightbox = document.createElement("div");
+    lightbox.className =
+      "fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4";
     lightbox.innerHTML = `
       <div class="relative max-w-4xl max-h-full">
         <button class="absolute top-4 right-4 text-white hover:text-gray-300 text-3xl" onclick="this.closest('.fixed').remove()">×</button>
         <img src="${src}" alt="${alt}" class="max-w-full max-h-full object-contain rounded-lg">
       </div>
     `;
-    
+
     document.body.appendChild(lightbox);
-    document.body.style.overflow = 'hidden';
-    
+    document.body.style.overflow = "hidden";
+
     // Close on outside click
-    lightbox.addEventListener('click', (e) => {
+    lightbox.addEventListener("click", (e) => {
       if (e.target === lightbox) {
         lightbox.remove();
-        document.body.style.overflow = '';
+        document.body.style.overflow = "";
       }
     });
-    
+
     // Close on ESC key
     const escHandler = (e) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         lightbox.remove();
-        document.body.style.overflow = '';
-        document.removeEventListener('keydown', escHandler);
+        document.body.style.overflow = "";
+        document.removeEventListener("keydown", escHandler);
       }
     };
-    document.addEventListener('keydown', escHandler);
+    document.addEventListener("keydown", escHandler);
   }
 
   // Carousel functionality
@@ -176,7 +189,7 @@
     if (images[currentImage]) {
       images[currentImage].classList.add("hidden");
     }
-    
+
     // Show new image
     if (images[index]) {
       images[index].classList.remove("hidden");
@@ -202,7 +215,8 @@
     autoplayInterval = setInterval(() => {
       const images = document.querySelectorAll(".carousel-image");
       if (images.length > 0) {
-        const nextIndex = currentImage + 1 >= images.length ? 0 : currentImage + 1;
+        const nextIndex =
+          currentImage + 1 >= images.length ? 0 : currentImage + 1;
         showImage(nextIndex);
       }
     }, 5000);
@@ -218,7 +232,7 @@
   // Initialize carousel
   function initializeCarousel() {
     createCarouselDots();
-    
+
     // Navigation buttons
     const prevBtn = document.getElementById("prev-btn");
     const nextBtn = document.getElementById("next-btn");
@@ -228,7 +242,8 @@
       prevBtn.addEventListener("click", (e) => {
         e.preventDefault();
         const images = document.querySelectorAll(".carousel-image");
-        const newIndex = currentImage - 1 < 0 ? images.length - 1 : currentImage - 1;
+        const newIndex =
+          currentImage - 1 < 0 ? images.length - 1 : currentImage - 1;
         showImage(newIndex);
       });
     }
@@ -237,7 +252,8 @@
       nextBtn.addEventListener("click", (e) => {
         e.preventDefault();
         const images = document.querySelectorAll(".carousel-image");
-        const newIndex = currentImage + 1 >= images.length ? 0 : currentImage + 1;
+        const newIndex =
+          currentImage + 1 >= images.length ? 0 : currentImage + 1;
         showImage(newIndex);
       });
     }
@@ -254,19 +270,24 @@
   function initializeDateRestrictions() {
     const checkinDate = document.getElementById("checkin-date");
     const checkoutDate = document.getElementById("checkout-date");
-    
+
     if (checkinDate && checkoutDate) {
-      const today = new Date().toISOString().split('T')[0];
+      const today = new Date().toISOString().split("T")[0];
       checkinDate.min = today;
       checkoutDate.min = today;
-      
-      checkinDate.addEventListener("change", function() {
+
+      checkinDate.addEventListener("change", function () {
         const checkinValue = new Date(this.value);
-        const minCheckout = new Date(checkinValue.getTime() + 24 * 60 * 60 * 1000);
-        checkoutDate.min = minCheckout.toISOString().split('T')[0];
-        
-        if (checkoutDate.value && new Date(checkoutDate.value) <= checkinValue) {
-          checkoutDate.value = minCheckout.toISOString().split('T')[0];
+        const minCheckout = new Date(
+          checkinValue.getTime() + 24 * 60 * 60 * 1000
+        );
+        checkoutDate.min = minCheckout.toISOString().split("T")[0];
+
+        if (
+          checkoutDate.value &&
+          new Date(checkoutDate.value) <= checkinValue
+        ) {
+          checkoutDate.value = minCheckout.toISOString().split("T")[0];
         }
       });
     }
@@ -284,11 +305,14 @@
 
     const checkin = new Date(checkinDate);
     const checkout = new Date(checkoutDate);
-    const nights = Math.max(1, Math.ceil((checkout - checkin) / (1000 * 60 * 60 * 24)));
-    
+    const nights = Math.max(
+      1,
+      Math.ceil((checkout - checkin) / (1000 * 60 * 60 * 24))
+    );
+
     const basePrice = hotel.prices[roomType] || hotel.prices.deluxe;
     let totalPrice = basePrice * nights;
-    
+
     // Extra guest charges (beyond 2 guests)
     if (guests > 2) {
       totalPrice += (guests - 2) * 500 * nights;
@@ -306,14 +330,14 @@
     const bookingForm = document.getElementById("booking-form");
     if (!bookingForm) return;
 
-    bookingForm.addEventListener("submit", function(e) {
+    bookingForm.addEventListener("submit", function (e) {
       e.preventDefault();
-      
+
       // Simple validation
       const requiredFields = bookingForm.querySelectorAll("[required]");
       let isValid = true;
-      
-      requiredFields.forEach(field => {
+
+      requiredFields.forEach((field) => {
         if (!field.value.trim()) {
           field.classList.add("border-red-500");
           isValid = false;
@@ -321,15 +345,16 @@
           field.classList.remove("border-red-500");
         }
       });
-      
+
       if (!isValid) {
         alert("Please fill all required fields.");
         return;
       }
-      
+
       // Show success message
       const successMessage = document.createElement("div");
-      successMessage.className = "fixed top-4 right-4 bg-green-500 text-white p-4 rounded-lg shadow-lg z-50";
+      successMessage.className =
+        "fixed top-4 right-4 bg-green-500 text-white p-4 rounded-lg shadow-lg z-50";
       successMessage.innerHTML = `
         <div class="flex items-center">
           <span class="mr-2">✓</span>
@@ -338,30 +363,35 @@
         </div>
       `;
       document.body.appendChild(successMessage);
-      
+
       setTimeout(() => successMessage.remove(), 5000);
-      
+
       // Reset form
       bookingForm.reset();
     });
   }
 
   // Initialize everything
-  document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("DOMContentLoaded", function () {
     updateHotelDisplay();
     initializeCarousel();
     initializeDateRestrictions();
     handleBookingForm();
-    
+
     // Add event listeners for price calculation
-    const priceInputs = ["room-type", "checkin-date", "checkout-date", "guests"];
-    priceInputs.forEach(id => {
+    const priceInputs = [
+      "room-type",
+      "checkin-date",
+      "checkout-date",
+      "guests",
+    ];
+    priceInputs.forEach((id) => {
       const element = document.getElementById(id);
       if (element) {
         element.addEventListener("change", calculatePrice);
       }
     });
-    
+
     // Initial price calculation
     setTimeout(calculatePrice, 100);
   });

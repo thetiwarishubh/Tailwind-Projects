@@ -15,8 +15,8 @@ class HotelBookingSystem {
     this.currentImage = 0;
     this.carouselImages = [
       "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800",
-      "https://images.unsplash.com/photo-1549366021-9f761d040a94?w=800", 
-      "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800"
+      "https://images.unsplash.com/photo-1549366021-9f761d040a94?w=800",
+      "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800",
     ];
 
     this.init();
@@ -28,18 +28,24 @@ class HotelBookingSystem {
 
   initializeDefaultHotel() {
     const urlParams = this.getURLParams();
-    
+
     return {
       id: "luxury-safari-lodge",
       name: urlParams.get("hotelName") || "Luxury Safari Lodge",
-      location: urlParams.get("hotelLocation") || "Ranthambhore National Park, Rajasthan",
-      description: urlParams.get("hotelDescription") || "A premium hotel offering comfortable accommodation with excellent amenities.",
-      selectedImage: urlParams.get("hotelImage") || "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800",
+      location:
+        urlParams.get("hotelLocation") ||
+        "Ranthambhore National Park, Rajasthan",
+      description:
+        urlParams.get("hotelDescription") ||
+        "A premium hotel offering comfortable accommodation with excellent amenities.",
+      selectedImage:
+        urlParams.get("hotelImage") ||
+        "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800",
       prices: {
         standard: parseInt(urlParams.get("standardPrice")) || 8000,
         deluxe: parseInt(urlParams.get("deluxePrice")) || 10000,
-        suite: parseInt(urlParams.get("suitePrice")) || 15000
-      }
+        suite: parseInt(urlParams.get("suitePrice")) || 15000,
+      },
     };
   }
 
@@ -128,64 +134,68 @@ class HotelBookingSystem {
 
   updateCarouselImages() {
     const images = document.querySelectorAll(".carousel-image");
-    
+
     // If a specific hotel image was selected, use it as the first image
     if (this.currentHotel.selectedImage) {
       // Update carousel images array with selected image as first
       this.carouselImages = [
         this.currentHotel.selectedImage,
-        ...this.carouselImages.filter(img => img !== this.currentHotel.selectedImage)
+        ...this.carouselImages.filter(
+          (img) => img !== this.currentHotel.selectedImage
+        ),
       ];
     }
-    
+
     // Update each carousel image
     images.forEach((img, index) => {
       if (this.carouselImages[index]) {
         img.src = this.carouselImages[index];
         img.alt = `${this.currentHotel.name} Image ${index + 1}`;
-        
+
         // Add error handling for image loading (prevent infinite loops)
         if (!img.dataset.errorHandlerAdded) {
           img.onerror = () => {
-            img.src = `https://via.placeholder.com/600x300/e5e7eb/9ca3af?text=Hotel+Image+${index + 1}`;
-            img.dataset.errorHandlerAdded = 'true';
+            img.src = `https://via.placeholder.com/600x300/e5e7eb/9ca3af?text=Hotel+Image+${
+              index + 1
+            }`;
+            img.dataset.errorHandlerAdded = "true";
           };
-          
+
           // Add loading indicator
           img.onload = () => {
-            img.style.opacity = '1';
+            img.style.opacity = "1";
           };
         }
-        
+
         // Set visibility - show first image, hide others
         if (index === 0) {
-          img.classList.remove('hidden');
-          img.style.opacity = '1';
+          img.classList.remove("hidden");
+          img.style.opacity = "1";
         } else {
-          img.classList.add('hidden');
+          img.classList.add("hidden");
         }
       }
     });
-    
-      // Add click event to carousel images for lightbox (only if not already added)
-      images.forEach((img, index) => {
-        // Only add listeners if not already added
-        if (!img.dataset.listenerAdded) {
-          // Create a new click handler
-          const clickHandler = (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            this.showImageLightbox(img.src, img.alt);
-          };
-          
-          img.addEventListener('click', clickHandler);
-          img.dataset.listenerAdded = 'true';
-          
-          // Set visual indicators
-          img.style.cursor = 'pointer';
-          img.title = 'Click to view larger image';
-        }
-      });
+
+    // Add click event to carousel images for lightbox (only if not already added)
+    images.forEach((img, index) => {
+      // Only add listeners if not already added
+      if (!img.dataset.listenerAdded) {
+        // Create a new click handler
+        const clickHandler = (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          this.showImageLightbox(img.src, img.alt);
+        };
+
+        img.addEventListener("click", clickHandler);
+        img.dataset.listenerAdded = "true";
+
+        // Set visual indicators
+        img.style.cursor = "pointer";
+        img.title = "Click to view larger image";
+      }
+    });
   }
 
   createCarouselDots() {
@@ -196,7 +206,10 @@ class HotelBookingSystem {
 
     // Get actual carousel images from DOM
     const carouselImages = document.querySelectorAll(".carousel-image");
-    const imageCount = Math.max(carouselImages.length, this.carouselImages.length);
+    const imageCount = Math.max(
+      carouselImages.length,
+      this.carouselImages.length
+    );
 
     // Create dots for each image
     for (let i = 0; i < imageCount; i++) {
@@ -219,7 +232,10 @@ class HotelBookingSystem {
         e.preventDefault();
         const images = document.querySelectorAll(".carousel-image");
         if (images.length > 0) {
-          const newIndex = this.currentImage - 1 < 0 ? images.length - 1 : this.currentImage - 1;
+          const newIndex =
+            this.currentImage - 1 < 0
+              ? images.length - 1
+              : this.currentImage - 1;
           this.showImage(newIndex);
         }
       });
@@ -230,7 +246,8 @@ class HotelBookingSystem {
         e.preventDefault();
         const images = document.querySelectorAll(".carousel-image");
         if (images.length > 0) {
-          const newIndex = this.currentImage + 1 >= images.length ? 0 : this.currentImage + 1;
+          const newIndex =
+            this.currentImage + 1 >= images.length ? 0 : this.currentImage + 1;
           this.showImage(newIndex);
         }
       });
@@ -253,7 +270,7 @@ class HotelBookingSystem {
     if (images[this.currentImage]) {
       images[this.currentImage].classList.add("hidden");
     }
-    
+
     // Show new image
     if (images[index]) {
       images[index].classList.remove("hidden");
@@ -279,7 +296,8 @@ class HotelBookingSystem {
     this.autoplayInterval = setInterval(() => {
       const images = document.querySelectorAll(".carousel-image");
       if (images.length > 0) {
-        const nextIndex = this.currentImage + 1 >= images.length ? 0 : this.currentImage + 1;
+        const nextIndex =
+          this.currentImage + 1 >= images.length ? 0 : this.currentImage + 1;
         this.showImage(nextIndex);
       }
     }, 5000);
@@ -293,7 +311,7 @@ class HotelBookingSystem {
   }
 
   // ================================
-  // MOBILE MENU FUNCTIONALITY  
+  // MOBILE MENU FUNCTIONALITY
   // ================================
 
   initializeMobileMenu() {
@@ -306,7 +324,7 @@ class HotelBookingSystem {
       mobileMenuBtn.addEventListener("click", (e) => {
         e.stopPropagation();
         const isHidden = mobileMenu.classList.contains("hidden");
-        
+
         if (isHidden) {
           mobileMenu.classList.remove("hidden");
           if (menuIcon) menuIcon.classList.add("hidden");
@@ -320,7 +338,10 @@ class HotelBookingSystem {
 
       // Close mobile menu when clicking outside
       document.addEventListener("click", (e) => {
-        if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+        if (
+          !mobileMenuBtn.contains(e.target) &&
+          !mobileMenu.contains(e.target)
+        ) {
           mobileMenu.classList.add("hidden");
           if (menuIcon) menuIcon.classList.remove("hidden");
           if (closeIcon) closeIcon.classList.add("hidden");
@@ -966,27 +987,27 @@ Thank you for booking with Ranthambore 360!
   showImageLightbox(imageSrc, altText) {
     const lightbox = document.getElementById("image-lightbox");
     const lightboxImage = document.getElementById("lightbox-image");
-    
+
     if (lightbox && lightboxImage) {
       lightboxImage.src = imageSrc;
-      lightboxImage.alt = altText || 'Hotel Image';
+      lightboxImage.alt = altText || "Hotel Image";
       lightbox.classList.remove("hidden");
-      
+
       // Add keyboard support for closing
       const handleKeyPress = (e) => {
-        if (e.key === 'Escape') {
+        if (e.key === "Escape") {
           lightbox.classList.add("hidden");
-          document.removeEventListener('keydown', handleKeyPress);
+          document.removeEventListener("keydown", handleKeyPress);
         }
       };
-      
-      document.addEventListener('keydown', handleKeyPress);
-      
+
+      document.addEventListener("keydown", handleKeyPress);
+
       // Close lightbox when clicking outside the image
-      lightbox.addEventListener('click', (e) => {
+      lightbox.addEventListener("click", (e) => {
         if (e.target === lightbox) {
           lightbox.classList.add("hidden");
-          document.removeEventListener('keydown', handleKeyPress);
+          document.removeEventListener("keydown", handleKeyPress);
         }
       });
     }
@@ -1007,8 +1028,8 @@ Thank you for booking with Ranthambore 360!
 // ================================
 
 // Ensure DOM is fully loaded before initialization
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initializeEverything);
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initializeEverything);
 } else {
   // DOM is already loaded
   initializeEverything();
@@ -1018,9 +1039,9 @@ function initializeEverything() {
   try {
     // Create global instance
     window.hotelBookingSystem = new HotelBookingSystem();
-    console.log('✅ Hotel Booking System initialized successfully');
+    console.log("✅ Hotel Booking System initialized successfully");
   } catch (error) {
-    console.error('❌ Failed to initialize Hotel Booking System:', error);
+    console.error("❌ Failed to initialize Hotel Booking System:", error);
   }
 
   // Smooth scroll to form on page load (reduced delay)
@@ -1044,23 +1065,23 @@ function initializeEverything() {
   // Initialize additional features with error handling
   try {
     initializePaymentModal();
-    console.log('✅ Payment modal initialized');
+    console.log("✅ Payment modal initialized");
   } catch (error) {
-    console.warn('⚠️ Payment modal initialization failed:', error);
+    console.warn("⚠️ Payment modal initialization failed:", error);
   }
-  
+
   try {
     initializeImageLightbox();
-    console.log('✅ Image lightbox initialized');
+    console.log("✅ Image lightbox initialized");
   } catch (error) {
-    console.warn('⚠️ Image lightbox initialization failed:', error);
+    console.warn("⚠️ Image lightbox initialization failed:", error);
   }
-  
+
   try {
     initializeAlertModal();
-    console.log('✅ Alert modal initialized');
+    console.log("✅ Alert modal initialized");
   } catch (error) {
-    console.warn('⚠️ Alert modal initialization failed:', error);
+    console.warn("⚠️ Alert modal initialization failed:", error);
   }
 }
 
@@ -1100,35 +1121,38 @@ function initializeImageLightbox() {
   }
 
   // Handle escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && lightbox && !lightbox.classList.contains('hidden')) {
-      lightbox.classList.add('hidden');
+  document.addEventListener("keydown", (e) => {
+    if (
+      e.key === "Escape" &&
+      lightbox &&
+      !lightbox.classList.contains("hidden")
+    ) {
+      lightbox.classList.add("hidden");
     }
   });
 
   // Handle clicking outside the image
   if (lightbox) {
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox || e.target.closest('.relative') === null) {
-        lightbox.classList.add('hidden');
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox || e.target.closest(".relative") === null) {
+        lightbox.classList.add("hidden");
       }
     });
   }
 
   // Initialize carousel image click handlers for lightbox
-  const carouselImages = document.querySelectorAll('.carousel-image');
-  carouselImages.forEach(img => {
-    img.addEventListener('click', () => {
+  const carouselImages = document.querySelectorAll(".carousel-image");
+  carouselImages.forEach((img) => {
+    img.addEventListener("click", () => {
       if (lightbox && lightboxImage) {
         lightboxImage.src = img.src;
-        lightboxImage.alt = img.alt || 'Hotel Image';
-        lightbox.classList.remove('hidden');
+        lightboxImage.alt = img.alt || "Hotel Image";
+        lightbox.classList.remove("hidden");
       }
     });
-    img.style.cursor = 'pointer';
+    img.style.cursor = "pointer";
   });
 }
-
 
 // Console welcome message
 console.log("🏨 Hotel Booking System Initialized Successfully");

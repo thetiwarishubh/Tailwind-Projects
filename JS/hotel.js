@@ -1,6 +1,6 @@
 // Optimized hotel.js - Unused code removed, performance improved
-(function() {
-  'use strict';
+(function () {
+  "use strict";
 
   // Advanced search toggle
   const advancedToggle = document.getElementById("advanced-toggle");
@@ -24,18 +24,28 @@
         // Remove active from all
         tabButtons.forEach((btn) => {
           btn.classList.remove("border-blue-500", "text-blue-600");
-          btn.classList.add("border-transparent", "text-gray-500", "hover:text-gray-700", "hover:border-gray-300");
+          btn.classList.add(
+            "border-transparent",
+            "text-gray-500",
+            "hover:text-gray-700",
+            "hover:border-gray-300"
+          );
         });
-        
+
         // Add active to clicked
         button.classList.add("border-blue-500", "text-blue-600");
-        button.classList.remove("border-transparent", "text-gray-500", "hover:text-gray-700", "hover:border-gray-300");
-        
+        button.classList.remove(
+          "border-transparent",
+          "text-gray-500",
+          "hover:text-gray-700",
+          "hover:border-gray-300"
+        );
+
         // Hide all tab contents
         document.querySelectorAll(".tab-content").forEach((content) => {
           content.classList.add("hidden");
         });
-        
+
         // Show selected tab
         const tabId = button.getAttribute("data-tab");
         const targetTab = document.getElementById(tabId);
@@ -75,13 +85,13 @@
     // Navigation buttons
     const prevBtn = document.querySelector(".carousel-prev");
     const nextBtn = document.querySelector(".carousel-next");
-    
+
     if (prevBtn) {
       prevBtn.addEventListener("click", () => {
         goToSlide((currentSlide - 1 + slides.length) % slides.length);
       });
     }
-    
+
     if (nextBtn) {
       nextBtn.addEventListener("click", () => {
         goToSlide((currentSlide + 1) % slides.length);
@@ -121,7 +131,7 @@
 
     if (newsletterForm && newsletterInput && newsletterBtn) {
       const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-      
+
       const showSuccess = () => {
         formContainer?.classList.add("hidden");
         successMsg?.classList.remove("hidden");
@@ -141,13 +151,15 @@
         const errorText = document.getElementById("newsletter-error-text");
 
         if (!email) {
-          if (errorText) errorText.textContent = "Please enter your email address.";
+          if (errorText)
+            errorText.textContent = "Please enter your email address.";
           errorMsg?.classList.remove("hidden");
           return;
         }
 
         if (!isValidEmail(email)) {
-          if (errorText) errorText.textContent = "Please enter a valid email address.";
+          if (errorText)
+            errorText.textContent = "Please enter a valid email address.";
           errorMsg?.classList.remove("hidden");
           return;
         }
@@ -167,27 +179,43 @@
     }
 
     // Book now buttons - optimized with event delegation
-    document.addEventListener('click', function(e) {
-      if (e.target.closest('.book-now-btn')) {
-        const btn = e.target.closest('.book-now-btn');
-        const hotelCard = btn.closest('.bg-white');
-        
+    document.addEventListener("click", function (e) {
+      if (e.target.closest(".book-now-btn")) {
+        const btn = e.target.closest(".book-now-btn");
+        const hotelCard = btn.closest(".bg-white");
+
         if (hotelCard) {
-          const hotelName = hotelCard.querySelector('h3')?.textContent || 'Selected Hotel';
-          const hotelImage = hotelCard.querySelector('img')?.src || '';
-          const hotelLocation = hotelCard.querySelector('p')?.textContent || 'Premium Location';
-          const priceElement = hotelCard.querySelector('.text-2xl');
-          const basePrice = priceElement ? priceElement.textContent.replace(/[^0-9]/g, '') : '10000';
-          
-          const bookingUrl = new URL('hotel-booking-page.html', window.location);
-          bookingUrl.searchParams.set('hotelName', encodeURIComponent(hotelName));
-          bookingUrl.searchParams.set('hotelImage', encodeURIComponent(hotelImage));
-          bookingUrl.searchParams.set('hotelLocation', encodeURIComponent(hotelLocation));
-          bookingUrl.searchParams.set('deluxePrice', basePrice);
-          
+          const hotelName =
+            hotelCard.querySelector("h3")?.textContent || "Selected Hotel";
+          const hotelImage = hotelCard.querySelector("img")?.src || "";
+          const hotelLocation =
+            hotelCard.querySelector("p")?.textContent || "Premium Location";
+          const priceElement = hotelCard.querySelector(".text-2xl");
+          const basePrice = priceElement
+            ? priceElement.textContent.replace(/[^0-9]/g, "")
+            : "10000";
+
+          const bookingUrl = new URL(
+            "hotel-booking-page.html",
+            window.location
+          );
+          bookingUrl.searchParams.set(
+            "hotelName",
+            encodeURIComponent(hotelName)
+          );
+          bookingUrl.searchParams.set(
+            "hotelImage",
+            encodeURIComponent(hotelImage)
+          );
+          bookingUrl.searchParams.set(
+            "hotelLocation",
+            encodeURIComponent(hotelLocation)
+          );
+          bookingUrl.searchParams.set("deluxePrice", basePrice);
+
           window.location.href = bookingUrl.toString();
         } else {
-          window.location.href = 'hotel-booking-page.html';
+          window.location.href = "hotel-booking-page.html";
         }
       }
     });

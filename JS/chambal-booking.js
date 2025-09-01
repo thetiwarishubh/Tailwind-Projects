@@ -1,13 +1,53 @@
 // Chambal Essential - Optimized version with unused code removed
-(function() {
-  'use strict';
+(function () {
+  "use strict";
 
   // Package configurations
   const packageConfigs = {
-    standard: { name: "Standard Safari", duration: "2 hours", price: 2499, features: ["2-hour boat safari with guide", "Life jacket and safety equipment", "Pickup & drop from nearby hotels"] },
-    deluxe: { name: "Deluxe Safari", duration: "3 hours", price: 3499, features: ["3-hour extended boat safari", "Pickup & drop from nearby hotels", "Complimentary bottled water", "Premium life jacket provided"] },
-    premium: { name: "Premium Safari", duration: "4 hours", price: 4499, features: ["4-hour private boat safari", "Pickup & drop from any hotel in city", "Lunch at riverside restaurant", "Expert wildlife naturalist guide"] },
-    luxury: { name: "Luxury Safari", duration: "Full day", price: 5999, features: ["Full day private boat safari", "Luxury vehicle pickup & drop", "Gourmet lunch with river view", "Senior naturalist guide", "Binoculars and field guide included"] }
+    standard: {
+      name: "Standard Safari",
+      duration: "2 hours",
+      price: 2499,
+      features: [
+        "2-hour boat safari with guide",
+        "Life jacket and safety equipment",
+        "Pickup & drop from nearby hotels",
+      ],
+    },
+    deluxe: {
+      name: "Deluxe Safari",
+      duration: "3 hours",
+      price: 3499,
+      features: [
+        "3-hour extended boat safari",
+        "Pickup & drop from nearby hotels",
+        "Complimentary bottled water",
+        "Premium life jacket provided",
+      ],
+    },
+    premium: {
+      name: "Premium Safari",
+      duration: "4 hours",
+      price: 4499,
+      features: [
+        "4-hour private boat safari",
+        "Pickup & drop from any hotel in city",
+        "Lunch at riverside restaurant",
+        "Expert wildlife naturalist guide",
+      ],
+    },
+    luxury: {
+      name: "Luxury Safari",
+      duration: "Full day",
+      price: 5999,
+      features: [
+        "Full day private boat safari",
+        "Luxury vehicle pickup & drop",
+        "Gourmet lunch with river view",
+        "Senior naturalist guide",
+        "Binoculars and field guide included",
+      ],
+    },
   };
 
   // Get package from URL
@@ -25,7 +65,7 @@
     const elements = {
       "package-name": config.name,
       "package-duration": config.duration,
-      "package-price": `₹${config.price.toLocaleString()}`
+      "package-price": `₹${config.price.toLocaleString()}`,
     };
 
     Object.entries(elements).forEach(([id, value]) => {
@@ -36,7 +76,10 @@
     const featuresContainer = document.getElementById("package-features");
     if (featuresContainer) {
       featuresContainer.innerHTML = config.features
-        .map(feature => `<li class="flex items-center"><i class="fas fa-check text-teal-500 mr-2"></i>${feature}</li>`)
+        .map(
+          (feature) =>
+            `<li class="flex items-center"><i class="fas fa-check text-teal-500 mr-2"></i>${feature}</li>`
+        )
         .join("");
     }
   }
@@ -52,8 +95,10 @@
   function calculateTotal() {
     const packageType = getPackageFromURL();
     const basePrice = packageConfigs[packageType].price;
-    const indianPersons = parseInt(document.getElementById("indian-persons")?.value) || 0;
-    const foreignPersons = parseInt(document.getElementById("foreigner-persons")?.value) || 0;
+    const indianPersons =
+      parseInt(document.getElementById("indian-persons")?.value) || 0;
+    const foreignPersons =
+      parseInt(document.getElementById("foreigner-persons")?.value) || 0;
 
     const indianRates = { 1: 500, 2: 900, 3: 1200, 4: 1500, 5: 1800, 6: 2100 };
     const foreignRates = { 0: 0, 1: 1250, 2: 2100, 3: 2900, 4: 3750 };
@@ -67,7 +112,7 @@
       "indian-cost": `₹${indianCost.toLocaleString()}`,
       "foreign-cost": `₹${foreignCost.toLocaleString()}`,
       "package-base-cost": `₹${basePrice.toLocaleString()}`,
-      "payable-amount": `₹${total.toLocaleString()}`
+      "payable-amount": `₹${total.toLocaleString()}`,
     };
 
     Object.entries(elements).forEach(([id, value]) => {
@@ -82,14 +127,18 @@
     const fields = [
       { id: "name", errorId: "name-error", minLength: 3 },
       { id: "mobile", errorId: "mobile-error", pattern: /^[0-9]{10}$/ },
-      { id: "email", errorId: "email-error", pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ },
+      {
+        id: "email",
+        errorId: "email-error",
+        pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      },
       { id: "id-proof-type", errorId: "id-proof-error" },
       { id: "id-proof", errorId: "id-proof-error" },
       { id: "state", errorId: "state-error" },
       { id: "indian-persons", errorId: "indian-persons-error" },
       { id: "booking-date", errorId: "booking-date-error" },
       { id: "safari-timing", errorId: "safari-timing-error" },
-      { id: "address", errorId: "address-error", minLength: 15 }
+      { id: "address", errorId: "address-error", minLength: 15 },
     ];
 
     fields.forEach((field) => {
@@ -150,10 +199,14 @@
       `⏰ Time: ${formData.get("safari-timing")}`,
       `📍 Address: ${formData.get("address")}`,
       "",
-      `💰 Estimated Total: ${document.getElementById("payable-amount").textContent}`
+      `💰 Estimated Total: ${
+        document.getElementById("payable-amount").textContent
+      }`,
     ].join("\n");
 
-    const whatsappURL = `https://wa.me/918076438491?text=${encodeURIComponent(message)}`;
+    const whatsappURL = `https://wa.me/918076438491?text=${encodeURIComponent(
+      message
+    )}`;
     window.open(whatsappURL, "_blank");
   }
 
@@ -177,7 +230,8 @@
   // Payment process - simplified
   function startPaymentProcess() {
     const paymentModal = document.createElement("div");
-    paymentModal.className = "fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4";
+    paymentModal.className =
+      "fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4";
     paymentModal.innerHTML = `
       <div class="bg-white rounded-2xl max-w-md w-full p-6">
         <div class="text-center">
@@ -192,7 +246,9 @@
           <div class="bg-gray-100 p-4 rounded-lg">
             <div class="flex justify-between items-center mb-2">
               <span class="text-sm text-gray-600">Amount:</span>
-              <span class="font-semibold">${document.getElementById("payable-amount").textContent}</span>
+              <span class="font-semibold">${
+                document.getElementById("payable-amount").textContent
+              }</span>
             </div>
             <div class="flex justify-between items-center">
               <span class="text-sm text-gray-600">Payment Method:</span>
@@ -252,12 +308,12 @@
   document.addEventListener("DOMContentLoaded", function () {
     updatePackageDisplay();
     setMinDate();
-    
+
     // Event listeners
     const indianPersonsInput = document.getElementById("indian-persons");
     const foreignPersonsInput = document.getElementById("foreigner-persons");
-    
-    [indianPersonsInput, foreignPersonsInput].forEach(input => {
+
+    [indianPersonsInput, foreignPersonsInput].forEach((input) => {
       if (input) {
         input.addEventListener("change", calculateTotal);
       }

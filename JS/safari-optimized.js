@@ -1,15 +1,16 @@
 // Safari Essential - Optimized and compact version
-(function() {
-  'use strict';
+(function () {
+  "use strict";
 
   const CONFIG = {
     MAX_PASSENGERS: 6,
-    NOTIFICATION_DURATION: 3000
+    NOTIFICATION_DURATION: 3000,
   };
 
   // Utilities
   const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const isValidPhone = (phone) => /^[6-9]\d{9}$/.test(phone.replace(/\s+/g, ""));
+  const isValidPhone = (phone) =>
+    /^[6-9]\d{9}$/.test(phone.replace(/\s+/g, ""));
   const sanitizeInput = (input) => {
     const div = document.createElement("div");
     div.textContent = input;
@@ -42,20 +43,23 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
-    const isFormPage = window.location.pathname.includes("safari.html") || 
-                      window.location.pathname === "/" || 
-                      !window.location.pathname.includes("create-safari-booking.html");
-    const isBookingPage = window.location.pathname.includes("create-safari-booking.html");
+    const isFormPage =
+      window.location.pathname.includes("safari.html") ||
+      window.location.pathname === "/" ||
+      !window.location.pathname.includes("create-safari-booking.html");
+    const isBookingPage = window.location.pathname.includes(
+      "create-safari-booking.html"
+    );
 
     // Form Page Logic
     if (isFormPage) {
       const calendarEl = document.getElementById("calendar");
-      if (calendarEl && typeof FullCalendar !== 'undefined') {
+      if (calendarEl && typeof FullCalendar !== "undefined") {
         const calendar = new FullCalendar.Calendar(calendarEl, {
           initialView: "dayGridMonth",
           headerToolbar: {
             left: "prev,next today",
-            center: "title", 
+            center: "title",
             right: "dayGridMonth",
           },
           dateClick: function (info) {
@@ -75,7 +79,7 @@
       if (form) {
         form.addEventListener("submit", (e) => {
           e.preventDefault();
-          
+
           const formData = {
             userFullName: document.getElementById("name")?.value,
             userEmail: document.getElementById("email")?.value,
@@ -83,17 +87,21 @@
             userTiming: document.getElementById("timing")?.value,
             safari: document.getElementById("safari")?.value,
             zone: document.getElementById("zone")?.value,
-            bookingDate: localStorage.getItem("bookingdate")
+            bookingDate: localStorage.getItem("bookingdate"),
           };
 
           // Validation
           const errors = [];
           if (!formData.bookingDate) errors.push("Please select date");
-          if (!formData.userFullName?.trim()) errors.push("Please enter your full name");
+          if (!formData.userFullName?.trim())
+            errors.push("Please enter your full name");
           if (!formData.userEmail?.trim()) errors.push("Please enter email");
-          else if (!isValidEmail(formData.userEmail)) errors.push("Please enter valid email");
-          if (!formData.userNumber?.trim()) errors.push("Please enter mobile number");
-          else if (!isValidPhone(formData.userNumber)) errors.push("Please enter valid 10-digit number");
+          else if (!isValidEmail(formData.userEmail))
+            errors.push("Please enter valid email");
+          if (!formData.userNumber?.trim())
+            errors.push("Please enter mobile number");
+          else if (!isValidPhone(formData.userNumber))
+            errors.push("Please enter valid 10-digit number");
           if (!formData.userTiming) errors.push("Please select safari timing");
           if (!formData.safari) errors.push("Please select safari type");
           if (!formData.zone) errors.push("Please select safari zone");
@@ -106,9 +114,16 @@
           // Store sanitized data
           Object.entries(formData).forEach(([key, value]) => {
             if (value) {
-              const storageKey = key === 'userFullName' ? 'username' : 
-                               key === 'userNumber' ? 'number' : key;
-              localStorage.setItem(storageKey, sanitizeInput(value.toString().trim()));
+              const storageKey =
+                key === "userFullName"
+                  ? "username"
+                  : key === "userNumber"
+                  ? "number"
+                  : key;
+              localStorage.setItem(
+                storageKey,
+                sanitizeInput(value.toString().trim())
+              );
             }
           });
 
@@ -120,17 +135,25 @@
       }
     }
 
-    // Booking Page Logic  
+    // Booking Page Logic
     if (isBookingPage) {
-      const storageKeys = ['username', 'email', 'number', 'timing', 'safari', 'zone', 'bookingdate'];
+      const storageKeys = [
+        "username",
+        "email",
+        "number",
+        "timing",
+        "safari",
+        "zone",
+        "bookingdate",
+      ];
       const displaySelectors = {
-        '.display-name': 'username',
-        '.display-email': 'email',
-        '.display-mobile': 'number', 
-        '.display-safari': 'safari',
-        '.display-zone': 'zone',
-        '.display-timing': 'timing',
-        '.display-date': 'bookingdate'
+        ".display-name": "username",
+        ".display-email": "email",
+        ".display-mobile": "number",
+        ".display-safari": "safari",
+        ".display-zone": "zone",
+        ".display-timing": "timing",
+        ".display-date": "bookingdate",
       };
 
       Object.entries(displaySelectors).forEach(([selector, key]) => {
@@ -143,14 +166,14 @@
       // Passenger management
       let passengerCount = 1;
       const addMemberBtn = document.getElementById("add-member-btn");
-      
+
       if (addMemberBtn) {
         addMemberBtn.addEventListener("click", () => {
           if (passengerCount >= CONFIG.MAX_PASSENGERS) {
             showNotification("Maximum 6 passengers allowed.", "error");
             return;
           }
-          
+
           const tableBody = document.getElementById("passengerTableBody");
           if (!tableBody) return;
 
@@ -210,7 +233,9 @@
     }
 
     // Alert Modal handlers
-    const createSafariBookingButton = document.querySelectorAll(".createSafariBookingButton");
+    const createSafariBookingButton = document.querySelectorAll(
+      ".createSafariBookingButton"
+    );
     const alertModal = document.getElementById("alertModal");
     const startBookingButton = document.querySelector(".startingBookingBtn");
     const continueBookingButton = document.querySelector(".continueBookingBtn");

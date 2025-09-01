@@ -1,20 +1,23 @@
 // Optimized safari.js - Unused code removed, error handling added
-(function() {
-  'use strict';
+(function () {
+  "use strict";
 
   document.addEventListener("DOMContentLoaded", function () {
     try {
       // Determine page type
-      const isFormPage = window.location.pathname.includes("safari.html") || 
-                        window.location.pathname === "/" || 
-                        !window.location.pathname.includes("create-safari-booking.html");
-      const isBookingPage = window.location.pathname.includes("create-safari-booking.html");
+      const isFormPage =
+        window.location.pathname.includes("safari.html") ||
+        window.location.pathname === "/" ||
+        !window.location.pathname.includes("create-safari-booking.html");
+      const isBookingPage = window.location.pathname.includes(
+        "create-safari-booking.html"
+      );
 
       // Form Page Logic
       if (isFormPage) {
         const calendarEl = document.getElementById("calendar");
-        
-        if (calendarEl && typeof FullCalendar !== 'undefined') {
+
+        if (calendarEl && typeof FullCalendar !== "undefined") {
           const calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: "dayGridMonth",
             headerToolbar: {
@@ -43,7 +46,7 @@
         if (form) {
           form.addEventListener("submit", (e) => {
             e.preventDefault();
-            
+
             try {
               const formData = {
                 userFullName: document.getElementById("name")?.value,
@@ -52,13 +55,21 @@
                 userTiming: document.getElementById("timing")?.value,
                 safari: document.getElementById("safari")?.value,
                 zone: document.getElementById("zone")?.value,
-                bookingDate: localStorage.getItem("bookingdate")
+                bookingDate: localStorage.getItem("bookingdate"),
               };
 
               // Validation
-              const required = ["userFullName", "userEmail", "userNumber", "userTiming", "safari", "zone", "bookingDate"];
-              const missing = required.filter(field => !formData[field]);
-              
+              const required = [
+                "userFullName",
+                "userEmail",
+                "userNumber",
+                "userTiming",
+                "safari",
+                "zone",
+                "bookingDate",
+              ];
+              const missing = required.filter((field) => !formData[field]);
+
               if (missing.length) {
                 alert("Please fill out all form fields and select a date.");
                 return;
@@ -66,8 +77,12 @@
 
               // Store in localStorage
               Object.entries(formData).forEach(([key, value]) => {
-                const storageKey = key === 'userFullName' ? 'username' : 
-                                 key === 'userNumber' ? 'number' : key;
+                const storageKey =
+                  key === "userFullName"
+                    ? "username"
+                    : key === "userNumber"
+                    ? "number"
+                    : key;
                 localStorage.setItem(storageKey, value);
               });
 
@@ -83,22 +98,28 @@
       // Booking Page Logic
       if (isBookingPage) {
         const storageData = [
-          'username', 'email', 'number', 'timing', 'safari', 'zone', 'bookingdate'
-        ].map(key => ({ key, value: localStorage.getItem(key) }));
+          "username",
+          "email",
+          "number",
+          "timing",
+          "safari",
+          "zone",
+          "bookingdate",
+        ].map((key) => ({ key, value: localStorage.getItem(key) }));
 
         const displayElements = {
-          '.display-name': 'username',
-          '.display-email': 'email', 
-          '.display-mobile': 'number',
-          '.display-safari': 'safari',
-          '.display-zone': 'zone',
-          '.display-timing': 'timing',
-          '.display-date': 'bookingdate'
+          ".display-name": "username",
+          ".display-email": "email",
+          ".display-mobile": "number",
+          ".display-safari": "safari",
+          ".display-zone": "zone",
+          ".display-timing": "timing",
+          ".display-date": "bookingdate",
         };
 
         Object.entries(displayElements).forEach(([selector, dataKey]) => {
           const element = document.querySelector(selector);
-          const data = storageData.find(item => item.key === dataKey);
+          const data = storageData.find((item) => item.key === dataKey);
           if (element) {
             element.textContent = data?.value || "N/A";
           }
@@ -108,14 +129,14 @@
       // Passenger management
       let passengerCount = 1;
       const addMemberBtn = document.getElementById("add-member-btn");
-      
+
       if (addMemberBtn) {
         addMemberBtn.addEventListener("click", () => {
           if (passengerCount >= 6) {
             alert("Maximum 6 passengers allowed.");
             return;
           }
-          
+
           addPassengerRow();
           passengerCount++;
         });
@@ -173,7 +194,6 @@
         `;
         tableBody.appendChild(row);
       }
-
     } catch (error) {
       console.error("Safari script error:", error);
     }

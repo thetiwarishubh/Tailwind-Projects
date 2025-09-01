@@ -1,6 +1,6 @@
 // Optimized package.js - Unused code removed, consolidated modal system
-(function() {
-  'use strict';
+(function () {
+  "use strict";
 
   // Book now buttons
   const bookNowButtons = document.querySelectorAll(".bookNowBtn");
@@ -23,25 +23,26 @@
 
   function createModal(content) {
     if (currentModal) closeModal();
-    
+
     document.body.style.overflow = "hidden";
     const modal = document.createElement("div");
     modal.id = "active-modal";
-    modal.className = "fixed inset-0 backdrop-blur-md bg-black/50 z-50 flex items-center justify-center p-4";
+    modal.className =
+      "fixed inset-0 backdrop-blur-md bg-black/50 z-50 flex items-center justify-center p-4";
     modal.innerHTML = content;
     document.body.appendChild(modal);
     currentModal = modal;
-    
+
     // Close handlers
     const closeBtn = modal.querySelector(".close-modal");
     if (closeBtn) {
       closeBtn.addEventListener("click", closeModal);
     }
-    
+
     modal.addEventListener("click", (e) => {
       if (e.target === modal) closeModal();
     });
-    
+
     return modal;
   }
 
@@ -55,18 +56,26 @@
 
   // View Details handler
   document.addEventListener("click", function (e) {
-    const viewDetailsBtn = e.target.closest('a[href="#"], a[aria-label^="View"]');
-    
+    const viewDetailsBtn = e.target.closest(
+      'a[href="#"], a[aria-label^="View"]'
+    );
+
     if (viewDetailsBtn && viewDetailsBtn.textContent.includes("View Details")) {
       e.preventDefault();
       const card = viewDetailsBtn.closest(".relative");
       if (!card) return;
-      
+
       const packageTitle = card.querySelector("h3")?.textContent || "Package";
       const packageImage = card.querySelector("img")?.src || "";
-      const highlights = Array.from(card.querySelectorAll("ul li")).map(li => li.textContent);
-      const duration = card.querySelector('[class*="font-semibold"]')?.textContent || "";
-      const location = card.querySelector(".flex.items-center.text-gray-600")?.textContent.trim() || "";
+      const highlights = Array.from(card.querySelectorAll("ul li")).map(
+        (li) => li.textContent
+      );
+      const duration =
+        card.querySelector('[class*="font-semibold"]')?.textContent || "";
+      const location =
+        card
+          .querySelector(".flex.items-center.text-gray-600")
+          ?.textContent.trim() || "";
       const prices = card.querySelector(".price-tag")?.textContent || "";
 
       const modalContent = `
@@ -89,7 +98,7 @@
                 <div class="mb-4">
                   <h4 class="font-semibold text-lg text-gray-800 mb-2">Package Highlights</h4>
                   <ul class="list-disc pl-5 space-y-2 text-gray-700">
-                    ${highlights.map(item => `<li>${item}</li>`).join("")}
+                    ${highlights.map((item) => `<li>${item}</li>`).join("")}
                   </ul>
                 </div>
                 
@@ -117,7 +126,7 @@
           </div>
         </div>
       `;
-      
+
       const modal = createModal(modalContent);
       modal.querySelector(".book-now").addEventListener("click", () => {
         window.location.href = "package-booking-page.html";
@@ -125,20 +134,24 @@
     }
   });
 
-  // Quick View handler  
+  // Quick View handler
   document.addEventListener("click", function (e) {
     const quickViewBtn = e.target.closest('button[aria-label^="Quick view"]');
-    
+
     if (quickViewBtn) {
       e.preventDefault();
       const card = quickViewBtn.closest(".group");
       if (!card) return;
-      
+
       const packageTitle = card.querySelector("h3")?.textContent || "Package";
       const packageImage = card.querySelector("img")?.src || "";
-      const highlights = Array.from(card.querySelectorAll("ul li")).map(li => li.textContent);
+      const highlights = Array.from(card.querySelectorAll("ul li")).map(
+        (li) => li.textContent
+      );
       const price = card.querySelector(".price-tag")?.textContent || "";
-      const rating = card.querySelector(".flex.items-center.space-x-1 span:first-child")?.textContent || "4.5";
+      const rating =
+        card.querySelector(".flex.items-center.space-x-1 span:first-child")
+          ?.textContent || "4.5";
 
       const modalContent = `
         <div class="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
@@ -164,14 +177,18 @@
               <div class="mb-6">
                 <h3 class="text-xl font-semibold mb-4 text-gray-800">Package Inclusions</h3>
                 <ul class="space-y-3">
-                  ${highlights.map(item => `
+                  ${highlights
+                    .map(
+                      (item) => `
                     <li class="flex items-start">
                       <svg class="h-5 w-5 mr-2 mt-0.5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                       </svg>
                       <span class="text-gray-700">${item}</span>
                     </li>
-                  `).join("")}
+                  `
+                    )
+                    .join("")}
                 </ul>
               </div>
               
@@ -182,7 +199,7 @@
           </div>
         </div>
       `;
-      
+
       const modal = createModal(modalContent);
       modal.querySelector(".quick-book-now").addEventListener("click", () => {
         window.location.href = "package-booking-page.html";
@@ -192,8 +209,10 @@
 
   // Gallery handler
   document.addEventListener("click", function (e) {
-    const galleryBtn = e.target.closest('[aria-label*="gallery" i], [aria-label*="view" i]');
-    
+    const galleryBtn = e.target.closest(
+      '[aria-label*="gallery" i], [aria-label*="view" i]'
+    );
+
     if (galleryBtn) {
       e.preventDefault();
       const card = galleryBtn.closest(".relative, .card, div");
@@ -214,7 +233,7 @@
             </div>
           </div>
         `;
-        
+
         createModal(modalContent);
       }
     }
@@ -225,12 +244,14 @@
     button.addEventListener("click", function () {
       const icon = this.querySelector(".like-box");
       this.classList.toggle("liked");
-      
+
       if (this.classList.contains("liked")) {
         icon.style.fill = "#f43f5e";
         icon.style.stroke = "#f43f5e";
         icon.style.transform = "scale(1.2)";
-        setTimeout(() => { icon.style.transform = "scale(1)"; }, 300);
+        setTimeout(() => {
+          icon.style.transform = "scale(1)";
+        }, 300);
       } else {
         icon.style.fill = "none";
         icon.style.stroke = "currentColor";
@@ -241,7 +262,7 @@
   // Countdown timer
   const targetDate = new Date("2026-07-07T12:00:00").getTime();
   const timerElement = document.getElementById("timer");
-  
+
   if (timerElement) {
     const countdownInterval = setInterval(() => {
       const now = new Date().getTime();
@@ -254,11 +275,17 @@
       }
 
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      timerElement.innerHTML = `${String(days).padStart(2, "0")}d : ${String(hours).padStart(2, "0")}h : ${String(minutes).padStart(2, "0")}m : ${String(seconds).padStart(2, "0")}s`;
+      timerElement.innerHTML = `${String(days).padStart(2, "0")}d : ${String(
+        hours
+      ).padStart(2, "0")}h : ${String(minutes).padStart(2, "0")}m : ${String(
+        seconds
+      ).padStart(2, "0")}s`;
     }, 1000);
   }
 
